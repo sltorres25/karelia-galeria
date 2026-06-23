@@ -1738,8 +1738,17 @@ a {
   .modal-image-panel {
     height: 220px;
   }
-  
   .modal-image {
     max-height: 180px;
   }
+}
+
+.hidden-item {
+  display: none !important;
+}
+
+.button-container-reveal {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
 }

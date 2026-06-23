@@ -339,15 +339,27 @@ function renderGallery() {
   const artistsGrid = document.getElementById('artists-grid');
   const artworksGrid = document.getElementById('artworks-grid');
 
+  const flagSvg = `
+    <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="30" height="4" fill="#002590"/>
+      <rect y="4" width="30" height="4" fill="#ffffff"/>
+      <rect y="8" width="30" height="4" fill="#002590"/>
+      <rect y="12" width="30" height="4" fill="#ffffff"/>
+      <rect y="16" width="30" height="4" fill="#002590"/>
+      <path d="M0 0L15 10L0 20Z" fill="#D21034"/>
+      <path d="M5 10L5.8 11.8L7.8 11.8L6.2 13L6.8 14.8L5 13.7L3.2 14.8L3.8 13L2.2 11.8L4.2 11.8Z" fill="#ffffff"/>
+    </svg>
+  `;
+
   if (artistsGrid) {
-    artistsGrid.innerHTML = artistsData.map(artist => `
-      <div class="artist-card scroll-reveal">
+    artistsGrid.innerHTML = artistsData.map((artist, index) => `
+      <div class="artist-card scroll-reveal ${index >= 4 ? 'hidden-item' : ''}">
         <div class="artist-image-container">
           <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
         </div>
         <div class="artist-info">
           <div class="artist-meta">
-            <span class="artist-flag">${artist.flag}</span>
+            <span class="artist-flag">${flagSvg}</span>
             <span class="artist-country">${artist.country}</span>
           </div>
           <h3 class="artist-name">${artist.name}</h3>
@@ -398,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initArtworkModal();
   initTestimonialSlider();
   initContactForms();
+  initArtistsReveal();
 });
 
 /* -------------------------------------------------------------
@@ -516,33 +529,90 @@ function animateCounter(element, target) {
 /* -------------------------------------------------------------
  * Catologue filtration logic
  * ------------------------------------------------------------- */
+let artworksExpanded = false;
+let currentFilter = 'all';
+
+function updateArtworkVisibility() {
+  const artworkItems = document.querySelectorAll('.artwork-item');
+  let visibleCount = 0;
+
+  artworkItems.forEach(item => {
+    const category = item.getAttribute('data-category');
+    const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+    
+    if (matchesFilter) {
+      visibleCount++;
+      const shouldShow = artworksExpanded || visibleCount <= 3;
+      if (shouldShow) {
+        item.classList.add('show');
+        item.classList.remove('hidden-item');
+      } else {
+        item.classList.remove('show');
+        item.classList.add('hidden-item');
+      }
+    } else {
+      item.classList.remove('show');
+      item.classList.add('hidden-item');
+    }
+  });
+
+  const btnObras = document.getElementById('btn-see-more-artworks');
+  if (btnObras) {
+    let totalMatching = 0;
+    artworkItems.forEach(item => {
+      const category = item.getAttribute('data-category');
+      if (currentFilter === 'all' || category === currentFilter) {
+        totalMatching++;
+      }
+    });
+
+    if (totalMatching <= 3) {
+      btnObras.style.display = 'none';
+    } else {
+      btnObras.style.display = 'inline-flex';
+      btnObras.textContent = artworksExpanded ? 'Ver menos obras' : 'Ver más obras';
+    }
+  }
+}
+
+function initArtistsReveal() {
+  const btnArtists = document.getElementById('btn-see-more-artists');
+  let artistsExpanded = false;
+
+  if (btnArtists) {
+    btnArtists.addEventListener('click', () => {
+      artistsExpanded = !artistsExpanded;
+      const cards = document.querySelectorAll('#artists-grid .artist-card');
+      cards.forEach((card, idx) => {
+        if (idx >= 4) {
+          card.classList.toggle('hidden-item', !artistsExpanded);
+        }
+      });
+      btnArtists.textContent = artistsExpanded ? 'Ver menos artistas' : 'Ver todos los artistas';
+    });
+  }
+}
+
 function initArtworkFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const artworkItems = document.querySelectorAll('.artwork-item');
+  const btnObras = document.getElementById('btn-see-more-artworks');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Toggle active states
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
-      const filterValue = button.getAttribute('data-filter');
-
-      artworkItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        
-        // Soft fade out first
-        item.classList.remove('show');
-        
-        // Small delay to let fade-out render, then display matching items
-        setTimeout(() => {
-          if (filterValue === 'all' || category === filterValue) {
-            item.classList.add('show');
-          }
-        }, 100);
-      });
+      currentFilter = button.getAttribute('data-filter');
+      updateArtworkVisibility();
     });
   });
+
+  if (btnObras) {
+    btnObras.addEventListener('click', () => {
+      artworksExpanded = !artworksExpanded;
+      updateArtworkVisibility();
+    });
+  }
 
   // Support link clicks from the artists section
   const artistLinks = document.querySelectorAll('.artist-link');
@@ -557,6 +627,8 @@ function initArtworkFilter() {
       }
     });
   });
+
+  updateArtworkVisibility();
 }
 
 /* -------------------------------------------------------------
