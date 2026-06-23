@@ -1,70 +1,396 @@
 import './style.css';
 
+// Vite glob import for all images in src/Artistas
+const artistImages = import.meta.glob('/src/Artistas/**/*.{jpg,jpeg,png,webp}', { eager: true });
+
+function getImageUrl(path) {
+  const resolved = artistImages[path];
+  return resolved ? resolved.default : path;
+}
+
+// Artists Metadata Database
+const artistsData = [
+  {
+    id: "alexis-pantoja",
+    name: "Alexis Pantoja",
+    flag: "🇨🇺",
+    country: "Manzanillo, Cuba",
+    bio: "Su pintura reinterpreta la figuración expresiva y lo fantástico mediante composiciones dinámicas con una pincelada gestual y texturas ricas.",
+    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg",
+    filter: "abstracto"
+  },
+  {
+    id: "carlos-rene-aguilera",
+    name: "Carlos René Aguilera",
+    flag: "🇨🇺",
+    country: "Santiago de Cuba, Cuba",
+    bio: "Explora la visualidad caribeña mediante formas enredadas, sogas y una profunda metáfora sobre la insularidad y el escape del confinamiento.",
+    image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg",
+    filter: "texturado"
+  },
+  {
+    id: "gerlys-alvarez",
+    name: "Gerlys Álvarez",
+    flag: "🇨🇺",
+    country: "Mariel, Cuba",
+    bio: "Sobresaliente retratista y pintor de marinas que plasma la fuerza misteriosa del mar y la espina punzante del dolor y belleza humana.",
+    image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg",
+    filter: "abstracto"
+  },
+  {
+    id: "luis-molina",
+    name: "Luis Molina",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    bio: "Representa el folclore afrocubano y la vida rural bajo el intenso mediodía caribeño, con un dominio singular de la luz y la transparencia.",
+    image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg",
+    filter: "texturado"
+  },
+  {
+    id: "manuel-lopez-oliva",
+    name: "Manuel López Oliva",
+    flag: "🇨🇺",
+    country: "Manzanillo, Cuba",
+    bio: "Prestigioso creador y crítico que concibe la obra como un escenario teatral, empleando la máscara como símbolo de la identidad y la teatralidad social.",
+    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg",
+    filter: "expresionismo"
+  },
+  {
+    id: "maria-consuelo",
+    name: "María Consuelo",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    bio: "Sus abstracciones orgánicas sobre soportes pesados investigan la textura y los ritmos naturales íntimos de la geografía caribeña.",
+    image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg",
+    filter: "abstracto"
+  },
+  {
+    id: "maykel-herrera",
+    name: "Maykel Herrera",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    bio: "A través del retrato expresivo de niños con miradas intensas, crea metáforas poéticas e irónicas sobre la realidad y psicología social.",
+    image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg",
+    filter: "expresionismo"
+  },
+  {
+    id: "orestes-gaulhiac",
+    name: "Orestes Gaulhiac",
+    flag: "🇨🇺",
+    country: "Santiago de Cuba, Cuba",
+    bio: "Destacado por sus escenas de ensueño y místicas que mezclan humanos, animales y una vibrante naturaleza caribeña naif.",
+    image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg",
+    filter: "geometrico"
+  },
+  {
+    id: "pedro-alvarez-gendis",
+    name: "Pedro Álvarez Gendis",
+    flag: "🇨🇺",
+    country: "Camagüey, Cuba",
+    bio: "Sus composiciones abstractas investigan el espacio arquitectónico, la tensión cromática y las estructuras de la memoria urbana.",
+    image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg",
+    filter: "abstracto"
+  },
+  {
+    id: "pedro-avila",
+    name: "Pedro Ávila",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    bio: "Concibe la abstracción lírica como un territorio interior de emociones puras, tensión y gran intensidad gestual cromática.",
+    image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg",
+    filter: "abstracto"
+  },
+  {
+    id: "vicente-dopico",
+    name: "Vicente Dopico",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    bio: "Maestro del expresionismo simbólico caribeño cuyas espirales y figuras híbridas exploran la psique profunda e introspectiva.",
+    image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg",
+    filter: "abstracto"
+  }
+];
+
 // Artwork Metadata Database
 const artworksData = {
   1: {
-    title: "Pulsaciones Andinas",
-    artist: "Sofía Silva",
+    title: "Quietud Dinámica",
+    artist: "Alexis Pantoja",
     category: "Abstracto",
-    technique: "Acrílico sobre lienzo",
-    dimensions: "120 x 150 cm",
+    technique: "Óleo sobre lienzo",
+    dimensions: "150 x 150 cm",
     year: "2025",
-    price: "$4,500 USD",
-    image: "/src/assets/artworks/artwork1.png"
+    price: "$5,200 USD",
+    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg"
   },
   2: {
-    title: "Ecos de Oaxaca",
-    artist: "Mateo Torres",
-    category: "Texturado",
-    technique: "Pigmentos orgánicos y arena",
-    dimensions: "100 x 100 cm",
+    title: "Fragmentos del Viento",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "120 x 100 cm",
     year: "2024",
-    price: "$3,800 USD",
-    image: "/src/assets/artworks/artwork2.png"
+    price: "$4,500 USD",
+    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0003.jpg"
   },
   3: {
-    title: "Fronteras Flotantes",
-    artist: "Valentina Herrera",
-    category: "Geométrico",
-    technique: "Acrílico y óleo sobre lienzo",
-    dimensions: "80 x 120 cm",
-    year: "2025",
-    price: "$3,200 USD",
-    image: "/src/assets/artworks/artwork3.png"
+    title: "Rumbos Invisibles",
+    artist: "Alexis Pantoja",
+    category: "Abstracto",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "2024",
+    price: "$3,900 USD",
+    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0004.jpg"
   },
   4: {
-    title: "Abstracción Rosa",
-    artist: "Diego Franco",
-    category: "Expresionismo",
-    technique: "Óleo gestual sobre lienzo",
-    dimensions: "140 x 140 cm",
+    title: "Horizonte Sensible",
+    artist: "Carlos René Aguilera",
+    category: "Texturado",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "150 x 100 cm",
     year: "2024",
-    price: "$5,100 USD",
-    image: "/src/assets/artworks/artwork4.png"
+    price: "$4,800 USD",
+    image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg"
   },
   5: {
-    title: "Sombras Urbanas",
-    artist: "Mateo Torres",
-    category: "Texturado",
-    technique: "Óleo y pan de oro sobre lienzo",
-    dimensions: "110 x 130 cm",
+    title: "Laberinto del Tiempo",
+    artist: "Carlos René Aguilera",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "120 x 120 cm",
     year: "2025",
     price: "$4,200 USD",
-    image: "/src/assets/artworks/artwork5.png"
+    image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg"
   },
   6: {
-    title: "Geometría del Ritmo",
-    artist: "Sofía Silva",
-    category: "Geométrico",
-    technique: "Acrílico sobre tabla de madera",
-    dimensions: "90 x 90 cm",
+    title: "Fuera del Radar",
+    artist: "Gerlys Álvarez",
+    category: "Abstracto",
+    technique: "Acrílico sobre cartulina",
+    dimensions: "140 x 56 cm",
+    year: "2020",
+    price: "$4,200 USD",
+    image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg"
+  },
+  7: {
+    title: "Marea Silenciosa",
+    artist: "Gerlys Álvarez",
+    category: "Abstracto",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "100 x 80 cm",
     year: "2025",
+    price: "$3,800 USD",
+    image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0006.jpg"
+  },
+  8: {
+    title: "Abismo Azul",
+    artist: "Gerlys Álvarez",
+    category: "Texturado",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "120 x 90 cm",
+    year: "2025",
+    price: "$4,000 USD",
+    image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0007.jpg"
+  },
+  9: {
+    title: "Estudio de Luz",
+    artist: "Luis Molina",
+    category: "Texturado",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "18 x 24 in",
+    year: "2024",
+    price: "$2,800 USD",
+    image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg"
+  },
+  10: {
+    title: "Máscara de Carnaval",
+    artist: "Manuel López Oliva",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "2023",
+    price: "$4,500 USD",
+    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg"
+  },
+  11: {
+    title: "Danza Ritual",
+    artist: "Manuel López Oliva",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "120 x 100 cm",
+    year: "2024",
+    price: "$5,000 USD",
+    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140649_Drive.jpg"
+  },
+  12: {
+    title: "Composición Orgánica I",
+    artist: "María Consuelo",
+    category: "Abstracto",
+    technique: "Acrílico sobre papel pesado",
+    dimensions: "38 x 28 in",
+    year: "2024",
+    price: "$3,400 USD",
+    image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg"
+  },
+  13: {
+    title: "Composición Orgánica II",
+    artist: "María Consuelo",
+    category: "Texturado",
+    technique: "Acrílico sobre papel pesado",
+    dimensions: "38 x 28 in",
+    year: "2024",
+    price: "$3,400 USD",
+    image: "/src/Artistas/Maria Consuelo/Heavvy paper. 38 x 28 in.jpeg"
+  },
+  14: {
+    title: "Rezo",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "150 x 110 cm",
+    year: "2023",
+    price: "$5,800 USD",
+    image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg"
+  },
+  15: {
+    title: "Expedición",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "43 x 59 in",
+    year: "2011",
+    price: "$6,200 USD",
+    image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg"
+  },
+  16: {
+    title: "Bajo la Lluvia",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "90 x 90 cm",
+    year: "2024",
+    price: "$3,600 USD",
+    image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg"
+  },
+  17: {
+    title: "Cuentos de la Selva",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "48 x 36 in",
+    year: "2024",
+    price: "$4,800 USD",
+    image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 48x36 in. .jpeg"
+  },
+  18: {
+    title: "Construcción del Espacio",
+    artist: "Pedro Álvarez Gendis",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "36 x 47 in",
+    year: "2023",
+    price: "$4,700 USD",
+    image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg"
+  },
+  19: {
+    title: "Estructuras Urbanas",
+    artist: "Pedro Álvarez Gendis",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "47 x 36 in",
+    year: "2023",
+    price: "$4,700 USD",
+    image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 47x36 in.jpg"
+  },
+  20: {
+    title: "Sinfonía del Alba",
+    artist: "Pedro Ávila",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "182 x 152 cm",
+    year: "2025",
+    price: "$6,500 USD",
+    image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg"
+  },
+  21: {
+    title: "Encuentro de Almas",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "24 x 18 in",
+    year: "2023",
     price: "$2,900 USD",
-    image: "/src/assets/artworks/artwork6.png"
+    image: "/src/Artistas/Vicente Dopico/24 x 18 in.jpeg"
+  },
+  22: {
+    title: "Reflejos de la Memoria",
+    artist: "Vicente Dopico",
+    category: "Texturado",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "26 x 22 in",
+    year: "2023",
+    price: "$3,200 USD",
+    image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg"
   }
 };
 
+function renderGallery() {
+  const artistsGrid = document.getElementById('artists-grid');
+  const artworksGrid = document.getElementById('artworks-grid');
+
+  if (artistsGrid) {
+    artistsGrid.innerHTML = artistsData.map(artist => `
+      <div class="artist-card scroll-reveal">
+        <div class="artist-image-container">
+          <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
+        </div>
+        <div class="artist-info">
+          <div class="artist-meta">
+            <span class="artist-flag">${artist.flag}</span>
+            <span class="artist-country">${artist.country}</span>
+          </div>
+          <h3 class="artist-name">${artist.name}</h3>
+          <p class="artist-bio">${artist.bio}</p>
+          <a href="#obras" class="artist-link" data-filter="${artist.filter}">Explorar obras &rarr;</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  if (artworksGrid) {
+    artworksGrid.innerHTML = Object.entries(artworksData).map(([id, artwork]) => `
+      <div class="artwork-item show" data-category="${artwork.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}" data-id="${id}">
+        <div class="artwork-card">
+          <div class="artwork-image-wrapper">
+            <img src="${getImageUrl(artwork.image)}" alt="${artwork.title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
+            <div class="artwork-overlay">
+              <div class="artwork-details-action">
+                <span class="btn-circle">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="action-text">Ampliar detalles</span>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <h3 class="artwork-title">${artwork.title}</h3>
+            <p class="artwork-artist">${artwork.artist}</p>
+            <div class="artwork-meta">
+              <span class="artwork-spec">${artwork.technique} • ${artwork.dimensions}</span>
+              <span class="artwork-price">${artwork.price}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  renderGallery();
   initNavbar();
   initScrollReveal();
   initStatsCounters();
@@ -265,7 +591,7 @@ function initArtworkModal() {
         
         if (data) {
           // Fill modal fields
-          mImage.src = data.image;
+          mImage.src = getImageUrl(data.image);
           mImage.alt = `${data.title} - ${data.artist}`;
           mCategory.textContent = data.category;
           mTitle.textContent = data.title;
