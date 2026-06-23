@@ -383,6 +383,11 @@ a {
   transition: var(--transition-fast);
 }
 
+.nav-link.active {
+  color: var(--accent-gold) !important;
+  font-weight: 600;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;

@@ -429,7 +429,10 @@ function initNavbar() {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
-      navbar.classList.remove('scrolled');
+      const isSubpage = window.location.pathname.includes('artistas.html') || window.location.pathname.includes('obras.html');
+      if (!isSubpage) {
+        navbar.classList.remove('scrolled');
+      }
     }
   });
 
@@ -456,6 +459,41 @@ function initNavbar() {
         navMenu.classList.remove('active');
       }
     });
+  }
+
+  // Active page logic & scroll spy
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('artistas.html')) {
+    const link = document.querySelector('.nav-menu a[href*="artistas"]');
+    if (link) link.classList.add('active');
+  } else if (currentPath.includes('obras.html')) {
+    const link = document.querySelector('.nav-menu a[href*="obras"]');
+    if (link) link.classList.add('active');
+  } else {
+    // Scroll spy for index.html sections
+    const sections = document.querySelectorAll('section[id]');
+    
+    function scrollSpy() {
+      const scrollY = window.scrollY;
+      
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 120; // offset for sticky navbar
+        const sectionId = current.getAttribute('id');
+        
+        const navLink = document.querySelector(`.nav-menu a[href$="#${sectionId}"], .nav-menu a[href$="${sectionId}"]`);
+        if (navLink) {
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLink.classList.add('active');
+          } else {
+            navLink.classList.remove('active');
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', scrollSpy);
+    scrollSpy(); // run on load
   }
 }
 
