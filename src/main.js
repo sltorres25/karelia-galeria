@@ -108,6 +108,15 @@ const artistsData = [
     bio: "Maestro del expresionismo simbólico caribeño cuyas espirales y figuras híbridas exploran la psique profunda e introspectiva.",
     image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg",
     filter: "abstracto"
+  },
+  {
+    id: "miguel-ulloa",
+    name: "Miguel Ulloa",
+    flag: "🇩🇴",
+    country: "Puerto Plata, Rep. Dominicana",
+    bio: "Pintor dominicano distinguido por sus retratos estilizados y el uso de formas geométricas que estructuran la figura humana con una vibrante paleta de colores.",
+    image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg",
+    filter: "expresionismo"
   }
 ];
 
@@ -332,14 +341,41 @@ const artworksData = {
     year: "2023",
     price: "$3,200 USD",
     image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg"
+  },
+  23: {
+    title: "Rostro Geométrico I",
+    artist: "Miguel Ulloa",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "2024",
+    price: "$4,200 USD",
+    image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg"
+  },
+  24: {
+    title: "Rostro Geométrico II",
+    artist: "Miguel Ulloa",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "2024",
+    price: "$4,200 USD",
+    image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.27.jpeg"
+  },
+  25: {
+    title: "Estudio de Personaje",
+    artist: "Miguel Ulloa",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "2023",
+    price: "$3,800 USD",
+    image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.28.jpeg"
   }
 };
 
-function renderGallery() {
-  const artistsGrid = document.getElementById('artists-grid');
-  const artworksGrid = document.getElementById('artworks-grid');
-
-  const flagSvg = `
+function getFlagSvg(flagEmoji) {
+  const cubaFlag = `
     <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
       <rect width="30" height="4" fill="#002590"/>
       <rect y="4" width="30" height="4" fill="#ffffff"/>
@@ -351,6 +387,25 @@ function renderGallery() {
     </svg>
   `;
 
+  const drFlag = `
+    <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="13" height="8" fill="#002D62"/>
+      <rect x="17" width="13" height="8" fill="#CE1126"/>
+      <rect y="12" width="13" height="8" fill="#CE1126"/>
+      <rect x="17" y="12" width="13" height="8" fill="#002D62"/>
+      <rect x="13" width="4" height="20" fill="#FFFFFF"/>
+      <rect y="8" width="30" height="4" fill="#FFFFFF"/>
+      <rect x="14" y="9" width="2" height="2" fill="#007A33"/>
+    </svg>
+  `;
+
+  return flagEmoji === '🇩🇴' ? drFlag : cubaFlag;
+}
+
+function renderGallery() {
+  const artistsGrid = document.getElementById('artists-grid');
+  const artworksGrid = document.getElementById('artworks-grid');
+
   if (artistsGrid) {
     const showAll = artistsGrid.getAttribute('data-show-all') === 'true';
     artistsGrid.innerHTML = artistsData.map((artist, index) => `
@@ -360,7 +415,7 @@ function renderGallery() {
         </div>
         <div class="artist-info">
           <div class="artist-meta">
-            <span class="artist-flag">${flagSvg}</span>
+            <span class="artist-flag">${getFlagSvg(artist.flag)}</span>
             <span class="artist-country">${artist.country}</span>
           </div>
           <h3 class="artist-name">${artist.name}</h3>
