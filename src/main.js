@@ -352,8 +352,9 @@ function renderGallery() {
   `;
 
   if (artistsGrid) {
+    const showAll = artistsGrid.getAttribute('data-show-all') === 'true';
     artistsGrid.innerHTML = artistsData.map((artist, index) => `
-      <div class="artist-card scroll-reveal ${index >= 4 ? 'hidden-item' : ''}">
+      <div class="artist-card scroll-reveal ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
         <div class="artist-image-container">
           <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
         </div>
@@ -577,18 +578,10 @@ function updateArtworkVisibility() {
 
 function initArtistsReveal() {
   const btnArtists = document.getElementById('btn-see-more-artists');
-  let artistsExpanded = false;
 
   if (btnArtists) {
     btnArtists.addEventListener('click', () => {
-      artistsExpanded = !artistsExpanded;
-      const cards = document.querySelectorAll('#artists-grid .artist-card');
-      cards.forEach((card, idx) => {
-        if (idx >= 4) {
-          card.classList.toggle('hidden-item', !artistsExpanded);
-        }
-      });
-      btnArtists.textContent = artistsExpanded ? 'Ver menos artistas' : 'Ver todos los artistas';
+      window.location.href = 'artistas.html';
     });
   }
 }
