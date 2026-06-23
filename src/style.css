@@ -858,6 +858,15 @@ a {
   background-color: #0c0c0c;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.section-split .section-title {
+  color: #ffffff !important;
+}
+
+.section-split .section-desc {
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .split-text {
@@ -866,6 +875,18 @@ a {
 
 .split-text .btn {
   margin-top: 24px;
+}
+
+.section-split .btn-secondary {
+  background-color: #ffffff;
+  color: #161616;
+  border-color: #ffffff;
+}
+
+.section-split .btn-secondary:hover {
+  background-color: var(--accent-gold);
+  color: #161616;
+  border-color: var(--accent-gold);
 }
 
 .split-image-container {
