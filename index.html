@@ -20,15 +20,15 @@
           <span class="logo-accent">ARTE</span> MESTIZO
         </a>
         <nav class="nav-menu" id="nav-menu">
-          <a href="#artistas" class="nav-link">Artistas</a>
-          <a href="#obras" class="nav-link">Obras</a>
+          <a href="artistas.html" class="nav-link">Artistas</a>
+          <a href="obras.html" class="nav-link">Obras</a>
           <a href="#concepto" class="nav-link">Concepto</a>
           <a href="#filosofia" class="nav-link">Nosotros</a>
           <a href="#contacto" class="nav-link">Contacto</a>
-          <a href="#obras" class="btn btn-primary btn-mobile-cta">Explorar Colección</a>
+          <a href="obras.html" class="btn btn-primary btn-mobile-cta">Explorar Colección</a>
         </nav>
         <div class="nav-actions">
-          <a href="#obras" class="btn btn-primary btn-nav-cta">Explorar Colección</a>
+          <a href="obras.html" class="btn btn-primary btn-nav-cta">Explorar Colección</a>
           <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -48,8 +48,8 @@
           Conectamos el talento de los artistas más inspiradores de América Latina con coleccionistas que aprecian la autenticidad, la textura y la historia detrás de cada trazo.
         </p>
         <div class="hero-actions scroll-reveal">
-          <a href="#artistas" class="btn btn-secondary">Descubrir Artistas</a>
-          <a href="#obras" class="btn btn-outline">Ver Colección</a>
+          <a href="artistas.html" class="btn btn-secondary">Descubrir Artistas</a>
+          <a href="obras.html" class="btn btn-outline">Ver Colección</a>
         </div>
       </div>
       <div class="hero-scroll-indicator">
@@ -283,6 +283,7 @@
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               <span>+57 (601) 345 6789</span>
+            </div>
           </div>
 
           <div class="social-links">
@@ -321,6 +322,14 @@
             </div>
 
             <div class="form-group">
+              <select id="contact-role" class="form-control" required style="padding-top: 14px; padding-bottom: 14px; height: 55px; appearance: none; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c5a880' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>&quot;); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; padding-right: 40px;">
+                <option value="comprador">Soy Comprador / Coleccionista</option>
+                <option value="artista">Soy Artista</option>
+              </select>
+              <label for="contact-role" class="form-label" style="top: -10px; left: 10px; font-size: 0.8rem; background-color: var(--bg-dark-card); padding: 0 6px; color: var(--accent-gold); letter-spacing: 0.05em; font-weight: 600;">¿Quién eres?</label>
+            </div>
+
+            <div class="form-group">
               <input type="text" id="contact-subject" class="form-control" required placeholder=" " />
               <label for="contact-subject" class="form-label">Asunto</label>
             </div>
@@ -350,8 +359,8 @@
         <div class="footer-links-grid">
           <div class="footer-column">
             <h4 class="footer-title">Explorar</h4>
-            <a href="#artistas">Artistas</a>
-            <a href="#obras">Obras destacadas</a>
+            <a href="artistas.html">Artistas</a>
+            <a href="obras.html">Obras destacadas</a>
             <a href="#concepto">Concepto</a>
             <a href="#filosofia">Nosotros</a>
           </div>
