@@ -579,7 +579,7 @@ a {
 .badge-location {
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  color: var(--text-light);
+  color: #ffffff;
   margin-top: 4px;
 }
 
