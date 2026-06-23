@@ -412,6 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonialSlider();
   initContactForms();
   initArtistsReveal();
+  initObrasCatalogPage();
 });
 
 /* -------------------------------------------------------------
@@ -602,8 +603,7 @@ function initArtworkFilter() {
 
   if (btnObras) {
     btnObras.addEventListener('click', () => {
-      artworksExpanded = !artworksExpanded;
-      updateArtworkVisibility();
+      window.location.href = 'obras.html';
     });
   }
 
@@ -843,3 +843,183 @@ function initContactForms() {
     });
   }
 }
+
+/* -------------------------------------------------------------
+ * Interactive Artworks Catalog Page Logic
+ * ------------------------------------------------------------- */
+function initObrasCatalogPage() {
+  const catalogGrid = document.getElementById('obras-page-grid');
+  if (!catalogGrid) return; // Not on the works catalog page!
+
+  const filterCategory = document.getElementById('filter-category');
+  const filterArtist = document.getElementById('filter-artist');
+  const filterCountry = document.getElementById('filter-country');
+  const sortPrice = document.getElementById('sort-price');
+
+  // Helper to parse price string to number for sorting (e.g. "$4,500 USD" -> 4500)
+  function parsePrice(priceStr) {
+    return parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+  }
+
+  // Helper to get artist's country
+  function getArtistCountry(artistName) {
+    const artist = artistsData.find(a => a.name === artistName);
+    if (!artist) return "Desconocido";
+    const parts = artist.country.split(',');
+    return parts[parts.length - 1].trim();
+  }
+
+  // Populate dynamic dropdowns
+  if (filterArtist) {
+    const artists = [...new Set(artistsData.map(a => a.name))].sort();
+    filterArtist.innerHTML = '<option value="all">Todos los artistas</option>' + 
+      artists.map(a => `<option value="${a}">${a}</option>`).join('');
+  }
+
+  if (filterCountry) {
+    const countries = [...new Set(artistsData.map(a => {
+      const parts = a.country.split(',');
+      return parts[parts.length - 1].trim();
+    }))].sort();
+    filterCountry.innerHTML = '<option value="all">Todos los países</option>' + 
+      countries.map(c => `<option value="${c}">${c}</option>`).join('');
+  }
+
+  // Function to render filtered and sorted list of artworks
+  function renderCatalog(items) {
+    catalogGrid.innerHTML = items.map(([id, artwork]) => `
+      <div class="artwork-item show" data-id="${id}" style="display: block; opacity: 1; transform: none;">
+        <div class="artwork-card">
+          <div class="artwork-image-wrapper">
+            <img src="${getImageUrl(artwork.image)}" alt="${artwork.title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
+            <div class="artwork-overlay">
+              <div class="artwork-details-action">
+                <span class="btn-circle">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="action-text" style="color: #ffffff;">Ampliar detalles</span>
+              </div>
+            </div>
+          </div>
+          <div class="artwork-info">
+            <h3 class="artwork-title">${artwork.title}</h3>
+            <p class="artwork-artist">${artwork.artist}</p>
+            <div class="artwork-meta">
+              <span class="artwork-spec">${artwork.technique} • ${artwork.dimensions}</span>
+              <span class="artwork-price">${artwork.price}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Re-attach click event listeners for the modal on the newly rendered items
+    bindModalEventsToCatalog();
+  }
+
+  // Filter and sort runner
+  function runFilterAndSort() {
+    const cat = filterCategory.value.toLowerCase();
+    const art = filterArtist.value;
+    const cnt = filterCountry.value;
+    const sort = sortPrice.value;
+
+    let items = Object.entries(artworksData); // entries: [id, data]
+
+    // Category filter
+    if (cat !== 'all') {
+      items = items.filter(([_, data]) => {
+        const itemCat = data.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return itemCat === cat;
+      });
+    }
+
+    // Artist filter
+    if (art !== 'all') {
+      items = items.filter(([_, data]) => data.artist === art);
+    }
+
+    // Country filter
+    if (cnt !== 'all') {
+      items = items.filter(([_, data]) => getArtistCountry(data.artist) === cnt);
+    }
+
+    // Sorting
+    if (sort === 'asc') {
+      items.sort((a, b) => parsePrice(a[1].price) - parsePrice(b[1].price));
+    } else if (sort === 'desc') {
+      items.sort((a, b) => parsePrice(b[1].price) - parsePrice(a[1].price));
+    }
+
+    renderCatalog(items);
+  }
+
+  // Attach change listeners to filters
+  [filterCategory, filterArtist, filterCountry, sortPrice].forEach(el => {
+    if (el) el.addEventListener('change', runFilterAndSort);
+  });
+
+  // Initial run to render all artworks on load
+  runFilterAndSort();
+}
+
+function bindModalEventsToCatalog() {
+  const modal = document.getElementById('artwork-modal');
+  if (!modal) return;
+  
+  const mImage = document.getElementById('modal-image');
+  const mCategory = document.getElementById('modal-category');
+  const mTitle = document.getElementById('modal-title');
+  const mArtist = document.getElementById('modal-artist');
+  const mTechnique = document.getElementById('modal-technique');
+  const mDimensions = document.getElementById('modal-dimensions');
+  const mYear = document.getElementById('modal-year');
+  const mPrice = document.getElementById('modal-price');
+  const mInquiryId = document.getElementById('inquiry-artwork-id');
+  const mInquiryStatus = document.getElementById('inquiry-status');
+  const mInquiryForm = document.getElementById('inquiry-form');
+
+  const catalogItems = document.querySelectorAll('#obras-page-grid .artwork-item');
+  catalogItems.forEach(card => {
+    const wrapper = card.querySelector('.artwork-image-wrapper');
+    if (wrapper) {
+      wrapper.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        const data = artworksData[id];
+        if (data) {
+          mImage.src = getImageUrl(data.image);
+          mImage.alt = `${data.title} - ${data.artist}`;
+          mCategory.textContent = data.category;
+          mTitle.textContent = data.title;
+          mArtist.textContent = data.artist;
+          mTechnique.textContent = data.technique;
+          mDimensions.textContent = data.dimensions;
+          mYear.textContent = data.year;
+          mPrice.textContent = data.price;
+          mInquiryId.value = id;
+
+          if (mInquiryStatus) {
+            mInquiryStatus.textContent = '';
+            mInquiryStatus.className = 'inquiry-status';
+          }
+          if (mInquiryForm) {
+            mInquiryForm.reset();
+            const textarea = document.getElementById('inquiry-message');
+            if (textarea) {
+              textarea.value = `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${data.title}" de ${data.artist}.`;
+            }
+          }
+
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          setTimeout(() => {
+            modal.classList.add('active');
+          }, 10);
+        }
+      });
+    }
+  });
+}
+

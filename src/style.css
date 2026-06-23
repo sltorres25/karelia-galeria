@@ -1738,3 +1738,70 @@ a {
   display: flex;
   justify-content: center;
 }
+
+/* Filter Panel styles */
+.filter-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background-color: var(--bg-light);
+  padding: 30px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--box-shadow-soft);
+  margin-bottom: 50px;
+}
+
+.filter-panel-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-panel-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dark-muted);
+  font-weight: 600;
+}
+
+.select-filter {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--bg-dark-card);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  border-radius: var(--border-radius-sm);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  appearance: none; /* Reset standard browser dropdown arrow */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c5a880' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 40px; /* Leave room for arrow icon */
+}
+
+.select-filter:focus, .select-filter:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.1);
+}
+
+@media (max-width: 991px) {
+  .filter-panel-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .filter-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
