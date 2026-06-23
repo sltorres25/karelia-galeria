@@ -908,82 +908,74 @@ a {
   transform: scale(1.02);
 }
 
-/* History Timeline Section */
-.timeline {
-  position: relative;
-  max-width: 1000px;
-  margin: 60px auto 0;
-  padding: 20px 0;
+/* Proceso Section */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 50px;
 }
 
-.timeline-line {
+.process-card {
+  background-color: var(--bg-dark-card);
+  padding: 48px 36px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: var(--box-shadow-soft);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.process-card::before {
+  content: '';
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 30px;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 50px;
-  padding-left: 80px;
-}
-
-.timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.timeline-marker {
-  position: absolute;
-  top: 6px;
-  left: 25px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: var(--accent-gold);
-  border: 3px solid var(--bg-dark);
-  z-index: 10;
-  box-shadow: 0 0 0 4px rgba(197, 168, 128, 0.2);
-  transition: var(--transition-fast);
-}
-
-.timeline-item:hover .timeline-marker {
-  background-color: var(--text-light);
-  box-shadow: 0 0 0 6px var(--accent-gold);
-}
-
-.timeline-content {
-  background-color: var(--bg-dark-card);
-  padding: 30px;
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: transparent;
   transition: var(--transition-smooth);
 }
 
-.timeline-item:hover .timeline-content {
+.process-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--box-shadow-medium);
   border-color: rgba(197, 168, 128, 0.2);
-  transform: translateX(5px);
 }
 
-.timeline-year {
-  display: inline-block;
+.process-card:hover::before {
+  background-color: var(--accent-gold);
+}
+
+.process-num {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
-  color: var(--accent-gold);
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 3.5rem;
+  color: var(--accent-gold-trans);
   line-height: 1;
+  margin-bottom: 24px;
+  font-weight: 700;
+  transition: var(--transition-smooth);
 }
 
-.timeline-title {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+.process-card:hover .process-num {
+  color: var(--accent-gold);
+  transform: scale(1.05) translateX(2px);
 }
 
-.timeline-text {
+.process-card-title {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.process-card-desc {
   font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dark-muted);
 }
 
 /* Testimonials / Quote Slider Section */
@@ -1537,6 +1529,12 @@ a {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
+
+  /* Process grid */
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1642,22 +1640,10 @@ a {
     height: 340px;
   }
   
-  /* Timeline */
-  .timeline-line {
-    left: 20px;
-  }
-  
-  .timeline-marker {
-    left: 15px;
-  }
-  
-  .timeline-item {
-    padding-left: 50px;
-    margin-bottom: 40px;
-  }
-  
-  .timeline-content {
-    padding: 20px;
+  /* Process Grid */
+  .process-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
   
   /* Testimonial Slider padding */
