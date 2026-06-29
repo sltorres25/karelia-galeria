@@ -481,6 +481,48 @@ const artworksData = {
   }
 };
 
+// Artwork Themes Mapping
+const artworkThemes = {
+  1: "Composición espacial",
+  2: "Paisaje abstracto",
+  3: "Búsqueda interior",
+  4: "Marina caribeña",
+  5: "Tiempo y laberinto",
+  6: "Marina expresiva",
+  7: "Marina silenciosa",
+  8: "Abismo marino",
+  9: "Estudio de luz",
+  10: "Teatralidad y máscara",
+  11: "Ritual expresionista",
+  12: "Naturaleza orgánica",
+  13: "Naturaleza y textura",
+  14: "Retrato social",
+  15: "Retrato social",
+  16: "Fantasía mística",
+  17: "Fantasía mística",
+  18: "Arquitectura y memoria",
+  19: "Memoria urbana",
+  20: "Sinfonía del alba",
+  21: "Misticismo psíquico",
+  22: "Textura y memoria",
+  23: "Retrato geométrico",
+  24: "Retrato geométrico",
+  25: "Estudio figurativo",
+  26: "Composición silente",
+  27: "Textura y tiempo",
+  28: "Materia en movimiento",
+  29: "Texturas del alba",
+  30: "Huellas de memoria",
+  31: "Retrato y afecto",
+  32: "Anatomía expresiva",
+  33: "Figuración interior"
+};
+
+// Assign themes dynamically to artworksData at startup
+Object.entries(artworksData).forEach(([id, artwork]) => {
+  artwork.theme = artworkThemes[id] || "Composición libre";
+});
+
 function getFlagSvg(flagEmoji) {
   const cubaFlag = `
     <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
@@ -858,6 +900,8 @@ function initArtworkModal() {
   const mCategory = document.getElementById('modal-category');
   const mTitle = document.getElementById('modal-title');
   const mArtist = document.getElementById('modal-artist');
+  const mStyle = document.getElementById('modal-style');
+  const mTheme = document.getElementById('modal-theme');
   const mTechnique = document.getElementById('modal-technique');
   const mDimensions = document.getElementById('modal-dimensions');
   const mYear = document.getElementById('modal-year');
@@ -881,6 +925,8 @@ function initArtworkModal() {
           mCategory.textContent = data.category;
           mTitle.textContent = data.title;
           mArtist.textContent = data.artist;
+          if (mStyle) mStyle.textContent = data.category;
+          if (mTheme) mTheme.textContent = data.theme;
           mTechnique.textContent = data.technique;
           mDimensions.textContent = data.dimensions;
           mYear.textContent = data.year;
@@ -1203,6 +1249,8 @@ function bindModalEventsToCatalog() {
   const mCategory = document.getElementById('modal-category');
   const mTitle = document.getElementById('modal-title');
   const mArtist = document.getElementById('modal-artist');
+  const mStyle = document.getElementById('modal-style');
+  const mTheme = document.getElementById('modal-theme');
   const mTechnique = document.getElementById('modal-technique');
   const mDimensions = document.getElementById('modal-dimensions');
   const mYear = document.getElementById('modal-year');
@@ -1224,6 +1272,8 @@ function bindModalEventsToCatalog() {
           mCategory.textContent = data.category;
           mTitle.textContent = data.title;
           mArtist.textContent = data.artist;
+          if (mStyle) mStyle.textContent = data.category;
+          if (mTheme) mTheme.textContent = data.theme;
           mTechnique.textContent = data.technique;
           mDimensions.textContent = data.dimensions;
           mYear.textContent = data.year;
