@@ -607,7 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForms();
   initArtistsReveal();
   initObrasCatalogPage();
-  initInfoModal();
 });
 
 /* -------------------------------------------------------------
@@ -1250,102 +1249,6 @@ function bindModalEventsToCatalog() {
           }, 10);
         }
       });
-    }
-  });
-}
-
-/* -------------------------------------------------------------
- * Trust Badges Info Modal Logic
- * ------------------------------------------------------------- */
-function initInfoModal() {
-  const modal = document.getElementById('info-modal');
-  if (!modal) return;
-
-  const backdrop = document.getElementById('info-modal-backdrop');
-  const closeBtn = document.getElementById('info-modal-close');
-  const okBtn = document.getElementById('info-modal-btn');
-  const titleEl = document.getElementById('info-modal-title');
-  const bodyEl = document.getElementById('info-modal-body');
-  const iconContainer = document.getElementById('info-modal-icon-container');
-
-  const links = document.querySelectorAll('.trust-badge-link');
-
-  const openInfoModal = (type) => {
-    let title = '';
-    let body = '';
-    let iconSvg = '';
-
-    if (type === 'garantia') {
-      title = 'Garantía de Devolución';
-      body = 'Queremos que compres con absoluta confianza. Si por cualquier motivo la obra o réplica no cumple con tus expectativas al recibirla, dispones de <strong>30 días naturales</strong> a partir de la fecha de entrega para solicitar una devolución gratuita. Nos encargaremos de coordinar la recogida asegurada puerta a puerta y te reembolsaremos el 100% de tu compra.';
-      iconSvg = `
-        <svg width="80" height="80" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" fill="#0e4170" stroke="#0a2e50" stroke-width="1.5" />
-          <circle cx="50" cy="50" r="39" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="2, 2" />
-          <circle cx="50" cy="50" r="36" fill="#13528c" />
-          <text x="50" y="47" fill="#ffffff" font-size="16" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">30</text>
-          <text x="50" y="58" fill="#ffffff" font-size="8" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">DÍAS</text>
-          <text x="50" y="66" fill="#ffffff" font-size="5" font-family="var(--font-sans)" text-anchor="middle">★ ★ ★</text>
-        </svg>
-      `;
-    } else if (type === 'replicas') {
-      title = '¿Cómo son nuestras réplicas?';
-      body = 'Nuestras réplicas artísticas son creadas bajo los más altos estándares de calidad museográfica. Cada pieza es <strong>óleo sobre lienzo pintado 100% a mano</strong> por experimentados maestros copistas de nuestra red. Respetamos rigurosamente las pinceladas, relieves, texturas y gamas cromáticas originales, logrando un acabado de extraordinaria fidelidad y durabilidad.';
-      iconSvg = `
-        <svg width="80" height="80" viewBox="0 0 100 100">
-          <defs>
-            <radialGradient id="waxGradModal" cx="45%" cy="45%" r="50%">
-              <stop offset="0%" stop-color="#e53935" />
-              <stop offset="60%" stop-color="#c62828" />
-              <stop offset="100%" stop-color="#8e0000" />
-            </radialGradient>
-          </defs>
-          <path d="M 50 6 C 75 4 94 20 92 48 C 90 76 76 92 48 94 C 20 96 6 76 8 48 C 10 20 25 8 50 6 Z" fill="url(#waxGradModal)" />
-          <circle cx="49" cy="49" r="31" fill="#b71c1c" stroke="#7f0000" stroke-width="1.5" />
-          <text x="49" y="34" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">ÓLEO</text>
-          <text x="49" y="44" fill="#ffcdd2" font-size="6.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">SOBRE</text>
-          <text x="49" y="55" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">LIENZO</text>
-          <text x="49" y="66" fill="#ffcdd2" font-size="5.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">A MANO</text>
-        </svg>
-      `;
-    }
-
-    titleEl.textContent = title;
-    bodyEl.innerHTML = body;
-    iconContainer.innerHTML = iconSvg;
-
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-      modal.classList.add('active');
-    }, 10);
-  };
-
-  const closeInfoModal = () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 400);
-  };
-
-  links.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const type = link.getAttribute('data-badge-type');
-      if (type) {
-        openInfoModal(type);
-      }
-    });
-  });
-
-  [backdrop, closeBtn, okBtn].forEach(el => {
-    if (el) el.addEventListener('click', closeInfoModal);
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeInfoModal();
     }
   });
 }

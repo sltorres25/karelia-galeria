@@ -1812,70 +1812,62 @@ a {
 }
 
 /* -------------------------------------------------------------
- * Trust Badges Section
+ * Floating Trust Badges Section
  * ------------------------------------------------------------- */
-.trust-badges-row {
+.floating-trust-badges {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1900;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  margin-top: 60px;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 36px 40px;
-  background-color: var(--bg-dark-card);
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: var(--box-shadow-soft);
+  gap: 16px;
+  pointer-events: none;
 }
 
-.trust-badge-card {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.trust-badge-icon {
-  flex-shrink: 0;
+.floating-badge-item {
+  pointer-events: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
-  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.trust-badge-card:hover .trust-badge-icon {
-  transform: scale(1.05);
+.floating-badge-item:hover {
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
 }
 
-.trust-badge-content {
-  font-size: 1.25rem;
-  font-weight: 500;
-  font-family: var(--font-sans);
+.floating-badge-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-.trust-badge-link {
-  color: #2b6cb0; /* Elegant blue for links matching trust design */
-  border-bottom: 1.5px solid transparent;
-  transition: var(--transition-fast);
-}
-
-.trust-badge-link:hover {
-  color: #1a365d;
-  border-bottom-color: #2b6cb0;
+.floating-badge-item:nth-child(2) .floating-badge-img {
+  mix-blend-mode: multiply;
+  transform: scale(0.95);
 }
 
 @media (max-width: 480px) {
-  .trust-badges-row {
-    padding: 24px 20px;
-    gap: 20px;
+  .floating-trust-badges {
+    bottom: 16px;
+    left: 16px;
+    gap: 12px;
   }
-  .trust-badge-card {
-    gap: 16px;
-  }
-  .trust-badge-content {
-    font-size: 1.05rem;
+  .floating-badge-item {
+    width: 48px;
+    height: 48px;
   }
 }
+
 
