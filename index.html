@@ -203,7 +203,59 @@
             <h3 class="process-card-title">Logística y Envío Asegurado</h3>
             <p class="process-card-desc">
               Nos encargamos del embalaje profesional especializado y del envío internacional puerta a puerta con seguro total, asegurando que la obra llegue en perfectas condiciones a cualquier parte del mundo.
-            </p>
+          </div>
+        </div>
+
+        <!-- Trust Badges Section -->
+        <div class="trust-badges-row scroll-reveal delay-400">
+          <div class="trust-badge-card">
+            <div class="trust-badge-icon">
+              <svg width="70" height="70" viewBox="0 0 100 100" class="trust-badge-svg">
+                <defs>
+                  <path id="textPathBlue" d="M 50,50 m -33,0 a 33,33 0 1,1 66,0 a 33,33 0 1,1 -66,0" />
+                </defs>
+                <circle cx="50" cy="50" r="46" fill="#0e4170" stroke="#0a2e50" stroke-width="1.5" />
+                <circle cx="50" cy="50" r="39" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="2, 2" />
+                <circle cx="50" cy="50" r="36" fill="#13528c" />
+                <text fill="#ffffff" font-size="6" font-family="var(--font-sans)" font-weight="bold" letter-spacing="1">
+                  <textPath href="#textPathBlue" startOffset="50%" text-anchor="middle">
+                    DEVOLUCIÓN • GARANTÍA •
+                  </textPath>
+                </text>
+                <text x="50" y="47" fill="#ffffff" font-size="16" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">30</text>
+                <text x="50" y="58" fill="#ffffff" font-size="8" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">DÍAS</text>
+                <text x="50" y="66" fill="#ffffff" font-size="5" font-family="var(--font-sans)" text-anchor="middle">★ ★ ★</text>
+              </svg>
+            </div>
+            <div class="trust-badge-content">
+              <a href="#" class="trust-badge-link" data-badge-type="garantia">Garantía 30 días de devolución.</a>
+            </div>
+          </div>
+
+          <div class="trust-badge-card">
+            <div class="trust-badge-icon">
+              <svg width="70" height="70" viewBox="0 0 100 100" class="trust-badge-svg">
+                <defs>
+                  <radialGradient id="waxGrad" cx="45%" cy="45%" r="50%">
+                    <stop offset="0%" stop-color="#e53935" />
+                    <stop offset="60%" stop-color="#c62828" />
+                    <stop offset="100%" stop-color="#8e0000" />
+                  </radialGradient>
+                  <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity="0.3"/>
+                  </filter>
+                </defs>
+                <path d="M 50 6 C 75 4 94 20 92 48 C 90 76 76 92 48 94 C 20 96 6 76 8 48 C 10 20 25 8 50 6 Z" fill="url(#waxGrad)" filter="url(#shadow)" />
+                <circle cx="49" cy="49" r="31" fill="#b71c1c" stroke="#7f0000" stroke-width="1.5" />
+                <text x="49" y="34" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">ÓLEO</text>
+                <text x="49" y="44" fill="#ffcdd2" font-size="6.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">SOBRE</text>
+                <text x="49" y="55" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">LIENZO</text>
+                <text x="49" y="66" fill="#ffcdd2" font-size="5.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">A MANO</text>
+              </svg>
+            </div>
+            <div class="trust-badge-content">
+              <a href="#" class="trust-badge-link" data-badge-type="replicas">¿Cómo son nuestras réplicas?</a>
+            </div>
           </div>
         </div>
       </div>
@@ -449,6 +501,21 @@
             </div>
           </div>
         </div>
+    </div>
+
+    <!-- General Info Modal -->
+    <div class="modal" id="info-modal">
+      <div class="modal-backdrop" id="info-modal-backdrop"></div>
+      <div class="modal-content-wrapper" style="max-width: 550px; padding: 40px; display: flex; flex-direction: column; background-color: var(--bg-dark-card);">
+        <button class="modal-close" id="info-modal-close" aria-label="Cerrar modal" style="top: 15px; right: 15px;">&times;</button>
+        <div style="text-align: center; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;" id="info-modal-icon-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+        <h2 class="modal-title" id="info-modal-title" style="font-size: 2rem; margin-bottom: 16px; text-align: center; color: var(--text-dark);">Título</h2>
+        <div id="info-modal-body" style="text-align: center; font-size: 1.05rem; line-height: 1.7; color: var(--text-dark-muted); margin-bottom: 8px;">
+          Contenido explicativo.
+        </div>
+        <button class="btn btn-secondary" id="info-modal-btn" style="margin-top: 24px; align-self: center; padding: 12px 30px;">Entendido</button>
       </div>
     </div>
 

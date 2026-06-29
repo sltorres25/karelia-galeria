@@ -117,6 +117,33 @@ const artistsData = [
     bio: "Pintor dominicano distinguido por sus retratos estilizados y el uso de formas geométricas que estructuran la figura humana con una vibrante paleta de colores.",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg",
     filter: "expresionismo"
+  },
+  {
+    id: "cruz-escobedo",
+    name: "Cruz Escobedo",
+    flag: "🇲🇽",
+    country: "Jalisco, México",
+    bio: "Pintor hiperrealista mexicano que destaca por capturar la realidad cotidiana con precisión y texturas profundas al óleo y técnica mixta.",
+    image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg",
+    filter: "abstracto"
+  },
+  {
+    id: "silvia-castagnino",
+    name: "Silvia Castagnino",
+    flag: "🇦🇷",
+    country: "La Pampa, Argentina",
+    bio: "Reconocida artista plástica argentina enfocada en la abstracción matérica y en la fuerza de las texturas orgánicas a través de técnicas mixtas.",
+    image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg",
+    filter: "texturado"
+  },
+  {
+    id: "alex-stevenson",
+    name: "Alex Stevenson",
+    flag: "🇨🇴",
+    country: "Cesar, Colombia",
+    bio: "Pintor y dibujante colombiano cuya obra explora la fuerza expresiva del cuerpo humano y las emociones profundas mediante el realismo figurativo.",
+    image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png",
+    filter: "expresionismo"
   }
 ];
 
@@ -371,6 +398,86 @@ const artworksData = {
     year: "2023",
     price: "$3,800 USD",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.28.jpeg"
+  },
+  26: {
+    title: "Composición Silente",
+    artist: "Cruz Escobedo",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "63 x 43 in",
+    year: "2024",
+    price: "$5,400 USD",
+    image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg"
+  },
+  27: {
+    title: "Muro y Tiempo",
+    artist: "Silvia Castagnino",
+    category: "Texturado",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "27 x 38.5 in",
+    year: "2010",
+    price: "$4,100 USD",
+    image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg"
+  },
+  28: {
+    title: "Materia en Movimiento",
+    artist: "Silvia Castagnino",
+    category: "Texturado",
+    technique: "Técnica mixta y resina",
+    dimensions: "27 x 5 x 39 in",
+    year: "2007",
+    price: "$4,300 USD",
+    image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 5 x 39 in.  2007.jpg"
+  },
+  29: {
+    title: "Texturas del Alba",
+    artist: "Silvia Castagnino",
+    category: "Texturado",
+    technique: "Técnica mixta",
+    dimensions: "24 x 36 in",
+    year: "2021",
+    price: "$3,800 USD",
+    image: "/src/Artistas/Silvia Castagnino/20210625_103035.jpeg"
+  },
+  30: {
+    title: "Huellas del Pasado",
+    artist: "Silvia Castagnino",
+    category: "Texturado",
+    technique: "Técnica mixta",
+    dimensions: "24 x 36 in",
+    year: "2021",
+    price: "$3,800 USD",
+    image: "/src/Artistas/Silvia Castagnino/20210625_103044.jpeg"
+  },
+  31: {
+    title: "El Beso",
+    artist: "Alex Stevenson",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "42 x 46 in",
+    year: "2023",
+    price: "$4,900 USD",
+    image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png"
+  },
+  32: {
+    title: "Tensión Anatómica",
+    artist: "Alex Stevenson",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "48 x 52 in",
+    year: "2024",
+    price: "$5,200 USD",
+    image: "/src/Artistas/Alex Stevenson/48 x 52 in.jpeg"
+  },
+  33: {
+    title: "Vuelo Interior",
+    artist: "Alex Stevenson",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "50 x 55 in",
+    year: "2024",
+    price: "$5,500 USD",
+    image: "/src/Artistas/Alex Stevenson/50 x 55 in.jpeg"
   }
 };
 
@@ -399,7 +506,39 @@ function getFlagSvg(flagEmoji) {
     </svg>
   `;
 
-  return flagEmoji === '🇩🇴' ? drFlag : cubaFlag;
+  const colombiaFlag = `
+    <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="30" height="10" fill="#FCD116"/>
+      <rect y="10" width="30" height="5" fill="#003893"/>
+      <rect y="15" width="30" height="5" fill="#CE1126"/>
+    </svg>
+  `;
+
+  const mexicoFlag = `
+    <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="10" height="20" fill="#006847"/>
+      <rect x="10" width="10" height="20" fill="#FFFFFF"/>
+      <rect x="20" width="10" height="20" fill="#CE1126"/>
+      <circle cx="15" cy="10" r="1.5" fill="#8B5A2B"/>
+      <path d="M14 11.5c0 .5.5 1 1 1s1-.5 1-1" stroke="#006847" stroke-width="0.5" fill="none"/>
+    </svg>
+  `;
+
+  const argentinaFlag = `
+    <svg class="artist-flag-svg" width="20" height="13" viewBox="0 0 30 20" fill="none" style="display:inline-block; vertical-align:middle; border-radius:1px; box-shadow:0 1px 2px rgba(0,0,0,0.1); margin-right:6px;" xmlns="http://www.w3.org/2000/svg">
+      <rect width="30" height="6.67" fill="#75AADB"/>
+      <rect y="6.67" width="30" height="6.67" fill="#FFFFFF"/>
+      <rect y="13.34" width="30" height="6.67" fill="#75AADB"/>
+      <circle cx="15" cy="10" r="1.5" fill="#FCBF49"/>
+      <circle cx="15" cy="10" r="0.8" fill="#D62828"/>
+    </svg>
+  `;
+
+  if (flagEmoji === '🇩🇴') return drFlag;
+  if (flagEmoji === '🇨🇴') return colombiaFlag;
+  if (flagEmoji === '🇲🇽') return mexicoFlag;
+  if (flagEmoji === '🇦🇷') return argentinaFlag;
+  return cubaFlag;
 }
 
 function renderGallery() {
@@ -420,7 +559,7 @@ function renderGallery() {
           </div>
           <h3 class="artist-name">${artist.name}</h3>
           <p class="artist-bio">${artist.bio}</p>
-          <a href="#obras" class="artist-link" data-filter="${artist.filter}">Explorar obras &rarr;</a>
+          <a href="obras.html?artista=${encodeURIComponent(artist.name)}" class="artist-link" data-filter="${artist.filter}">Explorar obras &rarr;</a>
         </div>
       </div>
     `).join('');
@@ -468,6 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForms();
   initArtistsReveal();
   initObrasCatalogPage();
+  initInfoModal();
 });
 
 /* -------------------------------------------------------------
@@ -700,19 +840,7 @@ function initArtworkFilter() {
     });
   }
 
-  // Support link clicks from the artists section
-  const artistLinks = document.querySelectorAll('.artist-link');
-  artistLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const filter = link.getAttribute('data-filter');
-      if (filter) {
-        const targetBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
-        if (targetBtn) {
-          targetBtn.click();
-        }
-      }
-    });
-  });
+  // Support link clicks from the artists section is now handled by direct href navigation to obras.html
 
   updateArtworkVisibility();
 }
@@ -978,6 +1106,16 @@ function initObrasCatalogPage() {
       countries.map(c => `<option value="${c}">${c}</option>`).join('');
   }
 
+  // Pre-filter by artist if specified in URL query params
+  const urlParams = new URLSearchParams(window.location.search);
+  const artistParam = urlParams.get('artista');
+  if (artistParam && filterArtist) {
+    const matchingArtist = artistsData.find(a => a.name.toLowerCase() === artistParam.toLowerCase());
+    if (matchingArtist) {
+      filterArtist.value = matchingArtist.name;
+    }
+  }
+
   // Function to render filtered and sorted list of artworks
   function renderCatalog(items) {
     catalogGrid.innerHTML = items.map(([id, artwork]) => `
@@ -1115,4 +1253,101 @@ function bindModalEventsToCatalog() {
     }
   });
 }
+
+/* -------------------------------------------------------------
+ * Trust Badges Info Modal Logic
+ * ------------------------------------------------------------- */
+function initInfoModal() {
+  const modal = document.getElementById('info-modal');
+  if (!modal) return;
+
+  const backdrop = document.getElementById('info-modal-backdrop');
+  const closeBtn = document.getElementById('info-modal-close');
+  const okBtn = document.getElementById('info-modal-btn');
+  const titleEl = document.getElementById('info-modal-title');
+  const bodyEl = document.getElementById('info-modal-body');
+  const iconContainer = document.getElementById('info-modal-icon-container');
+
+  const links = document.querySelectorAll('.trust-badge-link');
+
+  const openInfoModal = (type) => {
+    let title = '';
+    let body = '';
+    let iconSvg = '';
+
+    if (type === 'garantia') {
+      title = 'Garantía de Devolución';
+      body = 'Queremos que compres con absoluta confianza. Si por cualquier motivo la obra o réplica no cumple con tus expectativas al recibirla, dispones de <strong>30 días naturales</strong> a partir de la fecha de entrega para solicitar una devolución gratuita. Nos encargaremos de coordinar la recogida asegurada puerta a puerta y te reembolsaremos el 100% de tu compra.';
+      iconSvg = `
+        <svg width="80" height="80" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="46" fill="#0e4170" stroke="#0a2e50" stroke-width="1.5" />
+          <circle cx="50" cy="50" r="39" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="2, 2" />
+          <circle cx="50" cy="50" r="36" fill="#13528c" />
+          <text x="50" y="47" fill="#ffffff" font-size="16" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">30</text>
+          <text x="50" y="58" fill="#ffffff" font-size="8" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle">DÍAS</text>
+          <text x="50" y="66" fill="#ffffff" font-size="5" font-family="var(--font-sans)" text-anchor="middle">★ ★ ★</text>
+        </svg>
+      `;
+    } else if (type === 'replicas') {
+      title = '¿Cómo son nuestras réplicas?';
+      body = 'Nuestras réplicas artísticas son creadas bajo los más altos estándares de calidad museográfica. Cada pieza es <strong>óleo sobre lienzo pintado 100% a mano</strong> por experimentados maestros copistas de nuestra red. Respetamos rigurosamente las pinceladas, relieves, texturas y gamas cromáticas originales, logrando un acabado de extraordinaria fidelidad y durabilidad.';
+      iconSvg = `
+        <svg width="80" height="80" viewBox="0 0 100 100">
+          <defs>
+            <radialGradient id="waxGradModal" cx="45%" cy="45%" r="50%">
+              <stop offset="0%" stop-color="#e53935" />
+              <stop offset="60%" stop-color="#c62828" />
+              <stop offset="100%" stop-color="#8e0000" />
+            </radialGradient>
+          </defs>
+          <path d="M 50 6 C 75 4 94 20 92 48 C 90 76 76 92 48 94 C 20 96 6 76 8 48 C 10 20 25 8 50 6 Z" fill="url(#waxGradModal)" />
+          <circle cx="49" cy="49" r="31" fill="#b71c1c" stroke="#7f0000" stroke-width="1.5" />
+          <text x="49" y="34" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">ÓLEO</text>
+          <text x="49" y="44" fill="#ffcdd2" font-size="6.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">SOBRE</text>
+          <text x="49" y="55" fill="#ffcdd2" font-size="7.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">LIENZO</text>
+          <text x="49" y="66" fill="#ffcdd2" font-size="5.5" font-weight="bold" font-family="var(--font-sans)" text-anchor="middle" letter-spacing="0.05em">A MANO</text>
+        </svg>
+      `;
+    }
+
+    titleEl.textContent = title;
+    bodyEl.innerHTML = body;
+    iconContainer.innerHTML = iconSvg;
+
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      modal.classList.add('active');
+    }, 10);
+  };
+
+  const closeInfoModal = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      modal.style.display = 'none';
+    }, 400);
+  };
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const type = link.getAttribute('data-badge-type');
+      if (type) {
+        openInfoModal(type);
+      }
+    });
+  });
+
+  [backdrop, closeBtn, okBtn].forEach(el => {
+    if (el) el.addEventListener('click', closeInfoModal);
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeInfoModal();
+    }
+  });
+}
+
 

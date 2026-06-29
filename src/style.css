@@ -1810,3 +1810,72 @@ a {
     gap: 15px;
   }
 }
+
+/* -------------------------------------------------------------
+ * Trust Badges Section
+ * ------------------------------------------------------------- */
+.trust-badges-row {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 60px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 36px 40px;
+  background-color: var(--bg-dark-card);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: var(--box-shadow-soft);
+}
+
+.trust-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.trust-badge-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  transition: var(--transition-smooth);
+}
+
+.trust-badge-card:hover .trust-badge-icon {
+  transform: scale(1.05);
+}
+
+.trust-badge-content {
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+}
+
+.trust-badge-link {
+  color: #2b6cb0; /* Elegant blue for links matching trust design */
+  border-bottom: 1.5px solid transparent;
+  transition: var(--transition-fast);
+}
+
+.trust-badge-link:hover {
+  color: #1a365d;
+  border-bottom-color: #2b6cb0;
+}
+
+@media (max-width: 480px) {
+  .trust-badges-row {
+    padding: 24px 20px;
+    gap: 20px;
+  }
+  .trust-badge-card {
+    gap: 16px;
+  }
+  .trust-badge-content {
+    font-size: 1.05rem;
+  }
+}
+
