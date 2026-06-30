@@ -1876,33 +1876,43 @@ a {
 .lang-switch-desktop {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-right: 20px;
+  gap: 4px;
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  color: var(--text-dark-muted);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3px;
+  border-radius: 20px;
+  transition: var(--transition-smooth);
+}
+
+/* When navbar is scrolled, make the switcher wrapper adapt to light background */
+.navbar.scrolled .lang-switch-desktop {
+  background: rgba(22, 22, 22, 0.05);
+  border-color: rgba(22, 22, 22, 0.1);
 }
 
 .lang-switch-desktop span {
-  opacity: 0.25;
-  user-select: none;
+  display: none; /* Hide separator */
 }
 
 .lang-switch-mobile {
   display: none;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  margin: 15px 0 25px 0;
+  gap: 4px;
+  margin: 15px auto 25px auto;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: var(--text-dark-muted);
-  width: 100%;
+  font-size: 0.9rem;
+  background: rgba(22, 22, 22, 0.05);
+  border: 1px solid rgba(22, 22, 22, 0.1);
+  padding: 3px;
+  border-radius: 20px;
+  width: fit-content;
 }
 
 .lang-switch-mobile span {
-  opacity: 0.25;
-  user-select: none;
+  display: none; /* Hide separator */
 }
 
 .lang-btn {
@@ -1911,21 +1921,31 @@ a {
   color: inherit;
   font-weight: 500;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: var(--transition-fast);
+  padding: 4px 12px;
+  border-radius: 15px;
+  transition: var(--transition-smooth);
   outline: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
+/* Active style: prominent gold pill with text contrast */
 .lang-btn.active {
-  color: var(--text-dark);
+  color: #161616 !important;
   font-weight: 700;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: var(--accent-gold);
+  box-shadow: 0 2px 8px rgba(197, 168, 128, 0.3);
 }
 
 .lang-btn:hover:not(.active) {
-  color: var(--text-dark);
-  background-color: rgba(0, 0, 0, 0.02);
+  color: var(--accent-gold-light);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled .lang-btn:hover:not(.active) {
+  color: var(--accent-gold-dark);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 992px) {
