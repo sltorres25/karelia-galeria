@@ -15,6 +15,11 @@ const artistsData = [
     name: "Alexis Pantoja",
     flag: "🇨🇺",
     country: "Manzanillo, Cuba",
+    birthYear: "1969",
+    artType: {
+      es: "Figuración expresiva",
+      en: "Expressive figuration"
+    },
     bio: "Su pintura reinterpreta la figuración expresiva y lo fantástico mediante composiciones dinámicas con una pincelada gestual y texturas ricas.",
     image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg",
     filter: "abstracto"
@@ -24,6 +29,11 @@ const artistsData = [
     name: "Carlos René Aguilera",
     flag: "🇨🇺",
     country: "Santiago de Cuba, Cuba",
+    birthYear: "1965",
+    artType: {
+      es: "Expresionismo simbólico",
+      en: "Symbolic expressionism"
+    },
     bio: "Explora la visualidad caribeña mediante formas enredadas, sogas y una profunda metáfora sobre la insularidad y el escape del confinamiento.",
     image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg",
     filter: "texturado"
@@ -33,7 +43,12 @@ const artistsData = [
     name: "Gerlys Álvarez",
     flag: "🇨🇺",
     country: "Mariel, Cuba",
-    bio: "Sobresaliente retratista y pintor de marinas que plasma la fuerza misteriosa del mar y la espina punzante del dolor y belleza humana.",
+    birthYear: "1977",
+    artType: {
+      es: "Abstracción marina",
+      en: "Marine abstraction"
+    },
+    bio: "Sobresaliente retratista y pintor de marinas que plasma la fuerza misteriosa del mar y la espina punzante del dolor y belleza humanas.",
     image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg",
     filter: "abstracto"
   },
@@ -42,6 +57,11 @@ const artistsData = [
     name: "Luis Molina",
     flag: "🇨🇺",
     country: "La Habana, Cuba",
+    birthYear: "Desconocido",
+    artType: {
+      es: "Costumbrismo y Expresionismo folclórico",
+      en: "Folkloric expressionism"
+    },
     bio: "Representa el folclore afrocubano y la vida rural bajo el intenso mediodía caribeño, con un dominio singular de la luz y la transparencia.",
     image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg",
     filter: "texturado"
@@ -51,7 +71,12 @@ const artistsData = [
     name: "Manuel López Oliva",
     flag: "🇨🇺",
     country: "Manzanillo, Cuba",
-    bio: "Prestigioso creador y crítico que concibe la obra como un escenario teatral, empleando la máscara como símbolo de la identidad y la teatralidad social.",
+    birthYear: "1947",
+    artType: {
+      es: "Expresionismo teatral",
+      en: "Theatrical expressionism"
+    },
+    bio: "Prestigioso creador y crítico que concibe la obra como un escenario teatral, empleando la máscara como símbolo de la identidad y la teatralidad sociales.",
     image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg",
     filter: "expresionismo"
   },
@@ -60,6 +85,11 @@ const artistsData = [
     name: "María Consuelo",
     flag: "🇨🇺",
     country: "La Habana, Cuba",
+    birthYear: "Desconocido",
+    artType: {
+      es: "Abstracción orgánica",
+      en: "Organic abstraction"
+    },
     bio: "Sus abstracciones orgánicas sobre soportes pesados investigan la textura y los ritmos naturales íntimos de la geografía caribeña.",
     image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg",
     filter: "abstracto"
@@ -69,7 +99,12 @@ const artistsData = [
     name: "Maykel Herrera",
     flag: "🇨🇺",
     country: "La Habana, Cuba",
-    bio: "A través del retrato expresivo de niños con miradas intensas, crea metáforas poéticas e irónicas sobre la realidad y psicología social.",
+    birthYear: "1979",
+    artType: {
+      es: "Expresionismo figurativo",
+      en: "Figurative expressionism"
+    },
+    bio: "A través del retrato expresivo de niños con miradas intensas, crea metáforas poéticas e irónicas sobre la realidad y psicología sociales.",
     image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg",
     filter: "expresionismo"
   },
@@ -78,26 +113,27 @@ const artistsData = [
     name: "Orestes Gaulhiac",
     flag: "🇨🇺",
     country: "Santiago de Cuba, Cuba",
+    birthYear: "1960",
+    artType: {
+      es: "Expresionismo naif",
+      en: "Naive expressionism"
+    },
     bio: "Destacado por sus escenas de ensueño y místicas que mezclan humanos, animales y una vibrante naturaleza caribeña naif.",
     image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg",
     filter: "geometrico"
   },
   {
-    id: "pedro-alvarez-gendis",
-    name: "Pedro Álvarez Gendis",
+    id: "pedro-avila-gendis",
+    name: "Pedro Ávila Gendis",
     flag: "🇨🇺",
     country: "Camagüey, Cuba",
-    bio: "Sus composiciones abstractas investigan el espacio arquitectónico, la tensión cromática y las estructuras de la memoria urbana.",
+    birthYear: "1959",
+    artType: {
+      es: "Abstracción lírica y matérica",
+      en: "Lyrical abstraction"
+    },
+    bio: "Pintor cubano que concibe la abstracción lírica como un territorio interior de emociones puras, tensión y gran intensidad gestual cromática.",
     image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg",
-    filter: "abstracto"
-  },
-  {
-    id: "pedro-avila",
-    name: "Pedro Ávila",
-    flag: "🇨🇺",
-    country: "La Habana, Cuba",
-    bio: "Concibe la abstracción lírica como un territorio interior de emociones puras, tensión y gran intensidad gestual cromática.",
-    image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg",
     filter: "abstracto"
   },
   {
@@ -105,6 +141,11 @@ const artistsData = [
     name: "Vicente Dopico",
     flag: "🇨🇺",
     country: "La Habana, Cuba",
+    birthYear: "1943",
+    artType: {
+      es: "Expresionismo simbólico",
+      en: "Symbolic expressionism"
+    },
     bio: "Maestro del expresionismo simbólico caribeño cuyas espirales y figuras híbridas exploran la psique profunda e introspectiva.",
     image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg",
     filter: "abstracto"
@@ -114,6 +155,11 @@ const artistsData = [
     name: "Miguel Ulloa",
     flag: "🇩🇴",
     country: "Puerto Plata, Rep. Dominicana",
+    birthYear: "1964",
+    artType: {
+      es: "Expresionismo geométrico",
+      en: "Geometric expressionism"
+    },
     bio: "Pintor dominicano distinguido por sus retratos estilizados y el uso de formas geométricas que estructuran la figura humana con una vibrante paleta de colores.",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg",
     filter: "expresionismo"
@@ -123,6 +169,11 @@ const artistsData = [
     name: "Cruz Escobedo",
     flag: "🇲🇽",
     country: "Jalisco, México",
+    birthYear: "Desconocido",
+    artType: {
+      es: "Hiperrealismo",
+      en: "Hyperrealism"
+    },
     bio: "Pintor hiperrealista mexicano que destaca por capturar la realidad cotidiana con precisión y texturas profundas al óleo y técnica mixta.",
     image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg",
     filter: "abstracto"
@@ -132,6 +183,11 @@ const artistsData = [
     name: "Silvia Castagnino",
     flag: "🇦🇷",
     country: "La Pampa, Argentina",
+    birthYear: "1959",
+    artType: {
+      es: "Abstracción matérica",
+      en: "Material abstraction"
+    },
     bio: "Reconocida artista plástica argentina enfocada en la abstracción matérica y en la fuerza de las texturas orgánicas a través de técnicas mixtas.",
     image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg",
     filter: "texturado"
@@ -141,6 +197,11 @@ const artistsData = [
     name: "Alex Stevenson",
     flag: "🇨🇴",
     country: "Cesar, Colombia",
+    birthYear: "Desconocido",
+    artType: {
+      es: "Realismo figurativo",
+      en: "Figurative realism"
+    },
     bio: "Pintor y dibujante colombiano cuya obra explora la fuerza expresiva del cuerpo humano y las emociones profundas mediante el realismo figurativo.",
     image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png",
     filter: "expresionismo"
@@ -156,7 +217,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "150 x 150 cm",
     year: "2025",
-    price: "$5,200 USD",
+    price: "€5,200 EUR",
     image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg"
   },
   2: {
@@ -166,7 +227,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "120 x 100 cm",
     year: "2024",
-    price: "$4,500 USD",
+    price: "€4,500 EUR",
     image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0003.jpg"
   },
   3: {
@@ -176,7 +237,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "$3,900 USD",
+    price: "€3,900 EUR",
     image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0004.jpg"
   },
   4: {
@@ -186,7 +247,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "150 x 100 cm",
     year: "2024",
-    price: "$4,800 USD",
+    price: "€4,800 EUR",
     image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg"
   },
   5: {
@@ -196,7 +257,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "120 x 120 cm",
     year: "2025",
-    price: "$4,200 USD",
+    price: "€4,200 EUR",
     image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg"
   },
   6: {
@@ -206,7 +267,7 @@ const artworksData = {
     technique: "Acrílico sobre cartulina",
     dimensions: "140 x 56 cm",
     year: "2020",
-    price: "$4,200 USD",
+    price: "€4,200 EUR",
     image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg"
   },
   7: {
@@ -216,7 +277,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2025",
-    price: "$3,800 USD",
+    price: "€3,800 EUR",
     image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0006.jpg"
   },
   8: {
@@ -226,7 +287,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "120 x 90 cm",
     year: "2025",
-    price: "$4,000 USD",
+    price: "€4,000 EUR",
     image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0007.jpg"
   },
   9: {
@@ -236,7 +297,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "18 x 24 in",
     year: "2024",
-    price: "$2,800 USD",
+    price: "€2,800 EUR",
     image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg"
   },
   10: {
@@ -246,7 +307,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2023",
-    price: "$4,500 USD",
+    price: "€4,500 EUR",
     image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg"
   },
   11: {
@@ -256,7 +317,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "120 x 100 cm",
     year: "2024",
-    price: "$5,000 USD",
+    price: "€5,000 EUR",
     image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140649_Drive.jpg"
   },
   12: {
@@ -266,7 +327,7 @@ const artworksData = {
     technique: "Acrílico sobre papel pesado",
     dimensions: "38 x 28 in",
     year: "2024",
-    price: "$3,400 USD",
+    price: "€3,400 EUR",
     image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg"
   },
   13: {
@@ -276,7 +337,7 @@ const artworksData = {
     technique: "Acrílico sobre papel pesado",
     dimensions: "38 x 28 in",
     year: "2024",
-    price: "$3,400 USD",
+    price: "€3,400 EUR",
     image: "/src/Artistas/Maria Consuelo/Heavvy paper. 38 x 28 in.jpeg"
   },
   14: {
@@ -286,7 +347,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "150 x 110 cm",
     year: "2023",
-    price: "$5,800 USD",
+    price: "€5,800 EUR",
     image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg"
   },
   15: {
@@ -296,7 +357,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "43 x 59 in",
     year: "2011",
-    price: "$6,200 USD",
+    price: "€6,200 EUR",
     image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg"
   },
   16: {
@@ -306,7 +367,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "90 x 90 cm",
     year: "2024",
-    price: "$3,600 USD",
+    price: "€3,600 EUR",
     image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg"
   },
   17: {
@@ -316,37 +377,37 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "48 x 36 in",
     year: "2024",
-    price: "$4,800 USD",
+    price: "€4,800 EUR",
     image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 48x36 in. .jpeg"
   },
   18: {
     title: "Construcción del Espacio",
-    artist: "Pedro Álvarez Gendis",
+    artist: "Pedro Ávila Gendis",
     category: "Abstracto",
     technique: "Técnica mixta sobre lienzo",
     dimensions: "36 x 47 in",
     year: "2023",
-    price: "$4,700 USD",
+    price: "€4,700 EUR",
     image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg"
   },
   19: {
     title: "Estructuras Urbanas",
-    artist: "Pedro Álvarez Gendis",
+    artist: "Pedro Ávila Gendis",
     category: "Abstracto",
     technique: "Técnica mixta sobre lienzo",
     dimensions: "47 x 36 in",
     year: "2023",
-    price: "$4,700 USD",
+    price: "€4,700 EUR",
     image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 47x36 in.jpg"
   },
   20: {
     title: "Sinfonía del Alba",
-    artist: "Pedro Ávila",
+    artist: "Pedro Ávila Gendis",
     category: "Abstracto",
     technique: "Técnica mixta sobre lienzo",
     dimensions: "182 x 152 cm",
     year: "2025",
-    price: "$6,500 USD",
+    price: "€6,500 EUR",
     image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg"
   },
   21: {
@@ -356,7 +417,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "24 x 18 in",
     year: "2023",
-    price: "$2,900 USD",
+    price: "€2,900 EUR",
     image: "/src/Artistas/Vicente Dopico/24 x 18 in.jpeg"
   },
   22: {
@@ -366,7 +427,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "26 x 22 in",
     year: "2023",
-    price: "$3,200 USD",
+    price: "€3,200 EUR",
     image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg"
   },
   23: {
@@ -376,7 +437,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "$4,200 USD",
+    price: "€4,200 EUR",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg"
   },
   24: {
@@ -386,7 +447,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "$4,200 USD",
+    price: "€4,200 EUR",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.27.jpeg"
   },
   25: {
@@ -396,7 +457,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2023",
-    price: "$3,800 USD",
+    price: "€3,800 EUR",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.28.jpeg"
   },
   26: {
@@ -406,7 +467,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "63 x 43 in",
     year: "2024",
-    price: "$5,400 USD",
+    price: "€5,400 EUR",
     image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg"
   },
   27: {
@@ -416,7 +477,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "27 x 38.5 in",
     year: "2010",
-    price: "$4,100 USD",
+    price: "€4,100 EUR",
     image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg"
   },
   28: {
@@ -426,7 +487,7 @@ const artworksData = {
     technique: "Técnica mixta y resina",
     dimensions: "27 x 5 x 39 in",
     year: "2007",
-    price: "$4,300 USD",
+    price: "€4,300 EUR",
     image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 5 x 39 in.  2007.jpg"
   },
   29: {
@@ -436,7 +497,7 @@ const artworksData = {
     technique: "Técnica mixta",
     dimensions: "24 x 36 in",
     year: "2021",
-    price: "$3,800 USD",
+    price: "€3,800 EUR",
     image: "/src/Artistas/Silvia Castagnino/20210625_103035.jpeg"
   },
   30: {
@@ -446,7 +507,7 @@ const artworksData = {
     technique: "Técnica mixta",
     dimensions: "24 x 36 in",
     year: "2021",
-    price: "$3,800 USD",
+    price: "€3,800 EUR",
     image: "/src/Artistas/Silvia Castagnino/20210625_103044.jpeg"
   },
   31: {
@@ -456,7 +517,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "42 x 46 in",
     year: "2023",
-    price: "$4,900 USD",
+    price: "€4,900 EUR",
     image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png"
   },
   32: {
@@ -466,7 +527,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "48 x 52 in",
     year: "2024",
-    price: "$5,200 USD",
+    price: "€5,200 EUR",
     image: "/src/Artistas/Alex Stevenson/48 x 52 in.jpeg"
   },
   33: {
@@ -476,7 +537,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "50 x 55 in",
     year: "2024",
-    price: "$5,500 USD",
+    price: "€5,500 EUR",
     image: "/src/Artistas/Alex Stevenson/50 x 55 in.jpeg"
   }
 };
@@ -593,7 +654,7 @@ function renderGallery() {
     artistsGrid.innerHTML = artistsData.map((artist, index) => {
       const bio = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.bio || artist.bio) : artist.bio;
       const country = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.country || artist.country) : artist.country;
-      const exploreText = currentLang === 'en' ? "Explore works" : "Explorar obras";
+      const exploreText = currentLang === 'en' ? "Meet artist" : "Conocer artista";
       return `
         <div class="artist-card scroll-reveal ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
           <div class="artist-image-container">
@@ -606,7 +667,7 @@ function renderGallery() {
             </div>
             <h3 class="artist-name">${artist.name}</h3>
             <p class="artist-bio">${bio}</p>
-            <a href="obras.html?artista=${encodeURIComponent(artist.name)}" class="artist-link" data-filter="${artist.filter}">${exploreText} &rarr;</a>
+            <a href="artista-detalle.html?id=${artist.id}" class="artist-link" data-filter="${artist.filter}">${exploreText} &rarr;</a>
           </div>
         </div>
       `;
@@ -677,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPremiumInteractiveEffects();
   initHeroParallax();
   initFaqAccordion();
+  initArtistDetailPage();
 });
 
 /* -------------------------------------------------------------
@@ -1457,13 +1519,9 @@ const artistTranslationsEn = {
     country: "Santiago de Cuba, Cuba",
     bio: "Noted for his dreamlike scenes that blend humans, animals, and a vibrant naive Caribbean nature."
   },
-  "pedro-alvarez-gendis": {
+  "pedro-avila-gendis": {
     country: "Camagüey, Cuba",
-    bio: "His abstract compositions investigate architectural space, chromatic tension, and urban memory."
-  },
-  "pedro-avila": {
-    country: "Havana, Cuba",
-    bio: "Conceives lyrical abstraction as an inner territory of pure emotions and intense gestural brushstrokes."
+    bio: "Cuban painter who conceives lyrical abstraction as an inner territory of pure emotions and intense gestural brushstrokes."
   },
   "vicente-dopico": {
     country: "Havana, Cuba",
@@ -2018,7 +2076,7 @@ function parsePrice(priceStr) {
 }
 
 function formatPrice(num) {
-  return '$' + num.toLocaleString('en-US') + ' USD';
+  return '€' + num.toLocaleString('de-DE') + ' EUR';
 }
 
 function updateCartUI() {
@@ -2386,6 +2444,187 @@ function initFaqAccordion() {
       });
     }
   });
+}
+
+function initArtistDetailPage() {
+  const container = document.getElementById('artist-detail-container');
+  if (!container) return; // Not on the artist detail page!
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const artistId = urlParams.get('id');
+  const artist = artistsData.find(a => a.id === artistId);
+
+  if (!artist) {
+    window.location.href = 'artistas.html';
+    return;
+  }
+
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+  
+  // Translate fields
+  const name = artist.name;
+  const bio = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.bio || artist.bio) : artist.bio;
+  const countryName = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.country || artist.country) : artist.country;
+  const artType = artist.artType[currentLang] || artist.artType['es'];
+  
+  // Birth year label translation
+  const birthLabel = currentLang === 'en' ? 'Year of Birth' : 'Año de Nacimiento';
+  const birthValue = artist.birthYear || (currentLang === 'en' ? 'Unknown' : 'Desconocido');
+  
+  const typeLabel = currentLang === 'en' ? 'Art Type' : 'Tipo de Arte';
+  const countryLabel = currentLang === 'en' ? 'Country of Origin' : 'País de Origen';
+
+  // Populate basic info
+  document.title = `${name} | Arte Mestizo`;
+  
+  const imgEl = document.getElementById('artist-detail-image');
+  if (imgEl) {
+    imgEl.src = getImageUrl(artist.image);
+    imgEl.alt = name;
+  }
+  
+  const nameEl = document.getElementById('artist-detail-name');
+  if (nameEl) nameEl.textContent = name;
+  
+  const birthEl = document.getElementById('artist-detail-birth');
+  if (birthEl) birthEl.innerHTML = `<strong>${birthLabel}:</strong> ${birthValue}`;
+  
+  const countryEl = document.getElementById('artist-detail-country');
+  if (countryEl) countryEl.innerHTML = `<strong>${countryLabel}:</strong> ${getFlagSvg(artist.flag)} ${countryName}`;
+  
+  const typeEl = document.getElementById('artist-detail-type');
+  if (typeEl) typeEl.innerHTML = `<strong>${typeLabel}:</strong> ${artType}`;
+  
+  const bioEl = document.getElementById('artist-detail-bio');
+  if (bioEl) bioEl.textContent = bio;
+
+  // Render artworks by this artist
+  const artworksGrid = document.getElementById('artist-detail-artworks');
+  if (artworksGrid) {
+    const artistWorks = Object.entries(artworksData).filter(([id, artwork]) => artwork.artist.toLowerCase() === name.toLowerCase());
+    
+    if (artistWorks.length === 0) {
+      artworksGrid.innerHTML = `<p class="no-artworks-msg">${currentLang === 'en' ? 'No artworks found for this artist.' : 'No se encontraron obras para este artista.'}</p>`;
+      return;
+    }
+    
+    artworksGrid.innerHTML = artistWorks.map(([id, artwork]) => {
+      const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
+      const technique = translateTechnique(artwork.technique, currentLang);
+      const actionText = currentLang === 'en' ? "More details" : "Ampliar detalles";
+      const isSold = soldArtworks.includes(parseInt(id, 10));
+      const soldClass = isSold ? ' sold' : '';
+      const soldText = currentLang === 'en' ? 'SOLD' : 'VENDIDO';
+      const soldAttr = isSold ? ` data-sold-text="${soldText}"` : '';
+      
+      return `
+        <div class="artwork-item show${soldClass}" data-id="${id}"${soldAttr} style="display: block; opacity: 1; transform: none;">
+          <div class="artwork-card">
+            <div class="artwork-image-wrapper">
+              <img src="${getImageUrl(artwork.image)}" alt="${title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
+              <div class="artwork-overlay">
+                <div class="artwork-details-action">
+                  <span class="btn-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="action-text" style="color: #ffffff;">${actionText}</span>
+                </div>
+              </div>
+            </div>
+            <div class="artwork-info">
+              <h3 class="artwork-title">${title}</h3>
+              <p class="artwork-artist">${artwork.artist}</p>
+              <div class="artwork-meta">
+                <span class="artwork-spec">${technique} • ${artwork.dimensions}</span>
+                <span class="artwork-price">${artwork.price}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    // Bind click handlers for details lightbox modal
+    const items = artworksGrid.querySelectorAll('.artwork-image-wrapper');
+    const modal = document.getElementById('artwork-modal');
+    if (modal && items.length > 0) {
+      const modalClose = document.getElementById('modal-close');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const mImage = document.getElementById('modal-image');
+      const mCategory = document.getElementById('modal-category');
+      const mTitle = document.getElementById('modal-title');
+      const mArtist = document.getElementById('modal-artist');
+      const mStyle = document.getElementById('modal-style');
+      const mTheme = document.getElementById('modal-theme');
+      const mTechnique = document.getElementById('modal-technique');
+      const mDimensions = document.getElementById('modal-dimensions');
+      const mYear = document.getElementById('modal-year');
+      const mPrice = document.getElementById('modal-price');
+      const mInquiryId = document.getElementById('inquiry-artwork-id');
+      const mInquiryForm = document.getElementById('inquiry-form');
+      const mInquiryStatus = document.getElementById('inquiry-status');
+
+      items.forEach(wrapper => {
+        wrapper.addEventListener('click', () => {
+          const card = wrapper.closest('.artwork-item');
+          const id = card.getAttribute('data-id');
+          const data = artworksData[id];
+          if (data) {
+            const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
+            const category = translateCategory(data.category, currentLang);
+            const technique = translateTechnique(data.technique, currentLang);
+            const theme = typeof data.theme === 'object' ? (data.theme[currentLang] || data.theme['es']) : data.theme;
+
+            mImage.src = getImageUrl(data.image);
+            mImage.alt = `${title} - ${data.artist}`;
+            mCategory.textContent = category;
+            mTitle.textContent = title;
+            mArtist.textContent = data.artist;
+            if (mStyle) mStyle.textContent = category;
+            if (mTheme) mTheme.textContent = theme;
+            mTechnique.textContent = technique;
+            mDimensions.textContent = data.dimensions;
+            mYear.textContent = data.year;
+            mPrice.textContent = data.price;
+            mInquiryId.value = id;
+
+            const mAddToCartBtn = document.getElementById('modal-add-to-cart');
+            if (mAddToCartBtn) {
+              mAddToCartBtn.setAttribute('data-id', id);
+              updateAddToCartButtonState(id);
+            }
+
+            if (mInquiryStatus) {
+              mInquiryStatus.textContent = '';
+              mInquiryStatus.className = 'inquiry-status';
+            }
+            if (mInquiryForm) {
+              mInquiryForm.reset();
+              const textarea = document.getElementById('inquiry-message');
+              if (textarea) {
+                textarea.value = currentLang === 'en'
+                  ? `I am interested in receiving quotation and international shipping details for the artwork "${title}" by ${data.artist}.`
+                  : `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${title}" de ${data.artist}.`;
+              }
+            }
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+              modal.classList.add('active');
+            }, 10);
+          }
+        });
+      });
+    }
+  }
+  
+  // Re-run glare effects on newly generated cards
+  if (typeof initPremiumInteractiveEffects === 'function') {
+    initPremiumInteractiveEffects();
+  }
 }
 
 

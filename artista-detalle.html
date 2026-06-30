@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artista | Arte Mestizo - Galería de Arte Latinoamericano y Caribeño</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar scrolled" id="navbar"
+    style="position: sticky; background-color: rgba(250, 249, 246, 0.96); border-bottom: 1px solid rgba(0, 0, 0, 0.06); color: #161616;">
+    <div class="navbar-container">
+      <a href="index.html" class="logo" style="color: #161616;">
+        <span class="logo-accent">ARTE</span> MESTIZO
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="artistas.html" class="nav-link active" data-i18n="nav.artists">Artistas</a>
+        <a href="obras.html" class="nav-link" data-i18n="nav.works">Obras</a>
+        <a href="faq.html" class="nav-link" data-i18n="nav.faq">Preguntas Frecuentes</a>
+        <a href="index.html#proceso" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+        
+        <!-- Language Switch Mobile -->
+        <div class="lang-switch-mobile">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+      
+      <div class="nav-actions">
+        <!-- Shopping Cart Icon Toggle -->
+        <button class="cart-toggle" id="cart-toggle" aria-label="Ver carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="cart-count-badge" id="cart-count">0</span>
+        </button>
+
+        <!-- Language Switch Desktop -->
+        <div class="lang-switch-desktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" style="display: none;">
+          <span class="bar" style="background-color: #161616;"></span>
+          <span class="bar" style="background-color: #161616;"></span>
+          <span class="bar" style="background-color: #161616;"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Artist Detail Core Layout -->
+  <section class="section" id="artist-detail-container" style="padding-top: 60px; padding-bottom: 60px;">
+    <div class="container">
+      
+      <!-- Back Link -->
+      <div style="margin-bottom: 30px;">
+        <a href="artistas.html" style="color: var(--accent-gold-dark); font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          &larr; <span data-i18n="artists.link_all">Volver al catálogo de creadores</span>
+        </a>
+      </div>
+
+      <div class="artist-detail-grid">
+        
+        <!-- Left: Image & Meta Info -->
+        <div class="artist-detail-visual">
+          <div class="artist-detail-image-wrapper">
+            <img id="artist-detail-image" src="" alt="Artista" />
+          </div>
+          
+          <div class="artist-detail-meta-box">
+            <p id="artist-detail-birth"><strong>Año de Nacimiento:</strong> 1969</p>
+            <p id="artist-detail-country"><strong>País de Origen:</strong> Cuba</p>
+            <p id="artist-detail-type"><strong>Tipo de Arte:</strong> Expresionismo</p>
+          </div>
+        </div>
+
+        <!-- Right: Name & Bio -->
+        <div class="artist-detail-info">
+          <h1 class="artist-detail-name" id="artist-detail-name">Nombre del Artista</h1>
+          <h2 class="artist-detail-section-title" data-i18n="nav.about">Trayectoria y Biografía</h2>
+          <p class="artist-detail-bio" id="artist-detail-bio">Cargando biografía del artista...</p>
+        </div>
+
+      </div>
+
+      <!-- Bottom: Artworks by Artist -->
+      <div class="artist-detail-artworks-section">
+        <h2 class="artist-detail-artworks-title" data-i18n="works.title_featured">Obras Disponibles</h2>
+        <div class="artworks-grid" id="artist-detail-artworks">
+          <!-- Populated dynamically via main.js -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo logo-footer"><span class="logo-accent">ARTE</span> MESTIZO</span>
+        <p class="footer-desc" data-i18n="footer.desc">
+          Galería de arte latinoamericano y caribeño original que conecta artistas comprometidos con coleccionistas que
+          buscan trascendencia visual y conceptual.
+        </p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.explore">Explorar</h4>
+          <a href="artistas.html" data-i18n="nav.artists">Artistas</a>
+          <a href="obras.html" data-i18n="nav.works">Obras destacadas</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+          <a href="index.html#proceso" data-i18n="nav.about">Nosotros</a>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
+          <a href="index.html#contacto" data-i18n="footer.write_us">Escríbenos</a>
+          <a href="index.html#contacto" data-i18n="footer.private">Consultas Privadas</a>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.legal">Legal</h4>
+          <a href="#" data-i18n="footer.terms">Términos de servicio</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.cert">Garantía de autenticidad</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p data-i18n="footer.bottom">&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
+      <p data-i18n="footer.bottom_sub">Arte Latinoamericano y Caribeño Certificado.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Artworks Detail -->
+  <div class="modal" id="artwork-modal">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content-wrapper">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar modal">&times;</button>
+      <div class="modal-body-grid">
+        <div class="modal-image-panel">
+          <img src="" alt="" class="modal-image" id="modal-image" />
+        </div>
+        <div class="modal-info-panel">
+          <div class="modal-info-header">
+            <span class="modal-category" id="modal-category">Categoría</span>
+            <h2 class="modal-title" id="modal-title">Título de la Obra</h2>
+            <p class="modal-artist" id="modal-artist">Artista</p>
+          </div>
+
+          <div class="modal-details">
+            <div class="detail-row">
+              <span class="detail-label" data-i18n="works.filter_style">Estilo</span>
+              <span class="detail-value" id="modal-style">Abstracción</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Tema</span>
+              <span class="detail-value" id="modal-theme">Composición</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Técnica</span>
+              <span class="detail-value" id="modal-technique">Óleo</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Medidas</span>
+              <span class="detail-value" id="modal-dimensions">100x80cm</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Año</span>
+              <span class="detail-value" id="modal-year">2024</span>
+            </div>
+            <div class="detail-row price-row" style="border-top:1px solid rgba(197, 168, 128, 0.15); padding-top:12px; margin-top:12px;">
+              <span class="detail-label" style="font-weight:700;">Precio</span>
+              <span class="detail-value price-tag" id="modal-price">€0 EUR</span>
+            </div>
+          </div>
+
+          <!-- Checkout / Action buttons inside details modal -->
+          <div class="modal-action-buttons" style="margin-top:20px; display:flex; gap:12px;">
+            <button class="btn btn-secondary" id="modal-add-to-cart" style="flex:1;">Comprar Obra (Añadir al Carrito)</button>
+          </div>
+
+          <div class="modal-divider" style="margin:20px 0; border-top:1px solid rgba(0,0,0,0.06);"></div>
+
+          <form class="inquiry-form" id="inquiry-form">
+            <input type="hidden" id="inquiry-artwork-id" value="" />
+            <h4 class="inquiry-form-title" data-i18n="footer.private">Consulta Privada / Reserva</h4>
+            <div class="form-group" style="margin-bottom:12px;">
+              <input type="text" id="inquiry-name" class="form-control" required placeholder=" " />
+              <label for="inquiry-name" class="form-label" data-i18n="checkout.label_name">Nombre Completo</label>
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+              <input type="email" id="inquiry-email" class="form-control" required placeholder=" " />
+              <label for="inquiry-email" class="form-label" data-i18n="checkout.label_email">Correo Electrónico</label>
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+              <textarea id="inquiry-message" class="form-control" required placeholder=" " rows="3" style="resize:none; padding-top:16px;"></textarea>
+              <label for="inquiry-message" class="form-label" data-i18n="form.label_message">Mensaje / Consulta</label>
+            </div>
+            <button type="submit" class="btn btn-outline btn-block" style="font-size:0.9rem; padding:12px;">Enviar Consulta</button>
+            <div class="inquiry-status" id="inquiry-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-commerce Sidebar Cart Drawer -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 data-i18n="cart.title">Tu Carrito</h3>
+      <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-drawer-body" id="cart-items">
+      <!-- Dynamically filled by JS -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span data-i18n="cart.total_label">Total:</span>
+        <span id="cart-total">€0 EUR</span>
+      </div>
+      <button class="btn btn-secondary btn-block" id="cart-checkout-btn" data-i18n="cart.checkout_btn" disabled>Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- E-commerce Checkout Modal -->
+  <div class="modal" id="checkout-modal">
+    <div class="checkout-modal-content">
+      <button class="modal-close" id="checkout-close" aria-label="Cerrar modal">&times;</button>
+      <div class="checkout-modal-body" id="checkout-body-content">
+        <h3 class="checkout-modal-title" data-i18n="checkout.title">Finalizar Compra</h3>
+        
+        <div class="checkout-summary-box">
+          <div class="checkout-summary-row">
+            <span data-i18n="checkout.summary_items">Obras seleccionadas:</span>
+            <span id="checkout-items-count" style="font-weight:700;">0</span>
+          </div>
+          <div class="checkout-summary-row" style="margin-top:5px; font-size:1.1rem;">
+            <span data-i18n="checkout.summary_total">Total a pagar:</span>
+            <span id="checkout-total-price" style="color:#8e724a; font-weight:700;">€0 EUR</span>
+          </div>
+        </div>
+
+        <form id="checkout-form">
+          <h4 class="checkout-section-title" data-i18n="checkout.shipping_title">Información de Envío</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-name" class="form-control" required placeholder=" " />
+              <label for="checkout-name" class="form-label" data-i18n="checkout.label_name">Nombre Completo</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="email" id="checkout-email" class="form-control" required placeholder=" " />
+              <label for="checkout-email" class="form-label" data-i18n="checkout.label_email">Correo Electrónico</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="tel" id="checkout-phone" class="form-control" required placeholder=" " />
+              <label for="checkout-phone" class="form-label" data-i18n="checkout.label_phone">Teléfono de Contacto</label>
+            </div>
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-address" class="form-control" required placeholder=" " />
+              <label for="checkout-address" class="form-label" data-i18n="checkout.label_address">Dirección de Entrega</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-city" class="form-control" required placeholder=" " />
+              <label for="checkout-city" class="form-label" data-i18n="checkout.label_city">Ciudad</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-country" class="form-control" required placeholder=" " />
+              <label for="checkout-country" class="form-label" data-i18n="checkout.label_country">País</label>
+            </div>
+          </div>
+
+          <h4 class="checkout-section-title" data-i18n="checkout.payment_title">Detalles de Pago (Simulación)</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-card" class="form-control" required placeholder=" " pattern="\d{16}" maxlength="16" />
+              <label for="checkout-card" class="form-label" data-i18n="checkout.label_card">Número de Tarjeta (16 dígitos)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-expiry" class="form-control" required placeholder="MM/YY" pattern="\d{2}/\d{2}" maxlength="5" />
+              <label for="checkout-expiry" class="form-label" data-i18n="checkout.label_expiry">Vencimiento (MM/YY)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="password" id="checkout-cvv" class="form-control" required placeholder=" " pattern="\d{3}" maxlength="3" />
+              <label for="checkout-cvv" class="form-label" data-i18n="checkout.label_cvv">CVV</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secondary btn-block" data-i18n="checkout.submit_btn">Pagar y Completar Pedido</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Module JS -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
