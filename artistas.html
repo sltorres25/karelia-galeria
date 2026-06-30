@@ -41,6 +41,15 @@
 
       </nav>
       <div class="nav-actions">
+        <!-- Shopping Cart Icon Toggle -->
+        <button class="cart-toggle" id="cart-toggle" aria-label="Ver carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="cart-count-badge" id="cart-count">0</span>
+        </button>
+
         <!-- Language Switch Desktop -->
         <div class="lang-switch-desktop">
           <button class="lang-btn" data-lang="es">ES</button>
@@ -127,6 +136,26 @@
     </div>
     <div class="floating-badge-item" title="Óleo sobre lienzo 100% hecho a mano">
       <img src="/src/assets/sello-goma-original-vector-original_721813-1661.jpg" alt="Óleo sobre lienzo a mano" class="floating-badge-img" />
+    </div>
+  </div>
+
+  <!-- Cart Drawer Sidebar -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 data-i18n="cart.title">Tu Carrito</h3>
+      <button class="cart-close-btn" id="cart-close">&times;</button>
+    </div>
+    <div class="cart-items-container" id="cart-items">
+      <!-- Dynamic Cart Items -->
+      <p class="cart-empty-msg" data-i18n="cart.empty">El carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span data-i18n="cart.total_label">Total:</span>
+        <span class="cart-total-price" id="cart-total">$0 USD</span>
+      </div>
+      <button class="btn btn-secondary btn-checkout" id="cart-checkout-btn" data-i18n="cart.checkout_btn" disabled>Finalizar Compra</button>
     </div>
   </div>
 

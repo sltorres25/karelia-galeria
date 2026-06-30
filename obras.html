@@ -41,6 +41,15 @@
 
       </nav>
       <div class="nav-actions">
+        <!-- Shopping Cart Icon Toggle -->
+        <button class="cart-toggle" id="cart-toggle" aria-label="Ver carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="cart-count-badge" id="cart-count">0</span>
+        </button>
+
         <!-- Language Switch Desktop -->
         <div class="lang-switch-desktop">
           <button class="lang-btn" data-lang="es">ES</button>
@@ -208,6 +217,7 @@
               </svg>
               <span data-i18n="modal.cert_text">Incluye Certificado de Autenticidad firmado por el artista</span>
             </div>
+            <button class="btn btn-primary btn-block" id="modal-add-to-cart" style="margin-top:20px; font-weight:700; letter-spacing:0.05em;" data-i18n="modal.add_to_cart">Comprar Obra (Añadir al Carrito)</button>
           </div>
 
           <div class="modal-action-form">
@@ -242,6 +252,96 @@
     </div>
     <div class="floating-badge-item" title="Óleo sobre lienzo 100% hecho a mano">
       <img src="/src/assets/sello-goma-original-vector-original_721813-1661.jpg" alt="Óleo sobre lienzo a mano" class="floating-badge-img" />
+    </div>
+  </div>
+
+  <!-- Cart Drawer Sidebar -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3 data-i18n="cart.title">Tu Carrito</h3>
+      <button class="cart-close-btn" id="cart-close">&times;</button>
+    </div>
+    <div class="cart-items-container" id="cart-items">
+      <!-- Dynamic Cart Items -->
+      <p class="cart-empty-msg" data-i18n="cart.empty">El carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span data-i18n="cart.total_label">Total:</span>
+        <span class="cart-total-price" id="cart-total">$0 USD</span>
+      </div>
+      <button class="btn btn-secondary btn-checkout" id="cart-checkout-btn" data-i18n="cart.checkout_btn" disabled>Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkout-modal">
+    <div class="checkout-container">
+      <div class="checkout-header">
+        <h3 data-i18n="checkout.title">Finalizar Compra</h3>
+        <button class="checkout-close-btn" id="checkout-close">&times;</button>
+      </div>
+      <div class="checkout-body" id="checkout-body-content">
+        <div class="checkout-summary-box">
+          <div class="checkout-summary-row">
+            <span data-i18n="checkout.summary_items">Obras seleccionadas:</span>
+            <span id="checkout-items-count">0</span>
+          </div>
+          <div class="checkout-summary-row total">
+            <span data-i18n="checkout.summary_total">Total a pagar:</span>
+            <span id="checkout-total-price" style="color:#8e724a; font-weight:700;">$0 USD</span>
+          </div>
+        </div>
+
+        <form id="checkout-form">
+          <h4 class="checkout-section-title" data-i18n="checkout.shipping_title">Información de Envío</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-name" class="form-control" required placeholder=" " />
+              <label for="checkout-name" class="form-label" data-i18n="checkout.label_name">Nombre Completo</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="email" id="checkout-email" class="form-control" required placeholder=" " />
+              <label for="checkout-email" class="form-label" data-i18n="checkout.label_email">Correo Electrónico</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="tel" id="checkout-phone" class="form-control" required placeholder=" " />
+              <label for="checkout-phone" class="form-label" data-i18n="checkout.label_phone">Teléfono de Contacto</label>
+            </div>
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-address" class="form-control" required placeholder=" " />
+              <label for="checkout-address" class="form-label" data-i18n="checkout.label_address">Dirección de Entrega</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-city" class="form-control" required placeholder=" " />
+              <label for="checkout-city" class="form-label" data-i18n="checkout.label_city">Ciudad</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-country" class="form-control" required placeholder=" " />
+              <label for="checkout-country" class="form-label" data-i18n="checkout.label_country">País</label>
+            </div>
+          </div>
+
+          <h4 class="checkout-section-title" data-i18n="checkout.payment_title">Detalles de Pago (Simulación)</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-card" class="form-control" required placeholder=" " pattern="\d{16}" maxlength="16" />
+              <label for="checkout-card" class="form-label" data-i18n="checkout.label_card">Número de Tarjeta (16 dígitos)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-expiry" class="form-control" required placeholder="MM/YY" pattern="\d{2}/\d{2}" maxlength="5" />
+              <label for="checkout-expiry" class="form-label" data-i18n="checkout.label_expiry">Vencimiento (MM/YY)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="password" id="checkout-cvv" class="form-control" required placeholder=" " pattern="\d{3}" maxlength="3" />
+              <label for="checkout-cvv" class="form-label" data-i18n="checkout.label_cvv">CVV</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secondary btn-block" data-i18n="checkout.submit_btn">Pagar y Completar Pedido</button>
+        </form>
+      </div>
     </div>
   </div>
 

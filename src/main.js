@@ -618,8 +618,12 @@ function renderGallery() {
       const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
       const technique = translateTechnique(artwork.technique, currentLang);
       const actionText = currentLang === 'en' ? "More details" : "Ampliar detalles";
+      const isSold = soldArtworks.includes(parseInt(id, 10));
+      const soldClass = isSold ? ' sold' : '';
+      const soldText = currentLang === 'en' ? 'SOLD' : 'VENDIDO';
+      const soldAttr = isSold ? ` data-sold-text="${soldText}"` : '';
       return `
-        <div class="artwork-item show" data-category="${artwork.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}" data-id="${id}">
+        <div class="artwork-item show${soldClass}" data-category="${artwork.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}" data-id="${id}"${soldAttr}>
           <div class="artwork-card">
             <div class="artwork-image-wrapper">
               <img src="${getImageUrl(artwork.image)}" alt="${title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
@@ -661,6 +665,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForms();
   initArtistsReveal();
   initObrasCatalogPage();
+
+  // E-commerce Initializers
+  initCartToggleEvents();
+  initAddToCartEvent();
+  initCheckoutEvents();
+  updateCartUI();
+  applySoldStatesToGallery();
 });
 
 /* -------------------------------------------------------------
@@ -950,6 +961,12 @@ function initArtworkModal() {
           mYear.textContent = data.year;
           mPrice.textContent = data.price;
           mInquiryId.value = id;
+
+          const mAddToCartBtn = document.getElementById('modal-add-to-cart');
+          if (mAddToCartBtn) {
+            mAddToCartBtn.setAttribute('data-id', id);
+            updateAddToCartButtonState(id);
+          }
           
           // Clear status from previous views
           if (mInquiryStatus) {
@@ -1200,8 +1217,12 @@ function initObrasCatalogPage() {
       const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
       const technique = translateTechnique(artwork.technique, currentLang);
       const actionText = currentLang === 'en' ? "More details" : "Ampliar detalles";
+      const isSold = soldArtworks.includes(parseInt(id, 10));
+      const soldClass = isSold ? ' sold' : '';
+      const soldText = currentLang === 'en' ? 'SOLD' : 'VENDIDO';
+      const soldAttr = isSold ? ` data-sold-text="${soldText}"` : '';
       return `
-        <div class="artwork-item show" data-id="${id}" style="display: block; opacity: 1; transform: none;">
+        <div class="artwork-item show${soldClass}" data-id="${id}"${soldAttr} style="display: block; opacity: 1; transform: none;">
           <div class="artwork-card">
             <div class="artwork-image-wrapper">
               <img src="${getImageUrl(artwork.image)}" alt="${title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
@@ -1327,6 +1348,12 @@ function bindModalEventsToCatalog() {
           mYear.textContent = data.year;
           mPrice.textContent = data.price;
           mInquiryId.value = id;
+
+          const mAddToCartBtn = document.getElementById('modal-add-to-cart');
+          if (mAddToCartBtn) {
+            mAddToCartBtn.setAttribute('data-id', id);
+            updateAddToCartButtonState(id);
+          }
 
           if (mInquiryStatus) {
             mInquiryStatus.textContent = '';
@@ -1538,7 +1565,33 @@ const translations = {
       form_name: "Nombre Completo",
       form_email: "Correo Electrónico",
       form_msg: "Mensaje",
-      form_btn: "Enviar Consulta de Obra"
+      form_btn: "Enviar Consulta de Obra",
+      add_to_cart: "Comprar Obra (Añadir al Carrito)",
+      already_in_cart: "Ya en el Carrito",
+      sold: "Obra Vendida"
+    },
+    cart: {
+      title: "Tu Carrito",
+      empty: "El carrito está vacío",
+      total_label: "Total:",
+      checkout_btn: "Finalizar Compra"
+    },
+    checkout: {
+      title: "Finalizar Compra",
+      summary_items: "Obras seleccionadas:",
+      summary_total: "Total a pagar:",
+      shipping_title: "Información de Envío",
+      label_name: "Nombre Completo",
+      label_email: "Correo Electrónico",
+      label_phone: "Teléfono de Contacto",
+      label_address: "Dirección de Entrega",
+      label_city: "Ciudad",
+      label_country: "País",
+      payment_title: "Detalles de Pago (Simulación)",
+      label_card: "Número de Tarjeta (16 dígitos)",
+      label_expiry: "Vencimiento (MM/YY)",
+      label_cvv: "CVV",
+      submit_btn: "Pagar y Completar Pedido"
     },
     artists: {
       tag: "Nuestros Creadores",
@@ -1649,7 +1702,33 @@ const translations = {
       form_name: "Full Name",
       form_email: "Email Address",
       form_msg: "Message",
-      form_btn: "Send Artwork Inquiry"
+      form_btn: "Send Artwork Inquiry",
+      add_to_cart: "Buy Artwork (Add to Cart)",
+      already_in_cart: "Already in Cart",
+      sold: "Artwork Sold"
+    },
+    cart: {
+      title: "Your Cart",
+      empty: "Your cart is empty",
+      total_label: "Total:",
+      checkout_btn: "Checkout"
+    },
+    checkout: {
+      title: "Checkout",
+      summary_items: "Selected artworks:",
+      summary_total: "Total to pay:",
+      shipping_title: "Shipping Information",
+      label_name: "Full Name",
+      label_email: "Email Address",
+      label_phone: "Contact Phone",
+      label_address: "Shipping Address",
+      label_city: "City",
+      label_country: "Country",
+      payment_title: "Payment Details (Simulation)",
+      label_card: "Card Number (16 digits)",
+      label_expiry: "Expiry Date (MM/YY)",
+      label_cvv: "CVV",
+      submit_btn: "Pay and Complete Order"
     },
     artists: {
       tag: "Our Creators",
@@ -1743,6 +1822,21 @@ function translatePage(lang) {
     window.runCatalogFilterAndSort();
   }
 
+  // Update Cart UI, Sold badges and modal button state
+  if (typeof updateCartUI === 'function') {
+    updateCartUI();
+  }
+  if (typeof applySoldStatesToGallery === 'function') {
+    applySoldStatesToGallery();
+  }
+  const modal = document.getElementById('artwork-modal');
+  if (modal && modal.classList.contains('active')) {
+    const activeId = document.getElementById('inquiry-artwork-id')?.value;
+    if (activeId && typeof updateAddToCartButtonState === 'function') {
+      updateAddToCartButtonState(activeId);
+    }
+  }
+
   // Update active state on language buttons
   const buttons = document.querySelectorAll('.lang-btn');
   buttons.forEach(btn => {
@@ -1770,6 +1864,323 @@ function initLanguageSwitcher() {
 
   // Trigger initial translation
   translatePage(currentLang);
+}
+
+/* -------------------------------------------------------------
+ * E-commerce Shopping Cart & Checkout System
+ * ------------------------------------------------------------- */
+// State Variables
+let cart = JSON.parse(localStorage.getItem('cartArtworkIds')) || [];
+let soldArtworks = JSON.parse(localStorage.getItem('soldArtworkIds')) || [];
+
+function saveCart() {
+  localStorage.setItem('cartArtworkIds', JSON.stringify(cart));
+  updateCartUI();
+}
+
+function saveSold() {
+  localStorage.setItem('soldArtworkIds', JSON.stringify(soldArtworks));
+  applySoldStatesToGallery();
+}
+
+function parsePrice(priceStr) {
+  if (!priceStr) return 0;
+  const num = parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+  return isNaN(num) ? 0 : num;
+}
+
+function formatPrice(num) {
+  return '$' + num.toLocaleString('en-US') + ' USD';
+}
+
+function updateCartUI() {
+  const badge = document.getElementById('cart-count');
+  if (badge) {
+    badge.textContent = cart.length;
+    badge.style.display = cart.length > 0 ? 'flex' : 'none';
+  }
+
+  const container = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('cart-checkout-btn');
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = `<p class="cart-empty-msg" data-i18n="cart.empty">${translations[currentLang].cart.empty}</p>`;
+    if (totalEl) totalEl.textContent = formatPrice(0);
+    if (checkoutBtn) checkoutBtn.disabled = true;
+    return;
+  }
+
+  let total = 0;
+  container.innerHTML = '';
+  cart.forEach(id => {
+    const item = artworksData[id];
+    if (!item) return;
+
+    const itemPrice = parsePrice(item.price);
+    total += itemPrice;
+
+    const title = currentLang === 'en' ? (artworkTitlesEn[id] || item.title) : item.title;
+
+    const itemHtml = `
+      <div class="cart-item" data-id="${id}">
+        <img src="${getImageUrl(item.image)}" alt="${title}" class="cart-item-img" />
+        <div class="cart-item-info">
+          <h4 class="cart-item-title">${title}</h4>
+          <p class="cart-item-artist">${item.artist}</p>
+          <div class="cart-item-price">${item.price}</div>
+        </div>
+        <button class="cart-item-remove" data-id="${id}" title="${currentLang === 'en' ? 'Remove' : 'Eliminar'}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+      </div>
+    `;
+    container.insertAdjacentHTML('beforeend', itemHtml);
+  });
+
+  if (totalEl) totalEl.textContent = formatPrice(total);
+  if (checkoutBtn) checkoutBtn.disabled = false;
+
+  // Add click listeners to remove buttons
+  container.querySelectorAll('.cart-item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = parseInt(btn.getAttribute('data-id'), 10);
+      cart = cart.filter(itemId => itemId !== id);
+      saveCart();
+      const activeId = document.getElementById('inquiry-artwork-id')?.value;
+      if (activeId && parseInt(activeId, 10) === id) {
+        updateAddToCartButtonState(activeId);
+      }
+    });
+  });
+}
+
+function updateAddToCartButtonState(id) {
+  const btn = document.getElementById('modal-add-to-cart');
+  if (!btn) return;
+
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+  const numericId = parseInt(id, 10);
+
+  if (soldArtworks.includes(numericId)) {
+    btn.textContent = translations[currentLang].modal.sold;
+    btn.disabled = true;
+    btn.style.backgroundColor = '#626262';
+    btn.style.borderColor = '#626262';
+    btn.style.color = '#ffffff';
+  } else if (cart.includes(numericId)) {
+    btn.textContent = translations[currentLang].modal.already_in_cart;
+    btn.disabled = true;
+    btn.style.backgroundColor = '#eae7e0';
+    btn.style.borderColor = '#eae7e0';
+    btn.style.color = '#626262';
+  } else {
+    btn.textContent = translations[currentLang].modal.add_to_cart;
+    btn.disabled = false;
+    btn.style.backgroundColor = 'var(--accent-gold)';
+    btn.style.borderColor = 'var(--accent-gold)';
+    btn.style.color = '#161616';
+  }
+}
+
+function applySoldStatesToGallery() {
+  const cards = document.querySelectorAll('.artwork-card, .artwork-item');
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+  const soldText = currentLang === 'en' ? 'SOLD' : 'VENDIDO';
+
+  cards.forEach(card => {
+    const id = parseInt(card.getAttribute('data-id'), 10);
+    if (soldArtworks.includes(id)) {
+      card.classList.add('sold');
+      card.setAttribute('data-sold-text', soldText);
+    } else {
+      card.classList.remove('sold');
+      card.removeAttribute('data-sold-text');
+    }
+  });
+}
+
+function initCartToggleEvents() {
+  const drawer = document.getElementById('cart-drawer');
+  const backdrop = document.getElementById('cart-backdrop');
+  const openBtns = document.querySelectorAll('.cart-toggle');
+  const closeBtn = document.getElementById('cart-close');
+
+  if (!drawer || !backdrop) return;
+
+  const openCart = () => {
+    drawer.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeCart = () => {
+    drawer.classList.remove('active');
+    backdrop.classList.remove('active');
+    
+    // Unlock scrolling if no modal is active
+    const detailModal = document.getElementById('artwork-modal');
+    const checkoutModal = document.getElementById('checkout-modal');
+    const isModalOpen = (detailModal && detailModal.classList.contains('active')) || 
+                        (checkoutModal && checkoutModal.classList.contains('active'));
+    if (!isModalOpen) {
+      document.body.style.overflow = '';
+    }
+  };
+
+  openBtns.forEach(btn => btn.addEventListener('click', openCart));
+  if (closeBtn) closeBtn.addEventListener('click', closeCart);
+  backdrop.addEventListener('click', closeCart);
+}
+
+function initAddToCartEvent() {
+  const btn = document.getElementById('modal-add-to-cart');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const id = parseInt(btn.getAttribute('data-id'), 10);
+    if (!id || soldArtworks.includes(id) || cart.includes(id)) return;
+
+    cart.push(id);
+    saveCart();
+    updateAddToCartButtonState(id);
+
+    // Open drawer automatically
+    const drawer = document.getElementById('cart-drawer');
+    const backdrop = document.getElementById('cart-backdrop');
+    if (drawer && backdrop) {
+      drawer.classList.add('active');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+}
+
+function initCheckoutEvents() {
+  const checkoutBtn = document.getElementById('cart-checkout-btn');
+  const checkoutModal = document.getElementById('checkout-modal');
+  const closeBtn = document.getElementById('checkout-close');
+  const checkoutForm = document.getElementById('checkout-form');
+
+  if (!checkoutBtn || !checkoutModal || !checkoutForm) return;
+
+  checkoutBtn.addEventListener('click', () => {
+    if (cart.length === 0) return;
+
+    const itemsCountEl = document.getElementById('checkout-items-count');
+    const totalPriceEl = document.getElementById('checkout-total-price');
+    const currentLang = localStorage.getItem('preferred-language') || 'es';
+
+    let total = 0;
+    cart.forEach(id => {
+      const item = artworksData[id];
+      if (item) total += parsePrice(item.price);
+    });
+
+    if (itemsCountEl) itemsCountEl.textContent = cart.length;
+    if (totalPriceEl) totalPriceEl.textContent = formatPrice(total);
+
+    // Ensure form is displayed and success is cleared if re-opened
+    checkoutForm.style.display = 'block';
+    const successView = checkoutModal.querySelector('.checkout-success-view');
+    if (successView) successView.remove();
+    const loaderView = checkoutModal.querySelector('.checkout-loader');
+    if (loaderView) loaderView.remove();
+
+    // Close cart drawer
+    const drawer = document.getElementById('cart-drawer');
+    const backdrop = document.getElementById('cart-backdrop');
+    if (drawer && backdrop) {
+      drawer.classList.remove('active');
+      backdrop.classList.remove('active');
+    }
+
+    checkoutModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  const closeModal = () => {
+    checkoutModal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const currentLang = localStorage.getItem('preferred-language') || 'es';
+
+    // Hide checkout form and display loader spinner
+    checkoutForm.style.display = 'none';
+    const body = document.getElementById('checkout-body-content');
+    
+    const loaderHtml = `
+      <div class="checkout-loader">
+        <div class="spinner"></div>
+        <p style="color:#626262;">${currentLang === 'en' ? 'Processing payment...' : 'Procesando pago...'}</p>
+      </div>
+    `;
+    body.insertAdjacentHTML('beforeend', loaderHtml);
+
+    // Simulate 2-second gateway processing
+    setTimeout(() => {
+      const loader = body.querySelector('.checkout-loader');
+      if (loader) loader.remove();
+
+      // Mark purchased artworks as Sold
+      cart.forEach(id => {
+        const numId = parseInt(id, 10);
+        if (!soldArtworks.includes(numId)) {
+          soldArtworks.push(numId);
+        }
+      });
+      saveSold();
+
+      // Clear Cart
+      cart = [];
+      saveCart();
+
+      // Display success view
+      const orderNum = 'AM-' + Math.floor(100000 + Math.random() * 900000);
+      const successTitle = currentLang === 'en' ? 'Purchase Successful!' : '¡Compra Realizada con Éxito!';
+      const successDesc = currentLang === 'en' 
+        ? 'Thank you for your acquisition. We have sent a confirmation email with delivery tracking details.'
+        : 'Muchas gracias por su adquisición. Hemos enviado un correo de confirmación con los detalles de seguimiento de su entrega.';
+      const successBtnText = currentLang === 'en' ? 'Close Window' : 'Cerrar Ventana';
+
+      const successHtml = `
+        <div class="checkout-success-view">
+          <div class="success-icon-wrapper">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h4>${successTitle}</h4>
+          <p>${successDesc}</p>
+          <div class="order-number">${orderNum}</div>
+          <button class="btn btn-secondary" id="checkout-success-close-btn" style="margin-top:15px;">${successBtnText}</button>
+        </div>
+      `;
+      body.insertAdjacentHTML('beforeend', successHtml);
+
+      // Bind success close button
+      document.getElementById('checkout-success-close-btn').addEventListener('click', closeModal);
+
+      // Update active modal CTA (if open)
+      const detailModal = document.getElementById('artwork-modal');
+      if (detailModal && detailModal.classList.contains('active')) {
+        const activeId = document.getElementById('inquiry-artwork-id').value;
+        if (activeId) updateAddToCartButtonState(activeId);
+      }
+    }, 2000);
+  });
 }
 
 
