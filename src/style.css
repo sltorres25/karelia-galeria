@@ -2370,3 +2370,126 @@ a {
   color: #161616;
   margin: 10px 0;
 }
+
+/* -------------------------------------------------------------
+ * Premium Motion & Interaction Styles
+ * ------------------------------------------------------------- */
+
+/* Scroll Reveal Base Definitions */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delay Helpers */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Parallax Content Smoothing */
+.hero-content {
+  transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+.hero {
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: background-position 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Shine overlay for glass reflection effect on image cards */
+.shine-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: overlay;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+.artwork-image-wrapper:hover .shine-overlay,
+.artist-image-container:hover .shine-overlay,
+.concepto-image-wrapper:hover .shine-overlay {
+  opacity: 1;
+}
+
+/* Active filter buttons gold pulse shadow */
+.filter-btn.active {
+  box-shadow: 0 4px 12px rgba(197, 168, 128, 0.3);
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0% {
+    box-shadow: 0 4px 12px rgba(197, 168, 128, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(197, 168, 128, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(197, 168, 128, 0.3);
+  }
+}
+
+/* Floating Badges Micro-animations */
+@keyframes floating-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.floating-badge-item:nth-child(1) {
+  animation: floating-subtle 4s ease-in-out infinite;
+}
+
+.floating-badge-item:nth-child(2) {
+  animation: floating-subtle 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Shopping Cart Count Pop Animation */
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+.cart-count-pop {
+  animation: badge-bounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Smooth zoom-in loading effect for hero title */
+.hero-title {
+  animation: hero-fade-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes hero-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

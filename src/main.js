@@ -672,6 +672,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initCheckoutEvents();
   updateCartUI();
   applySoldStatesToGallery();
+
+  // Premium Interactive & Motion Effects
+  initPremiumInteractiveEffects();
+  initHeroParallax();
 });
 
 /* -------------------------------------------------------------
@@ -1946,6 +1950,9 @@ let soldArtworks = JSON.parse(localStorage.getItem('soldArtworkIds')) || [];
 function saveCart() {
   localStorage.setItem('cartArtworkIds', JSON.stringify(cart));
   updateCartUI();
+  if (typeof popCartCount === 'function') {
+    popCartCount();
+  }
 }
 
 function saveSold() {
@@ -2250,6 +2257,67 @@ function initCheckoutEvents() {
         if (activeId) updateAddToCartButtonState(activeId);
       }
     }, 2000);
+  });
+}
+
+function popCartCount() {
+  const badge = document.getElementById('cart-count');
+  if (badge) {
+    badge.classList.remove('cart-count-pop');
+    void badge.offsetWidth; // Trigger reflow to restart CSS animation
+    badge.classList.add('cart-count-pop');
+  }
+}
+
+function initPremiumInteractiveEffects() {
+  // Glare / Shine / Radial Gradient hover reflection effect on cards
+  const cards = document.querySelectorAll('.artwork-image-wrapper, .artist-image-container, .concepto-image-wrapper');
+  
+  cards.forEach(card => {
+    // Check if shine overlay already exists to avoid duplicates
+    if (card.querySelector('.shine-overlay')) return;
+    
+    const shine = document.createElement('div');
+    shine.className = 'shine-overlay';
+    card.appendChild(shine);
+    
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const px = (x / rect.width) * 100;
+      const py = (y / rect.height) * 100;
+      
+      shine.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 80%)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      shine.style.background = 'none';
+    });
+  });
+}
+
+function initHeroParallax() {
+  const hero = document.getElementById('hero');
+  const heroContent = document.querySelector('.hero-content');
+  if (!hero || !heroContent) return;
+
+  hero.addEventListener('mousemove', e => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Subtly shift content and background in opposite direction for parallax depth
+    const moveX = (e.clientX - width / 2) / (width / 2) * 15;
+    const moveY = (e.clientY - height / 2) / (height / 2) * 15;
+    
+    heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    hero.style.backgroundPosition = `calc(50% - ${moveX * 0.5}px) calc(50% - ${moveY * 0.5}px)`;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    heroContent.style.transform = 'translate(0px, 0px)';
+    hero.style.backgroundPosition = '50% 50%';
   });
 }
 
