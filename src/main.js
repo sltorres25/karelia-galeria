@@ -481,46 +481,46 @@ const artworksData = {
   }
 };
 
-// Artwork Themes Mapping
+// Artwork Themes Mapping (Bilingual)
 const artworkThemes = {
-  1: "Composición espacial",
-  2: "Paisaje abstracto",
-  3: "Búsqueda interior",
-  4: "Marina caribeña",
-  5: "Tiempo y laberinto",
-  6: "Marina expresiva",
-  7: "Marina silenciosa",
-  8: "Abismo marino",
-  9: "Estudio de luz",
-  10: "Teatralidad y máscara",
-  11: "Ritual expresionista",
-  12: "Naturaleza orgánica",
-  13: "Naturaleza y textura",
-  14: "Retrato social",
-  15: "Retrato social",
-  16: "Fantasía mística",
-  17: "Fantasía mística",
-  18: "Arquitectura y memoria",
-  19: "Memoria urbana",
-  20: "Sinfonía del alba",
-  21: "Misticismo psíquico",
-  22: "Textura y memoria",
-  23: "Retrato geométrico",
-  24: "Retrato geométrico",
-  25: "Estudio figurativo",
-  26: "Composición silente",
-  27: "Textura y tiempo",
-  28: "Materia en movimiento",
-  29: "Texturas del alba",
-  30: "Huellas de memoria",
-  31: "Retrato y afecto",
-  32: "Anatomía expresiva",
-  33: "Figuración interior"
+  1: { es: "Composición espacial", en: "Spatial composition" },
+  2: { es: "Paisaje abstracto", en: "Abstract landscape" },
+  3: { es: "Búsqueda interior", en: "Inner search" },
+  4: { es: "Marina caribeña", en: "Caribbean seascape" },
+  5: { es: "Tiempo y laberinto", en: "Time and labyrinth" },
+  6: { es: "Marina expresiva", en: "Expressive seascape" },
+  7: { es: "Marina silenciosa", en: "Silent seascape" },
+  8: { es: "Abismo marino", en: "Marine abyss" },
+  9: { es: "Estudio de luz", en: "Light study" },
+  10: { es: "Teatralidad y máscara", en: "Theatricality and mask" },
+  11: { es: "Ritual expresionista", en: "Expressionist ritual" },
+  12: { es: "Naturaleza orgánica", en: "Organic nature" },
+  13: { es: "Naturaleza y textura", en: "Nature and texture" },
+  14: { es: "Retrato social", en: "Social portrait" },
+  15: { es: "Retrato social", en: "Social portrait" },
+  16: { es: "Fantasía mística", en: "Mystical fantasy" },
+  17: { es: "Fantasía mística", en: "Mystical fantasy" },
+  18: { es: "Arquitectura y memoria", en: "Architecture and memory" },
+  19: { es: "Memoria urbana", en: "Urban memory" },
+  20: { es: "Sinfonía del alba", en: "Symphony of dawn" },
+  21: { es: "Misticismo psíquico", en: "Psychic mysticism" },
+  22: { es: "Textura y memoria", en: "Texture and memory" },
+  23: { es: "Retrato geométrico", en: "Geometric portrait" },
+  24: { es: "Retrato geométrico", en: "Geometric portrait" },
+  25: { es: "Estudio figurativo", en: "Figurative study" },
+  26: { es: "Composición silente", en: "Silent composition" },
+  27: { es: "Textura y tiempo", en: "Texture and time" },
+  28: { es: "Materia en movimiento", en: "Matter in motion" },
+  29: { es: "Texturas del alba", en: "Textures of dawn" },
+  30: { es: "Huellas de memoria", en: "Traces of memory" },
+  31: { es: "Retrato y afecto", en: "Portrait and affection" },
+  32: { es: "Anatomía expresiva", en: "Expressive anatomy" },
+  33: { es: "Figuración interior", en: "Inner figuration" }
 };
 
 // Assign themes dynamically to artworksData at startup
 Object.entries(artworksData).forEach(([id, artwork]) => {
-  artwork.theme = artworkThemes[id] || "Composición libre";
+  artwork.theme = artworkThemes[id] || { es: "Composición libre", en: "Free composition" };
 });
 
 function getFlagSvg(flagEmoji) {
@@ -586,59 +586,71 @@ function getFlagSvg(flagEmoji) {
 function renderGallery() {
   const artistsGrid = document.getElementById('artists-grid');
   const artworksGrid = document.getElementById('artworks-grid');
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
 
   if (artistsGrid) {
     const showAll = artistsGrid.getAttribute('data-show-all') === 'true';
-    artistsGrid.innerHTML = artistsData.map((artist, index) => `
-      <div class="artist-card scroll-reveal ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
-        <div class="artist-image-container">
-          <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
-        </div>
-        <div class="artist-info">
-          <div class="artist-meta">
-            <span class="artist-flag">${getFlagSvg(artist.flag)}</span>
-            <span class="artist-country">${artist.country}</span>
+    artistsGrid.innerHTML = artistsData.map((artist, index) => {
+      const bio = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.bio || artist.bio) : artist.bio;
+      const country = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.country || artist.country) : artist.country;
+      const exploreText = currentLang === 'en' ? "Explore works" : "Explorar obras";
+      return `
+        <div class="artist-card scroll-reveal ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
+          <div class="artist-image-container">
+            <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
           </div>
-          <h3 class="artist-name">${artist.name}</h3>
-          <p class="artist-bio">${artist.bio}</p>
-          <a href="obras.html?artista=${encodeURIComponent(artist.name)}" class="artist-link" data-filter="${artist.filter}">Explorar obras &rarr;</a>
+          <div class="artist-info">
+            <div class="artist-meta">
+              <span class="artist-flag">${getFlagSvg(artist.flag)}</span>
+              <span class="artist-country">${country}</span>
+            </div>
+            <h3 class="artist-name">${artist.name}</h3>
+            <p class="artist-bio">${bio}</p>
+            <a href="obras.html?artista=${encodeURIComponent(artist.name)}" class="artist-link" data-filter="${artist.filter}">${exploreText} &rarr;</a>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   if (artworksGrid) {
-    artworksGrid.innerHTML = Object.entries(artworksData).map(([id, artwork]) => `
-      <div class="artwork-item show" data-category="${artwork.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}" data-id="${id}">
-        <div class="artwork-card">
-          <div class="artwork-image-wrapper">
-            <img src="${getImageUrl(artwork.image)}" alt="${artwork.title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
-            <div class="artwork-overlay">
-              <div class="artwork-details-action">
-                <span class="btn-circle">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="action-text">Ampliar detalles</span>
+    artworksGrid.innerHTML = Object.entries(artworksData).map(([id, artwork]) => {
+      const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
+      const technique = translateTechnique(artwork.technique, currentLang);
+      const actionText = currentLang === 'en' ? "More details" : "Ampliar detalles";
+      return `
+        <div class="artwork-item show" data-category="${artwork.category.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}" data-id="${id}">
+          <div class="artwork-card">
+            <div class="artwork-image-wrapper">
+              <img src="${getImageUrl(artwork.image)}" alt="${title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
+              <div class="artwork-overlay">
+                <div class="artwork-details-action">
+                  <span class="btn-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="action-text">${actionText}</span>
+                </div>
+              </div>
+            </div>
+            <div class="artwork-info">
+              <h3 class="artwork-title">${title}</h3>
+              <p class="artwork-artist">${artwork.artist}</p>
+              <div class="artwork-meta">
+                <span class="artwork-spec">${technique} • ${artwork.dimensions}</span>
+                <span class="artwork-price">${artwork.price}</span>
               </div>
             </div>
           </div>
-          <div class="artwork-info">
-            <h3 class="artwork-title">${artwork.title}</h3>
-            <p class="artwork-artist">${artwork.artist}</p>
-            <div class="artwork-meta">
-              <span class="artwork-spec">${artwork.technique} • ${artwork.dimensions}</span>
-              <span class="artwork-price">${artwork.price}</span>
-            </div>
-          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initLanguageSwitcher();
   renderGallery();
   initNavbar();
   initScrollReveal();
@@ -919,15 +931,21 @@ function initArtworkModal() {
         const data = artworksData[id];
         
         if (data) {
+          const currentLang = localStorage.getItem('preferred-language') || 'es';
+          const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
+          const category = translateCategory(data.category, currentLang);
+          const technique = translateTechnique(data.technique, currentLang);
+          const theme = typeof data.theme === 'object' ? (data.theme[currentLang] || data.theme['es']) : data.theme;
+
           // Fill modal fields
           mImage.src = getImageUrl(data.image);
-          mImage.alt = `${data.title} - ${data.artist}`;
-          mCategory.textContent = data.category;
-          mTitle.textContent = data.title;
+          mImage.alt = `${title} - ${data.artist}`;
+          mCategory.textContent = category;
+          mTitle.textContent = title;
           mArtist.textContent = data.artist;
-          if (mStyle) mStyle.textContent = data.category;
-          if (mTheme) mTheme.textContent = data.theme;
-          mTechnique.textContent = data.technique;
+          if (mStyle) mStyle.textContent = category;
+          if (mTheme) mTheme.textContent = theme;
+          mTechnique.textContent = technique;
           mDimensions.textContent = data.dimensions;
           mYear.textContent = data.year;
           mPrice.textContent = data.price;
@@ -942,7 +960,9 @@ function initArtworkModal() {
             mInquiryForm.reset();
             const textarea = document.getElementById('inquiry-message');
             if (textarea) {
-              textarea.value = `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${data.title}" de ${data.artist}.`;
+              textarea.value = currentLang === 'en'
+                ? `I am interested in receiving quotation and international shipping details for the artwork "${title}" by ${data.artist}.`
+                : `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${title}" de ${data.artist}.`;
             }
           }
 
@@ -1135,21 +1155,33 @@ function initObrasCatalogPage() {
     return parts[parts.length - 1].trim();
   }
 
-  // Populate dynamic dropdowns
-  if (filterArtist) {
-    const artists = [...new Set(artistsData.map(a => a.name))].sort();
-    filterArtist.innerHTML = '<option value="all">Todos los artistas</option>' + 
-      artists.map(a => `<option value="${a}">${a}</option>`).join('');
+  // Populate dynamic dropdowns with language awareness
+  function populateCatalogDropdowns() {
+    const currentLang = localStorage.getItem('preferred-language') || 'es';
+    
+    if (filterArtist) {
+      const defaultText = currentLang === 'en' ? 'All artists' : 'Todos los artistas';
+      const artists = [...new Set(artistsData.map(a => a.name))].sort();
+      filterArtist.innerHTML = `<option value="all">${defaultText}</option>` + 
+        artists.map(a => `<option value="${a}">${a}</option>`).join('');
+    }
+
+    if (filterCountry) {
+      const defaultText = currentLang === 'en' ? 'All countries' : 'Todos los países';
+      const countries = [...new Set(artistsData.map(a => {
+        const parts = a.country.split(',');
+        return parts[parts.length - 1].trim();
+      }))].sort();
+      
+      filterCountry.innerHTML = `<option value="all">${defaultText}</option>` + 
+        countries.map(c => {
+          const translatedName = translateCountry(c, currentLang);
+          return `<option value="${c}">${translatedName}</option>`;
+        }).join('');
+    }
   }
 
-  if (filterCountry) {
-    const countries = [...new Set(artistsData.map(a => {
-      const parts = a.country.split(',');
-      return parts[parts.length - 1].trim();
-    }))].sort();
-    filterCountry.innerHTML = '<option value="all">Todos los países</option>' + 
-      countries.map(c => `<option value="${c}">${c}</option>`).join('');
-  }
+  populateCatalogDropdowns();
 
   // Pre-filter by artist if specified in URL query params
   const urlParams = new URLSearchParams(window.location.search);
@@ -1163,33 +1195,39 @@ function initObrasCatalogPage() {
 
   // Function to render filtered and sorted list of artworks
   function renderCatalog(items) {
-    catalogGrid.innerHTML = items.map(([id, artwork]) => `
-      <div class="artwork-item show" data-id="${id}" style="display: block; opacity: 1; transform: none;">
-        <div class="artwork-card">
-          <div class="artwork-image-wrapper">
-            <img src="${getImageUrl(artwork.image)}" alt="${artwork.title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
-            <div class="artwork-overlay">
-              <div class="artwork-details-action">
-                <span class="btn-circle">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-                <span class="action-text" style="color: #ffffff;">Ampliar detalles</span>
+    const currentLang = localStorage.getItem('preferred-language') || 'es';
+    catalogGrid.innerHTML = items.map(([id, artwork]) => {
+      const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
+      const technique = translateTechnique(artwork.technique, currentLang);
+      const actionText = currentLang === 'en' ? "More details" : "Ampliar detalles";
+      return `
+        <div class="artwork-item show" data-id="${id}" style="display: block; opacity: 1; transform: none;">
+          <div class="artwork-card">
+            <div class="artwork-image-wrapper">
+              <img src="${getImageUrl(artwork.image)}" alt="${title} de ${artwork.artist}" class="artwork-image" loading="lazy" />
+              <div class="artwork-overlay">
+                <div class="artwork-details-action">
+                  <span class="btn-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="action-text" style="color: #ffffff;">${actionText}</span>
+                </div>
+              </div>
+            </div>
+            <div class="artwork-info">
+              <h3 class="artwork-title">${title}</h3>
+              <p class="artwork-artist">${artwork.artist}</p>
+              <div class="artwork-meta">
+                <span class="artwork-spec">${technique} • ${artwork.dimensions}</span>
+                <span class="artwork-price">${artwork.price}</span>
               </div>
             </div>
           </div>
-          <div class="artwork-info">
-            <h3 class="artwork-title">${artwork.title}</h3>
-            <p class="artwork-artist">${artwork.artist}</p>
-            <div class="artwork-meta">
-              <span class="artwork-spec">${artwork.technique} • ${artwork.dimensions}</span>
-              <span class="artwork-price">${artwork.price}</span>
-            </div>
-          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     // Re-attach click event listeners for the modal on the newly rendered items
     bindModalEventsToCatalog();
@@ -1239,6 +1277,10 @@ function initObrasCatalogPage() {
 
   // Initial run to render all artworks on load
   runFilterAndSort();
+
+  // Expose hooks for language switcher to trigger re-renders
+  window.runCatalogFilterAndSort = runFilterAndSort;
+  window.populateCatalogDropdowns = populateCatalogDropdowns;
 }
 
 function bindModalEventsToCatalog() {
@@ -1267,14 +1309,20 @@ function bindModalEventsToCatalog() {
         const id = card.getAttribute('data-id');
         const data = artworksData[id];
         if (data) {
+          const currentLang = localStorage.getItem('preferred-language') || 'es';
+          const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
+          const category = translateCategory(data.category, currentLang);
+          const technique = translateTechnique(data.technique, currentLang);
+          const theme = typeof data.theme === 'object' ? (data.theme[currentLang] || data.theme['es']) : data.theme;
+
           mImage.src = getImageUrl(data.image);
-          mImage.alt = `${data.title} - ${data.artist}`;
-          mCategory.textContent = data.category;
-          mTitle.textContent = data.title;
+          mImage.alt = `${title} - ${data.artist}`;
+          mCategory.textContent = category;
+          mTitle.textContent = title;
           mArtist.textContent = data.artist;
-          if (mStyle) mStyle.textContent = data.category;
-          if (mTheme) mTheme.textContent = data.theme;
-          mTechnique.textContent = data.technique;
+          if (mStyle) mStyle.textContent = category;
+          if (mTheme) mTheme.textContent = theme;
+          mTechnique.textContent = technique;
           mDimensions.textContent = data.dimensions;
           mYear.textContent = data.year;
           mPrice.textContent = data.price;
@@ -1288,7 +1336,9 @@ function bindModalEventsToCatalog() {
             mInquiryForm.reset();
             const textarea = document.getElementById('inquiry-message');
             if (textarea) {
-              textarea.value = `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${data.title}" de ${data.artist}.`;
+              textarea.value = currentLang === 'en'
+                ? `I am interested in receiving quotation and international shipping details for the artwork "${title}" by ${data.artist}.`
+                : `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${title}" de ${data.artist}.`;
             }
           }
 
@@ -1302,5 +1352,425 @@ function bindModalEventsToCatalog() {
     }
   });
 }
+
+/* -------------------------------------------------------------
+ * Translation & Bilingual System
+ * ------------------------------------------------------------- */
+const artworkTitlesEn = {
+  1: "Dynamic Quietude",
+  2: "Fragments of the Wind",
+  3: "Invisible Paths",
+  4: "Sensitive Horizon",
+  5: "Labyrinth of Time",
+  6: "Out of the Radar",
+  7: "Silent Tide",
+  8: "Blue Abyss",
+  9: "Study of Light",
+  10: "Carnival Mask",
+  11: "Ritual Dance",
+  12: "Organic Composition I",
+  13: "Organic Composition II",
+  14: "Prayer",
+  15: "Expedition",
+  16: "Under the Rain",
+  17: "Jungle Tales",
+  18: "Construction of Space",
+  19: "Urban Structures",
+  20: "Symphony of the Dawn",
+  21: "Meeting of Souls",
+  22: "Reflections of Memory",
+  23: "Geometric Face I",
+  24: "Geometric Face II",
+  25: "Character Study",
+  26: "Silent Composition",
+  27: "Wall and Time",
+  28: "Matter in Motion",
+  29: "Textures of the Dawn",
+  30: "Traces of the Past",
+  31: "The Kiss",
+  32: "Anatomical Tension",
+  33: "Inner Flight"
+};
+
+const artistTranslationsEn = {
+  "alexis-pantoja": {
+    country: "Manzanillo, Cuba",
+    bio: "His painting reinterprets expressive figuration and the fantastic through dynamic compositions with gestural brushstrokes and rich textures."
+  },
+  "carlos-rene-aguilera": {
+    country: "Santiago de Cuba, Cuba",
+    bio: "Explores Caribbean visuality through entangled forms, ropes, and a deep metaphor about insularity and escaping confinement."
+  },
+  "gerlys-alvarez": {
+    country: "Mariel, Cuba",
+    bio: "Seascape painter and portraitist who captures the mysterious power of the sea and the human condition."
+  },
+  "luis-molina": {
+    country: "Havana, Cuba",
+    bio: "Represents Afro-Cuban folklore and rural life under the intense Caribbean sun, with a singular mastery of light."
+  },
+  "manuel-lopez-oliva": {
+    country: "Manzanillo, Cuba",
+    bio: "Conceives the artwork as a theatrical stage, using the mask as a symbol of identity and social theatricality."
+  },
+  "maria-consuelo": {
+    country: "Havana, Cuba",
+    bio: "Her organic abstractions investigate texture and the natural intimate rhythms of the Caribbean geography."
+  },
+  "maykel-herrera": {
+    country: "Havana, Cuba",
+    bio: "Through expressive portraits of children, he creates poetic and ironic metaphors about reality and social psychology."
+  },
+  "orestes-gaulhiac": {
+    country: "Santiago de Cuba, Cuba",
+    bio: "Noted for his dreamlike scenes that blend humans, animals, and a vibrant naive Caribbean nature."
+  },
+  "pedro-alvarez-gendis": {
+    country: "Camagüey, Cuba",
+    bio: "His abstract compositions investigate architectural space, chromatic tension, and urban memory."
+  },
+  "pedro-avila": {
+    country: "Havana, Cuba",
+    bio: "Conceives lyrical abstraction as an inner territory of pure emotions and intense gestural brushstrokes."
+  },
+  "vicente-dopico": {
+    country: "Havana, Cuba",
+    bio: "Master of Caribbean symbolic expressionism whose hybrid figures explore the deep, introspective psyche."
+  },
+  "miguel-ulloa": {
+    country: "Puerto Plata, Dominican Republic",
+    bio: "Dominican painter distinguished by stylized portraits and geometric forms structuring the human figure."
+  },
+  "cruz-escobedo": {
+    country: "Jalisco, Mexico",
+    bio: "Mexican painter who stands out for capturing daily reality with precision and deep textures."
+  },
+  "silvia-castagnino": {
+    country: "La Pampa, Argentina",
+    bio: "Renowned Argentine visual artist focused on material abstraction and the strength of organic textures."
+  },
+  "alex-stevenson": {
+    country: "Cesar, Colombia",
+    bio: "Colombian painter whose work explores the expressive power of the human body through figurative realism."
+  }
+};
+
+const translations = {
+  es: {
+    nav: {
+      artists: "Artistas",
+      works: "Obras",
+      concept: "Concepto",
+      about: "Nosotros",
+      contact: "Contacto",
+      explore: "Explorar Colección"
+    },
+    hero: {
+      title: "Arte latinoamericano y caribeño <em>original</em> para coleccionistas de todo el mundo.",
+      desc: "Conectamos el talento de los artistas más inspiradores de América Latina con coleccionistas que aprecian la autenticidad, la textura y la historia detrás de cada trazo.",
+      btn_artists: "Descubrir Artistas",
+      btn_collection: "Ver Colección"
+    },
+    concepto: {
+      tag: "NUESTRO CONCEPTO",
+      title: "Arte con identidad, Alma y Textura",
+      p1: "En Arte Mestizo seleccionamos cada pieza considerando su valor estético y su capacidad para transmitir emociones. Nos enfocamos en artistas de América Latina y el Caribe cuyas creaciones destacan por la riqueza de sus texturas y el uso de técnicas tradicionales como el óleo y el acrílico.",
+      p2: "Creemos que colgar una obra original en tu espacio no es solo decorar, es establecer un puente directo con la visión del artista y la herencia cultural de nuestra región. Cada lienzo cuenta una historia de mestizaje y pasión.",
+      stat_works: "Obras de arte",
+      stat_artists: "Artistas representados",
+      stat_countries: "Países de origen"
+    },
+    featured: {
+      tag: "ARTISTA DESTACADO",
+      btn_gallery: "Explorar su galería"
+    },
+    proceso: {
+      tag: "CÓMO TRABAJAMOS",
+      title: "Cómo funciona nuestra galería virtual",
+      step1_title: "Selección Curatorial",
+      step1_desc: "Colaboramos directamente con pintores consolidados y talentos emergentes de la región. Cada obra es seleccionada por su calidad técnica, originalidad y fuerza expresiva.",
+      step2_title: "Autenticación y Certificación",
+      step2_desc: "Cada obra que adquirimos es meticulosamente catalogada e inspeccionada. Se entrega con su Certificado de Autenticidad original, garantizando la legitimidad y procedencia de su inversión.",
+      step3_title: "Logística y Envío Asegurado",
+      step3_desc: "Nos encargamos del embalaje profesional especializado y del envío internacional puerta a puerta con seguro total, asegurando que la obra llegue en perfectas condiciones a cualquier parte del mundo."
+    },
+    test: {
+      tag: "TESTIMONIOS",
+      title: "La experiencia de nuestros coleccionistas",
+      slide1_quote: "“Adquirir una obra de Alexis Pantoja a través de Arte Mestizo fue una experiencia excepcional. El proceso de envío a España fue rápido y la obra llegó impecable. El certificado de autenticidad y el trato personalizado me dieron total tranquilidad.”",
+      slide1_author: "Francisco Javier",
+      slide1_city: "Madrid, España",
+      slide2_quote: "“La textura y los colores del cuadro de Dopico son impresionantes, superaron lo que veía en pantalla. La asesoría que recibí para elegir la obra adecuada para mi salón fue impecable y profesional.”",
+      slide2_author: "Sarah Miller",
+      slide2_city: "Miami, EE. UU.",
+      slide3_quote: "“Como coleccionista de arte latinoamericano, valoro enormemente el rigor en la certificación y la procedencia. Arte Mestizo se ha convertido en mi galería de confianza para descubrir talentos cubanos y colombianos.”",
+      slide3_author: "Roberto Gómez",
+      slide3_city: "Bogotá, Colombia"
+    },
+    contact: {
+      tag: "CONTACTO",
+      title: "Inicie su Colección de Arte",
+      desc: "¿Está interesado en alguna obra de nuestro catálogo o desea programar una asesoría de adquisición privada? Complete el formulario y uno de nuestros asesores se pondrá en contacto con usted en menos de 24 horas.",
+      name: "Nombre Completo",
+      email: "Correo Electrónico",
+      phone: "Teléfono (opcional)",
+      msg: "Mensaje",
+      btn_send: "Enviar Consulta"
+    },
+    footer: {
+      explore: "Explorar",
+      legal: "Legal",
+      terms: "Términos de servicio",
+      privacy: "Política de privacidad",
+      cert: "Garantía de autenticidad",
+      bottom: "&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.",
+      bottom_sub: "Arte Latinoamericano y Caribeño Certificado."
+    },
+    modal: {
+      technique: "Técnica:",
+      dimensions: "Dimensiones:",
+      year: "Año:",
+      price: "Precio:",
+      style: "Estilo:",
+      theme: "Tema:",
+      cert_text: "Incluye Certificado de Autenticidad firmado por el artista",
+      form_title: "Consultar disponibilidad e información de envío",
+      form_name: "Nombre Completo",
+      form_email: "Correo Electrónico",
+      form_msg: "Mensaje",
+      form_btn: "Enviar Consulta de Obra"
+    },
+    artists: {
+      tag: "Nuestros Creadores",
+      title: "Artistas de la Galería",
+      desc: "Presentamos una selección exclusiva de creadores latinoamericanos y caribeños consolidados y emergentes, unidos por su autenticidad y maestría técnica."
+    },
+    works: {
+      tag: "Colección Exclusiva",
+      title: "Catálogo de Obras",
+      desc: "Encuentra la pieza perfecta para tu colección. Filtrar por tipo, artista, país de origen, o reordena según el precio.",
+      filter_label: "Filtrar por:",
+      filter_style: "Tipo de Estilo",
+      filter_artist: "Artista",
+      filter_country: "País de Origen",
+      filter_all_styles: "Todos los estilos",
+      filter_all_categories: "Todas las categorías",
+      filter_all_artists: "Todos los artistas",
+      filter_all_countries: "Todos los países",
+      style_abstract: "Abstracto",
+      style_expressionism: "Expresionismo",
+      style_geometric: "Geométrico",
+      style_textured: "Texturado",
+      sort_label: "Ordenar por Precio",
+      sort_default: "Por defecto",
+      sort_asc: "Precio: Menor a Mayor",
+      sort_desc: "Precio: Mayor a Menor"
+    }
+  },
+  en: {
+    nav: {
+      artists: "Artists",
+      works: "Works",
+      concept: "Concept",
+      about: "About Us",
+      contact: "Contact",
+      explore: "Explore Collection"
+    },
+    hero: {
+      title: "Original Latin American and Caribbean <em>art</em> for collectors worldwide.",
+      desc: "We connect the talent of Latin America's most inspiring artists with collectors who appreciate authenticity, texture, and the story behind every stroke.",
+      btn_artists: "Discover Artists",
+      btn_collection: "View Collection"
+    },
+    concepto: {
+      tag: "OUR CONCEPT",
+      title: "Art with Identity, Soul and Texture",
+      p1: "At Arte Mestizo, we select each piece considering its aesthetic value and its ability to convey emotions. We focus on artists from Latin America and the Caribbean whose creations stand out for their rich textures and traditional techniques like oil and acrylic.",
+      p2: "We believe that hanging an original piece in your space is not just decorating; it is establishing a direct bridge with the artist's vision and the cultural heritage of our region. Each canvas tells a story of cultural blending and passion.",
+      stat_works: "Artworks",
+      stat_artists: "Represented Artists",
+      stat_countries: "Countries of Origin"
+    },
+    featured: {
+      tag: "FEATURED ARTIST",
+      btn_gallery: "Explore their gallery"
+    },
+    proceso: {
+      tag: "HOW WE WORK",
+      title: "How our virtual gallery works",
+      step1_title: "Curatorial Selection",
+      step1_desc: "We collaborate directly with established painters and emerging talents from the region. Each work is selected for its technical quality, originality, and expressive strength.",
+      step2_title: "Authentication & Certification",
+      step2_desc: "Each work we acquire is meticulously cataloged and inspected. It is delivered with its original Certificate of Authenticity, guaranteeing the legitimacy and provenance of your investment.",
+      step3_title: "Logistics & Insured Shipping",
+      step3_desc: "We handle professional specialized packaging and international door-to-door shipping with full insurance, ensuring the artwork arrives in perfect condition anywhere in the world."
+    },
+    test: {
+      tag: "TESTIMONIALS",
+      title: "Our collectors' experience",
+      slide1_quote: "“Acquiring a piece by Alexis Pantoja through Arte Mestizo was an exceptional experience. The shipping process to Spain was fast and the work arrived flawless. The certificate of authenticity and the personalized service gave me complete peace of mind.”",
+      slide1_author: "Francisco Javier",
+      slide1_city: "Madrid, Spain",
+      slide2_quote: "“The texture and colors of Dopico's painting are stunning, exceeding what I saw on screen. The guidance I received to choose the right work for my living room was flawless and professional.”",
+      slide2_author: "Sarah Miller",
+      slide2_city: "Miami, USA",
+      slide3_quote: "“As a collector of Latin American art, I highly value rigor in certification and provenance. Arte Mestizo has become my trusted gallery to discover Cuban and Colombian talents.”",
+      slide3_author: "Roberto Gomez",
+      slide3_city: "Bogota, Colombia"
+    },
+    contact: {
+      tag: "CONTACT",
+      title: "Start Your Art Collection",
+      desc: "Are you interested in a piece from our catalog or do you wish to schedule a private acquisition consultation? Complete the form and one of our advisors will contact you in less than 24 hours.",
+      name: "Full Name",
+      email: "Email Address",
+      phone: "Phone (optional)",
+      msg: "Message",
+      btn_send: "Send Inquiry"
+    },
+    footer: {
+      explore: "Explore",
+      legal: "Legal",
+      terms: "Terms of service",
+      privacy: "Privacy policy",
+      cert: "Authenticity guarantee",
+      bottom: "&copy; 2026 Arte Mestizo. All rights reserved. Designed for discerning collectors.",
+      bottom_sub: "Certified Latin American and Caribbean Art."
+    },
+    modal: {
+      technique: "Technique:",
+      dimensions: "Dimensions:",
+      year: "Year:",
+      price: "Price:",
+      style: "Style:",
+      theme: "Theme:",
+      cert_text: "Includes Certificate of Authenticity signed by the artist",
+      form_title: "Inquire about availability and shipping info",
+      form_name: "Full Name",
+      form_email: "Email Address",
+      form_msg: "Message",
+      form_btn: "Send Artwork Inquiry"
+    },
+    artists: {
+      tag: "Our Creators",
+      title: "Gallery Artists",
+      desc: "We present an exclusive selection of established and emerging Latin American and Caribbean creators, united by their authenticity and technical mastery."
+    },
+    works: {
+      tag: "Exclusive Collection",
+      title: "Artwork Collection",
+      desc: "Find the perfect piece for your collection. Filter by style, artist, country of origin, or sort by price.",
+      filter_label: "Filter by:",
+      filter_style: "Type of Style",
+      filter_artist: "Artist",
+      filter_country: "Country of Origin",
+      filter_all_styles: "All styles",
+      filter_all_categories: "All categories",
+      filter_all_artists: "All artists",
+      filter_all_countries: "All countries",
+      style_abstract: "Abstract",
+      style_expressionism: "Expressionism",
+      style_geometric: "Geometric",
+      style_textured: "Textured",
+      sort_label: "Sort by Price",
+      sort_default: "Default",
+      sort_asc: "Price: Low to High",
+      sort_desc: "Price: High to Low"
+    }
+  }
+};
+
+function translateTechnique(tech, lang) {
+  if (lang !== 'en') return tech;
+  const map = {
+    "Óleo sobre lienzo": "Oil on canvas",
+    "Acrílico sobre lienzo": "Acrylic on canvas",
+    "Técnica mixta": "Mixed media",
+    "Técnica mixta sobre lienzo": "Mixed media on canvas",
+    "Carboncillo sobre papel": "Charcoal on paper"
+  };
+  return map[tech] || tech;
+}
+
+function translateCategory(cat, lang) {
+  if (lang !== 'en') return cat;
+  const map = {
+    "Abstracto": "Abstract",
+    "Expresionismo": "Expressionism",
+    "Texturado": "Textured",
+    "Geométrico": "Geometric"
+  };
+  return map[cat] || cat;
+}
+
+function translateCountry(countryName, lang) {
+  if (lang !== 'en') return countryName;
+  const map = {
+    "Cuba": "Cuba",
+    "Rep. Dominicana": "Dominican Republic",
+    "México": "Mexico",
+    "Argentina": "Argentina",
+    "Colombia": "Colombia"
+  };
+  return map[countryName] || countryName;
+}
+
+function getNestedTranslation(obj, path) {
+  return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+}
+
+function translatePage(lang) {
+  // Translate static text elements with data-i18n
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = getNestedTranslation(translations[lang], key);
+    if (translation) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = translation;
+      } else {
+        el.innerHTML = translation;
+      }
+    }
+  });
+
+  // Re-render gallery if present
+  renderGallery();
+
+  // If on obras page, populate dropdowns in correct language and re-filter
+  if (window.populateCatalogDropdowns && window.runCatalogFilterAndSort) {
+    window.populateCatalogDropdowns();
+    window.runCatalogFilterAndSort();
+  }
+
+  // Update active state on language buttons
+  const buttons = document.querySelectorAll('.lang-btn');
+  buttons.forEach(btn => {
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+function initLanguageSwitcher() {
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+  
+  // Set up event listeners for all language switch buttons
+  const buttons = document.querySelectorAll('.lang-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const lang = btn.getAttribute('data-lang');
+      localStorage.setItem('preferred-language', lang);
+      translatePage(lang);
+    });
+  });
+
+  // Trigger initial translation
+  translatePage(currentLang);
+}
+
 
 

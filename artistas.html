@@ -21,20 +21,35 @@
   <!-- Navbar -->
   <header class="navbar scrolled" id="navbar"
     style="position: sticky; background-color: rgba(250, 249, 246, 0.96); border-bottom: 1px solid rgba(0, 0, 0, 0.06); color: #161616;">
-    <div class="navbar-container">
+    <div class="nav-container container">
       <a href="index.html" class="logo" style="color: #161616;">
         <span class="logo-accent">ARTE</span> MESTIZO
       </a>
       <nav class="nav-menu" id="nav-menu">
-        <a href="artistas.html" class="nav-link">Artistas</a>
-        <a href="obras.html" class="nav-link">Obras</a>
-        <a href="index.html#concepto" class="nav-link">Concepto</a>
-        <a href="index.html#proceso" class="nav-link">Nosotros</a>
-        <a href="index.html#contacto" class="nav-link">Contacto</a>
-        <a href="obras.html" class="btn btn-primary btn-mobile-cta">Explorar Colección</a>
+        <a href="artistas.html" class="nav-link" data-i18n="nav.artists">Artistas</a>
+        <a href="obras.html" class="nav-link" data-i18n="nav.works">Obras</a>
+        <a href="index.html#concepto" class="nav-link" data-i18n="nav.concept">Concepto</a>
+        <a href="index.html#proceso" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+        
+        <!-- Language Switch Mobile -->
+        <div class="lang-switch-mobile">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="obras.html" class="btn btn-primary btn-mobile-cta" data-i18n="nav.explore">Explorar Colección</a>
       </nav>
       <div class="nav-actions">
-        <a href="obras.html" class="btn btn-primary btn-nav-cta">Explorar Colección</a>
+        <!-- Language Switch Desktop -->
+        <div class="lang-switch-desktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="obras.html" class="btn btn-primary btn-nav-cta" data-i18n="nav.explore">Explorar Colección</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" style="display: none;">
           <span class="bar" style="background-color: #161616;"></span>
           <span class="bar" style="background-color: #161616;"></span>
@@ -48,10 +63,9 @@
   <section class="section section-light"
     style="padding-top: 80px; padding-bottom: 40px; background-color: var(--bg-light);">
     <div class="container text-center">
-      <span class="section-tag" style="margin-top: 20px;">Nuestros Creadores</span>
-      <h1 class="section-title text-dark" style="font-size: 3.5rem; margin-bottom: 20px;">Catálogo Completo de Artistas
-      </h1>
-      <p class="section-desc" style="max-width: 700px; margin: 0 auto; color: var(--text-dark-muted);">
+      <span class="section-tag" style="margin-top: 20px;" data-i18n="artists.tag">Nuestros Creadores</span>
+      <h1 class="section-title text-dark" style="font-size: 3.5rem; margin-bottom: 20px;" data-i18n="artists.title">Catálogo Completo de Artistas</h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto; color: var(--text-dark-muted);" data-i18n="artists.desc">
         Conoce a los talentos destacados de América Latina y el Caribe cuyas obras originales forman parte de nuestra
         selecta colección virtual.
       </p>
@@ -80,7 +94,7 @@
 
       <div class="footer-links-grid">
         <div class="footer-column">
-          <h4 class="footer-title">Explorar</h4>
+          <h4 class="footer-title" data-i18n="footer.explore">Explorar</h4>
           <a href="artistas.html">Artistas</a>
           <a href="obras.html">Obras destacadas</a>
           <a href="index.html#concepto">Concepto</a>
@@ -94,17 +108,17 @@
         </div>
 
         <div class="footer-column">
-          <h4 class="footer-title">Legal</h4>
-          <a href="#">Términos de servicio</a>
-          <a href="#">Política de privacidad</a>
-          <a href="#">Garantía de autenticidad</a>
+          <h4 class="footer-title" data-i18n="footer.legal">Legal</h4>
+          <a href="#" data-i18n="footer.terms">Términos de servicio</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.cert">Garantía de autenticidad</a>
         </div>
       </div>
     </div>
 
     <div class="container footer-bottom">
-      <p>&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
-      <p>Arte Latinoamericano y Caribeño Certificado.</p>
+      <p data-i18n="footer.bottom">&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
+      <p data-i18n="footer.bottom_sub">Arte Latinoamericano y Caribeño Certificado.</p>
     </div>
   </footer>
 

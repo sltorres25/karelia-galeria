@@ -1870,4 +1870,72 @@ a {
   }
 }
 
+/* -------------------------------------------------------------
+ * Language Switcher Styles
+ * ------------------------------------------------------------- */
+.lang-switch-desktop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 20px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-dark-muted);
+}
+
+.lang-switch-desktop span {
+  opacity: 0.25;
+  user-select: none;
+}
+
+.lang-switch-mobile {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 15px 0 25px 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-dark-muted);
+  width: 100%;
+}
+
+.lang-switch-mobile span {
+  opacity: 0.25;
+  user-select: none;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition-fast);
+  outline: none;
+}
+
+.lang-btn.active {
+  color: var(--text-dark);
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.lang-btn:hover:not(.active) {
+  color: var(--text-dark);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+@media (max-width: 992px) {
+  .lang-switch-desktop {
+    display: none;
+  }
+  .lang-switch-mobile {
+    display: flex;
+  }
+}
+
+
 

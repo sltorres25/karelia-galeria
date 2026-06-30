@@ -20,20 +20,33 @@
 <body>
   <!-- Navbar -->
   <header class="navbar" id="navbar">
-    <div class="navbar-container">
-      <a href="#" class="logo">
-        <span class="logo-accent">ARTE</span> MESTIZO
-      </a>
+    <div class="nav-container container">
+      <a href="index.html" class="logo">Arte Mestizo</a>
       <nav class="nav-menu" id="nav-menu">
-        <a href="artistas.html" class="nav-link">Artistas</a>
-        <a href="obras.html" class="nav-link">Obras</a>
-        <a href="#concepto" class="nav-link">Concepto</a>
-        <a href="#filosofia" class="nav-link">Nosotros</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
-        <a href="obras.html" class="btn btn-primary btn-mobile-cta">Explorar Colección</a>
+        <a href="artistas.html" class="nav-link" data-i18n="nav.artists">Artistas</a>
+        <a href="obras.html" class="nav-link" data-i18n="nav.works">Obras</a>
+        <a href="index.html#concepto" class="nav-link" data-i18n="nav.concept">Concepto</a>
+        <a href="index.html#filosofia" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+
+        <!-- Language Switch Mobile -->
+        <div class="lang-switch-mobile">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="obras.html" class="btn btn-primary btn-mobile-cta" data-i18n="nav.explore">Explorar Colección</a>
       </nav>
       <div class="nav-actions">
-        <a href="obras.html" class="btn btn-primary btn-nav-cta">Explorar Colección</a>
+        <!-- Language Switch Desktop -->
+        <div class="lang-switch-desktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="obras.html" class="btn btn-primary btn-nav-cta" data-i18n="nav.explore">Explorar Colección</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -47,16 +60,16 @@
   <section class="hero" id="hero"
     style="background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), url('/src/assets/hero-bg.png');">
     <div class="hero-content container">
-      <h1 class="hero-title scroll-reveal">
+      <h1 class="hero-title scroll-reveal" data-i18n="hero.title">
         Arte latinoamericano y caribeño <em>original</em> para coleccionistas de todo el mundo.
       </h1>
-      <p class="hero-description scroll-reveal">
+      <p class="hero-description scroll-reveal" data-i18n="hero.desc">
         Conectamos el talento de los artistas más inspiradores de América Latina con coleccionistas que aprecian la
         autenticidad, la textura y la historia detrás de cada trazo.
       </p>
       <div class="hero-actions scroll-reveal">
-        <a href="artistas.html" class="btn btn-secondary">Descubrir Artistas</a>
-        <a href="obras.html" class="btn btn-outline">Ver Colección</a>
+        <a href="artistas.html" class="btn btn-secondary" data-i18n="hero.btn_artists">Descubrir Artistas</a>
+        <a href="obras.html" class="btn btn-outline" data-i18n="hero.btn_collection">Ver Colección</a>
       </div>
     </div>
     <div class="hero-scroll-indicator">
@@ -72,30 +85,27 @@
   <section class="concepto section" id="concepto">
     <div class="container grid grid-2">
       <div class="concepto-text">
-        <span class="section-tag">Arte Mestizo</span>
-        <h2 class="section-title">Un puente entre el alma del artista y el corazón del coleccionista.</h2>
-        <p class="section-desc">
-          Creemos que el arte no es solo decoración, sino un diálogo vivo. Nuestra misión es promover obras únicas
-          creadas por artistas latinoamericanos y caribeños que exploran sus raíces, su identidad y nuevas fronteras
-          formales a través de texturas ricas y colores vibrantes.
+        <span class="section-tag" data-i18n="concepto.tag">NUESTRO CONCEPTO</span>
+        <h2 class="section-title" data-i18n="concepto.title">Arte con identidad, Alma y Textura</h2>
+        <p class="section-desc" data-i18n="concepto.p1">
+          En Arte Mestizo seleccionamos cada pieza considerando su valor estético y su capacidad para transmitir emociones. Nos enfocamos en artistas de América Latina y el Caribe cuyas creaciones destacan por la riqueza de sus texturas y el uso de técnicas tradicionales como el óleo y el acrílico.
         </p>
-        <p class="section-desc">
-          Cada pieza en nuestra colección pasa por un riguroso proceso de selección y verificación para asegurar su
-          autenticidad, valor estético y proyección a largo plazo en el mercado internacional del arte.
+        <p class="section-desc" data-i18n="concepto.p2">
+          Creemos que colgar una obra original en tu espacio no es solo decorar, es establecer un puente directo con la visión del artista y la herencia cultural de nuestra región. Cada lienzo cuenta una historia de mestizaje y pasión.
         </p>
 
         <div class="concepto-stats">
           <div class="stat-item">
-            <span class="stat-number" data-target="250">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Obras de arte</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Artistas representados</span>
+            <span class="stat-number" data-target="33">0</span><span class="stat-plus">+</span>
+            <span class="stat-label" data-i18n="concepto.stat_works">Obras de arte</span>
           </div>
           <div class="stat-item">
             <span class="stat-number" data-target="15">0</span><span class="stat-plus">+</span>
-            <span class="stat-label">Países de origen</span>
+            <span class="stat-label" data-i18n="concepto.stat_artists">Artistas representados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="3">0</span><span class="stat-plus">+</span>
+            <span class="stat-label" data-i18n="concepto.stat_countries">Países de origen</span>
           </div>
         </div>
       </div>
@@ -411,8 +421,8 @@
     </div>
 
     <div class="container footer-bottom">
-      <p>&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
-      <p>Arte Latinoamericano y Caribeño Certificado.</p>
+      <p data-i18n="footer.bottom">&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
+      <p data-i18n="footer.bottom_sub">Arte Latinoamericano y Caribeño Certificado.</p>
     </div>
   </footer>
 
@@ -434,55 +444,54 @@
 
           <div class="modal-details">
             <div class="detail-row">
-              <span class="detail-label">Estilo:</span>
+              <span class="detail-label" data-i18n="modal.style">Estilo:</span>
               <span class="detail-value" id="modal-style">Abstracto</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Tema:</span>
+              <span class="detail-label" data-i18n="modal.theme">Tema:</span>
               <span class="detail-value" id="modal-theme">Figuración</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Técnica:</span>
+              <span class="detail-label" data-i18n="modal.technique">Técnica:</span>
               <span class="detail-value" id="modal-technique">Acrílico sobre lienzo</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Dimensiones:</span>
+              <span class="detail-label" data-i18n="modal.dimensions">Dimensiones:</span>
               <span class="detail-value" id="modal-dimensions">120 x 150 cm</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Año:</span>
+              <span class="detail-label" data-i18n="modal.year">Año:</span>
               <span class="detail-value" id="modal-year">2025</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Precio:</span>
+              <span class="detail-label" data-i18n="modal.price">Precio:</span>
               <span class="detail-value price-tag" id="modal-price">$4,500 USD</span>
             </div>
             <div class="certificate-badge">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
-              <span>Incluye Certificado de Autenticidad firmado por el artista</span>
+              <span data-i18n="modal.cert_text">Incluye Certificado de Autenticidad firmado por el artista</span>
             </div>
           </div>
 
           <div class="modal-action-form">
-            <h3 class="form-title">Consultar disponibilidad e información de envío</h3>
+            <h3 class="form-title" data-i18n="modal.form_title">Consultar disponibilidad e información de envío</h3>
             <form class="inquiry-form" id="inquiry-form">
               <input type="hidden" id="inquiry-artwork-id" value="" />
               <div class="form-group">
                 <input type="text" id="inquiry-name" class="form-control" required placeholder=" " />
-                <label for="inquiry-name" class="form-label">Nombre Completo</label>
+                <label for="inquiry-name" class="form-label" data-i18n="modal.form_name">Nombre Completo</label>
               </div>
               <div class="form-group">
                 <input type="email" id="inquiry-email" class="form-control" required placeholder=" " />
-                <label for="inquiry-email" class="form-label">Correo Electrónico</label>
+                <label for="inquiry-email" class="form-label" data-i18n="modal.form_email">Correo Electrónico</label>
               </div>
               <div class="form-group">
-                <textarea id="inquiry-message" class="form-control form-textarea" required
-                  placeholder=" ">Estoy interesado/a en recibir detalles de cotización y envío internacional para esta obra.</textarea>
-                <label for="inquiry-message" class="form-label">Mensaje</label>
+                <textarea id="inquiry-message" class="form-control form-textarea" required placeholder=" "></textarea>
+                <label for="inquiry-message" class="form-label" data-i18n="modal.form_msg">Mensaje</label>
               </div>
-              <button type="submit" class="btn btn-secondary btn-block">Enviar Consulta de Obra</button>
+              <button type="submit" class="btn btn-secondary btn-block" data-i18n="modal.form_btn">Enviar Consulta de Obra</button>
               <div class="inquiry-status" id="inquiry-status"></div>
             </form>
           </div>

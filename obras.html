@@ -21,20 +21,35 @@
   <!-- Navbar -->
   <header class="navbar scrolled" id="navbar"
     style="position: sticky; background-color: rgba(250, 249, 246, 0.96); border-bottom: 1px solid rgba(0, 0, 0, 0.06); color: #161616;">
-    <div class="navbar-container">
+    <div class="nav-container container">
       <a href="index.html" class="logo" style="color: #161616;">
         <span class="logo-accent">ARTE</span> MESTIZO
       </a>
       <nav class="nav-menu" id="nav-menu">
-        <a href="artistas.html" class="nav-link">Artistas</a>
-        <a href="obras.html" class="nav-link">Obras</a>
-        <a href="index.html#concepto" class="nav-link">Concepto</a>
-        <a href="index.html#proceso" class="nav-link">Nosotros</a>
-        <a href="index.html#contacto" class="nav-link">Contacto</a>
-        <a href="obras.html" class="btn btn-primary btn-mobile-cta">Explorar Colección</a>
+        <a href="artistas.html" class="nav-link" data-i18n="nav.artists">Artistas</a>
+        <a href="obras.html" class="nav-link" data-i18n="nav.works">Obras</a>
+        <a href="index.html#concepto" class="nav-link" data-i18n="nav.concept">Concepto</a>
+        <a href="index.html#proceso" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+        
+        <!-- Language Switch Mobile -->
+        <div class="lang-switch-mobile">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="obras.html" class="btn btn-primary btn-mobile-cta" data-i18n="nav.explore">Explorar Colección</a>
       </nav>
       <div class="nav-actions">
-        <a href="index.html#obras" class="btn btn-primary btn-nav-cta">Explorar Colección</a>
+        <!-- Language Switch Desktop -->
+        <div class="lang-switch-desktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <a href="index.html#obras" class="btn btn-primary btn-nav-cta" data-i18n="nav.explore">Explorar Colección</a>
         <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" style="display: none;">
           <span class="bar" style="background-color: #161616;"></span>
           <span class="bar" style="background-color: #161616;"></span>
@@ -48,10 +63,10 @@
   <section class="section section-light"
     style="padding-top: 80px; padding-bottom: 40px; background-color: var(--bg-light);">
     <div class="container text-center">
-      <span class="section-tag" style="margin-top: 20px;">Colección Exclusiva</span>
-      <h1 class="section-title text-dark" style="font-size: 3.5rem; margin-bottom: 20px;">Catálogo de Obras</h1>
-      <p class="section-desc" style="max-width: 700px; margin: 0 auto; color: var(--text-dark-muted);">
-        Encuentra la pieza perfecta para tu colección. Filtra por tipo, artista, país de origen, o reordena según el
+      <span class="section-tag" style="margin-top: 20px;" data-i18n="works.tag">Colección Exclusiva</span>
+      <h1 class="section-title text-dark" style="font-size: 3.5rem; margin-bottom: 20px;" data-i18n="works.title">Catálogo de Obras</h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto; color: var(--text-dark-muted);" data-i18n="works.desc">
+        Encuentra la pieza perfecta para tu colección. Filtrar por tipo, artista, país de origen, o reordena según el
         precio.
       </p>
     </div>
@@ -64,18 +79,18 @@
       <!-- Filter panel grid -->
       <div class="filter-panel-grid">
         <div class="filter-panel-group">
-          <label for="filter-category" class="filter-panel-label">Tipo de Estilo</label>
+          <label for="filter-category" class="filter-panel-label" data-i18n="works.filter_style">Tipo de Estilo</label>
           <select id="filter-category" class="select-filter">
-            <option value="all">Todos los estilos</option>
-            <option value="abstracto">Abstracto</option>
-            <option value="expresionismo">Expresionismo</option>
-            <option value="geometrico">Geométrico</option>
-            <option value="texturado">Texturado</option>
+            <option value="all" data-i18n="works.filter_all_styles">Todos los estilos</option>
+            <option value="abstracto" data-i18n="works.style_abstract">Abstracto</option>
+            <option value="expresionismo" data-i18n="works.style_expressionism">Expresionismo</option>
+            <option value="geometrico" data-i18n="works.style_geometric">Geométrico</option>
+            <option value="texturado" data-i18n="works.style_textured">Texturado</option>
           </select>
         </div>
 
         <div class="filter-panel-group">
-          <label for="filter-artist" class="filter-panel-label">Artista</label>
+          <label for="filter-artist" class="filter-panel-label" data-i18n="works.filter_artist">Artista</label>
           <select id="filter-artist" class="select-filter">
             <option value="all">Todos los artistas</option>
             <!-- Dinámico -->
@@ -83,7 +98,7 @@
         </div>
 
         <div class="filter-panel-group">
-          <label for="filter-country" class="filter-panel-label">País de Origen</label>
+          <label for="filter-country" class="filter-panel-label" data-i18n="works.filter_country">País de Origen</label>
           <select id="filter-country" class="select-filter">
             <option value="all">Todos los países</option>
             <!-- Dinámico -->
@@ -91,11 +106,11 @@
         </div>
 
         <div class="filter-panel-group">
-          <label for="sort-price" class="filter-panel-label">Ordenar por Precio</label>
+          <label for="sort-price" class="filter-panel-label" data-i18n="works.sort_label">Ordenar por Precio</label>
           <select id="sort-price" class="select-filter">
-            <option value="default">Por defecto</option>
-            <option value="asc">Precio: Menor a Mayor</option>
-            <option value="desc">Precio: Mayor a Menor</option>
+            <option value="default" data-i18n="works.sort_default">Por defecto</option>
+            <option value="asc" data-i18n="works.sort_asc">Precio: Menor a Mayor</option>
+            <option value="desc" data-i18n="works.sort_desc">Precio: Mayor a Menor</option>
           </select>
         </div>
       </div>
@@ -120,7 +135,7 @@
 
       <div class="footer-links-grid">
         <div class="footer-column">
-          <h4 class="footer-title">Explorar</h4>
+          <h4 class="footer-title" data-i18n="footer.explore">Explorar</h4>
           <a href="artistas.html">Artistas</a>
           <a href="obras.html">Obras destacadas</a>
           <a href="index.html#concepto">Concepto</a>
@@ -134,17 +149,17 @@
         </div>
 
         <div class="footer-column">
-          <h4 class="footer-title">Legal</h4>
-          <a href="#">Términos de servicio</a>
-          <a href="#">Política de privacidad</a>
-          <a href="#">Garantía de autenticidad</a>
+          <h4 class="footer-title" data-i18n="footer.legal">Legal</h4>
+          <a href="#" data-i18n="footer.terms">Términos de servicio</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.cert">Garantía de autenticidad</a>
         </div>
       </div>
     </div>
 
     <div class="container footer-bottom">
-      <p>&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
-      <p>Arte Latinoamericano y Caribeño Certificado.</p>
+      <p data-i18n="footer.bottom">&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
+      <p data-i18n="footer.bottom_sub">Arte Latinoamericano y Caribeño Certificado.</p>
     </div>
   </footer>
 
@@ -166,55 +181,54 @@
 
           <div class="modal-details">
             <div class="detail-row">
-              <span class="detail-label">Estilo:</span>
+              <span class="detail-label" data-i18n="modal.style">Estilo:</span>
               <span class="detail-value" id="modal-style">Abstracto</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Tema:</span>
+              <span class="detail-label" data-i18n="modal.theme">Tema:</span>
               <span class="detail-value" id="modal-theme">Figuración</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Técnica:</span>
+              <span class="detail-label" data-i18n="modal.technique">Técnica:</span>
               <span class="detail-value" id="modal-technique">Acrílico sobre lienzo</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Dimensiones:</span>
+              <span class="detail-label" data-i18n="modal.dimensions">Dimensiones:</span>
               <span class="detail-value" id="modal-dimensions">120 x 150 cm</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Año:</span>
+              <span class="detail-label" data-i18n="modal.year">Año:</span>
               <span class="detail-value" id="modal-year">2025</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Precio:</span>
+              <span class="detail-label" data-i18n="modal.price">Precio:</span>
               <span class="detail-value price-tag" id="modal-price">$4,500 USD</span>
             </div>
             <div class="certificate-badge">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
-              <span>Incluye Certificado de Autenticidad firmado por el artista</span>
+              <span data-i18n="modal.cert_text">Incluye Certificado de Autenticidad firmado por el artista</span>
             </div>
           </div>
 
           <div class="modal-action-form">
-            <h3 class="form-title">Consultar disponibilidad e información de envío</h3>
+            <h3 class="form-title" data-i18n="modal.form_title">Consultar disponibilidad e información de envío</h3>
             <form class="inquiry-form" id="inquiry-form">
               <input type="hidden" id="inquiry-artwork-id" value="" />
               <div class="form-group">
                 <input type="text" id="inquiry-name" class="form-control" required placeholder=" " />
-                <label for="inquiry-name" class="form-label">Nombre Completo</label>
+                <label for="inquiry-name" class="form-label" data-i18n="modal.form_name">Nombre Completo</label>
               </div>
               <div class="form-group">
                 <input type="email" id="inquiry-email" class="form-control" required placeholder=" " />
-                <label for="inquiry-email" class="form-label">Correo Electrónico</label>
+                <label for="inquiry-email" class="form-label" data-i18n="modal.form_email">Correo Electrónico</label>
               </div>
               <div class="form-group">
-                <textarea id="inquiry-message" class="form-control form-textarea" required
-                  placeholder=" ">Estoy interesado/a en recibir detalles de cotización y envío internacional para esta obra.</textarea>
-                <label for="inquiry-message" class="form-label">Mensaje</label>
+                <textarea id="inquiry-message" class="form-control form-textarea" required placeholder=" "></textarea>
+                <label for="inquiry-message" class="form-label" data-i18n="modal.form_msg">Mensaje</label>
               </div>
-              <button type="submit" class="btn btn-secondary btn-block">Enviar Consulta de Obra</button>
+              <button type="submit" class="btn btn-secondary btn-block" data-i18n="modal.form_btn">Enviar Consulta de Obra</button>
               <div class="inquiry-status" id="inquiry-status"></div>
             </form>
           </div>
