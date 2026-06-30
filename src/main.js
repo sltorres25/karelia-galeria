@@ -1505,47 +1505,59 @@ const translations = {
       p2: "Creemos que colgar una obra original en tu espacio no es solo decorar, es establecer un puente directo con la visión del artista y la herencia cultural de nuestra región. Cada lienzo cuenta una historia de mestizaje y pasión.",
       stat_works: "Obras de arte",
       stat_artists: "Artistas representados",
-      stat_countries: "Países de origen"
+      stat_countries: "Países de origen",
+      badge_title: "Artista del Mes",
+      badge_location: "Maykel Herrera — \"Rezo\""
     },
     featured: {
       tag: "ARTISTA DESTACADO",
       btn_gallery: "Explorar su galería"
     },
     proceso: {
-      tag: "CÓMO TRABAJAMOS",
+      tag: "Modelo de Adquisición",
       title: "Cómo funciona nuestra galería virtual",
-      step1_title: "Selección Curatorial",
-      step1_desc: "Colaboramos directamente con pintores consolidados y talentos emergentes de la región. Cada obra es seleccionada por su calidad técnica, originalidad y fuerza expresiva.",
+      desc: "Nos especializamos en conectar directamente a coleccionistas con arte latinoamericano y caribeño excepcional a través de un modelo transparente de compra y reventa internacional.",
+      step1_title: "Adquisición Directa",
+      step1_desc: "Compramos obras originales directamente de los talleres de los artistas más inspiradores de la región, asegurando condiciones comerciales justas y la trazabilidad de cada pieza.",
       step2_title: "Autenticación y Certificación",
       step2_desc: "Cada obra que adquirimos es meticulosamente catalogada e inspeccionada. Se entrega con su Certificado de Autenticidad original, garantizando la legitimidad y procedencia de su inversión.",
       step3_title: "Logística y Envío Asegurado",
       step3_desc: "Nos encargamos del embalaje profesional especializado y del envío internacional puerta a puerta con seguro total, asegurando que la obra llegue en perfectas condiciones a cualquier parte del mundo."
     },
     test: {
-      tag: "TESTIMONIOS",
+      tag: "Opiniones",
       title: "La experiencia de nuestros coleccionistas",
-      slide1_quote: "“Adquirir una obra de Alexis Pantoja a través de Arte Mestizo fue una experiencia excepcional. El proceso de envío a España fue rápido y la obra llegó impecable. El certificado de autenticidad y el trato personalizado me dieron total tranquilidad.”",
-      slide1_author: "Francisco Javier",
-      slide1_city: "Madrid, España",
-      slide2_quote: "“La textura y los colores del cuadro de Dopico son impresionantes, superaron lo que veía en pantalla. La asesoría que recibí para elegir la obra adecuada para mi salón fue impecable y profesional.”",
-      slide2_author: "Sarah Miller",
-      slide2_city: "Miami, EE. UU.",
-      slide3_quote: "“Como coleccionista de arte latinoamericano, valoro enormemente el rigor en la certificación y la procedencia. Arte Mestizo se ha convertido en mi galería de confianza para descubrir talentos cubanos y colombianos.”",
-      slide3_author: "Roberto Gómez",
-      slide3_city: "Bogotá, Colombia"
+      slide1_quote: "“Adquirir una obra a través de Arte Mestizo ha sido una de las mejores decisiones. La selección de obras es impecable y la atención personalizada nos hizo sentir parte del proceso en todo momento.”",
+      slide1_author: "Alejandro M.",
+      slide1_role: "Coleccionista de Arte, México",
+      slide2_quote: "“Su plataforma digital y el envío internacional son sumamente eficientes. La obra llegó en perfectas condiciones a Chicago y superó mis expectativas en cuanto a textura y color real.”",
+      slide2_author: "Sarah K.",
+      slide2_role: "Coleccionista, Chicago, EE.UU.",
+      slide3_quote: "“La asesoría personalizada me ayudó a encontrar la pieza perfecta para mi colección. Representan la verdadera esencia y dinamismo del arte latinoamericano y caribeño contemporáneo.”",
+      slide3_author: "Jean-Pierre L.",
+      slide3_role: "Coleccionista, París, Francia"
     },
     contact: {
-      tag: "CONTACTO",
-      title: "Inicie su Colección de Arte",
-      desc: "¿Está interesado en alguna obra de nuestro catálogo o desea programar una asesoría de adquisición privada? Complete el formulario y uno de nuestros asesores se pondrá en contacto con usted en menos de 24 horas.",
+      tag: "Hablemos de Arte",
+      title: "Hablemos de arte.",
+      desc: "Si buscas asesoramiento artístico personalizado para tu hogar u oficina, tienes dudas sobre una obra o deseas coordinar una sesión de asesoría virtual, no dudes en escribirnos.",
       name: "Nombre Completo",
       email: "Correo Electrónico",
       phone: "Teléfono (opcional)",
       msg: "Mensaje",
-      btn_send: "Enviar Consulta"
+      role_buyer: "Soy Comprador / Coleccionista",
+      role_artist: "Soy Artista",
+      role_label: "¿Quién eres?",
+      subject: "Asunto",
+      message_label: "Mensaje o Consulta",
+      btn_send: "Enviar Mensaje"
     },
     footer: {
+      desc: "Galería de arte latinoamericano y caribeño original que conecta artistas comprometidos con coleccionistas que buscan trascendencia visual y conceptual.",
       explore: "Explorar",
+      contact: "Contacto",
+      write_us: "Escríbenos",
+      private: "Consultas Privadas",
       legal: "Legal",
       terms: "Términos de servicio",
       privacy: "Política de privacidad",
@@ -1595,8 +1607,11 @@ const translations = {
     },
     artists: {
       tag: "Nuestros Creadores",
-      title: "Artistas de la Galería",
-      desc: "Presentamos una selección exclusiva de creadores latinoamericanos y caribeños consolidados y emergentes, unidos por su autenticidad y maestría técnica."
+      title: "Catálogo Completo de Artistas",
+      desc: "Conoce a los talentos destacados de América Latina y el Caribe cuyas obras originales forman parte de nuestra selecta colección virtual.",
+      title_featured: "Artistas destacados",
+      link_all: "Conoce a todos los artistas &rarr;",
+      btn_more: "Ver todos los artistas"
     },
     works: {
       tag: "Colección Exclusiva",
@@ -1617,7 +1632,22 @@ const translations = {
       sort_label: "Ordenar por Precio",
       sort_default: "Por defecto",
       sort_asc: "Precio: Menor a Mayor",
-      sort_desc: "Precio: Mayor a Menor"
+      sort_desc: "Precio: Mayor a Menor",
+      title_featured: "Obras destacadas",
+      subtitle_featured: "Explora una cuidada selección de pinturas únicas. Filtra según el estilo que mejor combine con tu espacio o colección.",
+      filter_all: "Todas",
+      btn_more: "Ver más obras"
+    },
+    philosophy: {
+      tag: "Manifiesto Artístico",
+      title: "\"El arte latinoamericano y caribeño no necesita fronteras para brillar en el mundo.\"",
+      p1: "En un mundo interconectado, la expresión plástica de América Latina late con una fuerza singular. Capturamos ese pulso vital a través de una rigurosa selección de obras que honra las tradiciones locales al mismo tiempo que propone lenguajes modernos y audaces.",
+      p2: "Nuestros artistas no solo pintan formas; vierten memorias, reflexiones sociales y una exquisita relación física con la materia sobre cada lienzo.",
+      btn_chat: "Conversa con nuestra Especialista"
+    },
+    trust: {
+      return: "Garantía de Devolución de 30 días",
+      handmade: "Óleo sobre lienzo 100% hecho a mano"
     }
   },
   en: {
@@ -1642,47 +1672,59 @@ const translations = {
       p2: "We believe that hanging an original piece in your space is not just decorating; it is establishing a direct bridge with the artist's vision and the cultural heritage of our region. Each canvas tells a story of cultural blending and passion.",
       stat_works: "Artworks",
       stat_artists: "Represented Artists",
-      stat_countries: "Countries of Origin"
+      stat_countries: "Countries of Origin",
+      badge_title: "Artist of the Month",
+      badge_location: "Maykel Herrera — \"Rezo\""
     },
     featured: {
       tag: "FEATURED ARTIST",
       btn_gallery: "Explore their gallery"
     },
     proceso: {
-      tag: "HOW WE WORK",
+      tag: "Acquisition Model",
       title: "How our virtual gallery works",
-      step1_title: "Curatorial Selection",
-      step1_desc: "We collaborate directly with established painters and emerging talents from the region. Each work is selected for its technical quality, originality, and expressive strength.",
+      desc: "We specialize in directly connecting collectors with exceptional Latin American and Caribbean art through a transparent international buy-and-resell model.",
+      step1_title: "Direct Acquisition",
+      step1_desc: "We buy original works directly from the studios of the region's most inspiring artists, ensuring fair commercial conditions and the traceability of each piece.",
       step2_title: "Authentication & Certification",
       step2_desc: "Each work we acquire is meticulously cataloged and inspected. It is delivered with its original Certificate of Authenticity, guaranteeing the legitimacy and provenance of your investment.",
       step3_title: "Logistics & Insured Shipping",
       step3_desc: "We handle professional specialized packaging and international door-to-door shipping with full insurance, ensuring the artwork arrives in perfect condition anywhere in the world."
     },
     test: {
-      tag: "TESTIMONIALS",
+      tag: "Testimonials",
       title: "Our collectors' experience",
-      slide1_quote: "“Acquiring a piece by Alexis Pantoja through Arte Mestizo was an exceptional experience. The shipping process to Spain was fast and the work arrived flawless. The certificate of authenticity and the personalized service gave me complete peace of mind.”",
-      slide1_author: "Francisco Javier",
-      slide1_city: "Madrid, Spain",
-      slide2_quote: "“The texture and colors of Dopico's painting are stunning, exceeding what I saw on screen. The guidance I received to choose the right work for my living room was flawless and professional.”",
-      slide2_author: "Sarah Miller",
-      slide2_city: "Miami, USA",
-      slide3_quote: "“As a collector of Latin American art, I highly value rigor in certification and provenance. Arte Mestizo has become my trusted gallery to discover Cuban and Colombian talents.”",
-      slide3_author: "Roberto Gomez",
-      slide3_city: "Bogota, Colombia"
+      slide1_quote: "“Acquiring a work through Arte Mestizo has been one of the best decisions. The selection of works is impeccable and the personalized attention made us feel part of the process at all times.”",
+      slide1_author: "Alejandro M.",
+      slide1_role: "Art Collector, Mexico",
+      slide2_quote: "“Their digital platform and international shipping are highly efficient. The artwork arrived in perfect condition in Chicago and exceeded my expectations in terms of texture and real color.”",
+      slide2_author: "Sarah K.",
+      slide2_role: "Collector, Chicago, USA",
+      slide3_quote: "“The personalized guidance helped me find the perfect piece for my collection. They represent the true essence and dynamism of contemporary Latin American and Caribbean art.”",
+      slide3_author: "Jean-Pierre L.",
+      slide3_role: "Collector, Paris, France"
     },
     contact: {
-      tag: "CONTACT",
-      title: "Start Your Art Collection",
-      desc: "Are you interested in a piece from our catalog or do you wish to schedule a private acquisition consultation? Complete the form and one of our advisors will contact you in less than 24 hours.",
+      tag: "Let's Talk About Art",
+      title: "Let's talk about art.",
+      desc: "If you are looking for personalized art advisory for your home or office, have questions about an artwork, or wish to schedule a virtual advisory session, do not hesitate to write to us.",
       name: "Full Name",
       email: "Email Address",
       phone: "Phone (optional)",
       msg: "Message",
-      btn_send: "Send Inquiry"
+      role_buyer: "I am a Buyer / Collector",
+      role_artist: "I am an Artist",
+      role_label: "Who are you?",
+      subject: "Subject",
+      message_label: "Message or Inquiry",
+      btn_send: "Send Message"
     },
     footer: {
+      desc: "Original Latin American and Caribbean art gallery connecting committed artists with collectors seeking visual and conceptual transcendence.",
       explore: "Explore",
+      contact: "Contact",
+      write_us: "Write to us",
+      private: "Private Inquiries",
       legal: "Legal",
       terms: "Terms of service",
       privacy: "Privacy policy",
@@ -1733,7 +1775,10 @@ const translations = {
     artists: {
       tag: "Our Creators",
       title: "Gallery Artists",
-      desc: "We present an exclusive selection of established and emerging Latin American and Caribbean creators, united by their authenticity and technical mastery."
+      desc: "We present an exclusive selection of established and emerging Latin American and Caribbean creators, united by their authenticity and technical mastery.",
+      title_featured: "Featured Artists",
+      link_all: "Meet all the artists &rarr;",
+      btn_more: "See all artists"
     },
     works: {
       tag: "Exclusive Collection",
@@ -1754,7 +1799,22 @@ const translations = {
       sort_label: "Sort by Price",
       sort_default: "Default",
       sort_asc: "Price: Low to High",
-      sort_desc: "Price: High to Low"
+      sort_desc: "Price: High to Low",
+      title_featured: "Featured Artworks",
+      subtitle_featured: "Explore a curated selection of unique paintings. Filter by style that matches your space or collection.",
+      filter_all: "All",
+      btn_more: "See more artworks"
+    },
+    philosophy: {
+      tag: "Artistic Manifesto",
+      title: "\"Latin American and Caribbean art does not need borders to shine in the world.\"",
+      p1: "In an interconnected world, the visual expression of Latin America beats with a singular force. We capture that vital pulse through a rigorous selection of works that honors local traditions while proposing modern and bold languages.",
+      p2: "Our artists do not just paint shapes; they pour memories, social reflections, and an exquisite physical relationship with the medium onto each canvas.",
+      btn_chat: "Speak with our Specialist"
+    },
+    trust: {
+      return: "30-day Money Back Guarantee",
+      handmade: "100% handmade oil on canvas"
     }
   }
 };
@@ -1810,6 +1870,16 @@ function translatePage(lang) {
       } else {
         el.innerHTML = translation;
       }
+    }
+  });
+
+  // Translate tooltip titles with data-i18n-title
+  const elementsTitle = document.querySelectorAll('[data-i18n-title]');
+  elementsTitle.forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    const translation = getNestedTranslation(translations[lang], key);
+    if (translation) {
+      el.setAttribute('title', translation);
     }
   });
 

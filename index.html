@@ -125,8 +125,8 @@
         <img src="/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg" alt="Maykel Herrera - Artista del Mes"
           class="concepto-image" loading="lazy" />
         <div class="concepto-image-badge">
-          <span class="badge-title">Artista del Mes</span>
-          <span class="badge-location">Maykel Herrera — "Rezo"</span>
+          <span class="badge-title" data-i18n="concepto.badge_title">Artista del Mes</span>
+          <span class="badge-location" data-i18n="concepto.badge_location">Maykel Herrera — "Rezo"</span>
         </div>
       </div>
     </div>
@@ -137,9 +137,9 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <h2 class="section-title text-dark">Artistas destacados</h2>
+          <h2 class="section-title text-dark" data-i18n="artists.title_featured">Artistas destacados</h2>
         </div>
-        <a href="artistas.html" class="btn-link">Conoce a todos los artistas &rarr;</a>
+        <a href="artistas.html" class="btn-link" data-i18n="artists.link_all">Conoce a todos los artistas &rarr;</a>
       </div>
 
       <div class="artists-grid" id="artists-grid">
@@ -147,7 +147,7 @@
       </div>
 
       <div class="button-container-reveal">
-        <button id="btn-see-more-artists" class="btn btn-outline">Ver todos los artistas</button>
+        <button id="btn-see-more-artists" class="btn btn-outline" data-i18n="artists.btn_more">Ver todos los artistas</button>
       </div>
     </div>
   </section>
@@ -156,9 +156,9 @@
   <section class="obras section" id="obras">
     <div class="container">
       <div class="section-header-center text-center">
-        <span class="section-tag">Colección Exclusiva</span>
-        <h2 class="section-title">Obras destacadas</h2>
-        <p class="section-subtitle-center">
+        <span class="section-tag" data-i18n="works.tag">Colección Exclusiva</span>
+        <h2 class="section-title" data-i18n="works.title_featured">Obras destacadas</h2>
+        <p class="section-subtitle-center" data-i18n="works.subtitle_featured">
           Explora una cuidada selección de pinturas únicas. Filtra según el estilo que mejor combine con tu espacio o
           colección.
         </p>
@@ -166,11 +166,11 @@
 
       <!-- Filters -->
       <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">Todas</button>
-        <button class="filter-btn" data-filter="abstracto">Abstracto</button>
-        <button class="filter-btn" data-filter="expresionismo">Expresionismo</button>
-        <button class="filter-btn" data-filter="geometrico">Geométrico</button>
-        <button class="filter-btn" data-filter="texturado">Texturado</button>
+        <button class="filter-btn active" data-filter="all" data-i18n="works.filter_all">Todas</button>
+        <button class="filter-btn" data-filter="abstracto" data-i18n="works.style_abstract">Abstracto</button>
+        <button class="filter-btn" data-filter="expresionismo" data-i18n="works.style_expressionism">Expresionismo</button>
+        <button class="filter-btn" data-filter="geometrico" data-i18n="works.style_geometric">Geométrico</button>
+        <button class="filter-btn" data-filter="texturado" data-i18n="works.style_textured">Texturado</button>
       </div>
 
       <!-- Artwork Grid -->
@@ -179,7 +179,7 @@
       </div>
 
       <div class="button-container-reveal">
-        <a href="obras.html" id="btn-see-more-artworks" class="btn btn-outline">Ver más obras</a>
+        <a href="obras.html" id="btn-see-more-artworks" class="btn btn-outline" data-i18n="works.btn_more">Ver más obras</a>
       </div>
     </div>
   </section>
@@ -188,19 +188,18 @@
   <section class="filosofia section section-split" id="filosofia">
     <div class="container grid grid-2">
       <div class="split-text">
-        <span class="section-tag">Manifiesto Artístico</span>
-        <h2 class="section-title">"El arte latinoamericano y caribeño no necesita fronteras para brillar en el mundo."
-        </h2>
-        <p class="section-desc">
+        <span class="section-tag" data-i18n="philosophy.tag">Manifiesto Artístico</span>
+        <h2 class="section-title" data-i18n="philosophy.title">"El arte latinoamericano y caribeño no necesita fronteras para brillar en el mundo."</h2>
+        <p class="section-desc" data-i18n="philosophy.p1">
           En un mundo interconectado, la expresión plástica de América Latina late con una fuerza singular. Capturamos
           ese pulso vital a través de una rigurosa selección de obras que honra las tradiciones locales al mismo tiempo
           que propone lenguajes modernos y audaces.
         </p>
-        <p class="section-desc">
+        <p class="section-desc" data-i18n="philosophy.p2">
           Nuestros artistas no solo pintan formas; vierten memorias, reflexiones sociales y una exquisita relación
           física con la materia sobre cada lienzo.
         </p>
-        <a href="#contacto" class="btn btn-secondary">Conversa con nuestra Especialista</a>
+        <a href="#contacto" class="btn btn-secondary" data-i18n="philosophy.btn_chat">Conversa con nuestra Especialista</a>
       </div>
       <div class="split-image-container">
         <img src="/src/assets/philosophy-gallery.png" alt="Visitantes apreciando el arte latinoamericano y caribeño"
@@ -213,9 +212,9 @@
   <section class="proceso section section-light" id="proceso">
     <div class="container">
       <div class="section-header-center text-center scroll-reveal">
-        <span class="section-tag">Modelo de Adquisición</span>
-        <h2 class="section-title">Cómo funciona nuestra galería virtual</h2>
-        <p class="section-desc">
+        <span class="section-tag" data-i18n="proceso.tag">Modelo de Adquisición</span>
+        <h2 class="section-title" data-i18n="proceso.title">Cómo funciona nuestra galería virtual</h2>
+        <p class="section-desc" data-i18n="proceso.desc">
           Nos especializamos en conectar directamente a coleccionistas con arte latinoamericano y caribeño excepcional a
           través de un modelo transparente de compra y reventa internacional.
         </p>
@@ -224,8 +223,8 @@
       <div class="process-grid">
         <div class="process-card scroll-reveal delay-100">
           <div class="process-num">01</div>
-          <h3 class="process-card-title">Adquisición Directa</h3>
-          <p class="process-card-desc">
+          <h3 class="process-card-title" data-i18n="proceso.step1_title">Adquisición Directa</h3>
+          <p class="process-card-desc" data-i18n="proceso.step1_desc">
             Compramos obras originales directamente de los talleres de los artistas más inspiradores de la región,
             asegurando condiciones comerciales justas y la trazabilidad de cada pieza.
           </p>
@@ -233,8 +232,8 @@
 
         <div class="process-card scroll-reveal delay-200">
           <div class="process-num">02</div>
-          <h3 class="process-card-title">Autenticación y Certificación</h3>
-          <p class="process-card-desc">
+          <h3 class="process-card-title" data-i18n="proceso.step2_title">Autenticación y Certificación</h3>
+          <p class="process-card-desc" data-i18n="proceso.step2_desc">
             Cada obra que adquirimos es meticulosamente catalogada e inspeccionada. Se entrega con su Certificado de
             Autenticidad original, garantizando la legitimidad y procedencia de su inversión.
           </p>
@@ -242,8 +241,8 @@
 
         <div class="process-card scroll-reveal delay-300">
           <div class="process-num">03</div>
-          <h3 class="process-card-title">Logística y Envío Asegurado</h3>
-          <p class="process-card-desc">
+          <h3 class="process-card-title" data-i18n="proceso.step3_title">Logística y Envío Asegurado</h3>
+          <p class="process-card-desc" data-i18n="proceso.step3_desc">
             Nos encargamos del embalaje profesional especializado y del envío internacional puerta a puerta con seguro
             total, asegurando que la obra llegue en perfectas condiciones a cualquier parte del mundo.
           </p>
@@ -255,44 +254,44 @@
   <!-- Testimonials Section -->
   <section class="testimonios section section-light" id="testimonios">
     <div class="container text-center">
-      <span class="section-tag">Opiniones</span>
+      <span class="section-tag" data-i18n="test.tag">Opiniones</span>
 
       <div class="slider-wrapper">
         <div class="quote-icon">&ldquo;</div>
         <div class="slider-container" id="testimonial-slider">
           <!-- Slide 1 -->
           <div class="slide active">
-            <blockquote class="testimonial-quote">
+            <blockquote class="testimonial-quote" data-i18n="test.slide1_quote">
               "Adquirir una obra a través de Arte Mestizo ha sido una de las mejores decisiones. La selección de obras
               es impecable y la atención personalizada nos hizo sentir parte del proceso en todo momento."
             </blockquote>
             <div class="testimonial-author">
-              <span class="author-name">Alejandro M.</span>
-              <span class="author-role">Coleccionista de Arte, México</span>
+              <span class="author-name" data-i18n="test.slide1_author">Alejandro M.</span>
+              <span class="author-role" data-i18n="test.slide1_role">Coleccionista de Arte, México</span>
             </div>
           </div>
 
           <!-- Slide 2 -->
           <div class="slide">
-            <blockquote class="testimonial-quote">
+            <blockquote class="testimonial-quote" data-i18n="test.slide2_quote">
               "Su plataforma digital y el envío internacional son sumamente eficientes. La obra llegó en perfectas
               condiciones a Chicago y superó mis expectativas en cuanto a textura y color real."
             </blockquote>
             <div class="testimonial-author">
-              <span class="author-name">Sarah K.</span>
-              <span class="author-role">Coleccionista, Chicago, EE.UU.</span>
+              <span class="author-name" data-i18n="test.slide2_author">Sarah K.</span>
+              <span class="author-role" data-i18n="test.slide2_role">Coleccionista, Chicago, EE.UU.</span>
             </div>
           </div>
 
           <!-- Slide 3 -->
           <div class="slide">
-            <blockquote class="testimonial-quote">
+            <blockquote class="testimonial-quote" data-i18n="test.slide3_quote">
               "La asesoría personalizada me ayudó a encontrar la pieza perfecta para mi colección. Representan la
               verdadera esencia y dinamismo del arte latinoamericano y caribeño contemporáneo."
             </blockquote>
             <div class="testimonial-author">
-              <span class="author-name">Jean-Pierre L.</span>
-              <span class="author-role">Coleccionista, París, Francia</span>
+              <span class="author-name" data-i18n="test.slide3_author">Jean-Pierre L.</span>
+              <span class="author-role" data-i18n="test.slide3_role">Coleccionista, París, Francia</span>
             </div>
           </div>
         </div>
@@ -310,9 +309,9 @@
   <section class="contacto section" id="contacto">
     <div class="container grid grid-2">
       <div class="contacto-info">
-        <span class="section-tag">Hablemos de Arte</span>
-        <h2 class="section-title">Hablemos de arte.</h2>
-        <p class="section-desc">
+        <span class="section-tag" data-i18n="contact.tag">Hablemos de Arte</span>
+        <h2 class="section-title" data-i18n="contact.title">Hablemos de arte.</h2>
+        <p class="section-desc" data-i18n="contact.desc">
           Si buscas asesoramiento artístico personalizado para tu hogar u oficina, tienes dudas sobre una obra o deseas
           coordinar una sesión de asesoría virtual, no dudes en escribirnos.
         </p>
@@ -361,36 +360,36 @@
         <form class="contact-form" id="contact-form">
           <div class="form-group">
             <input type="text" id="contact-name" class="form-control" required placeholder=" " />
-            <label for="contact-name" class="form-label">Nombre Completo</label>
+            <label for="contact-name" class="form-label" data-i18n="contact.name">Nombre Completo</label>
           </div>
 
           <div class="form-group">
             <input type="email" id="contact-email" class="form-control" required placeholder=" " />
-            <label for="contact-email" class="form-label">Correo Electrónico</label>
+            <label for="contact-email" class="form-label" data-i18n="contact.email">Correo Electrónico</label>
           </div>
 
           <div class="form-group">
             <select id="contact-role" class="form-control" required
               style="padding-top: 14px; padding-bottom: 14px; height: 55px; appearance: none; background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23c5a880' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>&quot;); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; padding-right: 40px;">
-              <option value="comprador">Soy Comprador / Coleccionista</option>
-              <option value="artista">Soy Artista</option>
+              <option value="comprador" data-i18n="contact.role_buyer">Soy Comprador / Coleccionista</option>
+              <option value="artista" data-i18n="contact.role_artist">Soy Artista</option>
             </select>
-            <label for="contact-role" class="form-label"
+            <label for="contact-role" class="form-label" data-i18n="contact.role_label"
               style="top: -10px; left: 10px; font-size: 0.8rem; background-color: var(--bg-dark-card); padding: 0 6px; color: var(--accent-gold); letter-spacing: 0.05em; font-weight: 600;">¿Quién
               eres?</label>
           </div>
 
           <div class="form-group">
             <input type="text" id="contact-subject" class="form-control" required placeholder=" " />
-            <label for="contact-subject" class="form-label">Asunto</label>
+            <label for="contact-subject" class="form-label" data-i18n="contact.subject">Asunto</label>
           </div>
 
           <div class="form-group">
             <textarea id="contact-message" class="form-control form-textarea" required placeholder=" "></textarea>
-            <label for="contact-message" class="form-label">Mensaje o Consulta</label>
+            <label for="contact-message" class="form-label" data-i18n="contact.message_label">Mensaje o Consulta</label>
           </div>
 
-          <button type="submit" class="btn btn-secondary btn-block">Enviar Mensaje</button>
+          <button type="submit" class="btn btn-secondary btn-block" data-i18n="contact.btn_send">Enviar Mensaje</button>
           <div class="form-status" id="form-status"></div>
         </form>
       </div>
@@ -402,7 +401,7 @@
     <div class="container footer-content">
       <div class="footer-brand">
         <span class="logo logo-footer"><span class="logo-accent">ARTE</span> MESTIZO</span>
-        <p class="footer-desc">
+        <p class="footer-desc" data-i18n="footer.desc">
           Galería de arte latinoamericano y caribeño original que conecta artistas comprometidos con coleccionistas que
           buscan trascendencia visual y conceptual.
         </p>
@@ -410,24 +409,24 @@
 
       <div class="footer-links-grid">
         <div class="footer-column">
-          <h4 class="footer-title">Explorar</h4>
-          <a href="artistas.html">Artistas</a>
-          <a href="obras.html">Obras destacadas</a>
-          <a href="#concepto">Concepto</a>
-          <a href="#filosofia">Nosotros</a>
+          <h4 class="footer-title" data-i18n="footer.explore">Explorar</h4>
+          <a href="artistas.html" data-i18n="nav.artists">Artistas</a>
+          <a href="obras.html" data-i18n="nav.works">Obras destacadas</a>
+          <a href="#concepto" data-i18n="nav.concept">Concepto</a>
+          <a href="#filosofia" data-i18n="nav.about">Nosotros</a>
         </div>
 
         <div class="footer-column">
-          <h4 class="footer-title">Contacto</h4>
-          <a href="#contacto">Escríbenos</a>
-          <a href="#contacto">Consultas Privadas</a>
+          <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
+          <a href="#contacto" data-i18n="footer.write_us">Escríbenos</a>
+          <a href="#contacto" data-i18n="footer.private">Consultas Privadas</a>
         </div>
 
         <div class="footer-column">
-          <h4 class="footer-title">Legal</h4>
-          <a href="#">Términos de servicio</a>
-          <a href="#">Política de privacidad</a>
-          <a href="#">Garantía de autenticidad</a>
+          <h4 class="footer-title" data-i18n="footer.legal">Legal</h4>
+          <a href="#" data-i18n="footer.terms">Términos de servicio</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.cert">Garantía de autenticidad</a>
         </div>
       </div>
     </div>
