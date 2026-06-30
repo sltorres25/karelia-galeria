@@ -1674,7 +1674,8 @@ const translations = {
       desc: "Conoce a los talentos destacados de América Latina y el Caribe cuyas obras originales forman parte de nuestra selecta colección virtual.",
       title_featured: "Artistas destacados",
       link_all: "Conoce a todos los artistas &rarr;",
-      btn_more: "Ver todos los artistas"
+      btn_more: "Ver todos los artistas",
+      about_artist: "Sobre el Artista"
     },
     works: {
       tag: "Colección Exclusiva",
@@ -1866,7 +1867,8 @@ const translations = {
       desc: "We present an exclusive selection of established and emerging Latin American and Caribbean creators, united by their authenticity and technical mastery.",
       title_featured: "Featured Artists",
       link_all: "Meet all the artists &rarr;",
-      btn_more: "See all artists"
+      btn_more: "See all artists",
+      about_artist: "About the Artist"
     },
     works: {
       tag: "Exclusive Collection",
