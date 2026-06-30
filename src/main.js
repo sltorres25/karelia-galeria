@@ -1550,7 +1550,7 @@ const translations = {
     nav: {
       artists: "Artistas",
       works: "Obras",
-      faq: "FAQ",
+      faq: "Preguntas Frecuentes",
       about: "Nosotros",
       contact: "Contacto",
       explore: "Explorar Colección"
