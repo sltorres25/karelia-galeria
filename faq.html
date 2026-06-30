@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Arte Mestizo - Galería de Arte Latinoamericano y Caribeño</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar scrolled" id="navbar"
+    style="position: sticky; background-color: rgba(250, 249, 246, 0.96); border-bottom: 1px solid rgba(0, 0, 0, 0.06); color: #161616;">
+    <div class="navbar-container">
+      <a href="index.html" class="logo" style="color: #161616;">
+        <span class="logo-accent">ARTE</span> MESTIZO
+      </a>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="artistas.html" class="nav-link" data-i18n="nav.artists">Artistas</a>
+        <a href="obras.html" class="nav-link" data-i18n="nav.works">Obras</a>
+        <a href="faq.html" class="nav-link active" data-i18n="nav.faq">FAQ</a>
+        <a href="index.html#proceso" class="nav-link" data-i18n="nav.about">Nosotros</a>
+        <a href="index.html#contacto" class="nav-link" data-i18n="nav.contact">Contacto</a>
+        
+        <!-- Language Switch Mobile -->
+        <div class="lang-switch-mobile">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+      
+      <div class="nav-actions">
+        <!-- Shopping Cart Icon Toggle -->
+        <button class="cart-toggle" id="cart-toggle" aria-label="Ver carrito">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 6h18M16 10a4 4 0 0 1-8 0" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="cart-count-badge" id="cart-count">0</span>
+        </button>
+
+        <!-- Language Switch Desktop -->
+        <div class="lang-switch-desktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <span>|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" style="display: none;">
+          <span class="bar" style="background-color: #161616;"></span>
+          <span class="bar" style="background-color: #161616;"></span>
+          <span class="bar" style="background-color: #161616;"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Header Section -->
+  <section class="section section-light"
+    style="padding-top: 80px; padding-bottom: 40px; background-color: var(--bg-light);">
+    <div class="container text-center">
+      <span class="section-tag" style="margin-top: 20px;" data-i18n="faq.tag">PREGUNTAS FRECUENTES</span>
+      <h1 class="section-title text-dark" style="font-size: 3.5rem; margin-bottom: 20px;" data-i18n="faq.title">Centro de Ayuda y Preguntas Frecuentes</h1>
+      <p class="section-desc" style="max-width: 700px; margin: 0 auto; color: var(--text-dark-muted);" data-i18n="faq.subtitle">
+        Resolvemos tus dudas sobre el proceso de compra, envíos internacionales, autenticidad y políticas de la galería.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="section" style="padding-top: 60px; padding-bottom: 100px;">
+    <div class="container">
+      <div class="faq-container">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q1_title">¿Quiénes somos?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q1_desc">Arte Mestizo es una galería virtual especializada en conectar coleccionistas internacionales con obras originales de los artistas más destacados y emergentes de América Latina y el Caribe.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q2_title">¿Cómo comprar una obra?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q2_desc">Simplemente explore nuestro catálogo, haga clic en la obra que desee y presione 'Comprar Obra (Añadir al Carrito)'. Se añadirá a su carrito. Luego complete el formulario de checkout con sus datos de envío y de pago para formalizar la adquisición.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q3_title">¿Cómo se envía la obra y cuánto tarda?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q3_desc">Realizamos envíos internacionales asegurados puerta a puerta mediante transportistas especializados en arte. El embalaje es profesional y reforzado. El envío suele tardar entre 7 y 15 días hábiles dependiendo del país de destino.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q4_title">¿Las obras incluyen certificado de autenticidad?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q4_desc">Sí, todas las obras de Arte Mestizo se entregan con un Certificado de Autenticidad original, firmado por el artista y sellado por la galería, garantizando la legitimidad, procedencia y valor de su inversión.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q5_title">¿Cuál es la política de devoluciones y garantías?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q5_desc">Ofrecemos una garantía de satisfacción total de 30 días. Si la obra no cumple sus expectativas, puede devolverla en su embalaje original para recibir un reembolso completo del costo de la pieza.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q6_title">¿Están incluidos los impuestos y aranceles de aduana?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q6_desc">Los precios mostrados cubren la obra y el seguro de tránsito. Los aranceles de importación o impuestos aduaneros locales de cada país son responsabilidad del comprador y varían según la legislación local.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 7 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q7_title">¿Cómo se protegen las obras para el transporte?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q7_desc">Las pinturas en lienzo se envían en cajas de madera a medida o tubos rígidos de alta densidad, envueltas en papel burbuja especial antiestático y capas protectoras impermeables contra humedad e impactos.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 8 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q8_title">¿Puedo solicitar una obra personalizada o buscar un artista específico?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q8_desc">Sí. Ofrecemos un servicio de consultoría privada. Si desea encargar una obra a medida de nuestros artistas representados o localizar una pieza especial, contáctenos directamente a través del formulario.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 9 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q9_title">¿Qué métodos de pago son aceptados?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q9_desc">Aceptamos tarjetas de crédito internacionales (Visa, Mastercard, American Express), transferencias bancarias directas y métodos de pago seguros de simulación bancaria en USD.</p>
+          </div>
+        </div>
+
+        <!-- FAQ 10 -->
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3 data-i18n="faq.q10_title">¿Cómo puedo ver la obra en mi espacio antes de comprar?</h3>
+            <span class="faq-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          </div>
+          <div class="faq-answer">
+            <p data-i18n="faq.q10_desc">Puede enviarnos una foto de su pared y la obra que le interesa. Nuestro equipo de diseño preparará una simulación a escala digital para que aprecie exactamente cómo se verá en su hogar u oficina.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo logo-footer"><span class="logo-accent">ARTE</span> MESTIZO</span>
+        <p class="footer-desc" data-i18n="footer.desc">
+          Galería de arte latinoamericano y caribeño original que conecta artistas comprometidos con coleccionistas que
+          buscan trascendencia visual y conceptual.
+        </p>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.explore">Explorar</h4>
+          <a href="artistas.html" data-i18n="nav.artists">Artistas</a>
+          <a href="obras.html" data-i18n="nav.works">Obras destacadas</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+          <a href="index.html#proceso" data-i18n="nav.about">Nosotros</a>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.contact">Contacto</h4>
+          <a href="index.html#contacto" data-i18n="footer.write_us">Escríbenos</a>
+          <a href="index.html#contacto" data-i18n="footer.private">Consultas Privadas</a>
+        </div>
+
+        <div class="footer-column">
+          <h4 class="footer-title" data-i18n="footer.legal">Legal</h4>
+          <a href="#" data-i18n="footer.terms">Términos de servicio</a>
+          <a href="#" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#" data-i18n="footer.cert">Garantía de autenticidad</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p data-i18n="footer.bottom">&copy; 2026 Arte Mestizo. Todos los derechos reservados. Diseñado para coleccionistas exigentes.</p>
+      <p data-i18n="footer.bottom_sub">Arte Latinoamericano y Caribeño Certificado.</p>
+    </div>
+  </footer>
+
+  <!-- E-commerce Sidebar Cart Drawer -->
+  <div class="cart-backdrop" id="cart-backdrop"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 data-i18n="cart.title">Tu Carrito</h3>
+      <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-drawer-body" id="cart-items">
+      <!-- Dynamically filled by JS -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span data-i18n="cart.total_label">Total:</span>
+        <span id="cart-total">$0 USD</span>
+      </div>
+      <button class="btn btn-secondary btn-block" id="cart-checkout-btn" data-i18n="cart.checkout_btn" disabled>Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- E-commerce Checkout Modal -->
+  <div class="modal" id="checkout-modal">
+    <div class="checkout-modal-content">
+      <button class="modal-close" id="checkout-close" aria-label="Cerrar modal">&times;</button>
+      <div class="checkout-modal-body" id="checkout-body-content">
+        <h3 class="checkout-modal-title" data-i18n="checkout.title">Finalizar Compra</h3>
+        
+        <div class="checkout-summary-box">
+          <div class="checkout-summary-row">
+            <span data-i18n="checkout.summary_items">Obras seleccionadas:</span>
+            <span id="checkout-items-count" style="font-weight:700;">0</span>
+          </div>
+          <div class="checkout-summary-row" style="margin-top:5px; font-size:1.1rem;">
+            <span data-i18n="checkout.summary_total">Total a pagar:</span>
+            <span id="checkout-total-price" style="color:#8e724a; font-weight:700;">$0 USD</span>
+          </div>
+        </div>
+
+        <form id="checkout-form">
+          <h4 class="checkout-section-title" data-i18n="checkout.shipping_title">Información de Envío</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-name" class="form-control" required placeholder=" " />
+              <label for="checkout-name" class="form-label" data-i18n="checkout.label_name">Nombre Completo</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="email" id="checkout-email" class="form-control" required placeholder=" " />
+              <label for="checkout-email" class="form-label" data-i18n="checkout.label_email">Correo Electrónico</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="tel" id="checkout-phone" class="form-control" required placeholder=" " />
+              <label for="checkout-phone" class="form-label" data-i18n="checkout.label_phone">Teléfono de Contacto</label>
+            </div>
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-address" class="form-control" required placeholder=" " />
+              <label for="checkout-address" class="form-label" data-i18n="checkout.label_address">Dirección de Entrega</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-city" class="form-control" required placeholder=" " />
+              <label for="checkout-city" class="form-label" data-i18n="checkout.label_city">Ciudad</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-country" class="form-control" required placeholder=" " />
+              <label for="checkout-country" class="form-label" data-i18n="checkout.label_country">País</label>
+            </div>
+          </div>
+
+          <h4 class="checkout-section-title" data-i18n="checkout.payment_title">Detalles de Pago (Simulación)</h4>
+          <div class="checkout-form-grid">
+            <div class="form-group full-width" style="margin-bottom:15px;">
+              <input type="text" id="checkout-card" class="form-control" required placeholder=" " pattern="\d{16}" maxlength="16" />
+              <label for="checkout-card" class="form-label" data-i18n="checkout.label_card">Número de Tarjeta (16 dígitos)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="text" id="checkout-expiry" class="form-control" required placeholder="MM/YY" pattern="\d{2}/\d{2}" maxlength="5" />
+              <label for="checkout-expiry" class="form-label" data-i18n="checkout.label_expiry">Vencimiento (MM/YY)</label>
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+              <input type="password" id="checkout-cvv" class="form-control" required placeholder=" " pattern="\d{3}" maxlength="3" />
+              <label for="checkout-cvv" class="form-label" data-i18n="checkout.label_cvv">CVV</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secondary btn-block" data-i18n="checkout.submit_btn">Pagar y Completar Pedido</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Module JS -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

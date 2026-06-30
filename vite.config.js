@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         artistas: resolve(__dirname, 'artistas.html'),
         obras: resolve(__dirname, 'obras.html'),
+        faq: resolve(__dirname, 'faq.html'),
       }
     }
   }

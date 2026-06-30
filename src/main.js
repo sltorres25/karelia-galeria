@@ -676,6 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Premium Interactive & Motion Effects
   initPremiumInteractiveEffects();
   initHeroParallax();
+  initFaqAccordion();
 });
 
 /* -------------------------------------------------------------
@@ -1491,7 +1492,7 @@ const translations = {
     nav: {
       artists: "Artistas",
       works: "Obras",
-      concept: "Concepto",
+      faq: "FAQ",
       about: "Nosotros",
       contact: "Contacto",
       explore: "Explorar Colección"
@@ -1652,13 +1653,38 @@ const translations = {
     trust: {
       return: "Garantía de Devolución de 30 días",
       handmade: "Óleo sobre lienzo 100% hecho a mano"
+    },
+    faq: {
+      tag: "PREGUNTAS FRECUENTES",
+      title: "Centro de Ayuda y Preguntas Frecuentes",
+      subtitle: "Resolvemos tus dudas sobre el proceso de compra, envíos internacionales, autenticidad y políticas de la galería.",
+      q1_title: "¿Quiénes somos?",
+      q1_desc: "Arte Mestizo es una galería virtual especializada en conectar coleccionistas internacionales con obras originales de los artistas más destacados y emergentes de América Latina y el Caribe.",
+      q2_title: "¿Cómo comprar una obra?",
+      q2_desc: "Simplemente explore nuestro catálogo, haga clic en la obra que desee y presione 'Comprar Obra (Añadir al Carrito)'. Se añadirá a su carrito. Luego complete el formulario de checkout con sus datos de envío y de pago para formalizar la adquisición.",
+      q3_title: "¿Cómo se envía la obra y cuánto tarda?",
+      q3_desc: "Realizamos envíos internacionales asegurados puerta a puerta mediante transportistas especializados en arte. El embalaje es profesional y reforzado. El envío suele tardar entre 7 y 15 días hábiles dependiendo del país de destino.",
+      q4_title: "¿Las obras incluyen certificado de autenticidad?",
+      q4_desc: "Sí, todas las obras de Arte Mestizo se entregan con un Certificado de Autenticidad original, firmado por el artista y sellado por la galería, garantizando la legitimidad, procedencia y valor de su inversión.",
+      q5_title: "¿Cuál es la política de devoluciones y garantías?",
+      q5_desc: "Ofrecemos una garantía de satisfacción total de 30 días. Si la obra no cumple sus expectativas, puede devolverla en su embalaje original para recibir un reembolso completo del costo de la pieza.",
+      q6_title: "¿Están incluidos los impuestos y aranceles de aduana?",
+      q6_desc: "Los precios mostrados cubren la obra y el seguro de tránsito. Los aranceles de importación o impuestos aduaneros locales de cada país son responsabilidad del comprador y varían según la legislación local.",
+      q7_title: "¿Cómo se protegen las obras para el transporte?",
+      q7_desc: "Las pinturas en lienzo se envían en cajas de madera a medida o tubos rígidos de alta densidad, envueltas en papel burbuja especial antiestático y capas protectoras impermeables contra humedad e impactos.",
+      q8_title: "¿Puedo solicitar una obra personalizada o buscar un artista específico?",
+      q8_desc: "Sí. Ofrecemos un servicio de consultoría privada. Si desea encargar una obra a medida de nuestros artistas representados o localizar una pieza especial, contáctenos directamente a través del formulario.",
+      q9_title: "¿Qué métodos de pago son aceptados?",
+      q9_desc: "Aceptamos tarjetas de crédito internacionales (Visa, Mastercard, American Express), transferencias bancarias directas y métodos de pago seguros de simulación bancaria en USD.",
+      q10_title: "¿Cómo puedo ver la obra en mi espacio antes de comprar?",
+      q10_desc: "Puede enviarnos una foto de su pared y la obra que le interesa. Nuestro equipo de diseño preparará una simulación a escala digital para que aprecie exactamente cómo se verá en su hogar u oficina."
     }
   },
   en: {
     nav: {
       artists: "Artists",
       works: "Works",
-      concept: "Concept",
+      faq: "FAQ",
       about: "About Us",
       contact: "Contact",
       explore: "Explore Collection"
@@ -1819,6 +1845,31 @@ const translations = {
     trust: {
       return: "30-day Money Back Guarantee",
       handmade: "100% handmade oil on canvas"
+    },
+    faq: {
+      tag: "FREQUENTLY ASKED QUESTIONS",
+      title: "Help Center & FAQ",
+      subtitle: "We answer your questions about the acquisition process, international shipping, authenticity, and gallery policies.",
+      q1_title: "Who are we?",
+      q1_desc: "Arte Mestizo is a virtual gallery specializing in connecting international collectors with original works by the most prominent and emerging artists from Latin America and the Caribbean.",
+      q2_title: "How to buy an artwork?",
+      q2_desc: "Simply explore our catalog, click on your desired artwork, and press 'Buy Artwork (Add to Cart)'. It will be added to your cart. Then complete the checkout form with your shipping and payment details to finalize the acquisition.",
+      q3_title: "How is the artwork shipped and how long does it take?",
+      q3_desc: "We provide insured door-to-door international shipping using specialized art couriers. Packaging is professional and reinforced. Shipping usually takes between 7 and 15 business days depending on the destination country.",
+      q4_title: "Do the artworks include a certificate of authenticity?",
+      q4_desc: "Yes, all artworks from Arte Mestizo are delivered with an original Certificate of Authenticity, signed by the artist and sealed by the gallery, guaranteeing the legitimacy, provenance, and value of your investment.",
+      q5_title: "What is the return and warranty policy?",
+      q5_desc: "We offer a 30-day total satisfaction guarantee. If the artwork does not meet your expectations, you can return it in its original packaging to receive a full refund of the artwork's cost.",
+      q6_title: "Are taxes and customs duties included?",
+      q6_desc: "The prices shown cover the artwork and transit insurance. Import duties or local customs taxes of each country are the responsibility of the buyer and vary according to local legislation.",
+      q7_title: "How are the artworks protected for transport?",
+      q7_desc: "Canvas paintings are shipped in custom wooden crates or high-density rigid tubes, wrapped in special antistatic bubble wrap and protective waterproof layers against humidity and impacts.",
+      q8_title: "Can I request a customized artwork or search for a specific artist?",
+      q8_desc: "Yes. We offer a private consulting service. If you wish to commission a custom piece from our represented artists or locate a special artwork, contact us directly through the form.",
+      q9_title: "What payment methods are accepted?",
+      q9_desc: "We accept international credit cards (Visa, Mastercard, American Express), direct bank wire transfers, and secure international simulated payment methods in USD.",
+      q10_title: "How can I view the artwork in my space before buying?",
+      q10_desc: "You can send us a photo of your wall and the artwork you are interested in. Our design team will prepare a scaled digital simulation so you can appreciate exactly how it will look in your home or office."
     }
   }
 };
@@ -2318,6 +2369,22 @@ function initHeroParallax() {
   hero.addEventListener('mouseleave', () => {
     heroContent.style.transform = 'translate(0px, 0px)';
     hero.style.backgroundPosition = '50% 50%';
+  });
+}
+
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    }
   });
 }
 
