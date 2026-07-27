@@ -255,7 +255,7 @@ const artworksData = {
     image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
   },
   4: {
-    title: "Horizonte Sensible",
+    title: "Cañaveral",
     artist: "Carlos René Aguilera",
     category: "Texturado",
     technique: "Acrílico sobre lienzo",
