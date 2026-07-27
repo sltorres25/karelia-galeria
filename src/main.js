@@ -205,6 +205,20 @@ const artistsData = [
     bio: "Pintor y dibujante colombiano cuya obra explora la fuerza expresiva del cuerpo humano y las emociones profundas mediante el realismo figurativo.",
     image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png",
     filter: "expresionismo"
+  },
+  {
+    id: "orlando-boffill",
+    name: "Orlando Boffill",
+    flag: "🇨🇺",
+    country: "La Habana, Cuba",
+    birthYear: "1964",
+    artType: {
+      es: "Expresionismo lúdico y figurativo",
+      en: "Playful and figurative expressionism"
+    },
+    bio: "Su pintura combina elementos figurativos y geométricos para crear atmósferas lúdicas, teatrales y simbólicas con personajes enigmáticos.",
+    image: "/src/Artistas/Orlando Boffill/Road to Gold.jpg",
+    filter: "expresionismo"
   }
 ];
 
@@ -218,7 +232,7 @@ const artworksData = {
     dimensions: "150 x 150 cm",
     year: "2025",
     price: "€5,200 EUR",
-    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg"
+    image: "/src/Artistas/Alexis Pantoja/img1.jpeg"
   },
   2: {
     title: "Fragmentos del Viento",
@@ -361,24 +375,24 @@ const artworksData = {
     image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg"
   },
   16: {
-    title: "Bajo la Lluvia",
+    title: "Sin título",
     artist: "Orestes Gaulhiac",
     category: "Geométrico",
     technique: "Acrílico sobre lienzo",
-    dimensions: "90 x 90 cm",
+    dimensions: "91.44 x 91.44 cm (36 x 36 in)",
     year: "2024",
     price: "€3,600 EUR",
     image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg"
   },
   17: {
-    title: "Cuentos de la Selva",
+    title: "La novia alada",
     artist: "Orestes Gaulhiac",
     category: "Geométrico",
-    technique: "Acrílico sobre lienzo",
-    dimensions: "48 x 36 in",
+    technique: "Óleo sobre lienzo",
+    dimensions: "120 x 90 cm (47.2 x 35.4 in)",
     year: "2024",
     price: "€4,800 EUR",
-    image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 48x36 in. .jpeg"
+    image: "/src/Artistas/Orestes Gaulhiac/La novia alada.jpeg"
   },
   18: {
     title: "Construcción del Espacio",
@@ -539,6 +553,256 @@ const artworksData = {
     year: "2024",
     price: "€5,500 EUR",
     image: "/src/Artistas/Alex Stevenson/50 x 55 in.jpeg"
+  },
+  34: {
+    title: "Road to Gold",
+    artist: "Orlando Boffill",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "Pendiente",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orlando Boffill/Road to Gold.jpg"
+  },
+  35: {
+    title: "Error de magia",
+    artist: "Orlando Boffill",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "160 x 122 cm (63 x 48 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orlando Boffill/Error de magia.jpg"
+  },
+  36: {
+    title: "Cañaveral",
+    artist: "Orlando Boffill",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 80 cm",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orlando Boffill/Cañaveral.jpg"
+  },
+  37: {
+    title: "Tejiendo",
+    artist: "Carlos René Aguilera",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "120 x 120 cm",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Carlos Rene Aguilera/Tejiendo.jpeg"
+  },
+  38: {
+    title: "Carrera definitiva (Serie: Utopías y Entropías)",
+    artist: "Carlos René Aguilera",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "120 x 120 cm (47.2 x 47.2 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Carlos Rene Aguilera/Carrera definitiva.jpeg"
+  },
+  39: {
+    title: "After Chaos",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "Pendiente",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/After Caos.jpeg"
+  },
+  40: {
+    title: "El caos y la imagen",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta de óleo sobre lienzo",
+    dimensions: "101.6 x 76.2 cm",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/El caos y la imagen.jpeg"
+  },
+  41: {
+    title: "La luz del silencio",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "101.6 x 76.2 cm (40 x 30 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/La luz del silencio.jpeg"
+  },
+  42: {
+    title: "Crucifixión",
+    artist: "Vicente Dopico",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "101.6 x 76.2 cm (40 x 30 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/Crucifixión.jpeg"
+  },
+  43: {
+    title: "Gris",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "167.6 x 142.2 cm (66 x 56 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/Gris.jpeg"
+  },
+  44: {
+    title: "La siempre tarde",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre papel",
+    dimensions: "76.2 x 55.8 cm (30 x 22 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/La siempre tarde.jpeg"
+  },
+  45: {
+    title: "La conversación",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "142.2 x 167.6 cm (56 x 66 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/La conversación.jpeg"
+  },
+  46: {
+    title: "Sin título",
+    artist: "Vicente Dopico",
+    category: "Abstracto",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "101.6 x 76.2 cm (40 x 30 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Vicente Dopico/WhatsApp Image 2026-07-21 at 20.16.26.jpeg"
+  },
+  47: {
+    title: "Guajira",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "76.2 x 57.1 cm (30 x 22.5 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orestes Gaulhiac/Guajira.jpeg"
+  },
+  48: {
+    title: "Reina",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Óleo sobre lienzo",
+    dimensions: "91.44 x 91.44 cm (36 x 36 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orestes Gaulhiac/Reina.jpeg"
+  },
+  49: {
+    title: "Cuestión de reyes",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "91.44 x 45.7 cm (36 x 18 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orestes Gaulhiac/Cuestion de reyes.jpeg"
+  },
+  50: {
+    title: "Sin título",
+    artist: "Orestes Gaulhiac",
+    category: "Geométrico",
+    technique: "Óleo sobre lienzo",
+    dimensions: "120 x 90 cm (47.2 x 35.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Orestes Gaulhiac/sin titulo.jpg"
+  },
+  51: {
+    title: "Ángel principado Jahasiel",
+    artist: "María Consuelo",
+    category: "Abstracto",
+    technique: "Técnica mixta",
+    dimensions: "70 x 50 cm (27.5 x 19.7 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maria Consuelo/Angel principado Jahasiel.jpeg"
+  },
+  52: {
+    title: "Arcángel Michael",
+    artist: "María Consuelo",
+    category: "Abstracto",
+    technique: "Técnica mixta",
+    dimensions: "70 x 50 cm (27.5 x 19.7 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maria Consuelo/Arcángel Michael.jpeg"
+  },
+  53: {
+    title: "Ángel Daniel",
+    artist: "María Consuelo",
+    category: "Abstracto",
+    technique: "Técnica mixta",
+    dimensions: "70 x 50 cm (27.5 x 19.7 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maria Consuelo/Angel Daniel.jpeg"
+  },
+  54: {
+    title: "Ángel Vehuiah",
+    artist: "María Consuelo",
+    category: "Abstracto",
+    technique: "Técnica mixta",
+    dimensions: "70 x 50 cm (27.5 x 19.7 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maria Consuelo/Angel Vehuiah.jpeg"
+  },
+  55: {
+    title: "Billar",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "129.5 x 127 cm (51 x 50 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/Billar.jpg"
+  },
+  56: {
+    title: "Sin título",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 100 cm (39.4 x 39.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/img.jpeg"
+  },
+  57: {
+    title: "Sin título",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "60 x 90 cm (23.6 x 35.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/sin titulo 60x90.jpg"
+  },
+  58: {
+    title: "Leda",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "60 x 80 cm (23.6 x 31.5 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
   }
 };
 
@@ -576,7 +840,32 @@ const artworkThemes = {
   30: { es: "Huellas de memoria", en: "Traces of memory" },
   31: { es: "Retrato y afecto", en: "Portrait and affection" },
   32: { es: "Anatomía expresiva", en: "Expressive anatomy" },
-  33: { es: "Figuración interior", en: "Inner figuration" }
+  33: { es: "Figuración interior", en: "Inner figuration" },
+  34: { es: "Composición lúdica", en: "Playful composition" },
+  35: { es: "Fantasía lúdica", en: "Playful fantasy" },
+  36: { es: "Surrealismo tropical", en: "Tropical surrealism" },
+  37: { es: "Expresionismo figurativo", en: "Figurative expressionism" },
+  38: { es: "Utopías y entropías", en: "Utopias and entropies" },
+  39: { es: "Expresionismo abstracto", en: "Abstract expressionism" },
+  40: { es: "Expresionismo abstracto", en: "Abstract expressionism" },
+  41: { es: "Abstracción lírica", en: "Lyrical abstraction" },
+  42: { es: "Expresionismo simbólico", en: "Symbolic expressionism" },
+  43: { es: "Abstracción matérica", en: "Material abstraction" },
+  44: { es: "Composición figurativa", en: "Figurative composition" },
+  45: { es: "Expresionismo figurativo", en: "Figurative expressionism" },
+  46: { es: "Expresionismo abstracto", en: "Abstract expressionism" },
+  47: { es: "Campesina cubana", en: "Cuban peasant woman" },
+  48: { es: "Fantasía mística", en: "Mystical fantasy" },
+  49: { es: "Fantasía mística", en: "Mystical fantasy" },
+  50: { es: "Fantasía mística", en: "Mystical fantasy" },
+  51: { es: "Misticismo celestial", en: "Celestial mysticism" },
+  52: { es: "Misticismo celestial", en: "Celestial mysticism" },
+  53: { es: "Misticismo celestial", en: "Celestial mysticism" },
+  54: { es: "Misticismo celestial", en: "Celestial mysticism" },
+  55: { es: "Escena social", en: "Social scene" },
+  56: { es: "Fantasía figurativa", en: "Figurative fantasy" },
+  57: { es: "Fantasía figurativa", en: "Figurative fantasy" },
+  58: { es: "Mitología clásica", en: "Classical mythology" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1466,8 +1755,8 @@ const artworkTitlesEn = {
   13: "Organic Composition II",
   14: "Prayer",
   15: "Expedition",
-  16: "Under the Rain",
-  17: "Jungle Tales",
+  16: "Untitled",
+  17: "The Winged Bride",
   18: "Construction of Space",
   19: "Urban Structures",
   20: "Symphony of the Dawn",
@@ -1483,7 +1772,32 @@ const artworkTitlesEn = {
   30: "Traces of the Past",
   31: "The Kiss",
   32: "Anatomical Tension",
-  33: "Inner Flight"
+  33: "Inner Flight",
+  34: "Road to Gold",
+  35: "Magic Error",
+  36: "Cane Field",
+  37: "Weaving",
+  38: "Definitive Race (Utopias and Entropies Series)",
+  39: "After Chaos",
+  40: "Chaos and the Image",
+  41: "The Light of Silence",
+  42: "Crucifixion",
+  43: "Gray",
+  44: "The Perpetual Late",
+  45: "The Conversation",
+  46: "Untitled",
+  47: "Guajira",
+  48: "Queen",
+  49: "Question of Kings",
+  50: "Untitled",
+  51: "Prince Angel Jahasiel",
+  52: "Archangel Michael",
+  53: "Angel Daniel",
+  54: "Angel Vehuiah",
+  55: "Billiards",
+  56: "Untitled",
+  57: "Untitled",
+  58: "Leda"
 };
 
 const artistTranslationsEn = {
@@ -1542,6 +1856,10 @@ const artistTranslationsEn = {
   "alex-stevenson": {
     country: "Cesar, Colombia",
     bio: "Colombian painter whose work explores the expressive power of the human body through figurative realism."
+  },
+  "orlando-boffill": {
+    country: "Havana, Cuba",
+    bio: "His painting combines figurative and geometric elements to create playful, theatrical, and symbolic atmospheres with enigmatic characters."
   }
 };
 
@@ -1941,7 +2259,9 @@ function translateTechnique(tech, lang) {
     "Acrílico sobre lienzo": "Acrylic on canvas",
     "Técnica mixta": "Mixed media",
     "Técnica mixta sobre lienzo": "Mixed media on canvas",
-    "Carboncillo sobre papel": "Charcoal on paper"
+    "Carboncillo sobre papel": "Charcoal on paper",
+    "Técnica mixta de óleo sobre lienzo": "Mixed media of oil on canvas",
+    "Técnica mixta sobre papel": "Mixed media on paper"
   };
   return map[tech] || tech;
 }
