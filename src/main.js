@@ -694,7 +694,7 @@ const artworksData = {
     dimensions: "120 x 90 cm (47.2 x 35.4 in)",
     year: "Desconocido",
     price: "Consultar",
-    image: "/src/Artistas/Orestes Gaulhiac/sin titulo.jpg"
+    image: "/src/Artistas/Orestes Gaulhiac/sin titulo.jpeg"
   },
   51: {
     title: "Ángel principado Jahasiel",
