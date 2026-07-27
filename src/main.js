@@ -698,16 +698,7 @@ const artworksData = {
     price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/Billar.jpg"
   },
-  56: {
-    title: "Sin título",
-    artist: "Alexis Pantoja",
-    category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "100 x 100 cm (39.4 x 39.4 in)",
-    year: "Desconocido",
-    price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/Screenshot_20260412_153044_Chrome.jpg"
-  },
+
   57: {
     title: "Sin título",
     artist: "Alexis Pantoja",
@@ -727,16 +718,6 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
-  },
-  59: {
-    title: "Sinfonía en rojo",
-    artist: "Alexis Pantoja",
-    category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "130 x 100 cm",
-    year: "2020",
-    price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/Screenshot_20260412_153105_Chrome.jpg"
   }
 };
 
@@ -793,10 +774,9 @@ const artworkThemes = {
   53: { es: "Misticismo celestial", en: "Celestial mysticism" },
   54: { es: "Misticismo celestial", en: "Celestial mysticism" },
   55: { es: "Escena social", en: "Social scene" },
-  56: { es: "Fantasía figurativa", en: "Figurative fantasy" },
+
   57: { es: "Fantasía figurativa", en: "Figurative fantasy" },
-  58: { es: "Mitología clásica", en: "Classical mythology" },
-  59: { es: "Sinfonía expresiva", en: "Expressive symphony" }
+  58: { es: "Mitología clásica", en: "Classical mythology" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1722,10 +1702,9 @@ const artworkTitlesEn = {
   53: "Angel Daniel",
   54: "Angel Vehuiah",
   55: "Billiards",
-  56: "Untitled",
+
   57: "Untitled",
-  58: "Leda",
-  59: "Symphony in Red"
+  58: "Leda"
 };
 
 const artistTranslationsEn = {
