@@ -231,7 +231,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "150 x 150 cm",
     year: "2025",
-    price: "€5,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/img1.jpeg"
   },
   2: {
@@ -241,7 +241,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "120 x 100 cm",
     year: "2024",
-    price: "€4,500 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0003.jpg"
   },
   3: {
@@ -251,7 +251,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "€3,900 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
   },
   4: {
@@ -261,7 +261,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "150 x 100 cm",
     year: "2024",
-    price: "€4,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg"
   },
   5: {
@@ -271,7 +271,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "120 x 120 cm",
     year: "2025",
-    price: "€4,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg"
   },
   6: {
@@ -281,7 +281,7 @@ const artworksData = {
     technique: "Acrílico sobre cartulina",
     dimensions: "140 x 56 cm",
     year: "2020",
-    price: "€4,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg"
   },
   7: {
@@ -291,7 +291,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2025",
-    price: "€3,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0006.jpg"
   },
   8: {
@@ -301,7 +301,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "120 x 90 cm",
     year: "2025",
-    price: "€4,000 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0007.jpg"
   },
   9: {
@@ -311,7 +311,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "18 x 24 in",
     year: "2024",
-    price: "€2,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Luis Molina/Pensamiento.jpeg"
   },
   10: {
@@ -321,7 +321,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2023",
-    price: "€4,500 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Manuel Lopez Oliva/Después de la máscara.jpg"
   },
   11: {
@@ -331,7 +331,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "120 x 100 cm",
     year: "2024",
-    price: "€5,000 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Manuel Lopez Oliva/El poder de la piña.jpg"
   },
 
@@ -342,7 +342,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "150 x 110 cm",
     year: "2023",
-    price: "€5,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Maykel Herrera/Génesis.jpg"
   },
   15: {
@@ -352,7 +352,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "43 x 59 in",
     year: "2011",
-    price: "€6,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg"
   },
   16: {
@@ -362,7 +362,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "91.44 x 91.44 cm (36 x 36 in)",
     year: "2024",
-    price: "€3,600 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg"
   },
   17: {
@@ -372,7 +372,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "120 x 90 cm (47.2 x 35.4 in)",
     year: "2024",
-    price: "€4,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Orestes Gaulhiac/La novia alada.jpeg"
   },
   18: {
@@ -382,7 +382,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "36 x 47 in",
     year: "2023",
-    price: "€4,700 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg"
   },
   19: {
@@ -392,7 +392,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "47 x 36 in",
     year: "2023",
-    price: "€4,700 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 47x36 in.jpg"
   },
   20: {
@@ -402,7 +402,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "182 x 152 cm",
     year: "2025",
-    price: "€6,500 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg"
   },
 
@@ -413,7 +413,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "€4,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg"
   },
   24: {
@@ -423,7 +423,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2024",
-    price: "€4,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.27.jpeg"
   },
   25: {
@@ -433,7 +433,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "100 x 80 cm",
     year: "2023",
-    price: "€3,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.28.jpeg"
   },
   26: {
@@ -443,7 +443,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "63 x 43 in",
     year: "2024",
-    price: "€5,400 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg"
   },
   27: {
@@ -453,7 +453,7 @@ const artworksData = {
     technique: "Técnica mixta sobre lienzo",
     dimensions: "27 x 38.5 in",
     year: "2010",
-    price: "€4,100 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg"
   },
   28: {
@@ -463,7 +463,7 @@ const artworksData = {
     technique: "Técnica mixta y resina",
     dimensions: "27 x 5 x 39 in",
     year: "2007",
-    price: "€4,300 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 5 x 39 in.  2007.jpg"
   },
   29: {
@@ -473,7 +473,7 @@ const artworksData = {
     technique: "Técnica mixta",
     dimensions: "24 x 36 in",
     year: "2021",
-    price: "€3,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Silvia Castagnino/20210625_103035.jpeg"
   },
   30: {
@@ -483,7 +483,7 @@ const artworksData = {
     technique: "Técnica mixta",
     dimensions: "24 x 36 in",
     year: "2021",
-    price: "€3,800 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Silvia Castagnino/20210625_103044.jpeg"
   },
   31: {
@@ -493,7 +493,7 @@ const artworksData = {
     technique: "Acrílico sobre lienzo",
     dimensions: "42 x 46 in",
     year: "2023",
-    price: "€4,900 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png"
   },
   32: {
@@ -503,7 +503,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "48 x 52 in",
     year: "2024",
-    price: "€5,200 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alex Stevenson/48 x 52 in.jpeg"
   },
   33: {
@@ -513,7 +513,7 @@ const artworksData = {
     technique: "Óleo sobre lienzo",
     dimensions: "50 x 55 in",
     year: "2024",
-    price: "€5,500 EUR",
+    price: "Consultar",
     image: "/src/Artistas/Alex Stevenson/50 x 55 in.jpeg"
   },
   34: {
