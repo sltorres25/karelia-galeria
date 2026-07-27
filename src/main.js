@@ -233,7 +233,7 @@ const artworksData = {
     dimensions: "150 x 100 cm",
     year: "2024",
     price: "Consultar",
-    image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg"
+    image: "/src/Artistas/Carlos René Aguilera/Cañaveral 150x100 cm.jpeg"
   },
   5: {
     title: "Laberinto del Tiempo",
@@ -243,7 +243,7 @@ const artworksData = {
     dimensions: "120 x 120 cm",
     year: "2025",
     price: "Consultar",
-    image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg"
+    image: "/src/Artistas/Carlos René Aguilera/120x120 cm.jpg"
   },
   6: {
     title: "Fuera del Radar",
@@ -253,7 +253,7 @@ const artworksData = {
     dimensions: "140 x 56 cm",
     year: "2020",
     price: "Consultar",
-    image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg"
+    image: "/src/Artistas/Gerlys Álvarez/140 x 56 cm.jpg"
   },
   7: {
     title: "Marea Silenciosa",
@@ -1116,16 +1116,20 @@ function initNavbar() {
   const navLinks = document.querySelectorAll('.nav-link');
 
   // Sticky scroll effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      const isSubpage = window.location.pathname.includes('artistas.html') || window.location.pathname.includes('obras.html');
-      if (!isSubpage) {
+  const hasHero = !!document.getElementById('hero');
+  function handleScroll() {
+    if (hasHero) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
         navbar.classList.remove('scrolled');
       }
+    } else {
+      navbar.classList.add('scrolled');
     }
-  });
+  }
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Run initially on load
 
   // Mobile menu toggle
   if (navToggle && navMenu) {
@@ -1163,15 +1167,15 @@ function initNavbar() {
   } else {
     // Scroll spy for index.html sections
     const sections = document.querySelectorAll('section[id]');
-    
+
     function scrollSpy() {
       const scrollY = window.scrollY;
-      
+
       sections.forEach(current => {
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - 120; // offset for sticky navbar
         const sectionId = current.getAttribute('id');
-        
+
         const navLink = document.querySelector(`.nav-menu a[href$="#${sectionId}"], .nav-menu a[href$="${sectionId}"]`);
         if (navLink) {
           if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -1193,7 +1197,7 @@ function initNavbar() {
  * ------------------------------------------------------------- */
 function initScrollReveal() {
   const revealElements = document.querySelectorAll('.scroll-reveal');
-  
+
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1217,7 +1221,7 @@ function initScrollReveal() {
  * ------------------------------------------------------------- */
 function initStatsCounters() {
   const statNumbers = document.querySelectorAll('.stat-number');
-  
+
   const countObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1247,7 +1251,7 @@ function animateCounter(element, target) {
   const timer = setInterval(() => {
     currentFrame++;
     start += increment;
-    
+
     if (currentFrame >= totalFrames) {
       element.textContent = target;
       clearInterval(timer);
@@ -1270,7 +1274,7 @@ function updateArtworkVisibility() {
   artworkItems.forEach(item => {
     const category = item.getAttribute('data-category');
     const matchesFilter = (currentFilter === 'all' || category === currentFilter);
-    
+
     if (matchesFilter) {
       visibleCount++;
       const shouldShow = artworksExpanded || visibleCount <= 3;
@@ -1349,7 +1353,7 @@ function initArtworkModal() {
   const modalBackdrop = document.getElementById('modal-backdrop');
   const modalClose = document.getElementById('modal-close');
   const artworkCards = document.querySelectorAll('.artwork-item');
-  
+
   // Modal Fields
   const mImage = document.getElementById('modal-image');
   const mCategory = document.getElementById('modal-category');
@@ -1372,7 +1376,7 @@ function initArtworkModal() {
       wrapper.addEventListener('click', () => {
         const id = card.getAttribute('data-id');
         const data = artworksData[id];
-        
+
         if (data) {
           const currentLang = localStorage.getItem('preferred-language') || 'es';
           const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
@@ -1399,7 +1403,7 @@ function initArtworkModal() {
             mAddToCartBtn.setAttribute('data-id', id);
             updateAddToCartButtonState(id);
           }
-          
+
           // Clear status from previous views
           if (mInquiryStatus) {
             mInquiryStatus.textContent = '';
@@ -1418,7 +1422,7 @@ function initArtworkModal() {
           // Open Modal
           modal.style.display = 'flex';
           document.body.style.overflow = 'hidden'; // Lock background scrolling
-          
+
           // Trigger CSS transition delay
           setTimeout(() => {
             modal.classList.add('active');
@@ -1431,7 +1435,7 @@ function initArtworkModal() {
   const closeModal = () => {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Unlock scroll
-    
+
     // Wait for animation, then hide
     setTimeout(() => {
       modal.style.display = 'none';
@@ -1456,9 +1460,9 @@ function initTestimonialSlider() {
   const slides = document.querySelectorAll('#testimonial-slider .slide');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
-  
+
   if (slides.length === 0) return;
-  
+
   let currentIndex = 0;
   let autoSlideTimer = null;
 
@@ -1524,10 +1528,10 @@ function initContactForms() {
   if (contactForm && formStatus) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
-      
+
       // Loading visual state
       submitBtn.textContent = 'Enviando...';
       submitBtn.disabled = true;
@@ -1538,11 +1542,11 @@ function initContactForms() {
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        
+
         // Success feedback
         formStatus.textContent = '¡Gracias! Tu mensaje ha sido enviado con éxito. Un asesor de la galería te contactará en un plazo de 24 horas.';
         formStatus.classList.add('success');
-        
+
         contactForm.reset();
       }, 1500);
     });
@@ -1555,10 +1559,10 @@ function initContactForms() {
   if (inquiryForm && inquiryStatus) {
     inquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const submitBtn = inquiryForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
-      
+
       submitBtn.textContent = 'Procesando consulta...';
       submitBtn.disabled = true;
       inquiryStatus.textContent = '';
@@ -1568,11 +1572,11 @@ function initContactForms() {
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        
+
         // Success feedback
         inquiryStatus.textContent = 'Consulta registrada. Hemos reservado temporalmente la pieza para ti y enviado los detalles de cotización a tu correo.';
         inquiryStatus.classList.add('success');
-        
+
         inquiryForm.reset();
       }, 1200);
     });
@@ -1607,11 +1611,11 @@ function initObrasCatalogPage() {
   // Populate dynamic dropdowns with language awareness
   function populateCatalogDropdowns() {
     const currentLang = localStorage.getItem('preferred-language') || 'es';
-    
+
     if (filterArtist) {
       const defaultText = currentLang === 'en' ? 'All artists' : 'Todos los artistas';
       const artists = [...new Set(artistsData.map(a => a.name))].sort();
-      filterArtist.innerHTML = `<option value="all">${defaultText}</option>` + 
+      filterArtist.innerHTML = `<option value="all">${defaultText}</option>` +
         artists.map(a => `<option value="${a}">${a}</option>`).join('');
     }
 
@@ -1621,8 +1625,8 @@ function initObrasCatalogPage() {
         const parts = a.country.split(',');
         return parts[parts.length - 1].trim();
       }))].sort();
-      
-      filterCountry.innerHTML = `<option value="all">${defaultText}</option>` + 
+
+      filterCountry.innerHTML = `<option value="all">${defaultText}</option>` +
         countries.map(c => {
           const translatedName = translateCountry(c, currentLang);
           return `<option value="${c}">${translatedName}</option>`;
@@ -1739,7 +1743,7 @@ function initObrasCatalogPage() {
 function bindModalEventsToCatalog() {
   const modal = document.getElementById('artwork-modal');
   if (!modal) return;
-  
+
   const mImage = document.getElementById('modal-image');
   const mCategory = document.getElementById('modal-category');
   const mTitle = document.getElementById('modal-title');
@@ -2442,7 +2446,7 @@ function translatePage(lang) {
 
 function initLanguageSwitcher() {
   const currentLang = localStorage.getItem('preferred-language') || 'es';
-  
+
   // Set up event listeners for all language switch buttons
   const buttons = document.querySelectorAll('.lang-btn');
   buttons.forEach(btn => {
@@ -2618,12 +2622,12 @@ function initCartToggleEvents() {
   const closeCart = () => {
     drawer.classList.remove('active');
     backdrop.classList.remove('active');
-    
+
     // Unlock scrolling if no modal is active
     const detailModal = document.getElementById('artwork-modal');
     const checkoutModal = document.getElementById('checkout-modal');
-    const isModalOpen = (detailModal && detailModal.classList.contains('active')) || 
-                        (checkoutModal && checkoutModal.classList.contains('active'));
+    const isModalOpen = (detailModal && detailModal.classList.contains('active')) ||
+      (checkoutModal && checkoutModal.classList.contains('active'));
     if (!isModalOpen) {
       document.body.style.overflow = '';
     }
@@ -2715,7 +2719,7 @@ function initCheckoutEvents() {
     // Hide checkout form and display loader spinner
     checkoutForm.style.display = 'none';
     const body = document.getElementById('checkout-body-content');
-    
+
     const loaderHtml = `
       <div class="checkout-loader">
         <div class="spinner"></div>
@@ -2745,7 +2749,7 @@ function initCheckoutEvents() {
       // Display success view
       const orderNum = 'AM-' + Math.floor(100000 + Math.random() * 900000);
       const successTitle = currentLang === 'en' ? 'Purchase Successful!' : '¡Compra Realizada con Éxito!';
-      const successDesc = currentLang === 'en' 
+      const successDesc = currentLang === 'en'
         ? 'Thank you for your acquisition. We have sent a confirmation email with delivery tracking details.'
         : 'Muchas gracias por su adquisición. Hemos enviado un correo de confirmación con los detalles de seguimiento de su entrega.';
       const successBtnText = currentLang === 'en' ? 'Close Window' : 'Cerrar Ventana';
@@ -2790,26 +2794,26 @@ function popCartCount() {
 function initPremiumInteractiveEffects() {
   // Glare / Shine / Radial Gradient hover reflection effect on cards
   const cards = document.querySelectorAll('.artwork-image-wrapper, .artist-image-container, .concepto-image-wrapper');
-  
+
   cards.forEach(card => {
     // Check if shine overlay already exists to avoid duplicates
     if (card.querySelector('.shine-overlay')) return;
-    
+
     const shine = document.createElement('div');
     shine.className = 'shine-overlay';
     card.appendChild(shine);
-    
+
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const px = (x / rect.width) * 100;
       const py = (y / rect.height) * 100;
-      
+
       shine.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 80%)`;
     });
-    
+
     card.addEventListener('mouseleave', () => {
       shine.style.background = 'none';
     });
@@ -2824,11 +2828,11 @@ function initHeroParallax() {
   hero.addEventListener('mousemove', e => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     // Subtly shift content and background in opposite direction for parallax depth
     const moveX = (e.clientX - width / 2) / (width / 2) * 15;
     const moveY = (e.clientY - height / 2) / (height / 2) * 15;
-    
+
     heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
     hero.style.backgroundPosition = `calc(50% - ${moveX * 0.5}px) calc(50% - ${moveY * 0.5}px)`;
   });
@@ -2869,41 +2873,41 @@ function initArtistDetailPage() {
   }
 
   const currentLang = localStorage.getItem('preferred-language') || 'es';
-  
+
   // Translate fields
   const name = artist.name;
   const bio = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.bio || artist.bio) : artist.bio;
   const countryName = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.country || artist.country) : artist.country;
   const artType = artist.artType[currentLang] || artist.artType['es'];
-  
+
   // Birth year label translation
   const birthLabel = currentLang === 'en' ? 'Year of Birth' : 'Año de Nacimiento';
   const birthValue = artist.birthYear || (currentLang === 'en' ? 'Unknown' : 'Desconocido');
-  
+
   const typeLabel = currentLang === 'en' ? 'Art Type' : 'Tipo de Arte';
   const countryLabel = currentLang === 'en' ? 'Country of Origin' : 'País de Origen';
 
   // Populate basic info
   document.title = `${name} | Arte Mestizo`;
-  
+
   const imgEl = document.getElementById('artist-detail-image');
   if (imgEl) {
     imgEl.src = getImageUrl(artist.image);
     imgEl.alt = name;
   }
-  
+
   const nameEl = document.getElementById('artist-detail-name');
   if (nameEl) nameEl.textContent = name;
-  
+
   const birthEl = document.getElementById('artist-detail-birth');
   if (birthEl) birthEl.innerHTML = `<strong>${birthLabel}:</strong> ${birthValue}`;
-  
+
   const countryEl = document.getElementById('artist-detail-country');
   if (countryEl) countryEl.innerHTML = `<strong>${countryLabel}:</strong> ${getFlagSvg(artist.flag)} ${countryName}`;
-  
+
   const typeEl = document.getElementById('artist-detail-type');
   if (typeEl) typeEl.innerHTML = `<strong>${typeLabel}:</strong> ${artType}`;
-  
+
   const bioEl = document.getElementById('artist-detail-bio');
   if (bioEl) bioEl.textContent = bio;
 
@@ -2911,12 +2915,12 @@ function initArtistDetailPage() {
   const artworksGrid = document.getElementById('artist-detail-artworks');
   if (artworksGrid) {
     const artistWorks = Object.entries(artworksData).filter(([id, artwork]) => artwork.artist.toLowerCase() === name.toLowerCase());
-    
+
     if (artistWorks.length === 0) {
       artworksGrid.innerHTML = `<p class="no-artworks-msg">${currentLang === 'en' ? 'No artworks found for this artist.' : 'No se encontraron obras para este artista.'}</p>`;
       return;
     }
-    
+
     artworksGrid.innerHTML = artistWorks.map(([id, artwork]) => {
       const title = currentLang === 'en' ? (artworkTitlesEn[id] || artwork.title) : artwork.title;
       const technique = translateTechnique(artwork.technique, currentLang);
@@ -2925,7 +2929,7 @@ function initArtistDetailPage() {
       const soldClass = isSold ? ' sold' : '';
       const soldText = currentLang === 'en' ? 'SOLD' : 'VENDIDO';
       const soldAttr = isSold ? ` data-sold-text="${soldText}"` : '';
-      
+
       return `
         <div class="artwork-item show${soldClass}" data-id="${id}"${soldAttr} style="display: block; opacity: 1; transform: none;">
           <div class="artwork-card">
@@ -2954,7 +2958,7 @@ function initArtistDetailPage() {
         </div>
       `;
     }).join('');
-    
+
     // Bind click handlers for details lightbox modal
     const items = artworksGrid.querySelectorAll('.artwork-image-wrapper');
     const modal = document.getElementById('artwork-modal');
@@ -3029,7 +3033,7 @@ function initArtistDetailPage() {
       });
     }
   }
-  
+
   // Re-run glare effects on newly generated cards
   if (typeof initPremiumInteractiveEffects === 'function') {
     initPremiumInteractiveEffects();
