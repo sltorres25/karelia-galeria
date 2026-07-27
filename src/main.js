@@ -224,36 +224,7 @@ const artistsData = [
 
 // Artwork Metadata Database
 const artworksData = {
-  1: {
-    title: "Quietud Dinámica",
-    artist: "Alexis Pantoja",
-    category: "Abstracto",
-    technique: "Óleo sobre lienzo",
-    dimensions: "150 x 150 cm",
-    year: "2025",
-    price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/img1.jpeg"
-  },
-  2: {
-    title: "Fragmentos del Viento",
-    artist: "Alexis Pantoja",
-    category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "120 x 100 cm",
-    year: "2024",
-    price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0003.jpg"
-  },
-  3: {
-    title: "Rumbos Invisibles",
-    artist: "Alexis Pantoja",
-    category: "Abstracto",
-    technique: "Óleo sobre lienzo",
-    dimensions: "100 x 80 cm",
-    year: "2024",
-    price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
-  },
+
   4: {
     title: "Cañaveral",
     artist: "Carlos René Aguilera",
@@ -735,7 +706,7 @@ const artworksData = {
     dimensions: "100 x 100 cm (39.4 x 39.4 in)",
     year: "Desconocido",
     price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/img.jpeg"
+    image: "/src/Artistas/Alexis Pantoja/Screenshot_20260412_153044_Chrome.jpg"
   },
   57: {
     title: "Sin título",
@@ -745,7 +716,7 @@ const artworksData = {
     dimensions: "60 x 90 cm (23.6 x 35.4 in)",
     year: "Desconocido",
     price: "Consultar",
-    image: "/src/Artistas/Alexis Pantoja/sin titulo 60x90.jpg"
+    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0003.jpg"
   },
   58: {
     title: "Leda",
@@ -756,14 +727,22 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
+  },
+  59: {
+    title: "Sinfonía en rojo",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "130 x 100 cm",
+    year: "2020",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/Screenshot_20260412_153105_Chrome.jpg"
   }
 };
 
 // Artwork Themes Mapping (Bilingual)
 const artworkThemes = {
-  1: { es: "Composición espacial", en: "Spatial composition" },
-  2: { es: "Paisaje abstracto", en: "Abstract landscape" },
-  3: { es: "Búsqueda interior", en: "Inner search" },
+
   4: { es: "Surrealismo tropical", en: "Tropical surrealism" },
   5: { es: "Tiempo y laberinto", en: "Time and labyrinth" },
   6: { es: "Marina expresiva", en: "Expressive seascape" },
@@ -816,7 +795,8 @@ const artworkThemes = {
   55: { es: "Escena social", en: "Social scene" },
   56: { es: "Fantasía figurativa", en: "Figurative fantasy" },
   57: { es: "Fantasía figurativa", en: "Figurative fantasy" },
-  58: { es: "Mitología clásica", en: "Classical mythology" }
+  58: { es: "Mitología clásica", en: "Classical mythology" },
+  59: { es: "Sinfonía expresiva", en: "Expressive symphony" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1691,9 +1671,7 @@ function bindModalEventsToCatalog() {
  * Translation & Bilingual System
  * ------------------------------------------------------------- */
 const artworkTitlesEn = {
-  1: "Dynamic Quietude",
-  2: "Fragments of the Wind",
-  3: "Invisible Paths",
+
   4: "Cane Field",
   5: "Labyrinth of Time",
   6: "Out of the Radar",
@@ -1746,7 +1724,8 @@ const artworkTitlesEn = {
   55: "Billiards",
   56: "Untitled",
   57: "Untitled",
-  58: "Leda"
+  58: "Leda",
+  59: "Symphony in Red"
 };
 
 const artistTranslationsEn = {
