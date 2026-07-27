@@ -21,7 +21,7 @@ const artistsData = [
       en: "Expressive figuration"
     },
     bio: "Su pintura reinterpreta la figuración expresiva y lo fantástico mediante composiciones dinámicas con una pincelada gestual y texturas ricas.",
-    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0000.jpg",
+    image: "/src/Artistas/Alexis Pantoja/img1.jpeg",
     filter: "abstracto"
   },
   {
@@ -35,7 +35,7 @@ const artistsData = [
       en: "Symbolic expressionism"
     },
     bio: "Explora la visualidad caribeña mediante formas enredadas, sogas y una profunda metáfora sobre la insularidad y el escape del confinamiento.",
-    image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg",
+    image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg",
     filter: "texturado"
   },
   {
@@ -63,7 +63,7 @@ const artistsData = [
       en: "Folkloric expressionism"
     },
     bio: "Representa el folclore afrocubano y la vida rural bajo el intenso mediodía caribeño, con un dominio singular de la luz y la transparencia.",
-    image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg",
+    image: "/src/Artistas/Luis Molina/Pensamiento.jpeg",
     filter: "texturado"
   },
   {
@@ -77,7 +77,7 @@ const artistsData = [
       en: "Theatrical expressionism"
     },
     bio: "Prestigioso creador y crítico que concibe la obra como un escenario teatral, empleando la máscara como símbolo de la identidad y la teatralidad sociales.",
-    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg",
+    image: "/src/Artistas/Manuel Lopez Oliva/Después de la máscara.jpg",
     filter: "expresionismo"
   },
   {
@@ -91,7 +91,7 @@ const artistsData = [
       en: "Organic abstraction"
     },
     bio: "Sus abstracciones orgánicas sobre soportes pesados investigan la textura y los ritmos naturales íntimos de la geografía caribeña.",
-    image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg",
+    image: "/src/Artistas/Maria Consuelo/Angel principado Jahasiel.jpeg",
     filter: "abstracto"
   },
   {
@@ -105,7 +105,7 @@ const artistsData = [
       en: "Figurative expressionism"
     },
     bio: "A través del retrato expresivo de niños con miradas intensas, crea metáforas poéticas e irónicas sobre la realidad y psicología sociales.",
-    image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg",
+    image: "/src/Artistas/Maykel Herrera/Génesis.jpg",
     filter: "expresionismo"
   },
   {
@@ -147,7 +147,7 @@ const artistsData = [
       en: "Symbolic expressionism"
     },
     bio: "Maestro del expresionismo simbólico caribeño cuyas espirales y figuras híbridas exploran la psique profunda e introspectiva.",
-    image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg",
+    image: "/src/Artistas/Vicente Dopico/Crucifixión.jpeg",
     filter: "abstracto"
   },
   {
@@ -252,7 +252,7 @@ const artworksData = {
     dimensions: "100 x 80 cm",
     year: "2024",
     price: "€3,900 EUR",
-    image: "/src/Artistas/Alexis Pantoja/IMG-20250925-WA0004.jpg"
+    image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
   },
   4: {
     title: "Horizonte Sensible",
@@ -262,7 +262,7 @@ const artworksData = {
     dimensions: "150 x 100 cm",
     year: "2024",
     price: "€4,800 EUR",
-    image: "/src/Artistas/Carlos Rene Aguilera/150x100 cm.jpeg"
+    image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg"
   },
   5: {
     title: "Laberinto del Tiempo",
@@ -312,7 +312,7 @@ const artworksData = {
     dimensions: "18 x 24 in",
     year: "2024",
     price: "€2,800 EUR",
-    image: "/src/Artistas/Luis Molina/18 x 24 pulgadas.jpeg"
+    image: "/src/Artistas/Luis Molina/Pensamiento.jpeg"
   },
   10: {
     title: "Máscara de Carnaval",
@@ -322,7 +322,7 @@ const artworksData = {
     dimensions: "100 x 80 cm",
     year: "2023",
     price: "€4,500 EUR",
-    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140622_Drive.jpg"
+    image: "/src/Artistas/Manuel Lopez Oliva/Después de la máscara.jpg"
   },
   11: {
     title: "Danza Ritual",
@@ -332,7 +332,7 @@ const artworksData = {
     dimensions: "120 x 100 cm",
     year: "2024",
     price: "€5,000 EUR",
-    image: "/src/Artistas/Manuel Lopez Oliva/Screenshot_20250818_140649_Drive.jpg"
+    image: "/src/Artistas/Manuel Lopez Oliva/El poder de la piña.jpg"
   },
   12: {
     title: "Composición Orgánica I",
@@ -342,7 +342,7 @@ const artworksData = {
     dimensions: "38 x 28 in",
     year: "2024",
     price: "€3,400 EUR",
-    image: "/src/Artistas/Maria Consuelo/38 x 28 in. .jpeg"
+    image: "/src/Artistas/Maria Consuelo/Angel principado Jahasiel.jpeg"
   },
   13: {
     title: "Composición Orgánica II",
@@ -352,7 +352,7 @@ const artworksData = {
     dimensions: "38 x 28 in",
     year: "2024",
     price: "€3,400 EUR",
-    image: "/src/Artistas/Maria Consuelo/Heavvy paper. 38 x 28 in.jpeg"
+    image: "/src/Artistas/Maria Consuelo/Arcángel Michael.jpeg"
   },
   14: {
     title: "Rezo",
@@ -362,7 +362,7 @@ const artworksData = {
     dimensions: "150 x 110 cm",
     year: "2023",
     price: "€5,800 EUR",
-    image: "/src/Artistas/Maykel Herrera/Rezo. 59x43. Canvas.jpg"
+    image: "/src/Artistas/Maykel Herrera/Génesis.jpg"
   },
   15: {
     title: "Expedición",
@@ -432,7 +432,7 @@ const artworksData = {
     dimensions: "24 x 18 in",
     year: "2023",
     price: "€2,900 EUR",
-    image: "/src/Artistas/Vicente Dopico/24 x 18 in.jpeg"
+    image: "/src/Artistas/Vicente Dopico/La luz del silencio.jpeg"
   },
   22: {
     title: "Reflejos de la Memoria",
@@ -442,7 +442,7 @@ const artworksData = {
     dimensions: "26 x 22 in",
     year: "2023",
     price: "€3,200 EUR",
-    image: "/src/Artistas/Vicente Dopico/26 x 22 in.jpeg"
+    image: "/src/Artistas/Vicente Dopico/Crucifixión.jpeg"
   },
   23: {
     title: "Rostro Geométrico I",
