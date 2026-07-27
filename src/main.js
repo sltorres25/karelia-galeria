@@ -307,11 +307,11 @@ const artworksData = {
   },
 
   14: {
-    title: "Rezo",
+    title: "Génesis",
     artist: "Maykel Herrera",
     category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "150 x 110 cm",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "60 x 45 cm (23.6 x 17.7 in)",
     year: "2023",
     price: "Consultar",
     image: "/src/Artistas/Maykel Herrera/Génesis.jpg"
@@ -321,7 +321,7 @@ const artworksData = {
     artist: "Maykel Herrera",
     category: "Expresionismo",
     technique: "Óleo sobre lienzo",
-    dimensions: "43 x 59 in",
+    dimensions: "110 x 150 cm (43.3 x 59.1 in)",
     year: "2011",
     price: "Consultar",
     image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg"
@@ -808,6 +808,66 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Luis Molina/Descanso del guajiro.jpeg"
+  },
+  67: {
+    title: "Las heridas de la tierra",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "150 x 70 cm (59.1 x 27.6 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Las heridas de la tierra.jpeg"
+  },
+  68: {
+    title: "Amén",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "100 x 70 cm (39.4 x 27.6 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Amen.jpeg"
+  },
+  69: {
+    title: "Guajiro cepillao",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "100 x 80 cm (39.4 x 31.5 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Guajiro cepillao.jpeg"
+  },
+  70: {
+    title: "Visión de futuro",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "80 x 60 cm (31.5 x 23.6 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Vision de futuro.jpeg"
+  },
+  71: {
+    title: "Un sueño en amarillo pollito",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "120 x 120 cm (47.2 x 47.2 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Un sueño en amarillo pollito.jpeg"
+  },
+  72: {
+    title: "Vuelo ciego",
+    artist: "Maykel Herrera",
+    category: "Expresionismo",
+    technique: "Técnica mixta sobre lienzo",
+    dimensions: "130 x 90 cm (51.2 x 35.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Maykel Herrera/Vuelo Ciego.jpeg"
   }
 };
 
@@ -875,7 +935,13 @@ const artworkThemes = {
   63: { es: "Fantasía mística", en: "Mystical fantasy" },
   64: { es: "Paisaje rural", en: "Rural landscape" },
   65: { es: "Naturaleza y fauna", en: "Nature and wildlife" },
-  66: { es: "Vida campesina", en: "Peasant life" }
+  66: { es: "Vida campesina", en: "Peasant life" },
+  67: { es: "Expresionismo ecológico", en: "Ecological expressionism" },
+  68: { es: "Espiritualidad contemporánea", en: "Contemporary spirituality" },
+  69: { es: "Campesino cubano", en: "Cuban peasant" },
+  70: { es: "Visión de futuro", en: "Vision of future" },
+  71: { es: "Fantasía infantil", en: "Childhood fantasy" },
+  72: { es: "Búsqueda de libertad", en: "Search for freedom" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1760,7 +1826,7 @@ const artworkTitlesEn = {
   10: "After the Mask",
   11: "The Power of the Pineapple",
 
-  14: "Prayer",
+  14: "Genesis",
   15: "Expedition",
   16: "Untitled",
   17: "The Winged Bride",
@@ -1812,7 +1878,13 @@ const artworkTitlesEn = {
   63: "The Mystique of Butterflies",
   64: "Dawn with Roosters",
   65: "Dawn with Flowers and Mockingbirds",
-  66: "The Peasant's Rest"
+  66: "The Peasant's Rest",
+  67: "The Earth's Wounds",
+  68: "Amen",
+  69: "Brushed Peasant",
+  70: "Vision of the Future",
+  71: "A Dream in Chick Yellow",
+  72: "Blind Flight"
 };
 
 const artistTranslationsEn = {
