@@ -233,7 +233,7 @@ const artworksData = {
     dimensions: "150 x 100 cm",
     year: "2024",
     price: "Consultar",
-    image: "/src/Artistas/Carlos René Aguilera/Cañaveral 150x100 cm.jpeg"
+    image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg"
   },
   5: {
     title: "Laberinto del Tiempo",
@@ -243,7 +243,7 @@ const artworksData = {
     dimensions: "120 x 120 cm",
     year: "2025",
     price: "Consultar",
-    image: "/src/Artistas/Carlos René Aguilera/120x120 cm.jpg"
+    image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg"
   },
   6: {
     title: "Fuera del Radar",
@@ -253,7 +253,7 @@ const artworksData = {
     dimensions: "140 x 56 cm",
     year: "2020",
     price: "Consultar",
-    image: "/src/Artistas/Gerlys Álvarez/140 x 56 cm.jpg"
+    image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg"
   },
   7: {
     title: "Marea Silenciosa",
