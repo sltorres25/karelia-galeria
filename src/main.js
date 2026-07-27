@@ -718,6 +718,26 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/Leda.jpg"
+  },
+  56: {
+    title: "Sin título",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 100 cm (39.4 x 39.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/img.jpeg"
+  },
+  59: {
+    title: "Sin título",
+    artist: "Alexis Pantoja",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "100 x 100 cm (39.4 x 39.4 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Alexis Pantoja/img1.jpeg"
   }
 };
 
@@ -776,7 +796,9 @@ const artworkThemes = {
   55: { es: "Escena social", en: "Social scene" },
 
   57: { es: "Fantasía figurativa", en: "Figurative fantasy" },
-  58: { es: "Mitología clásica", en: "Classical mythology" }
+  58: { es: "Mitología clásica", en: "Classical mythology" },
+  56: { es: "Fantasía lúdica", en: "Playful fantasy" },
+  59: { es: "Fantasía figurativa", en: "Figurative fantasy" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1704,7 +1726,9 @@ const artworkTitlesEn = {
   55: "Billiards",
 
   57: "Untitled",
-  58: "Leda"
+  58: "Leda",
+  56: "Untitled",
+  59: "Untitled"
 };
 
 const artistTranslationsEn = {
