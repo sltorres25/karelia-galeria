@@ -574,16 +574,7 @@ const artworksData = {
     price: "Consultar",
     image: "/src/Artistas/Orlando Boffill/Error de magia.jpg"
   },
-  36: {
-    title: "Cañaveral",
-    artist: "Orlando Boffill",
-    category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "100 x 80 cm",
-    year: "Desconocido",
-    price: "Consultar",
-    image: "/src/Artistas/Orlando Boffill/Cañaveral.jpg"
-  },
+
   37: {
     title: "Tejiendo",
     artist: "Carlos René Aguilera",
@@ -843,7 +834,7 @@ const artworkThemes = {
   33: { es: "Figuración interior", en: "Inner figuration" },
   34: { es: "Composición lúdica", en: "Playful composition" },
   35: { es: "Fantasía lúdica", en: "Playful fantasy" },
-  36: { es: "Surrealismo tropical", en: "Tropical surrealism" },
+
   37: { es: "Expresionismo figurativo", en: "Figurative expressionism" },
   38: { es: "Utopías y entropías", en: "Utopias and entropies" },
   39: { es: "Expresionismo abstracto", en: "Abstract expressionism" },
@@ -1775,7 +1766,7 @@ const artworkTitlesEn = {
   33: "Inner Flight",
   34: "Road to Gold",
   35: "Magic Error",
-  36: "Cane Field",
+
   37: "Weaving",
   38: "Definitive Race (Utopias and Entropies Series)",
   39: "After Chaos",
