@@ -334,26 +334,7 @@ const artworksData = {
     price: "€5,000 EUR",
     image: "/src/Artistas/Manuel Lopez Oliva/El poder de la piña.jpg"
   },
-  12: {
-    title: "Composición Orgánica I",
-    artist: "María Consuelo",
-    category: "Abstracto",
-    technique: "Acrílico sobre papel pesado",
-    dimensions: "38 x 28 in",
-    year: "2024",
-    price: "€3,400 EUR",
-    image: "/src/Artistas/Maria Consuelo/Angel principado Jahasiel.jpeg"
-  },
-  13: {
-    title: "Composición Orgánica II",
-    artist: "María Consuelo",
-    category: "Texturado",
-    technique: "Acrílico sobre papel pesado",
-    dimensions: "38 x 28 in",
-    year: "2024",
-    price: "€3,400 EUR",
-    image: "/src/Artistas/Maria Consuelo/Arcángel Michael.jpeg"
-  },
+
   14: {
     title: "Rezo",
     artist: "Maykel Herrera",
@@ -791,8 +772,7 @@ const artworkThemes = {
   9: { es: "Estudio de luz", en: "Light study" },
   10: { es: "Teatralidad y máscara", en: "Theatricality and mask" },
   11: { es: "Ritual expresionista", en: "Expressionist ritual" },
-  12: { es: "Naturaleza orgánica", en: "Organic nature" },
-  13: { es: "Naturaleza y textura", en: "Nature and texture" },
+
   14: { es: "Retrato social", en: "Social portrait" },
   15: { es: "Retrato social", en: "Social portrait" },
   16: { es: "Fantasía mística", en: "Mystical fantasy" },
@@ -1722,8 +1702,7 @@ const artworkTitlesEn = {
   9: "Study of Light",
   10: "Carnival Mask",
   11: "Ritual Dance",
-  12: "Organic Composition I",
-  13: "Organic Composition II",
+
   14: "Prayer",
   15: "Expedition",
   16: "Untitled",
