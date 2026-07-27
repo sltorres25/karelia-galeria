@@ -276,12 +276,12 @@ const artworksData = {
     image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0007.jpg"
   },
   9: {
-    title: "Estudio de Luz",
+    title: "Pensamiento",
     artist: "Luis Molina",
-    category: "Texturado",
-    technique: "Técnica mixta sobre lienzo",
-    dimensions: "18 x 24 in",
-    year: "2024",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "60 x 80 cm (23.6 x 31.5 in)",
+    year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Luis Molina/Pensamiento.jpeg"
   },
@@ -748,6 +748,66 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Manuel Lopez Oliva/Discurso Ornamental.jpeg"
+  },
+  61: {
+    title: "Guajiro con marañones",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "61 x 91.4 cm (24 x 36 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/Guajiro con marañones.jpeg"
+  },
+  62: {
+    title: "La Virgen de la Caridad del Cobre",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "101.6 x 40.6 cm (40 x 16 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/La Virgen de la Caridad del Cobre.jpeg"
+  },
+  63: {
+    title: "La mística de las mariposas",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "101.6 x 40.6 cm (40 x 16 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/La mística de las mariposas.jpeg"
+  },
+  64: {
+    title: "Amanecer con gallos",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "76.2 x 76.2 cm (30 x 30 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/Amanecer con gallos.jpeg"
+  },
+  65: {
+    title: "Amanecer con flores y sinsontes",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "61 x 91.4 cm (24 x 36 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/Amanecer con flores y sinsontes.jpeg"
+  },
+  66: {
+    title: "El descanso del guajiro",
+    artist: "Luis Molina",
+    category: "Expresionismo",
+    technique: "Óleo sobre lienzo",
+    dimensions: "61 x 101.6 cm (24 x 40 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Luis Molina/Descanso del guajiro.jpeg"
   }
 };
 
@@ -809,7 +869,13 @@ const artworkThemes = {
   58: { es: "Mitología clásica", en: "Classical mythology" },
   56: { es: "Fantasía lúdica", en: "Playful fantasy" },
   59: { es: "Fantasía figurativa", en: "Figurative fantasy" },
-  60: { es: "Teatralidad ornamentada", en: "Ornate theatricality" }
+  60: { es: "Teatralidad ornamentada", en: "Ornate theatricality" },
+  61: { es: "Campesino cubano", en: "Cuban peasant" },
+  62: { es: "Misticismo religioso", en: "Religious mysticism" },
+  63: { es: "Fantasía mística", en: "Mystical fantasy" },
+  64: { es: "Paisaje rural", en: "Rural landscape" },
+  65: { es: "Naturaleza y fauna", en: "Nature and wildlife" },
+  66: { es: "Vida campesina", en: "Peasant life" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1690,7 +1756,7 @@ const artworkTitlesEn = {
   6: "Out of the Radar",
   7: "Silent Tide",
   8: "Blue Abyss",
-  9: "Study of Light",
+  9: "Thoughts",
   10: "After the Mask",
   11: "The Power of the Pineapple",
 
@@ -1740,7 +1806,13 @@ const artworkTitlesEn = {
   58: "Leda",
   56: "Untitled",
   59: "Untitled",
-  60: "Ornamental Discourse"
+  60: "Ornamental Discourse",
+  61: "Guajiro with Cashews",
+  62: "Our Lady of Charity",
+  63: "The Mystique of Butterflies",
+  64: "Dawn with Roosters",
+  65: "Dawn with Flowers and Mockingbirds",
+  66: "The Peasant's Rest"
 };
 
 const artistTranslationsEn = {
