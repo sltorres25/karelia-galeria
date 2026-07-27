@@ -154,7 +154,7 @@ const artistsData = [
     id: "miguel-ulloa",
     name: "Miguel Ulloa",
     flag: "🇩🇴",
-    country: "Puerto Plata, Rep. Dominicana",
+    country: "Puerto Plata, República Dominicana",
     birthYear: "1964",
     artType: {
       es: "Expresionismo geométrico",
@@ -1979,7 +1979,7 @@ const translations = {
       stat_artists: "Artistas representados",
       stat_countries: "Países de origen",
       badge_title: "Artista del Mes",
-      badge_location: "Maykel Herrera — \"Rezo\""
+      badge_location: "Maykel Herrera — \"Génesis\""
     },
     featured: {
       tag: "ARTISTA DESTACADO",
@@ -2172,7 +2172,7 @@ const translations = {
       stat_artists: "Represented Artists",
       stat_countries: "Countries of Origin",
       badge_title: "Artist of the Month",
-      badge_location: "Maykel Herrera — \"Rezo\""
+      badge_location: "Maykel Herrera — \"Genesis\""
     },
     featured: {
       tag: "FEATURED ARTIST",
