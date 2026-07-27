@@ -424,26 +424,7 @@ const artworksData = {
     price: "€6,500 EUR",
     image: "/src/Artistas/Pedro Avila/48 x 71 in.jpg"
   },
-  21: {
-    title: "Encuentro de Almas",
-    artist: "Vicente Dopico",
-    category: "Abstracto",
-    technique: "Técnica mixta sobre lienzo",
-    dimensions: "24 x 18 in",
-    year: "2023",
-    price: "€2,900 EUR",
-    image: "/src/Artistas/Vicente Dopico/La luz del silencio.jpeg"
-  },
-  22: {
-    title: "Reflejos de la Memoria",
-    artist: "Vicente Dopico",
-    category: "Texturado",
-    technique: "Técnica mixta sobre lienzo",
-    dimensions: "26 x 22 in",
-    year: "2023",
-    price: "€3,200 EUR",
-    image: "/src/Artistas/Vicente Dopico/Crucifixión.jpeg"
-  },
+
   23: {
     title: "Rostro Geométrico I",
     artist: "Miguel Ulloa",
@@ -802,7 +783,7 @@ const artworkThemes = {
   1: { es: "Composición espacial", en: "Spatial composition" },
   2: { es: "Paisaje abstracto", en: "Abstract landscape" },
   3: { es: "Búsqueda interior", en: "Inner search" },
-  4: { es: "Marina caribeña", en: "Caribbean seascape" },
+  4: { es: "Surrealismo tropical", en: "Tropical surrealism" },
   5: { es: "Tiempo y laberinto", en: "Time and labyrinth" },
   6: { es: "Marina expresiva", en: "Expressive seascape" },
   7: { es: "Marina silenciosa", en: "Silent seascape" },
@@ -819,8 +800,7 @@ const artworkThemes = {
   18: { es: "Arquitectura y memoria", en: "Architecture and memory" },
   19: { es: "Memoria urbana", en: "Urban memory" },
   20: { es: "Sinfonía del alba", en: "Symphony of dawn" },
-  21: { es: "Misticismo psíquico", en: "Psychic mysticism" },
-  22: { es: "Textura y memoria", en: "Texture and memory" },
+
   23: { es: "Retrato geométrico", en: "Geometric portrait" },
   24: { es: "Retrato geométrico", en: "Geometric portrait" },
   25: { es: "Estudio figurativo", en: "Figurative study" },
@@ -1734,7 +1714,7 @@ const artworkTitlesEn = {
   1: "Dynamic Quietude",
   2: "Fragments of the Wind",
   3: "Invisible Paths",
-  4: "Sensitive Horizon",
+  4: "Cane Field",
   5: "Labyrinth of Time",
   6: "Out of the Radar",
   7: "Silent Tide",
@@ -1751,8 +1731,7 @@ const artworkTitlesEn = {
   18: "Construction of Space",
   19: "Urban Structures",
   20: "Symphony of the Dawn",
-  21: "Meeting of Souls",
-  22: "Reflections of Memory",
+
   23: "Geometric Face I",
   24: "Geometric Face II",
   25: "Character Study",
