@@ -286,22 +286,22 @@ const artworksData = {
     image: "/src/Artistas/Luis Molina/Pensamiento.jpeg"
   },
   10: {
-    title: "Máscara de Carnaval",
+    title: "Después de la máscara",
     artist: "Manuel López Oliva",
     category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "100 x 80 cm",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "120 x 100 cm (47.2 x 39.4 in)",
     year: "2023",
     price: "Consultar",
     image: "/src/Artistas/Manuel Lopez Oliva/Después de la máscara.jpg"
   },
   11: {
-    title: "Danza Ritual",
+    title: "El poder de la piña",
     artist: "Manuel López Oliva",
     category: "Expresionismo",
-    technique: "Óleo sobre lienzo",
-    dimensions: "120 x 100 cm",
-    year: "2024",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "80 x 100 cm (31.5 x 39.4 in)",
+    year: "2023",
     price: "Consultar",
     image: "/src/Artistas/Manuel Lopez Oliva/El poder de la piña.jpg"
   },
@@ -738,6 +738,16 @@ const artworksData = {
     year: "Desconocido",
     price: "Consultar",
     image: "/src/Artistas/Alexis Pantoja/img1.jpeg"
+  },
+  60: {
+    title: "Discurso Ornamental",
+    artist: "Manuel López Oliva",
+    category: "Expresionismo",
+    technique: "Acrílico sobre lienzo",
+    dimensions: "200 x 144 cm (78.7 x 56.7 in)",
+    year: "Desconocido",
+    price: "Consultar",
+    image: "/src/Artistas/Manuel Lopez Oliva/Discurso Ornamental.jpeg"
   }
 };
 
@@ -798,7 +808,8 @@ const artworkThemes = {
   57: { es: "Fantasía figurativa", en: "Figurative fantasy" },
   58: { es: "Mitología clásica", en: "Classical mythology" },
   56: { es: "Fantasía lúdica", en: "Playful fantasy" },
-  59: { es: "Fantasía figurativa", en: "Figurative fantasy" }
+  59: { es: "Fantasía figurativa", en: "Figurative fantasy" },
+  60: { es: "Teatralidad ornamentada", en: "Ornate theatricality" }
 };
 
 // Assign themes dynamically to artworksData at startup
@@ -1680,8 +1691,8 @@ const artworkTitlesEn = {
   7: "Silent Tide",
   8: "Blue Abyss",
   9: "Study of Light",
-  10: "Carnival Mask",
-  11: "Ritual Dance",
+  10: "After the Mask",
+  11: "The Power of the Pineapple",
 
   14: "Prayer",
   15: "Expedition",
@@ -1728,7 +1739,8 @@ const artworkTitlesEn = {
   57: "Untitled",
   58: "Leda",
   56: "Untitled",
-  59: "Untitled"
+  59: "Untitled",
+  60: "Ornamental Discourse"
 };
 
 const artistTranslationsEn = {
