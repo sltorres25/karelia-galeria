@@ -14,27 +14,39 @@ if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-// Initial artworks seed data
-const initialArtworks = [
-  { id: "4", title: "Cañaveral", artist: "Carlos René Aguilera", category: "Texturado", technique: "Acrílico sobre lienzo", dimensions: "150 x 100 cm", year: "2024", price: "2.500 €", status: "Disponible", image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg", description: "Composición dinámica con rica textura acrílica y metáforas visuales caribeñas." },
-  { id: "5", title: "Laberinto del Tiempo", artist: "Carlos René Aguilera", category: "Expresionismo", technique: "Acrílico sobre lienzo", dimensions: "120 x 120 cm", year: "2025", price: "3.200 €", status: "Disponible", image: "/src/Artistas/Carlos Rene Aguilera/120x120 cm.jpg", description: "Formas enredadas y sogas en una metáfora sobre el tiempo y la insularidad." },
-  { id: "6", title: "Fuera del Radar", artist: "Gerlys Álvarez", category: "Abstracto", technique: "Acrílico sobre cartulina", dimensions: "140 x 56 cm", year: "2020", price: "1.800 €", status: "Disponible", image: "/src/Artistas/Gerlys Alvarez/140 x 56 cm.jpg", description: "Abstracción marina de gran profundidad gestual e intensidad lumínica." },
-  { id: "7", title: "Marea Silenciosa", artist: "Gerlys Álvarez", category: "Abstracto", technique: "Acrílico sobre lienzo", dimensions: "100 x 80 cm", year: "2025", price: "2.100 €", status: "Disponible", image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0006.jpg", description: "Exploración de ritmos marinos y texturas de luz serena." },
-  { id: "8", title: "Abismo Azul", artist: "Gerlys Álvarez", category: "Texturado", technique: "Acrílico sobre lienzo", dimensions: "120 x 90 cm", year: "2025", price: "2.800 €", status: "Disponible", image: "/src/Artistas/Gerlys Alvarez/IMG-20260127-WA0007.jpg", description: "Superficie de pigmentos azules marinos cargada de fuerza espiritual." },
-  { id: "9", title: "Pensamiento", artist: "Luis Molina", category: "Expresionismo", technique: "Óleo sobre lienzo", dimensions: "60 x 80 cm", year: "2023", price: "1.950 €", status: "Disponible", image: "/src/Artistas/Luis Molina/Pensamiento.jpeg", description: "Folclore afrocubano y manejo maestro de la luz matutina." },
-  { id: "10", title: "Después de la máscara", artist: "Manuel López Oliva", category: "Expresionismo", technique: "Acrílico sobre lienzo", dimensions: "120 x 100 cm", year: "2023", price: "4.500 €", status: "Disponible", image: "/src/Artistas/Manuel Lopez Oliva/Después de la máscara.jpg", description: "Escenario teatral con el símbolo de la máscara social." },
-  { id: "11", title: "El poder de la piña", artist: "Manuel López Oliva", category: "Expresionismo", technique: "Acrílico sobre lienzo", dimensions: "80 x 100 cm", year: "2023", price: "3.900 €", status: "Disponible", image: "/src/Artistas/Manuel Lopez Oliva/El poder de la piña.jpg", description: "Simbolismo figurativo sobre identidad y cultura tropical." },
-  { id: "14", title: "Génesis", artist: "Maykel Herrera", category: "Expresionismo", technique: "Técnica mixta sobre lienzo", dimensions: "60 x 45 cm", year: "2023", price: "2.200 €", status: "Disponible", image: "/src/Artistas/Maykel Herrera/Génesis.jpg", description: "Retrato expresivo de mirada intensa con poética irónica." },
-  { id: "15", title: "Expedición", artist: "Maykel Herrera", category: "Expresionismo", technique: "Óleo sobre lienzo", dimensions: "110 x 150 cm", year: "2011", price: "4.800 €", status: "Vendida", image: "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg", description: "Gran formato de figuración expresiva emblemática del autor." },
-  { id: "16", title: "Fantasía Mística", artist: "Orestes Gaulhiac", category: "Geométrico", technique: "Acrílico sobre lienzo", dimensions: "91 x 91 cm", year: "2024", price: "3.100 €", status: "Disponible", image: "/src/Artistas/Orestes Gaulhiac/Gaulhiac. 36 x 36 in .jpeg", description: "Escena de ensueño naif que une humanos y animales caribeños." },
-  { id: "17", title: "La novia alada", artist: "Orestes Gaulhiac", category: "Geométrico", technique: "Óleo sobre lienzo", dimensions: "120 x 90 cm", year: "2024", price: "3.600 €", status: "Disponible", image: "/src/Artistas/Orestes Gaulhiac/La novia alada.jpeg", description: "Mística naif con una vibrante paleta caribeña." },
-  { id: "18", title: "Construcción del Espacio", artist: "Pedro Ávila Gendis", category: "Abstracto", technique: "Técnica mixta sobre lienzo", dimensions: "91 x 119 cm", year: "2023", price: "2.700 €", status: "Disponible", image: "/src/Artistas/Pedro Avila/Pedro Alvarez Gendis. 36x47 in.jpg", description: "Abstracción lírica con gran tensión cromática." },
-  { id: "23", title: "Rostro Geométrico I", artist: "Miguel Ulloa", category: "Expresionismo", technique: "Óleo sobre lienzo", dimensions: "100 x 80 cm", year: "2024", price: "2.400 €", status: "Disponible", image: "/src/Artistas/Miguel Ulloa/WhatsApp Image 2026-06-17 at 11.13.26.jpeg", description: "Retrato estilizado con estructuras geométricas." },
-  { id: "26", title: "Composición Silente", artist: "Cruz Escobedo", category: "Abstracto", technique: "Técnica mixta sobre lienzo", dimensions: "160 x 109 cm", year: "2024", price: "3.800 €", status: "Disponible", image: "/src/Artistas/Cruz Escobedo/Cruz Escobedo. 63 x 43 in.jpeg", description: "Precisión hiperrealista y abstracción de materiales." },
-  { id: "27", title: "Muro y Tiempo", artist: "Silvia Castagnino", category: "Texturado", technique: "Técnica mixta sobre lienzo", dimensions: "68 x 97 cm", year: "2010", price: "2.900 €", status: "Disponible", image: "/src/Artistas/Silvia Castagnino/Silvia Castagnino. 27 x 38.5 in. 2010.jpg", description: "Abstracción matérica con texturas orgánicas resinosas." },
-  { id: "31", title: "El Beso", artist: "Alex Stevenson", category: "Expresionismo", technique: "Acrílico sobre lienzo", dimensions: "106 x 116 cm", year: "2023", price: "3.500 €", status: "Disponible", image: "/src/Artistas/Alex Stevenson/El Beso. 42 x 46 in.png", description: "Realismo figurativo de fuerza corporal y emoción pura." },
-  { id: "34", title: "Road to Gold", artist: "Orlando Boffill", category: "Expresionismo", technique: "Acrílico sobre lienzo", dimensions: "100 x 80 cm", year: "2024", price: "2.600 €", status: "Disponible", image: "/src/Artistas/Orlando Boffill/Road to Gold.jpg", description: "Expresionismo lúdico con personajes enigmáticos." }
-];
+// Dynamically extract ALL artworks from src/main.js
+function getArtworksFromMainJs() {
+  try {
+    const mainJsPath = path.join(__dirname, '..', 'src', 'main.js');
+    if (fs.existsSync(mainJsPath)) {
+      const content = fs.readFileSync(mainJsPath, 'utf8');
+      const match = content.match(/const artworksData = (\{[\s\S]*?\n\};)/);
+      if (match) {
+        const jsCode = match[1].replace(/const artworksData = /, '').replace(/;\s*$/, '');
+        const fn = new Function(`return ${jsCode}`);
+        const rawObj = fn();
+        return Object.entries(rawObj).map(([id, art]) => ({
+          id: String(id),
+          title: art.title || 'Sin título',
+          artist: art.artist || 'Artista Desconocido',
+          category: art.category || 'Abstracto',
+          technique: art.technique || 'Técnica mixta',
+          dimensions: art.dimensions || 'En consulta',
+          year: art.year || '2024',
+          price: art.price || 'Consultar',
+          status: (art.id === '15' || art.title === 'Expedición') ? 'Vendida' : 'Disponible',
+          image: art.image || '',
+          description: art.description || `${art.technique || 'Obra original'} de ${art.artist}.`
+        }));
+      }
+    }
+  } catch (err) {
+    console.error('Error parsing artworksData from main.js:', err);
+  }
+  return [
+    { id: "4", title: "Cañaveral", artist: "Carlos René Aguilera", category: "Texturado", technique: "Acrílico sobre lienzo", dimensions: "150 x 100 cm", year: "2024", price: "2.500 €", status: "Disponible", image: "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg", description: "Composición dinámica con rica textura acrílica." }
+  ];
+}
 
 // Initial site text content seed
 const initialContent = {
@@ -67,6 +79,7 @@ const initialTheme = {
 // Get default database object with hashed passwords for initial seed
 function getSeedData() {
   const salt = bcrypt.genSaltSync(10);
+  const artworks = getArtworksFromMainJs();
   return {
     users: [
       {
@@ -100,7 +113,7 @@ function getSeedData() {
         createdAt: new Date().toISOString()
       }
     ],
-    artworks: initialArtworks,
+    artworks,
     content: initialContent,
     theme: initialTheme
   };
@@ -120,6 +133,9 @@ class JSONDatabase {
 
   read() {
     try {
+      if (!fs.existsSync(DB_FILE)) {
+        this.init();
+      }
       const raw = fs.readFileSync(DB_FILE, 'utf8');
       return JSON.parse(raw);
     } catch (err) {
@@ -203,7 +219,6 @@ class JSONDatabase {
     const db = this.read();
     const index = db.artworks.findIndex(a => String(a.id) === String(id));
     if (index === -1) {
-      // Create new artwork if id doesn't exist
       const newArtwork = {
         id: String(id || Date.now()),
         ...updates
