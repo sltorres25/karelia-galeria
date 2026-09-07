@@ -3,23 +3,23 @@
     {
       "id": "usr_admin1",
       "email": "admin1@artemestizo.com",
-      "passwordHash": "$2a$10$3s2X1NLBtgD17BMwB0VAtOpgz2yJJ4yL..H8sz5aPuJAUsv7Qz/hi",
+      "passwordHash": "$2a$10$aW1j1j9XZ5c5RVCJRn4hGe8qRS3ba9qHSkO/cCYdw9O9Zh2i5IieK",
       "name": "Administrador Principal",
       "role": "admin",
-      "createdAt": "2026-09-07T19:28:54.455Z"
+      "createdAt": "2026-09-07T19:46:30.542Z"
     },
     {
       "id": "usr_admin2",
       "email": "admin2@artemestizo.com",
-      "passwordHash": "$2a$10$3s2X1NLBtgD17BMwB0VAtOKURJZwFwtMrlvWE2CV99vcHTSEzM3Ea",
+      "passwordHash": "$2a$10$aW1j1j9XZ5c5RVCJRn4hGe2HmxieEFQUsZwPb0e/vIPVJJoibf5Bu",
       "name": "Administrador Galería",
       "role": "admin",
-      "createdAt": "2026-09-07T19:28:54.536Z"
+      "createdAt": "2026-09-07T19:46:30.616Z"
     },
     {
       "id": "usr_client1",
       "email": "usuario@artemestizo.com",
-      "passwordHash": "$2a$10$3s2X1NLBtgD17BMwB0VAtO7EbbM4EMSFe8R6t.WId3jYb8B9jtIeG",
+      "passwordHash": "$2a$10$aW1j1j9XZ5c5RVCJRn4hGe27V1Zg1Qlkt7Fk5w7al569tUdoVwkL.",
       "name": "Elena Gómez",
       "role": "user",
       "address": "Calle Velázquez 45, 3ºA, Madrid",
@@ -37,7 +37,7 @@
           "message": "Interesada en envío asegurado a Madrid."
         }
       ],
-      "createdAt": "2026-09-07T19:28:54.609Z"
+      "createdAt": "2026-09-07T19:46:30.723Z"
     }
   ],
   "artworks": [
@@ -50,7 +50,7 @@
       "dimensions": "150 x 100 cm",
       "year": "2024",
       "price": "Consultar",
-      "status": "Vendida",
+      "status": "Disponible",
       "image": "/src/Artistas/Carlos Rene Aguilera/Cañaveral 150x100 cm.jpeg",
       "description": "Acrílico sobre lienzo de Carlos René Aguilera."
     },
@@ -167,7 +167,7 @@
       "dimensions": "110 x 150 cm (43.3 x 59.1 in)",
       "year": "2011",
       "price": "Consultar",
-      "status": "Vendida",
+      "status": "Disponible",
       "image": "/src/Artistas/Maykel Herrera/Expedicion. 2011. 43 x 59 in.jpg",
       "description": "Óleo sobre lienzo de Maykel Herrera."
     },

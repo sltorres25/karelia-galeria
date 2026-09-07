@@ -34,7 +34,7 @@ function getArtworksFromMainJs() {
           dimensions: art.dimensions || 'En consulta',
           year: art.year || '2024',
           price: art.price || 'Consultar',
-          status: (art.id === '15' || art.title === 'Expedición') ? 'Vendida' : 'Disponible',
+          status: art.status || 'Disponible',
           image: art.image || '',
           description: art.description || `${art.technique || 'Obra original'} de ${art.artist}.`
         }));
