@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/src/assets/artworks/artwork6.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Área Personal | Arte Mestizo</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet">
+    
+  <link rel="stylesheet" href="/src/admin.css" />
+  <style>
+    .user-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .user-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--admin-border);
+      margin-bottom: 2rem;
+    }
+    .user-header h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: #ffffff;
+    }
+    .user-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .user-cards-grid { grid-template-columns: 1fr; }
+    }
+    .user-card {
+      background-color: var(--admin-bg-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .user-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      color: var(--admin-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .favorite-artworks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .favorite-card {
+      background: var(--admin-bg-input);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--admin-border);
+    }
+    .favorite-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .favorite-card-info {
+      padding: 0.75rem;
+    }
+    .favorite-card-info h4 {
+      font-size: 0.85rem;
+      color: #fff;
+    }
+    .favorite-card-info p {
+      font-size: 0.75rem;
+      color: var(--admin-gold);
+    }
+  </style>
+</head>
+
+<body class="admin-body">
+  <div id="user-app" class="user-wrapper" style="display: none;">
+    <header class="user-header">
+      <div>
+        <span class="brand-badge" style="background:var(--admin-gold); color:#000;">CLIENTE</span>
+        <h1 id="user-welcome-title">Bienvenido a tu Área Personal</h1>
+        <p style="color:var(--admin-text-muted); font-size:0.9rem;">Gestiona tus datos personales, direcciones guardadas y obras favoritas.</p>
+      </div>
+
+      <div style="display:flex; gap:0.75rem;">
+        <a href="/" class="btn btn-admin-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          Volver a la Galería
+        </a>
+        <button id="btn-user-logout" class="btn btn-sidebar-logout">
+          Cerrar Sesión
+        </button>
+      </div>
+    </header>
+
+    <div class="user-cards-grid">
+      <!-- PERSONAL DATA FORM -->
+      <div class="user-card">
+        <h3>👤 Mis Datos Personales</h3>
+        <form id="user-profile-form">
+          <div class="form-group">
+            <label for="u-name">Nombre Completo</label>
+            <input type="text" id="u-name" required class="admin-input" />
+          </div>
+
+          <div class="form-group">
+            <label for="u-email">Correo Electrónico (No editable)</label>
+            <input type="email" id="u-email" disabled class="admin-input" style="opacity:0.6;" />
+          </div>
+
+          <div class="form-group">
+            <label for="u-phone">Teléfono de Contacto</label>
+            <input type="text" id="u-phone" placeholder="+34 600 000 000" class="admin-input" />
+          </div>
+
+          <div class="form-group">
+            <label for="u-address">Dirección Guardada de Envío</label>
+            <textarea id="u-address" rows="3" placeholder="Calle, número, piso, código postal y ciudad" class="admin-textarea"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-admin-primary" style="width:100%; margin-top:1rem;">
+            Guardar Mis Datos
+          </button>
+        </form>
+      </div>
+
+      <!-- INQUIRIES & FAVORITES -->
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="user-card">
+          <h3>❤️ Mis Obras Favoritas</h3>
+          <div id="user-favorites-container" class="favorite-artworks-grid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <div class="user-card">
+          <h3>📩 Mis Consultas de Obras</h3>
+          <div id="user-inquiries-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/user-area.js"></script>
+</body>
+
+</html>

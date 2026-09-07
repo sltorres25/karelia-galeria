@@ -1104,7 +1104,283 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroParallax();
   initFaqAccordion();
   initArtistDetailPage();
+
+  // CMS & Auth Integration
+  initDynamicCMS();
+  initNavbarAuth();
 });
+
+/* -------------------------------------------------------------
+ * Dynamic CMS & Authentication Integration
+ * ------------------------------------------------------------- */
+async function initDynamicCMS() {
+  try {
+    const res = await fetch('/api/data');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // 1. Theme application
+    if (data.theme) {
+      const rootStyle = document.documentElement.style;
+      if (data.theme.primary) {
+        rootStyle.setProperty('--accent-gold', data.theme.primary);
+        rootStyle.setProperty('--color-primary', data.theme.primary);
+      }
+      if (data.theme.secondary) {
+        rootStyle.setProperty('--accent-gold-dark', data.theme.secondary);
+        rootStyle.setProperty('--color-secondary', data.theme.secondary);
+      }
+      if (data.theme.bg) {
+        rootStyle.setProperty('--bg-dark', data.theme.bg);
+        rootStyle.setProperty('--color-bg', data.theme.bg);
+      }
+      if (data.theme.text) {
+        rootStyle.setProperty('--text-light', data.theme.text);
+        rootStyle.setProperty('--color-text', data.theme.text);
+      }
+      if (data.theme.accent) {
+        rootStyle.setProperty('--accent-gold-light', data.theme.accent);
+        rootStyle.setProperty('--color-accent', data.theme.accent);
+      }
+      if (data.theme.btn) {
+        rootStyle.setProperty('--color-btn-primary', data.theme.btn);
+      }
+    }
+
+    // 2. Content texts application
+    if (data.content) {
+      const c = data.content;
+      const heroTitle = document.querySelector('#hero .hero-title');
+      if (heroTitle && c.hero_title) heroTitle.innerHTML = c.hero_title;
+
+      const heroDesc = document.querySelector('#hero .hero-description');
+      if (heroDesc && c.hero_desc) heroDesc.textContent = c.hero_desc;
+
+      const heroBtn1 = document.querySelector('#hero .btn-secondary');
+      if (heroBtn1 && c.hero_btn1) heroBtn1.textContent = c.hero_btn1;
+
+      const heroBtn2 = document.querySelector('#hero .btn-outline');
+      if (heroBtn2 && c.hero_btn2) heroBtn2.textContent = c.hero_btn2;
+
+      const aboutTitle = document.querySelector('#filosofia .section-title');
+      if (aboutTitle && c.about_title) aboutTitle.textContent = c.about_title;
+
+      const aboutDesc = document.querySelector('#filosofia p');
+      if (aboutDesc && c.about_desc) aboutDesc.textContent = c.about_desc;
+
+      const contactTitle = document.querySelector('#contacto .section-title');
+      if (contactTitle && c.contact_title) contactTitle.textContent = c.contact_title;
+
+      const contactDesc = document.querySelector('#contacto .section-subtitle');
+      if (contactDesc && c.contact_desc) contactDesc.textContent = c.contact_desc;
+
+      const artistsTitle = document.querySelector('#artistas .section-title');
+      if (artistsTitle && c.artists_section_title) artistsTitle.textContent = c.artists_section_title;
+
+      const worksTitle = document.querySelector('#obras .section-title');
+      if (worksTitle && c.works_section_title) worksTitle.textContent = c.works_section_title;
+
+      const worksSub = document.querySelector('#obras .section-subtitle-center');
+      if (worksSub && c.works_section_subtitle) worksSub.textContent = c.works_section_subtitle;
+    }
+
+    // 3. Artworks update
+    if (data.artworks && Array.isArray(data.artworks)) {
+      data.artworks.forEach(dbArt => {
+        if (!artworksData[dbArt.id]) {
+          artworksData[dbArt.id] = { ...dbArt };
+        } else {
+          artworksData[dbArt.id].title = dbArt.title;
+          artworksData[dbArt.id].price = dbArt.price;
+          artworksData[dbArt.id].dimensions = dbArt.dimensions;
+          artworksData[dbArt.id].artist = dbArt.artist;
+          artworksData[dbArt.id].category = dbArt.category;
+          artworksData[dbArt.id].status = dbArt.status;
+          if (dbArt.description) artworksData[dbArt.id].description = dbArt.description;
+        }
+
+        const numericId = parseInt(dbArt.id, 10);
+        if (dbArt.status === 'Vendida') {
+          if (!soldArtworks.includes(numericId)) soldArtworks.push(numericId);
+        } else {
+          const sIdx = soldArtworks.indexOf(numericId);
+          if (sIdx > -1) soldArtworks.splice(sIdx, 1);
+        }
+      });
+
+      renderGallery();
+      initObrasCatalogPage();
+    }
+  } catch (err) {
+    console.error('Error loading dynamic CMS data:', err);
+  }
+}
+
+async function initNavbarAuth() {
+  if (!document.getElementById('auth-modal')) {
+    const modalHtml = `
+      <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-overlay" id="auth-modal-overlay"></div>
+        <div class="auth-modal-card">
+          <button class="auth-close-btn" id="auth-close-btn">&times;</button>
+          <div class="auth-modal-header">
+            <h2>Acceso a Arte Mestizo</h2>
+            <p>Inicie sesión o registre su cuenta de cliente</p>
+          </div>
+          <div class="auth-tabs">
+            <button class="auth-tab-btn active" id="tab-login-btn">Iniciar Sesión</button>
+            <button class="auth-tab-btn" id="tab-register-btn">Registrarse</button>
+          </div>
+
+          <form id="login-form">
+            <div class="auth-form-group">
+              <label for="l-email">Correo Electrónico</label>
+              <input type="email" id="l-email" required placeholder="tu@email.com" class="auth-input" />
+            </div>
+            <div class="auth-form-group">
+              <label for="l-password">Contraseña</label>
+              <input type="password" id="l-password" required placeholder="••••••••" class="auth-input" />
+            </div>
+            <div id="login-error" style="color:#ef4444; font-size:0.8rem; margin-bottom:0.75rem;"></div>
+            <button type="submit" class="auth-submit-btn">Entrar a mi Cuenta</button>
+          </form>
+
+          <form id="register-form" style="display:none;">
+            <div class="auth-form-group">
+              <label for="r-name">Nombre Completo</label>
+              <input type="text" id="r-name" required placeholder="Ej: Maria García" class="auth-input" />
+            </div>
+            <div class="auth-form-group">
+              <label for="r-email">Correo Electrónico</label>
+              <input type="email" id="r-email" required placeholder="tu@email.com" class="auth-input" />
+            </div>
+            <div class="auth-form-group">
+              <label for="r-password">Contraseña</label>
+              <input type="password" id="r-password" required placeholder="••••••••" class="auth-input" />
+            </div>
+            <div id="register-error" style="color:#ef4444; font-size:0.8rem; margin-bottom:0.75rem;"></div>
+            <button type="submit" class="auth-submit-btn">Crear Cuenta de Cliente</button>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+  }
+
+  const tabLoginBtn = document.getElementById('tab-login-btn');
+  const tabRegBtn = document.getElementById('tab-register-btn');
+  const loginForm = document.getElementById('login-form');
+  const regForm = document.getElementById('register-form');
+  const authModal = document.getElementById('auth-modal');
+  const authClose = document.getElementById('auth-close-btn');
+  const authOverlay = document.getElementById('auth-modal-overlay');
+
+  if (tabLoginBtn && tabRegBtn) {
+    tabLoginBtn.onclick = () => {
+      tabLoginBtn.classList.add('active');
+      tabRegBtn.classList.remove('active');
+      loginForm.style.display = 'block';
+      regForm.style.display = 'none';
+    };
+    tabRegBtn.onclick = () => {
+      tabRegBtn.classList.add('active');
+      tabLoginBtn.classList.remove('active');
+      regForm.style.display = 'block';
+      loginForm.style.display = 'none';
+    };
+  }
+
+  const closeModal = () => authModal?.classList.remove('active');
+  const openModal = () => authModal?.classList.add('active');
+  if (authClose) authClose.onclick = closeModal;
+  if (authOverlay) authOverlay.onclick = closeModal;
+
+  const navActions = document.querySelector('.nav-actions');
+  if (navActions) {
+    let userBtn = document.getElementById('nav-user-action-btn');
+    if (!userBtn) {
+      userBtn = document.createElement('div');
+      userBtn.id = 'nav-user-action-btn';
+      navActions.insertBefore(userBtn, navActions.firstChild);
+    }
+
+    try {
+      const res = await fetch('/api/auth/me');
+      if (res.ok) {
+        const data = await res.json();
+        const user = data.user;
+        if (user.role === 'admin') {
+          userBtn.innerHTML = `<a href="/admin" class="nav-user-btn" style="background:#c5a880; color:#000;">👑 Panel Admin</a>`;
+        } else {
+          userBtn.innerHTML = `<a href="/user-area.html" class="nav-user-btn">👤 Mi Cuenta</a>`;
+        }
+      } else {
+        userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
+        document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
+      }
+    } catch (err) {
+      userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
+      document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
+    }
+  }
+
+  loginForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('l-email').value;
+    const password = document.getElementById('l-password').value;
+    const errEl = document.getElementById('login-error');
+    errEl.textContent = '';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Error al iniciar sesión');
+
+      if (data.user.role === 'admin') {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/user-area.html';
+      }
+    } catch (err) {
+      errEl.textContent = err.message;
+    }
+  });
+
+  regForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('r-name').value;
+    const email = document.getElementById('r-email').value;
+    const password = document.getElementById('r-password').value;
+    const errEl = document.getElementById('register-error');
+    errEl.textContent = '';
+
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Error al registrar la cuenta');
+
+      window.location.href = '/user-area.html';
+    } catch (err) {
+      errEl.textContent = err.message;
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('showLogin') === 'true') {
+    openModal();
+  }
+}
+
 
 /* -------------------------------------------------------------
  * Navbar & Mobile Menu Logic

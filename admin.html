@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/src/assets/artworks/artwork6.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Administración | Arte Mestizo</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet">
+    
+  <link rel="stylesheet" href="/src/admin.css" />
+</head>
+
+<body class="admin-body">
+  <div id="admin-app" class="admin-wrapper" style="display: none;">
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-badge">ADMIN</span>
+        <h2 class="brand-title">Arte Mestizo</h2>
+      </div>
+
+      <div class="user-profile-badge">
+        <div class="avatar" id="admin-avatar">A</div>
+        <div class="user-info">
+          <span class="user-name" id="admin-user-name">Cargando...</span>
+          <span class="user-role-tag">Administrador</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          <span>Resumen General</span>
+        </button>
+        <button class="nav-item" data-tab="artworks">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span>Obras & Precios</span>
+        </button>
+        <button class="nav-item" data-tab="appearance">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          <span>Paleta de Colores</span>
+        </button>
+        <button class="nav-item" data-tab="content">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 012.828 0L20 6.586a2 2 0 010 2.828L11.828 17.828l-4 1 1-4L16.586 3.586z"/></svg>
+          <span>Textos de la Web</span>
+        </button>
+        <button class="nav-item" data-tab="users">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <span>Usuarios</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" class="btn-sidebar-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Ver Web Pública</span>
+        </a>
+        <button id="btn-admin-logout" class="btn-sidebar-logout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+      <!-- Top Banner Bar -->
+      <header class="admin-header">
+        <div class="header-title-container">
+          <h1 id="tab-title">Resumen General</h1>
+          <p id="tab-subtitle" class="header-subtitle">Bienvenido al panel de control de Arte Mestizo</p>
+        </div>
+        <div id="toast-container" class="toast-container"></div>
+      </header>
+
+      <!-- TAB 1: DASHBOARD OVERVIEW -->
+      <section id="panel-dashboard" class="admin-panel active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🖼️</div>
+            <div class="stat-content">
+              <span class="stat-value" id="stat-total-artworks">0</span>
+              <span class="stat-label">Obras Registradas</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-content">
+              <span class="stat-value" id="stat-available-artworks">0</span>
+              <span class="stat-label">Disponibles</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔴</div>
+            <div class="stat-content">
+              <span class="stat-value" id="stat-sold-artworks">0</span>
+              <span class="stat-label">Vendidas</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-content">
+              <span class="stat-value" id="stat-users">0</span>
+              <span class="stat-label">Cuentas Registradas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-widgets">
+          <div class="widget-card">
+            <h3>Acciones Rápidas</h3>
+            <p class="widget-desc">Acceda directamente a las tareas más frecuentes de gestión de la galería:</p>
+            <div class="quick-actions-list">
+              <button class="btn btn-admin-primary" onclick="switchAdminTab('artworks')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+                Gestionar Precios y Obras
+              </button>
+              <button class="btn btn-admin-secondary" onclick="switchAdminTab('appearance')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343"/></svg>
+                Cambiar Colores de la Web
+              </button>
+              <button class="btn btn-admin-secondary" onclick="switchAdminTab('content')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"/></svg>
+                Editar Textos de Portada
+              </button>
+            </div>
+          </div>
+
+          <div class="widget-card">
+            <h3>Paleta de Colores Activa</h3>
+            <div id="dashboard-theme-preview" class="theme-swatch-list">
+              <!-- Swatches generated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ARTWORKS & PRICES -->
+      <section id="panel-artworks" class="admin-panel">
+        <div class="panel-toolbar">
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="artworks-search" placeholder="Buscar por obra, artista o categoría..." />
+          </div>
+          <button id="btn-add-artwork" class="btn btn-admin-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+            Nueva Obra
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Obra</th>
+                <th>Artista / Autor</th>
+                <th>Precio</th>
+                <th>Dimensiones</th>
+                <th>Categoría</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="artworks-table-body">
+              <!-- Table rows generated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 3: APPEARANCE & COLORS -->
+      <section id="panel-appearance" class="admin-panel">
+        <div class="appearance-grid">
+          <div class="color-picker-card">
+            <div class="card-header">
+              <h3>Paleta de Colores Predefinida</h3>
+              <p>Seleccione los colores para personalizar la estética de la web. Los cambios se aplicarán mediante variables CSS en toda la aplicación.</p>
+            </div>
+
+            <form id="theme-form" class="color-form">
+              <div class="color-field">
+                <label for="color-primary">
+                  <strong>Color Principal</strong>
+                  <small>Utilizado en botones primarios, enlaces y acentos destacados</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-primary" name="primary" value="#c5a880" />
+                  <input type="text" id="hex-primary" class="hex-input" value="#c5a880" />
+                </div>
+              </div>
+
+              <div class="color-field">
+                <label for="color-secondary">
+                  <strong>Color Secundario / Acento Oscuro</strong>
+                  <small>Aplicado en hover de botones y detalles secundarios</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-secondary" name="secondary" value="#a88a62" />
+                  <input type="text" id="hex-secondary" class="hex-input" value="#a88a62" />
+                </div>
+              </div>
+
+              <div class="color-field">
+                <label for="color-bg">
+                  <strong>Color de Fondo General</strong>
+                  <small>Fondo principal del sitio web</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-bg" name="bg" value="#faf9f6" />
+                  <input type="text" id="hex-bg" class="hex-input" value="#faf9f6" />
+                </div>
+              </div>
+
+              <div class="color-field">
+                <label for="color-text">
+                  <strong>Color del Texto Principal</strong>
+                  <small>Títulos y párrafos descriptivos de la web</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-text" name="text" value="#161616" />
+                  <input type="text" id="hex-text" class="hex-input" value="#161616" />
+                </div>
+              </div>
+
+              <div class="color-field">
+                <label for="color-btn">
+                  <strong>Color de Botones</strong>
+                  <small>Color de fondo para los botones de acción</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-btn" name="btn" value="#161616" />
+                  <input type="text" id="hex-btn" class="hex-input" value="#161616" />
+                </div>
+              </div>
+
+              <div class="color-field">
+                <label for="color-accent">
+                  <strong>Color Acento Claro</strong>
+                  <small>Detalles dorados/claros y badges</small>
+                </label>
+                <div class="picker-group">
+                  <input type="color" id="color-accent" name="accent" value="#dcc39f" />
+                  <input type="text" id="hex-accent" class="hex-input" value="#dcc39f" />
+                </div>
+              </div>
+
+              <div class="form-actions-bar">
+                <button type="submit" class="btn btn-admin-primary">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                  Guardar Cambios de Color
+                </button>
+                <button type="button" id="btn-reset-theme" class="btn btn-admin-secondary">
+                  Restablecer Predeterminados
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Live Preview Box -->
+          <div class="preview-card">
+            <h3>Vista Previa en Tiempo Real</h3>
+            <p class="preview-desc">Compruebe la combinación cromática antes de guardar los cambios:</p>
+
+            <div id="live-preview-box" class="preview-box">
+              <div class="preview-header">
+                <span class="preview-badge" id="prev-badge">Galería de Arte</span>
+                <h4 id="prev-title">Obra de Colección</h4>
+              </div>
+              <p id="prev-text" class="preview-text">
+                Arte latinoamericano y caribeño original. Conectamos artistas consagrados y coleccionistas.
+              </p>
+              <div class="preview-actions">
+                <button id="prev-btn-primary" class="preview-btn-primary">Explorar Colección</button>
+                <button id="prev-btn-outline" class="preview-btn-outline">Ver Detalles</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: EDITABLE SITE CONTENT -->
+      <section id="panel-content" class="admin-panel">
+        <form id="content-form" class="content-form">
+          <div class="content-section-card">
+            <h3 class="section-card-title">Página de Inicio - Hero (Portada)</h3>
+            <div class="form-group">
+              <label for="cnt-hero-title">Título Principal Hero</label>
+              <input type="text" id="cnt-hero-title" name="hero_title" class="admin-input" />
+              <small class="field-hint">Puede incluir etiquetas HTML simples como &lt;em&gt;texto&lt;/em&gt; para dar estilo itálico.</small>
+            </div>
+            <div class="form-group">
+              <label for="cnt-hero-desc">Descripción Principal Hero</label>
+              <textarea id="cnt-hero-desc" name="hero_desc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="cnt-hero-btn1">Texto Botón 1 (Artistas)</label>
+                <input type="text" id="cnt-hero-btn1" name="hero_btn1" class="admin-input" />
+              </div>
+              <div class="form-group col-6">
+                <label for="cnt-hero-btn2">Texto Botón 2 (Colección)</label>
+                <input type="text" id="cnt-hero-btn2" name="hero_btn2" class="admin-input" />
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section-card">
+            <h3 class="section-card-title">Sección Sobre Nosotros (Filosofía)</h3>
+            <div class="form-group">
+              <label for="cnt-about-title">Título Sección</label>
+              <input type="text" id="cnt-about-title" name="about_title" class="admin-input" />
+            </div>
+            <div class="form-group">
+              <label for="cnt-about-desc">Descripción de la Filosofía</label>
+              <textarea id="cnt-about-desc" name="about_desc" rows="4" class="admin-textarea"></textarea>
+            </div>
+          </div>
+
+          <div class="content-section-card">
+            <h3 class="section-card-title">Sección Contacto</h3>
+            <div class="form-group">
+              <label for="cnt-contact-title">Título de Contacto</label>
+              <input type="text" id="cnt-contact-title" name="contact_title" class="admin-input" />
+            </div>
+            <div class="form-group">
+              <label for="cnt-contact-desc">Texto Informativo de Contacto</label>
+              <textarea id="cnt-contact-desc" name="contact_desc" rows="3" class="admin-textarea"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="cnt-contact-email">Correo Electrónico de Contacto</label>
+                <input type="email" id="cnt-contact-email" name="contact_email" class="admin-input" />
+              </div>
+              <div class="form-group col-6">
+                <label for="cnt-contact-phone">Teléfono de Contacto</label>
+                <input type="text" id="cnt-contact-phone" name="contact_phone" class="admin-input" />
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section-card">
+            <h3 class="section-card-title">Títulos de Secciones de Catálogo</h3>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="cnt-artists-title">Título Sección Artistas</label>
+                <input type="text" id="cnt-artists-title" name="artists_section_title" class="admin-input" />
+              </div>
+              <div class="form-group col-6">
+                <label for="cnt-works-title">Título Sección Obras</label>
+                <input type="text" id="cnt-works-title" name="works_section_title" class="admin-input" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cnt-works-subtitle">Subtítulo Sección Obras</label>
+              <input type="text" id="cnt-works-subtitle" name="works_section_subtitle" class="admin-input" />
+            </div>
+          </div>
+
+          <div class="form-actions-bar">
+            <button type="submit" class="btn btn-admin-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+              Guardar Todos los Textos
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB 5: USERS & ROLES -->
+      <section id="panel-users" class="admin-panel">
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Rol</th>
+                <th>Teléfono</th>
+                <th>Fecha de Registro</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <!-- Users populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- EDIT ARTWORK MODAL -->
+  <div id="artwork-edit-modal" class="admin-modal">
+    <div class="admin-modal-backdrop" onclick="closeArtworkModal()"></div>
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <h3 id="modal-form-title">Editar Obra / Producto</h3>
+        <button class="btn-close-modal" onclick="closeArtworkModal()">&times;</button>
+      </div>
+
+      <form id="artwork-edit-form" class="admin-modal-body">
+        <input type="hidden" id="edit-artwork-id" />
+
+        <div class="form-group">
+          <label for="edit-title">Título de la Obra *</label>
+          <input type="text" id="edit-title" required class="admin-input" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="edit-price">Precio (€) *</label>
+            <input type="text" id="edit-price" required placeholder="Ej: 300 € o Consultar" class="admin-input" />
+          </div>
+          <div class="form-group col-6">
+            <label for="edit-dimensions">Dimensiones *</label>
+            <input type="text" id="edit-dimensions" required placeholder="Ej: 80 × 60 cm" class="admin-input" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="edit-artist">Artista / Autor *</label>
+            <input type="text" id="edit-artist" required class="admin-input" />
+          </div>
+          <div class="form-group col-6">
+            <label for="edit-category">Categoría / Estilo *</label>
+            <select id="edit-category" class="admin-input">
+              <option value="Abstracto">Abstracto</option>
+              <option value="Expresionismo">Expresionismo</option>
+              <option value="Geométrico">Geométrico</option>
+              <option value="Texturado">Texturado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="edit-status">Estado de Disponibilidad *</label>
+            <select id="edit-status" class="admin-input">
+              <option value="Disponible">Disponible</option>
+              <option value="Reservada">Reservada</option>
+              <option value="Vendida">Vendida</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label for="edit-year">Año de Creación</label>
+            <input type="text" id="edit-year" placeholder="2024" class="admin-input" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="edit-technique">Técnica</label>
+          <input type="text" id="edit-technique" placeholder="Acrílico sobre lienzo" class="admin-input" />
+        </div>
+
+        <div class="form-group">
+          <label for="edit-description">Descripción Informativa</label>
+          <textarea id="edit-description" rows="3" class="admin-textarea"></textarea>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-admin-secondary" onclick="closeArtworkModal()">Cancelar</button>
+          <button type="submit" class="btn btn-admin-primary">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/src/admin.js"></script>
+</body>
+
+</html>

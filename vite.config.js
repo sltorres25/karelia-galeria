@@ -10,6 +10,8 @@ export default defineConfig({
         obras: resolve(__dirname, 'obras.html'),
         faq: resolve(__dirname, 'faq.html'),
         'artista-detalle': resolve(__dirname, 'artista-detalle.html'),
+        admin: resolve(__dirname, 'admin.html'),
+        'user-area': resolve(__dirname, 'user-area.html'),
       }
     }
   }
