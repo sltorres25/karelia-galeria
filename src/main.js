@@ -1021,7 +1021,7 @@ function renderGallery() {
       const country = currentLang === 'en' ? (artistTranslationsEn[artist.id]?.country || artist.country) : artist.country;
       const exploreText = currentLang === 'en' ? "Meet artist" : "Conocer artista";
       return `
-        <div class="artist-card scroll-reveal ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
+        <div class="artist-card scroll-reveal revealed ${(!showAll && index >= 4) ? 'hidden-item' : ''}">
           <div class="artist-image-container">
             <img src="${getImageUrl(artist.image)}" alt="${artist.name}" class="artist-image" loading="lazy" />
           </div>
