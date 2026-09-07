@@ -166,8 +166,8 @@ function renderArtworksTable(artworks) {
     return `
       <tr>
         <td>
-          <div class="table-artwork-item">
-            <img src="${art.image || '/src/assets/artworks/artwork6.png'}" alt="${art.title}" />
+          <div class="table-artwork-item" style="display:flex; align-items:center;">
+            <span style="width:28px; height:28px; background:rgba(197,168,128,0.15); color:var(--admin-gold); border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:14px; margin-right:10px;">🎨</span>
             <strong>${art.title}</strong>
           </div>
         </td>
