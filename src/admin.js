@@ -68,9 +68,10 @@ async function checkAdminAuth() {
 // Load data from API
 async function loadAdminData() {
   try {
+    const timestamp = Date.now();
     const [dataRes, usersRes] = await Promise.all([
-      fetch('/api/data'),
-      fetch('/api/admin/users')
+      fetch(`/api/data?t=${timestamp}`, { cache: 'no-store' }),
+      fetch(`/api/admin/users?t=${timestamp}`, { cache: 'no-store' })
     ]);
 
     if (dataRes.ok) {
@@ -264,6 +265,17 @@ document.getElementById('artwork-edit-form')?.addEventListener('submit', async (
 
     const result = await res.json();
     if (!res.ok) throw new Error(result.error || 'Error al guardar la obra');
+
+    // Instantly update local array & re-render admin table
+    const idx = allArtworks.findIndex(a => String(a.id) === String(id));
+    if (idx > -1) {
+      allArtworks[idx] = { ...allArtworks[idx], ...payload };
+    } else {
+      allArtworks.push({ id, ...payload });
+    }
+
+    renderDashboardStats();
+    renderArtworksTable(allArtworks);
 
     showToast(`✅ Obra "${payload.title}" guardada con éxito.`, 'success');
     closeArtworkModal();

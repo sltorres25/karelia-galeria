@@ -95,6 +95,7 @@ router.post('/auth/register', (req, res) => {
 // --- PUBLIC DATA ROUTE ---
 
 router.get('/data', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   res.json({
     artworks: db.getAllArtworks(),
     content: db.getContent(),
