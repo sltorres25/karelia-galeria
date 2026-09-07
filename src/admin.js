@@ -256,6 +256,20 @@ document.getElementById('artwork-edit-form')?.addEventListener('submit', async (
     description: document.getElementById('edit-description').value
   };
 
+  // Save to client localStorage immediately
+  saveCustomArtworkOverride(id, payload);
+
+  // Instantly update local array & re-render admin table
+  const idx = allArtworks.findIndex(a => String(a.id) === String(id));
+  if (idx > -1) {
+    allArtworks[idx] = { ...allArtworks[idx], ...payload };
+  } else {
+    allArtworks.push({ id, ...payload });
+  }
+
+  renderDashboardStats();
+  renderArtworksTable(allArtworks);
+
   try {
     const res = await fetch(`/api/admin/artworks/${id}`, {
       method: 'PUT',
@@ -264,24 +278,13 @@ document.getElementById('artwork-edit-form')?.addEventListener('submit', async (
     });
 
     const result = await res.json();
-    if (!res.ok) throw new Error(result.error || 'Error al guardar la obra');
-
-    // Instantly update local array & re-render admin table
-    const idx = allArtworks.findIndex(a => String(a.id) === String(id));
-    if (idx > -1) {
-      allArtworks[idx] = { ...allArtworks[idx], ...payload };
-    } else {
-      allArtworks.push({ id, ...payload });
-    }
-
-    renderDashboardStats();
-    renderArtworksTable(allArtworks);
+    if (!res.ok) throw new Error(result.error || 'Error al guardar la obra en servidor');
 
     showToast(`✅ Obra "${payload.title}" guardada con éxito.`, 'success');
-    closeArtworkModal();
-    await loadAdminData();
   } catch (err) {
-    showToast(err.message, 'error');
+    showToast('Guardado localmente. ' + err.message, 'info');
+  } finally {
+    closeArtworkModal();
   }
 });
 

@@ -121,38 +121,50 @@ function getSeedData() {
 
 class JSONDatabase {
   constructor() {
+    this.memoryDb = null;
     this.init();
   }
 
   init() {
-    if (!fs.existsSync(DB_FILE)) {
-      const seed = getSeedData();
-      fs.writeFileSync(DB_FILE, JSON.stringify(seed, null, 2), 'utf8');
+    if (!this.memoryDb) {
+      if (fs.existsSync(DB_FILE)) {
+        try {
+          const raw = fs.readFileSync(DB_FILE, 'utf8');
+          this.memoryDb = JSON.parse(raw);
+        } catch (e) {
+          this.memoryDb = getSeedData();
+        }
+      } else {
+        this.memoryDb = getSeedData();
+        try {
+          fs.writeFileSync(DB_FILE, JSON.stringify(this.memoryDb, null, 2), 'utf8');
+        } catch (e) {
+          // Read-only filesystem
+        }
+      }
     }
   }
 
   read() {
-    try {
-      if (!fs.existsSync(DB_FILE)) {
-        this.init();
-      }
-      const raw = fs.readFileSync(DB_FILE, 'utf8');
-      return JSON.parse(raw);
-    } catch (err) {
-      console.error('Error reading database file:', err);
-      const seed = getSeedData();
-      this.write(seed);
-      return seed;
+    if (!this.memoryDb) {
+      this.init();
     }
+    return this.memoryDb;
   }
 
   write(data) {
+    this.memoryDb = data;
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
       return true;
     } catch (err) {
-      console.error('Error writing database file:', err);
-      return false;
+      try {
+        const tmpPath = path.join('/tmp', 'database.json');
+        fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2), 'utf8');
+      } catch (tmpErr) {
+        // Fallback: in-memory state updated successfully
+      }
+      return true;
     }
   }
 

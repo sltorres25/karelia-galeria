@@ -1198,18 +1198,36 @@ async function initDynamicCMS() {
           artworksData[dbArt.id].status = dbArt.status;
           if (dbArt.description) artworksData[dbArt.id].description = dbArt.description;
         }
+      });
+    }
 
-        const numericId = parseInt(dbArt.id, 10);
-        if (dbArt.status === 'Vendida') {
-          if (!soldArtworks.includes(numericId)) soldArtworks.push(numericId);
+    // Merge client local overrides
+    try {
+      const localOverrides = JSON.parse(localStorage.getItem('admin_custom_artworks')) || {};
+      Object.entries(localOverrides).forEach(([id, dbArt]) => {
+        if (!artworksData[id]) {
+          artworksData[id] = { ...dbArt };
         } else {
-          const sIdx = soldArtworks.indexOf(numericId);
-          if (sIdx > -1) soldArtworks.splice(sIdx, 1);
+          Object.assign(artworksData[id], dbArt);
         }
       });
+    } catch (e) {}
 
-      renderGallery();
-      initObrasCatalogPage();
+    // Update soldArtworks state
+    Object.entries(artworksData).forEach(([id, art]) => {
+      const numericId = parseInt(id, 10);
+      if (art.status === 'Vendida') {
+        if (!soldArtworks.includes(numericId)) soldArtworks.push(numericId);
+      } else {
+        const sIdx = soldArtworks.indexOf(numericId);
+        if (sIdx > -1) soldArtworks.splice(sIdx, 1);
+      }
+    });
+
+    renderGallery();
+    initObrasCatalogPage();
+    if (typeof window.runCatalogFilterAndSort === 'function') {
+      window.runCatalogFilterAndSort();
     }
   } catch (err) {
     console.error('Error loading dynamic CMS data:', err);
