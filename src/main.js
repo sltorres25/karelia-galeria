@@ -1328,7 +1328,7 @@ async function initNavbarAuth() {
         const data = await res.json();
         const user = data.user;
         if (user.role === 'admin') {
-          userBtn.innerHTML = `<a href="/admin" class="nav-user-btn" style="background:#c5a880; color:#000;">👑 Panel Admin</a>`;
+          userBtn.innerHTML = `<a href="/admin" class="nav-user-btn admin-badge">👑 Panel Admin</a>`;
         } else {
           userBtn.innerHTML = `<a href="/user-area.html" class="nav-user-btn">👤 Mi Cuenta</a>`;
         }

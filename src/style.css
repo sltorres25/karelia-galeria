@@ -2673,23 +2673,50 @@ a {
  * Auth Modal & Header User Action Styling
  * ------------------------------------------------------------- */
 .nav-user-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   border: 1px solid var(--accent-gold);
   background: transparent;
-  color: var(--text-light);
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
-.nav-user-btn:hover {
+
+.navbar .nav-user-btn {
+  color: #ffffff;
+  border-color: var(--accent-gold);
+}
+
+.navbar .nav-user-btn:hover {
   background: var(--accent-gold);
-  color: #111111;
+  color: #161616;
+}
+
+.navbar.scrolled .nav-user-btn {
+  color: #161616;
+  border-color: var(--accent-gold-dark);
+}
+
+.navbar.scrolled .nav-user-btn:hover {
+  background: var(--accent-gold-dark);
+  color: #ffffff;
+}
+
+.nav-user-btn.admin-badge {
+  background: var(--accent-gold) !important;
+  color: #161616 !important;
+  border-color: var(--accent-gold) !important;
+}
+
+.nav-user-btn.admin-badge:hover {
+  background: var(--accent-gold-light) !important;
+  color: #161616 !important;
 }
 
 .auth-modal {
