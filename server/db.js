@@ -84,17 +84,17 @@ function getSeedData() {
     users: [
       {
         id: "usr_admin1",
-        email: "admin1@artemestizo.com",
+        email: "kareliacb74@gmail.com",
         passwordHash: bcrypt.hashSync("Admin2026!Key1", salt),
-        name: "Administrador Principal",
+        name: "Administrador (Karelia)",
         role: "admin",
         createdAt: new Date().toISOString()
       },
       {
         id: "usr_admin2",
-        email: "admin2@artemestizo.com",
+        email: "latinamericanartmagazine@gmail.com",
         passwordHash: bcrypt.hashSync("Admin2026!Key2", salt),
-        name: "Administrador Galería",
+        name: "Administrador (Latin American Art)",
         role: "admin",
         createdAt: new Date().toISOString()
       },
