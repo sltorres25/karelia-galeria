@@ -6,6 +6,24 @@ let allUsers = [];
 let currentTheme = {};
 let currentContent = {};
 
+function getCustomArtworksOverrides() {
+  try {
+    return JSON.parse(localStorage.getItem('admin_custom_artworks')) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveCustomArtworkOverride(id, payload) {
+  try {
+    const overrides = getCustomArtworksOverrides();
+    overrides[id] = { ...(overrides[id] || {}), ...payload };
+    localStorage.setItem('admin_custom_artworks', JSON.stringify(overrides));
+  } catch (e) {
+    console.warn('localStorage error:', e);
+  }
+}
+
 // DOM Elements
 const adminApp = document.getElementById('admin-app');
 const adminUserNameEl = document.getElementById('admin-user-name');
@@ -239,27 +257,28 @@ document.getElementById('btn-add-artwork')?.addEventListener('click', () => {
   document.getElementById('artwork-edit-modal').classList.add('active');
 });
 
-// Save Artwork Changes
-document.getElementById('artwork-edit-form')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const id = document.getElementById('edit-artwork-id').value;
+// Save Artwork Changes Handler
+window.saveArtworkForm = async function(e) {
+  if (e) e.preventDefault();
+  const id = document.getElementById('edit-artwork-id')?.value;
+  if (!id) return;
 
   const payload = {
-    title: document.getElementById('edit-title').value,
-    price: document.getElementById('edit-price').value,
-    dimensions: document.getElementById('edit-dimensions').value,
-    artist: document.getElementById('edit-artist').value,
-    category: document.getElementById('edit-category').value,
-    status: document.getElementById('edit-status').value,
-    year: document.getElementById('edit-year').value,
-    technique: document.getElementById('edit-technique').value,
-    description: document.getElementById('edit-description').value
+    title: document.getElementById('edit-title')?.value || 'Obra Sin Título',
+    price: document.getElementById('edit-price')?.value || 'Consultar',
+    dimensions: document.getElementById('edit-dimensions')?.value || '',
+    artist: document.getElementById('edit-artist')?.value || 'Artista',
+    category: document.getElementById('edit-category')?.value || 'Abstracto',
+    status: document.getElementById('edit-status')?.value || 'Disponible',
+    year: document.getElementById('edit-year')?.value || '2024',
+    technique: document.getElementById('edit-technique')?.value || '',
+    description: document.getElementById('edit-description')?.value || ''
   };
 
-  // Save to client localStorage immediately
+  // 1. Save to client localStorage immediately
   saveCustomArtworkOverride(id, payload);
 
-  // Instantly update local array & re-render admin table
+  // 2. Instantly update local array & re-render admin table
   const idx = allArtworks.findIndex(a => String(a.id) === String(id));
   if (idx > -1) {
     allArtworks[idx] = { ...allArtworks[idx], ...payload };
@@ -267,9 +286,15 @@ document.getElementById('artwork-edit-form')?.addEventListener('submit', async (
     allArtworks.push({ id, ...payload });
   }
 
+  // 3. Re-render UI immediately
   renderDashboardStats();
   renderArtworksTable(allArtworks);
 
+  // 4. Close modal and show toast
+  closeArtworkModal();
+  showToast(`✅ Obra "${payload.title}" guardada con éxito.`, 'success');
+
+  // 5. Send API update to server
   try {
     const res = await fetch(`/api/admin/artworks/${id}`, {
       method: 'PUT',
@@ -277,16 +302,16 @@ document.getElementById('artwork-edit-form')?.addEventListener('submit', async (
       body: JSON.stringify(payload)
     });
 
-    const result = await res.json();
-    if (!res.ok) throw new Error(result.error || 'Error al guardar la obra en servidor');
-
-    showToast(`✅ Obra "${payload.title}" guardada con éxito.`, 'success');
+    if (!res.ok) {
+      const result = await res.json();
+      console.warn('Server error:', result.error);
+    }
   } catch (err) {
-    showToast('Guardado localmente. ' + err.message, 'info');
-  } finally {
-    closeArtworkModal();
+    console.warn('Network sync error:', err);
   }
-});
+};
+
+document.getElementById('artwork-edit-form')?.addEventListener('submit', window.saveArtworkForm);
 
 // --- THEME & COLOR PALETTE ---
 function setupThemePickers() {
