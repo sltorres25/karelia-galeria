@@ -345,11 +345,11 @@ body.admin-body {
 }
 
 .btn-admin-primary {
-  background-color: var(--admin-gold);
-  color: #0d0d0d;
+  background-color: var(--admin-accent-clay); /* Arcilla #A95F4A - Dark Accent */
+  color: #F3E8DB;
 }
 .btn-admin-primary:hover {
-  background-color: var(--admin-gold-hover);
+  background-color: #8C4B39;
 }
 
 .btn-admin-secondary {

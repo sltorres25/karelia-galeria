@@ -6,23 +6,29 @@
 
 /* Variables System */
 :root {
-  /* Color Palette - Terracota Suave, Crema, Arcilla & Beige Theme */
-  --bg-dark: #F3E8DB; /* Crema canvas */
-  --bg-dark-card: #ffffff;
-  --bg-dark-input: #ffffff;
-  --bg-light: #D9C1A4; /* Beige warm contrast */
-  --bg-light-card: #F3E8DB; /* Crema card background on Beige sections */
-  --bg-light-accent: #E5D5C3;
+  /* Clean Light Museum Gallery Design System */
+  --color-primary: #F3E8DB;     /* Crema (Primary Light Canvas) */
+  --color-secondary: #D9C1A4;   /* Beige (Secondary Light Surface) */
+  --color-terracotta-soft: #C9B26A; /* Terracota suave (Light Warm Accent) */
   
-  --accent-gold: #C9B26A; /* Terracota suave */
-  --accent-gold-dark: #A95F4A; /* Arcilla */
-  --accent-gold-light: #D9C1A4; /* Beige */
-  --accent-gold-trans: rgba(201, 178, 106, 0.2);
+  --color-accent-dark: #A95F4A;  /* Arcilla (DARK ACCENT for CTAs, active states & focus) */
+
+  --bg-dark: #F3E8DB;          /* Crema Primary Light Canvas */
+  --bg-dark-card: #FFFFFF;     /* Pure White Card Surface for pristine artwork display */
+  --bg-dark-input: #FFFFFF;    /* Clean White Inputs */
+  --bg-light: #F3E8DB;         /* Clean Light Section Background */
+  --bg-light-card: #FFFFFF;    /* Pure White Card Surface */
+  --bg-light-accent: #EFE4D6;  /* Soft Crema Highlight */
   
-  --text-light: #2C1F1A; /* Sophisticated warm dark brown */
-  --text-light-muted: #6E564A; /* Soft warm descriptions */
+  --accent-gold: #A95F4A;        /* Dark Accent (Arcilla) for buttons & active highlights */
+  --accent-gold-dark: #A95F4A;   /* Arcilla */
+  --accent-gold-light: #C9B26A;  /* Terracota suave */
+  --accent-gold-trans: rgba(169, 95, 74, 0.12);
+  
+  --text-light: #2C1F1A;        /* Crisp readable warm charcoal text */
+  --text-light-muted: #5C4A42;  /* Muted warm text */
   --text-dark: #2C1F1A;
-  --text-dark-muted: #6E564A;
+  --text-dark-muted: #5C4A42;
   
   /* Fonts */
   --font-serif: "Playfair Display", Georgia, serif;
@@ -35,9 +41,9 @@
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
-  --box-shadow-soft: 0 10px 30px rgba(169, 95, 74, 0.08);
-  --box-shadow-medium: 0 15px 40px rgba(44, 31, 26, 0.15);
-  --box-shadow-gold: 0 8px 24px rgba(201, 178, 106, 0.3);
+  --box-shadow-soft: 0 8px 24px rgba(44, 31, 26, 0.05);
+  --box-shadow-medium: 0 14px 35px rgba(44, 31, 26, 0.1);
+  --box-shadow-gold: 0 8px 24px rgba(169, 95, 74, 0.25);
 }
 
 /* Reset and Base Styles */
@@ -211,48 +217,48 @@ a {
 }
 
 .btn-primary {
-  background-color: var(--accent-gold-dark); /* Arcilla #A95F4A */
-  color: #F3E8DB; /* Crema */
+  background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
+  color: #F3E8DB; /* Crema text */
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-gold); /* Terracota suave #C9B26A */
-  color: #2C1F1A;
+  background-color: #8C4B39;
+  color: #F3E8DB;
   transform: translateY(-2px);
   box-shadow: var(--box-shadow-gold);
 }
 
 .btn-secondary {
-  background-color: var(--accent-gold); /* Terracota suave */
+  background-color: var(--color-secondary); /* Beige #D9C1A4 - Light Secondary */
   color: #2C1F1A;
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-gold-dark); /* Arcilla */
+  background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
   color: #F3E8DB;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(169, 95, 74, 0.2);
 }
 
 .section-light .btn-secondary {
-  background-color: var(--accent-gold-dark);
-  color: #F3E8DB;
+  background-color: var(--color-secondary);
+  color: #2C1F1A;
 }
 
 .section-light .btn-secondary:hover {
-  background-color: var(--accent-gold);
-  color: #2C1F1A;
+  background-color: var(--color-accent-dark);
+  color: #F3E8DB;
 }
 
 .btn-outline {
   background-color: transparent;
-  border-color: rgba(169, 95, 74, 0.4);
-  color: var(--text-dark);
+  border-color: var(--color-accent-dark);
+  color: var(--color-accent-dark);
 }
 
 .btn-outline:hover {
-  background-color: rgba(169, 95, 74, 0.1);
-  border-color: var(--accent-gold-dark);
+  background-color: var(--color-accent-dark);
+  color: #F3E8DB;
   transform: translateY(-2px);
 }
 
@@ -597,7 +603,7 @@ a {
 }
 
 .artist-card {
-  background-color: var(--bg-light-card);
+  background-color: #FFFFFF;
   border-radius: var(--border-radius-md);
   overflow: hidden;
   box-shadow: var(--box-shadow-soft);
@@ -605,7 +611,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(169, 95, 74, 0.15);
 }
 
 .artist-card:hover {
@@ -616,17 +622,20 @@ a {
 .artist-image-container {
   height: 280px;
   overflow: hidden;
+  background-color: #F3E8DB;
 }
 
 .artist-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: none !important;
   transition: var(--transition-smooth);
 }
 
 .artist-card:hover .artist-image {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  filter: none !important;
 }
 
 .artist-info {
@@ -742,20 +751,32 @@ a {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: var(--border-radius-md);
+  padding: 12px;
+  border: 1px solid rgba(169, 95, 74, 0.15);
+  box-shadow: var(--box-shadow-soft);
+  transition: var(--transition-smooth);
+}
+
+.artwork-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--box-shadow-medium);
 }
 
 .artwork-image-wrapper {
   position: relative;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-sm);
   overflow: hidden;
-  aspect-ratio: 4 / 5; /* Forces a nice clean grid layout, or let it flow naturally */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  aspect-ratio: 4 / 5;
+  background-color: #FAF7F2;
 }
 
 .artwork-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: none !important;
   transition: var(--transition-smooth);
 }
 
@@ -765,7 +786,8 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to top, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.2));
+  background: rgba(44, 31, 26, 0.2);
+  backdrop-filter: none;
   opacity: 0;
   display: flex;
   align-items: center;
@@ -775,7 +797,8 @@ a {
 }
 
 .artwork-card:hover .artwork-image {
-  transform: scale(1.05);
+  transform: scale(1.04);
+  filter: none !important;
 }
 
 .artwork-card:hover .artwork-overlay {
@@ -2408,24 +2431,9 @@ a {
   transition: background-position 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Shine overlay for glass reflection effect on image cards */
+/* Shine overlay disabled to ensure no color filter touches artwork images */
 .shine-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-  mix-blend-mode: overlay;
-  transition: opacity 0.4s ease;
-  opacity: 0;
-}
-
-.artwork-image-wrapper:hover .shine-overlay,
-.artist-image-container:hover .shine-overlay,
-.concepto-image-wrapper:hover .shine-overlay {
-  opacity: 1;
+  display: none !important;
 }
 
 /* Active filter buttons gold pulse shadow */
