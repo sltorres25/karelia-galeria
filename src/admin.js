@@ -2,6 +2,7 @@ import './admin.css';
 
 let currentAdminUser = null;
 let allArtworks = [];
+let allArtists = [];
 let allUsers = [];
 let currentTheme = {};
 let currentContent = {};
@@ -37,7 +38,8 @@ const toastContainer = document.getElementById('toast-container');
 // Tab Titles Map
 const tabInfo = {
   dashboard: { title: 'Resumen General', subtitle: 'Métricas clave y estado general de la galería' },
-  artworks: { title: 'Obras y Precios', subtitle: 'Modifique precios, dimensiones, disponibilidad y datos de las obras' },
+  artworks: { title: 'Obras y Precios', subtitle: 'Modifique precios, dimensiones, disponibilidad y añada o elimine obras' },
+  artists: { title: 'Gestión de Artistas', subtitle: 'Añada, edite o elimine artistas representados en la galería' },
   appearance: { title: 'Paleta de Colores', subtitle: 'Personalice los colores globales de la web pública' },
   content: { title: 'Textos de la Web', subtitle: 'Edite los textos e información mostrada en las páginas' },
   users: { title: 'Gestión de Usuarios', subtitle: 'Cuentas de usuario registradas y roles de acceso' }
@@ -95,6 +97,7 @@ async function loadAdminData() {
     if (dataRes.ok) {
       const data = await dataRes.json();
       allArtworks = data.artworks || [];
+      allArtists = data.artists || [];
       currentTheme = data.theme || {};
       currentContent = data.content || {};
     }
@@ -106,6 +109,7 @@ async function loadAdminData() {
 
     renderDashboardStats();
     renderArtworksTable(allArtworks);
+    renderArtistsTable(allArtists);
     populateThemeForm(currentTheme);
     populateContentForm(currentContent);
     renderUsersTable(allUsers);
@@ -207,6 +211,9 @@ function renderArtworksTable(artworks) {
           <button class="btn btn-admin-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="openEditArtworkModal('${art.id}')">
             ✏️ Editar
           </button>
+          <button class="btn btn-admin-danger" style="padding:4px 10px; font-size:0.75rem; background:#ef4444; color:#fff; border:none; margin-left:4px; border-radius:4px; cursor:pointer;" onclick="deleteArtwork('${art.id}')">
+            🗑️ Eliminar
+          </button>
         </td>
       </tr>
     `;
@@ -239,8 +246,8 @@ window.openEditArtworkModal = function(id) {
   document.getElementById('edit-status').value = artwork.status || 'Disponible';
   document.getElementById('edit-year').value = artwork.year || '';
   document.getElementById('edit-technique').value = artwork.technique || '';
-  if (document.getElementById('edit-certified')) {
-    document.getElementById('edit-certified').value = artwork.certified !== false ? 'true' : 'false';
+  if (document.getElementById('edit-image')) {
+    document.getElementById('edit-image').value = artwork.image || '';
   }
   document.getElementById('edit-description').value = artwork.description || '';
 
@@ -263,8 +270,8 @@ document.getElementById('btn-add-artwork')?.addEventListener('click', () => {
   document.getElementById('edit-status').value = 'Disponible';
   document.getElementById('edit-year').value = new Date().getFullYear().toString();
   document.getElementById('edit-technique').value = 'Acrílico sobre lienzo';
-  if (document.getElementById('edit-certified')) {
-    document.getElementById('edit-certified').value = 'true';
+  if (document.getElementById('edit-image')) {
+    document.getElementById('edit-image').value = '';
   }
   document.getElementById('edit-description').value = '';
 
@@ -287,13 +294,16 @@ window.saveArtworkForm = async function(e) {
     year: document.getElementById('edit-year')?.value || '2024',
     technique: document.getElementById('edit-technique')?.value || '',
     certified: document.getElementById('edit-certified')?.value !== 'false',
+    image: document.getElementById('edit-image')?.value || '',
     description: document.getElementById('edit-description')?.value || ''
   };
 
-  // 1. Save to client localStorage immediately
+  const isNew = String(id).startsWith('new_');
+
+  // 1. Save to client localStorage
   saveCustomArtworkOverride(id, payload);
 
-  // 2. Instantly update local array & re-render admin table
+  // 2. Update local array
   const idx = allArtworks.findIndex(a => String(a.id) === String(id));
   if (idx > -1) {
     allArtworks[idx] = { ...allArtworks[idx], ...payload };
@@ -301,25 +311,48 @@ window.saveArtworkForm = async function(e) {
     allArtworks.push({ id, ...payload });
   }
 
-  // 3. Re-render UI immediately
+  // 3. Re-render UI
   renderDashboardStats();
   renderArtworksTable(allArtworks);
-
-  // 4. Close modal and show toast
   closeArtworkModal();
   showToast(`✅ Obra "${payload.title}" guardada con éxito.`, 'success');
 
-  // 5. Send API update to server
+  // 4. Send API call
   try {
-    const res = await fetch(`/api/admin/artworks/${id}`, {
-      method: 'PUT',
+    const url = isNew ? '/api/admin/artworks' : `/api/admin/artworks/${id}`;
+    const method = isNew ? 'POST' : 'PUT';
+    const res = await fetch(url, {
+      method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(isNew ? { id, ...payload } : payload)
     });
 
     if (!res.ok) {
       const result = await res.json();
-      console.warn('Server error:', result.error);
+      console.warn('Server error saving artwork:', result.error);
+    }
+  } catch (err) {
+    console.warn('Network sync error:', err);
+  }
+};
+
+window.deleteArtwork = async function(id) {
+  const artwork = allArtworks.find(a => String(a.id) === String(id));
+  const title = artwork ? artwork.title : 'esta obra';
+  if (!confirm(`¿Estás seguro de que deseas eliminar la obra "${title}"?`)) {
+    return;
+  }
+
+  allArtworks = allArtworks.filter(a => String(a.id) !== String(id));
+  renderDashboardStats();
+  renderArtworksTable(allArtworks);
+  showToast(`🗑️ Obra "${title}" eliminada con éxito.`, 'info');
+
+  try {
+    const res = await fetch(`/api/admin/artworks/${id}`, { method: 'DELETE' });
+    if (!res.ok) {
+      const result = await res.json();
+      console.warn('Server error deleting artwork:', result.error);
     }
   } catch (err) {
     console.warn('Network sync error:', err);
@@ -327,6 +360,138 @@ window.saveArtworkForm = async function(e) {
 };
 
 document.getElementById('artwork-edit-form')?.addEventListener('submit', window.saveArtworkForm);
+
+// --- ARTISTS TABLE & MODAL HANDLERS ---
+function renderArtistsTable(artists) {
+  const tbody = document.getElementById('artists-table-body');
+  if (!tbody) return;
+
+  if (!artists || artists.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2rem; color:var(--admin-text-muted);">No se encontraron artistas registrados.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = artists.map(art => {
+    const artTypeStr = typeof art.artType === 'object' ? (art.artType.es || art.artType.en || '') : art.artType;
+    return `
+      <tr>
+        <td>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <img src="${art.image || '/src/assets/hero-bg.png'}" alt="${art.name}" style="width:36px; height:36px; object-fit:cover; border-radius:50%;" />
+            <strong>${art.name}</strong>
+          </div>
+        </td>
+        <td>${art.flag || ''} ${art.country || '-'}</td>
+        <td>${art.birthYear || '-'}</td>
+        <td>${artTypeStr || '-'}</td>
+        <td>
+          <button class="btn btn-admin-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="openEditArtistModal('${art.id}')">
+            ✏️ Editar
+          </button>
+          <button class="btn btn-admin-danger" style="padding:4px 10px; font-size:0.75rem; background:#ef4444; color:#fff; border:none; margin-left:4px; border-radius:4px; cursor:pointer;" onclick="deleteArtist('${art.id}')">
+            🗑️ Eliminar
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+document.getElementById('artists-search')?.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  const filtered = allArtists.filter(a =>
+    a.name.toLowerCase().includes(query) ||
+    a.country.toLowerCase().includes(query) ||
+    (typeof a.artType === 'object' ? (a.artType.es || '').toLowerCase() : String(a.artType).toLowerCase()).includes(query)
+  );
+  renderArtistsTable(filtered);
+});
+
+window.openCreateArtistModal = function() {
+  document.getElementById('artist-modal-title').textContent = 'Añadir Nuevo Artista';
+  document.getElementById('edit-artist-id').value = 'art_' + Date.now();
+  document.getElementById('edit-artist-name').value = '';
+  document.getElementById('edit-artist-country').value = '';
+  document.getElementById('edit-artist-flag').value = '🇨🇺';
+  document.getElementById('edit-artist-birth').value = '';
+  document.getElementById('edit-artist-style').value = '';
+  document.getElementById('edit-artist-image').value = '';
+  document.getElementById('edit-artist-bio').value = '';
+  document.getElementById('artist-edit-modal').classList.add('active');
+};
+
+document.getElementById('btn-add-artist')?.addEventListener('click', window.openCreateArtistModal);
+
+window.openEditArtistModal = function(id) {
+  const artist = allArtists.find(a => String(a.id) === String(id));
+  if (!artist) return;
+
+  document.getElementById('artist-modal-title').textContent = `Editar Artista: "${artist.name}"`;
+  document.getElementById('edit-artist-id').value = artist.id;
+  document.getElementById('edit-artist-name').value = artist.name || '';
+  document.getElementById('edit-artist-country').value = artist.country || '';
+  document.getElementById('edit-artist-flag').value = artist.flag || '🇨🇺';
+  document.getElementById('edit-artist-birth').value = artist.birthYear || '';
+  document.getElementById('edit-artist-style').value = typeof artist.artType === 'object' ? (artist.artType.es || '') : (artist.artType || '');
+  document.getElementById('edit-artist-image').value = artist.image || '';
+  document.getElementById('edit-artist-bio').value = artist.bio || '';
+
+  document.getElementById('artist-edit-modal').classList.add('active');
+};
+
+window.closeArtistModal = function() {
+  document.getElementById('artist-edit-modal').classList.remove('active');
+};
+
+window.saveArtistForm = async function(e) {
+  if (e) e.preventDefault();
+  const id = document.getElementById('edit-artist-id')?.value;
+  if (!id) return;
+
+  const styleValue = document.getElementById('edit-artist-style')?.value || 'Arte contemporáneo';
+  const payload = {
+    name: document.getElementById('edit-artist-name')?.value || 'Nuevo Artista',
+    country: document.getElementById('edit-artist-country')?.value || 'Cuba',
+    flag: document.getElementById('edit-artist-flag')?.value || '🇨🇺',
+    birthYear: document.getElementById('edit-artist-birth')?.value || '',
+    artType: { es: styleValue, en: styleValue },
+    image: document.getElementById('edit-artist-image')?.value || '/src/assets/hero-bg.png',
+    bio: document.getElementById('edit-artist-bio')?.value || '',
+    filter: 'abstracto'
+  };
+
+  const idx = allArtists.findIndex(a => String(a.id) === String(id));
+  const isNew = idx === -1;
+
+  if (!isNew) {
+    allArtists[idx] = { ...allArtists[idx], ...payload };
+  } else {
+    allArtists.push({ id, ...payload });
+  }
+
+  renderArtistsTable(allArtists);
+  closeArtistModal();
+  showToast(`✅ Artista "${payload.name}" guardado con éxito.`, 'success');
+
+  try {
+    const url = isNew ? '/api/admin/artists' : `/api/admin/artists/${id}`;
+    const method = isNew ? 'POST' : 'PUT';
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(isNew ? { id, ...payload } : payload)
+    });
+
+    if (!res.ok) {
+      const result = await res.json();
+      console.warn('Server error saving artist:', result.error);
+    }
+  } catch (err) {
+    console.warn('Network sync error:', err);
+  }
+};
+
+document.getElementById('artist-edit-form')?.addEventListener('submit', window.saveArtistForm);
 
 // --- THEME & COLOR PALETTE ---
 function setupThemePickers() {

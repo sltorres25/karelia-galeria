@@ -98,6 +98,7 @@ router.get('/data', (req, res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   res.json({
     artworks: db.getAllArtworks(),
+    artists: db.getAllArtists(),
     content: db.getContent(),
     theme: db.getTheme()
   });
@@ -124,6 +125,15 @@ router.put('/user/profile', requireAuth, (req, res) => {
 
 // --- ADMIN PROTECTED ROUTES ---
 
+router.post('/admin/artworks', requireAdmin, (req, res) => {
+  try {
+    const artwork = db.createArtwork(req.body);
+    res.status(201).json({ message: 'Obra creada correctamente.', artwork });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 router.put('/admin/artworks/:id', requireAdmin, (req, res) => {
   const { id } = req.params;
   const updates = req.body;
@@ -137,6 +147,46 @@ router.put('/admin/artworks/:id', requireAdmin, (req, res) => {
     message: `Obra "${updatedArtwork.title}" actualizada correctamente.`,
     artwork: updatedArtwork
   });
+});
+
+router.delete('/admin/artworks/:id', requireAdmin, (req, res) => {
+  const { id } = req.params;
+  const deleted = db.deleteArtwork(id);
+  if (!deleted) {
+    return res.status(404).json({ error: 'Obra no encontrada.' });
+  }
+  res.json({ message: 'Obra eliminada correctamente.' });
+});
+
+router.get('/admin/artists', requireAdmin, (req, res) => {
+  res.json({ artists: db.getAllArtists() });
+});
+
+router.post('/admin/artists', requireAdmin, (req, res) => {
+  try {
+    const artist = db.createArtist(req.body);
+    res.status(201).json({ message: 'Artista creado correctamente.', artist });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+router.put('/admin/artists/:id', requireAdmin, (req, res) => {
+  const { id } = req.params;
+  const updated = db.updateArtist(id, req.body);
+  if (!updated) {
+    return res.status(404).json({ error: 'Artista no encontrado.' });
+  }
+  res.json({ message: 'Artista actualizado correctamente.', artist: updated });
+});
+
+router.delete('/admin/artists/:id', requireAdmin, (req, res) => {
+  const { id } = req.params;
+  const deleted = db.deleteArtist(id);
+  if (!deleted) {
+    return res.status(404).json({ error: 'Artista no encontrado.' });
+  }
+  res.json({ message: 'Artista eliminado correctamente.' });
 });
 
 router.put('/admin/content', requireAdmin, (req, res) => {

@@ -48,6 +48,27 @@ function getArtworksFromMainJs() {
   ];
 }
 
+// Dynamically extract ALL artists from src/main.js
+function getArtistsFromMainJs() {
+  try {
+    const mainJsPath = path.join(__dirname, '..', 'src', 'main.js');
+    if (fs.existsSync(mainJsPath)) {
+      const content = fs.readFileSync(mainJsPath, 'utf8');
+      const match = content.match(/const artistsData = (\[[\s\S]*?\n\];)/);
+      if (match) {
+        const jsCode = match[1].replace(/const artistsData = /, '').replace(/;\s*$/, '');
+        const fn = new Function(`return ${jsCode}`);
+        return fn();
+      }
+    }
+  } catch (err) {
+    console.error('Error parsing artistsData from main.js:', err);
+  }
+  return [
+    { id: "alexis-pantoja", name: "Alexis Pantoja", flag: "🇨🇺", country: "Manzanillo, Cuba", birthYear: "1969", artType: { es: "Figuración expresiva", en: "Expressive figuration" }, bio: "Su pintura reinterpreta la figuración expresiva...", image: "/src/Artistas/Alexis Pantoja/img1.jpeg", filter: "abstracto" }
+  ];
+}
+
 // Initial site text content seed
 const initialContent = {
   hero_title: "Arte latinoamericano y caribeño <em>original</em> para coleccionistas de todo el mundo.",
@@ -80,6 +101,7 @@ const initialTheme = {
 function getSeedData() {
   const salt = bcrypt.genSaltSync(10);
   const artworks = getArtworksFromMainJs();
+  const artists = getArtistsFromMainJs();
   return {
     users: [
       {
@@ -122,6 +144,7 @@ function getSeedData() {
       }
     ],
     artworks,
+    artists,
     content: initialContent,
     theme: initialTheme
   };
@@ -139,8 +162,13 @@ class JSONDatabase {
         try {
           const raw = fs.readFileSync(DB_FILE, 'utf8');
           this.memoryDb = JSON.parse(raw);
+          if (!this.memoryDb.artists) {
+            this.memoryDb.artists = getArtistsFromMainJs();
+            this.write(this.memoryDb);
+          }
         } catch (e) {
           this.memoryDb = getSeedData();
+          this.write(this.memoryDb);
         }
       } else {
         this.memoryDb = getSeedData();
@@ -227,29 +255,109 @@ class JSONDatabase {
   // Artworks
   getAllArtworks() {
     const db = this.read();
-    return db.artworks;
+    return db.artworks || [];
   }
 
   getArtworkById(id) {
     const db = this.read();
-    return db.artworks.find(a => String(a.id) === String(id));
+    return (db.artworks || []).find(a => String(a.id) === String(id));
+  }
+
+  createArtwork(artworkData) {
+    const db = this.read();
+    if (!db.artworks) db.artworks = [];
+    const newArtwork = {
+      id: String(artworkData.id || Date.now()),
+      title: artworkData.title || 'Sin título',
+      artist: artworkData.artist || 'Artista Desconocido',
+      category: artworkData.category || 'Abstracto',
+      technique: artworkData.technique || 'Técnica mixta',
+      dimensions: artworkData.dimensions || 'En consulta',
+      year: String(artworkData.year || new Date().getFullYear()),
+      price: artworkData.price || 'Consultar',
+      status: artworkData.status || 'Disponible',
+      certified: artworkData.certified !== undefined ? Boolean(artworkData.certified) : true,
+      image: artworkData.image || '',
+      description: artworkData.description || ''
+    };
+    db.artworks.push(newArtwork);
+    this.write(db);
+    return newArtwork;
   }
 
   updateArtwork(id, updates) {
     const db = this.read();
+    if (!db.artworks) db.artworks = [];
     const index = db.artworks.findIndex(a => String(a.id) === String(id));
     if (index === -1) {
-      const newArtwork = {
-        id: String(id || Date.now()),
-        ...updates
-      };
-      db.artworks.push(newArtwork);
-      this.write(db);
-      return newArtwork;
+      return this.createArtwork({ id, ...updates });
     }
     db.artworks[index] = { ...db.artworks[index], ...updates };
     this.write(db);
     return db.artworks[index];
+  }
+
+  deleteArtwork(id) {
+    const db = this.read();
+    if (!db.artworks) db.artworks = [];
+    const initialLen = db.artworks.length;
+    db.artworks = db.artworks.filter(a => String(a.id) !== String(id));
+    this.write(db);
+    return db.artworks.length < initialLen;
+  }
+
+  // Artists
+  getAllArtists() {
+    const db = this.read();
+    if (!db.artists || db.artists.length === 0) {
+      db.artists = getArtistsFromMainJs();
+      this.write(db);
+    }
+    return db.artists;
+  }
+
+  getArtistById(id) {
+    const artists = this.getAllArtists();
+    return artists.find(a => String(a.id) === String(id));
+  }
+
+  createArtist(artistData) {
+    const db = this.read();
+    if (!db.artists) db.artists = getArtistsFromMainJs();
+    const idSlug = artistData.name ? artistData.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") : ('art-' + Date.now());
+    const newArtist = {
+      id: artistData.id || idSlug,
+      name: artistData.name || 'Nuevo Artista',
+      flag: artistData.flag || '🇨🇺',
+      country: artistData.country || 'Cuba',
+      birthYear: artistData.birthYear || '',
+      artType: typeof artistData.artType === 'object' ? artistData.artType : { es: artistData.artType || 'Arte contemporáneo', en: artistData.artType || 'Contemporary art' },
+      bio: artistData.bio || '',
+      image: artistData.image || '/src/assets/hero-bg.png',
+      filter: artistData.filter || 'abstracto'
+    };
+    db.artists.push(newArtist);
+    this.write(db);
+    return newArtist;
+  }
+
+  updateArtist(id, updates) {
+    const db = this.read();
+    if (!db.artists) db.artists = getArtistsFromMainJs();
+    const index = db.artists.findIndex(a => String(a.id) === String(id));
+    if (index === -1) return null;
+    db.artists[index] = { ...db.artists[index], ...updates };
+    this.write(db);
+    return db.artists[index];
+  }
+
+  deleteArtist(id) {
+    const db = this.read();
+    if (!db.artists) db.artists = getArtistsFromMainJs();
+    const initialLen = db.artists.length;
+    db.artists = db.artists.filter(a => String(a.id) !== String(id));
+    this.write(db);
+    return db.artists.length < initialLen;
   }
 
   // Content
