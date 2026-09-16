@@ -31,10 +31,13 @@ router.post('/auth/login', (req, res) => {
     { expiresIn: '24h' }
   );
 
+  const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
+
   // Session cookie: no maxAge so browser clears it on tab/browser close
   res.cookie('auth_token', token, {
     httpOnly: true,
-    sameSite: 'lax'
+    sameSite: 'lax',
+    secure: isProduction
   });
 
   const { passwordHash, ...safeUser } = user;
@@ -79,7 +82,8 @@ router.post('/auth/register', (req, res) => {
     // Session cookie
     res.cookie('auth_token', token, {
       httpOnly: true,
-      sameSite: 'lax'
+      sameSite: 'lax',
+      secure: isProduction
     });
 
     const { passwordHash, ...safeUser } = newUser;

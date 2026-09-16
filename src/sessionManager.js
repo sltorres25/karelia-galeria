@@ -1,13 +1,41 @@
 /**
- * Tab & Session Manager for Karelia Galería
- * Enforces automatic cache clearing and session termination when tabs/windows close.
+ * Session & Cache Manager for Karelia Galería
+ * Handles session token storage, Authorization headers, and cache clearing.
  */
+
+export function setSessionToken(token) {
+  try {
+    if (token) {
+      sessionStorage.setItem('karelia_auth_token', token);
+      sessionStorage.setItem('karelia_tab_session_active', 'true');
+    }
+  } catch (e) {
+    console.warn('sessionStorage error:', e);
+  }
+}
+
+export function getSessionToken() {
+  try {
+    return sessionStorage.getItem('karelia_auth_token');
+  } catch (e) {
+    return null;
+  }
+}
+
+export function getAuthHeaders() {
+  const token = getSessionToken();
+  const headers = { 'Cache-Control': 'no-cache' };
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
+}
 
 export function markTabSessionActive() {
   try {
     sessionStorage.setItem('karelia_tab_session_active', 'true');
   } catch (e) {
-    console.warn('SessionStorage error:', e);
+    console.warn('sessionStorage error:', e);
   }
 }
 
@@ -21,29 +49,27 @@ export function isTabSessionActive() {
 
 export async function clearAllCachesAndLogout() {
   try {
-    // 1. Clear Web Cache Storage (Cache API)
-    if ('caches' in window) {
-      const cacheKeys = await caches.keys();
-      await Promise.all(cacheKeys.map(key => caches.delete(key)));
-    }
-
-    // 2. Clear Session Storage
     sessionStorage.clear();
 
-    // 3. Clear auth cookie on server
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => caches.delete(name));
+      }).catch(() => {});
+    }
+
     await fetch('/api/auth/logout', { 
       method: 'POST',
       headers: { 'Cache-Control': 'no-cache' }
-    });
+    }).catch(() => {});
   } catch (err) {
     console.warn('Error clearing cache/session:', err);
   }
 }
 
 export async function validateTabSession() {
+  // If no tab session marker exists (fresh tab / tab closed), clear residual state
   const active = isTabSessionActive();
   if (!active) {
-    // Tab was closed or fresh tab session -> clear orphaned server cookies & browser cache
     await clearAllCachesAndLogout();
     return false;
   }

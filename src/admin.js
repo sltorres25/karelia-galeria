@@ -62,9 +62,9 @@ async function checkAdminAuth() {
       return;
     }
 
-    const res = await fetch('/api/auth/me', { cache: 'no-store' });
+    const res = await fetch('/api/auth/me', { headers: getAuthHeaders(), cache: 'no-store' });
     if (!res.ok) {
-      await clearAllCachesAndLogout();
+      clearAllCachesAndLogout();
       window.location.href = '/?showLogin=true';
       return;
     }
@@ -73,7 +73,7 @@ async function checkAdminAuth() {
     // Strict Role Enforcement
     if (!data.user || data.user.role !== 'admin') {
       alert('Acceso denegado. Se requieren permisos de administrador.');
-      await clearAllCachesAndLogout();
+      clearAllCachesAndLogout();
       window.location.href = '/user-area.html';
       return;
     }
@@ -91,7 +91,7 @@ async function checkAdminAuth() {
     await loadAdminData();
   } catch (err) {
     console.error('Error verifying auth:', err);
-    await clearAllCachesAndLogout();
+    clearAllCachesAndLogout();
     window.location.href = '/?showLogin=true';
   }
 }
@@ -101,8 +101,8 @@ async function loadAdminData() {
   try {
     const timestamp = Date.now();
     const [dataRes, usersRes] = await Promise.all([
-      fetch(`/api/data?t=${timestamp}`, { cache: 'no-store' }),
-      fetch(`/api/admin/users?t=${timestamp}`, { cache: 'no-store' })
+      fetch(`/api/data?t=${timestamp}`, { headers: getAuthHeaders(), cache: 'no-store' }),
+      fetch(`/api/admin/users?t=${timestamp}`, { headers: getAuthHeaders(), cache: 'no-store' })
     ]);
 
     if (dataRes.ok) {

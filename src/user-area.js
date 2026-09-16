@@ -1,5 +1,5 @@
 import './admin.css';
-import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout } from './sessionManager.js';
+import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout, getAuthHeaders } from './sessionManager.js';
 
 let currentUser = null;
 let allArtworks = [];
@@ -17,9 +17,9 @@ async function checkUserAuth() {
       return;
     }
 
-    const res = await fetch('/api/auth/me', { cache: 'no-store' });
+    const res = await fetch('/api/auth/me', { headers: getAuthHeaders(), cache: 'no-store' });
     if (!res.ok) {
-      await clearAllCachesAndLogout();
+      clearAllCachesAndLogout();
       window.location.href = '/?showLogin=true';
       return;
     }
@@ -46,7 +46,7 @@ async function checkUserAuth() {
     document.getElementById('u-address').value = currentUser.address || '';
 
     // Load artworks for favorites display
-    const dataRes = await fetch('/api/data', { cache: 'no-store' });
+    const dataRes = await fetch('/api/data', { headers: getAuthHeaders(), cache: 'no-store' });
     if (dataRes.ok) {
       const gData = await dataRes.json();
       allArtworks = gData.artworks || [];
@@ -56,7 +56,7 @@ async function checkUserAuth() {
     renderInquiries();
   } catch (err) {
     console.error('Error loading user auth:', err);
-    await clearAllCachesAndLogout();
+    clearAllCachesAndLogout();
     window.location.href = '/?showLogin=true';
   }
 }

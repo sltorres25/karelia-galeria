@@ -1,6 +1,6 @@
 import './style.css';
 import { virtualArtRoom } from './virtualArt.js';
-import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout } from './sessionManager.js';
+import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout, setSessionToken, getAuthHeaders } from './sessionManager.js';
 
 let currentActiveArtwork = null;
 
@@ -1338,7 +1338,7 @@ async function initNavbarAuth() {
         userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
         document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
       } else {
-        const res = await fetch('/api/auth/me', { cache: 'no-store' });
+        const res = await fetch('/api/auth/me', { headers: getAuthHeaders(), cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           const user = data.user;
@@ -1349,7 +1349,7 @@ async function initNavbarAuth() {
             userBtn.innerHTML = `<a href="/user-area.html" class="nav-user-btn">👤 Mi Cuenta</a>`;
           }
         } else {
-          await clearAllCachesAndLogout();
+          clearAllCachesAndLogout();
           userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
           document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
         }
@@ -1377,6 +1377,9 @@ async function initNavbarAuth() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error al iniciar sesión');
 
+      if (data.token) {
+        setSessionToken(data.token);
+      }
       markTabSessionActive();
 
       if (data.user.role === 'admin') {
@@ -1407,6 +1410,9 @@ async function initNavbarAuth() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error al registrar la cuenta');
 
+      if (data.token) {
+        setSessionToken(data.token);
+      }
       markTabSessionActive();
 
       window.location.href = '/user-area.html';
