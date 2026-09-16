@@ -2877,7 +2877,7 @@ function updateAddToCartButtonState(id) {
     btn.disabled = true;
     btn.style.backgroundColor = '#6E564A';
     btn.style.borderColor = '#6E564A';
-    btn.style.color = '#F3E8DB';
+    btn.style.color = '#EEEDF3';
   } else if (cart.includes(numericId)) {
     btn.textContent = translations[currentLang].modal.already_in_cart;
     btn.disabled = true;
@@ -2889,7 +2889,7 @@ function updateAddToCartButtonState(id) {
     btn.disabled = false;
     btn.style.backgroundColor = 'var(--accent-gold-dark)';
     btn.style.borderColor = 'var(--accent-gold-dark)';
-    btn.style.color = '#F3E8DB';
+    btn.style.color = '#EEEDF3';
   }
 }
 

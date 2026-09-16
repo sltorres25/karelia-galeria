@@ -7,16 +7,16 @@
 /* Variables System */
 :root {
   /* Clean Light Museum Gallery Design System */
-  --color-primary: #F3E8DB;     /* Crema (Primary Light Canvas) */
+  --color-primary: #EEEDF3;     /* Light Canvas (#EEEDF3 - Less red saturation) */
   --color-secondary: #D9C1A4;   /* Beige (Secondary Light Surface) */
   --color-terracotta-soft: #C9B26A; /* Terracota suave (Light Warm Accent) */
   
   --color-accent-dark: #A95F4A;  /* Arcilla (DARK ACCENT for CTAs, active states & focus) */
 
-  --bg-dark: #F3E8DB;          /* Crema Primary Light Canvas (Fondo siempre Crema) */
+  --bg-dark: #EEEDF3;          /* Light Primary Canvas */
   --bg-dark-card: #D9C1A4;     /* Beige (Segundo color más claro para tarjetas) */
-  --bg-dark-input: #F3E8DB;    /* Crema Light Inputs */
-  --bg-light: #F3E8DB;         /* Crema Primary Light Canvas */
+  --bg-dark-input: #EEEDF3;    /* Light Inputs */
+  --bg-light: #EEEDF3;         /* Light Primary Canvas */
   --bg-light-card: #D9C1A4;    /* Beige Card Surface (Segundo color más claro) */
   --bg-light-accent: #D9C1A4;  /* Beige Highlight */
   
@@ -218,12 +218,12 @@ a {
 
 .btn-primary {
   background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
-  color: #F3E8DB; /* Crema text */
+  color: #EEEDF3; /* Light text */
 }
 
 .btn-primary:hover {
   background-color: #8C4B39;
-  color: #F3E8DB;
+  color: #EEEDF3;
   transform: translateY(-2px);
   box-shadow: var(--box-shadow-gold);
 }
@@ -235,7 +235,7 @@ a {
 
 .btn-secondary:hover {
   background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
-  color: #F3E8DB;
+  color: #EEEDF3;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(169, 95, 74, 0.2);
 }
@@ -247,7 +247,7 @@ a {
 
 .section-light .btn-secondary:hover {
   background-color: var(--color-accent-dark);
-  color: #F3E8DB;
+  color: #EEEDF3;
 }
 
 .btn-outline {
@@ -258,12 +258,12 @@ a {
 
 .btn-outline:hover {
   background-color: var(--color-accent-dark);
-  color: #F3E8DB;
+  color: #EEEDF3;
   transform: translateY(-2px);
 }
 
 .hero .btn-secondary {
-  background-color: #F3E8DB; /* Crema */
+  background-color: #EEEDF3;
   color: #2C1F1A;
 }
 
@@ -274,13 +274,13 @@ a {
 }
 
 .hero .btn-outline {
-  border-color: rgba(243, 232, 219, 0.5);
-  color: #F3E8DB;
+  border-color: rgba(238, 237, 243, 0.5);
+  color: #EEEDF3;
 }
 
 .hero .btn-outline:hover {
-  background-color: rgba(243, 232, 219, 0.15);
-  border-color: #F3E8DB;
+  background-color: rgba(238, 237, 243, 0.15);
+  border-color: #EEEDF3;
 }
 
 .btn-block {
@@ -309,16 +309,16 @@ a {
   z-index: 1000;
   padding: 24px 0;
   transition: var(--transition-smooth);
-  border-bottom: 1px solid rgba(243, 232, 219, 0.15);
-  color: #F3E8DB; /* light text at the top */
+  border-bottom: 1px solid rgba(238, 237, 243, 0.15);
+  color: #EEEDF3; /* light text at the top */
 }
 
 .navbar .logo {
-  color: #F3E8DB;
+  color: #EEEDF3;
 }
 
 .navbar .nav-link {
-  color: rgba(243, 232, 219, 0.85);
+  color: rgba(238, 237, 243, 0.85);
 }
 
 .navbar .nav-link:hover {
@@ -326,12 +326,12 @@ a {
 }
 
 .navbar .nav-toggle .bar {
-  background-color: #F3E8DB;
+  background-color: #EEEDF3;
 }
 
 .navbar.scrolled {
   padding: 16px 0;
-  background-color: rgba(243, 232, 219, 0.96); /* Crema scrolled background */
+  background-color: rgba(238, 237, 243, 0.96); /* Light scrolled background */
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(169, 95, 74, 0.12);
   color: #2C1F1A; /* dark text when scrolled */
@@ -622,7 +622,7 @@ a {
 .artist-image-container {
   height: 280px;
   overflow: hidden;
-  background-color: #F3E8DB;
+  background-color: #EEEDF3;
 }
 
 .artist-image {
@@ -769,7 +769,7 @@ a {
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background-color: #F3E8DB;
+  background-color: #EEEDF3;
 }
 
 .artwork-image {
@@ -887,11 +887,11 @@ a {
   background-color: #2C1F1A; /* Deep arcilla brown */
   border-top: 1px solid rgba(169, 95, 74, 0.2);
   border-bottom: 1px solid rgba(169, 95, 74, 0.2);
-  color: #F3E8DB; /* Crema */
+  color: #EEEDF3;
 }
 
 .section-split .section-title {
-  color: #F3E8DB !important;
+  color: #EEEDF3 !important;
 }
 
 .section-split .section-desc {
@@ -907,9 +907,9 @@ a {
 }
 
 .section-split .btn-secondary {
-  background-color: #F3E8DB;
+  background-color: #EEEDF3;
   color: #2C1F1A;
-  border-color: #F3E8DB;
+  border-color: #EEEDF3;
 }
 
 .section-split .btn-secondary:hover {
@@ -1378,7 +1378,7 @@ a {
 }
 
 .modal-image-panel {
-  background-color: #F3E8DB;
+  background-color: #EEEDF3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2057,7 +2057,7 @@ a {
   width: 400px;
   max-width: 100%;
   height: 100vh;
-  background-color: #F3E8DB; /* Crema background */
+  background-color: #EEEDF3; /* Crema background */
   box-shadow: -10px 0 30px rgba(44, 31, 26, 0.15);
   z-index: 2000;
   display: flex;

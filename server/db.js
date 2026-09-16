@@ -68,9 +68,9 @@ const initialContent = {
 
 // Initial visual theme seed (Design Tokens)
 const initialTheme = {
-  primary: "#D9C1A4",
+  primary: "#EEEDF3",
   secondary: "#C9B26A",
-  bg: "#F3E8DB",
+  bg: "#EEEDF3",
   text: "#2C1F1A",
   btn: "#A95F4A",
   accent: "#A95F4A"

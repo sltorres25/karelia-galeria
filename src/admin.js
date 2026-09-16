@@ -366,7 +366,7 @@ function populateThemeForm(theme) {
 function updateLivePreview() {
   const primary = document.getElementById('color-primary')?.value || '#C9B26A';
   const secondary = document.getElementById('color-secondary')?.value || '#A95F4A';
-  const bg = document.getElementById('color-bg')?.value || '#F3E8DB';
+  const bg = document.getElementById('color-bg')?.value || '#EEEDF3';
   const text = document.getElementById('color-text')?.value || '#2C1F1A';
   const btn = document.getElementById('color-btn')?.value || '#A95F4A';
   const accent = document.getElementById('color-accent')?.value || '#D9C1A4';
@@ -388,7 +388,7 @@ function updateLivePreview() {
     if (prevText) prevText.style.color = text;
     if (prevBtnPrimary) {
       prevBtnPrimary.style.backgroundColor = btn;
-      prevBtnPrimary.style.color = '#F3E8DB';
+      prevBtnPrimary.style.color = '#EEEDF3';
     }
     if (prevBtnOutline) {
       prevBtnOutline.style.color = secondary;
@@ -432,7 +432,7 @@ document.getElementById('btn-reset-theme')?.addEventListener('click', async () =
   const defaultTheme = {
     primary: "#C9B26A",
     secondary: "#A95F4A",
-    bg: "#F3E8DB",
+    bg: "#EEEDF3",
     text: "#2C1F1A",
     btn: "#A95F4A",
     accent: "#D9C1A4"
