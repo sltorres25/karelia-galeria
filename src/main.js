@@ -1197,6 +1197,7 @@ async function initDynamicCMS() {
           artworksData[dbArt.id].category = dbArt.category;
           artworksData[dbArt.id].status = dbArt.status;
           if (dbArt.description) artworksData[dbArt.id].description = dbArt.description;
+          if (dbArt.certified !== undefined) artworksData[dbArt.id].certified = dbArt.certified;
         }
       });
     }
@@ -1692,6 +1693,11 @@ function initArtworkModal() {
           mPrice.textContent = data.price;
           mInquiryId.value = id;
 
+          const mCertBadge = document.querySelector('.certificate-badge');
+          if (mCertBadge) {
+            mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
+          }
+
           const mAddToCartBtn = document.getElementById('modal-add-to-cart');
           if (mAddToCartBtn) {
             mAddToCartBtn.setAttribute('data-id', id);
@@ -2079,6 +2085,11 @@ function bindModalEventsToCatalog() {
           mPrice.textContent = data.price;
           mInquiryId.value = id;
 
+          const mCertBadge = document.querySelector('.certificate-badge');
+          if (mCertBadge) {
+            mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
+          }
+
           const mAddToCartBtn = document.getElementById('modal-add-to-cart');
           if (mAddToCartBtn) {
             mAddToCartBtn.setAttribute('data-id', id);
@@ -2434,8 +2445,8 @@ const translations = {
       q6_desc: "Los precios mostrados cubren la obra y el seguro de tránsito. Los aranceles de importación o impuestos aduaneros locales de cada país son responsabilidad del comprador y varían según la legislación local.",
       q7_title: "¿Cómo se protegen las obras para el transporte?",
       q7_desc: "Las pinturas en lienzo se envían en cajas de madera a medida o tubos rígidos de alta densidad, envueltas en papel burbuja especial antiestático y capas protectoras impermeables contra humedad e impactos.",
-      q8_title: "¿Puedo solicitar una obra personalizada o buscar un artista específico?",
-      q8_desc: "Sí. Ofrecemos un servicio de consultoría privada. Si desea encargar una obra a medida de nuestros artistas representados o localizar una pieza especial, contáctenos directamente a través del formulario.",
+      q8_title: "¿Realizan encargos u obras personalizadas?",
+      q8_desc: "No. Todas las obras disponibles en Arte Mestizo son piezas originales y terminadas, creadas libremente por nuestros artistas representados. No realizamos encargos ni obras a medida.",
       q9_title: "¿Qué métodos de pago son aceptados?",
       q9_desc: "Aceptamos tarjetas de crédito internacionales (Visa, Mastercard, American Express), transferencias bancarias directas y métodos de pago seguros de simulación bancaria en USD.",
       q10_title: "¿Cómo puedo ver la obra en mi espacio antes de comprar?",
@@ -2627,8 +2638,8 @@ const translations = {
       q6_desc: "The prices shown cover the artwork and transit insurance. Import duties or local customs taxes of each country are the responsibility of the buyer and vary according to local legislation.",
       q7_title: "How are the artworks protected for transport?",
       q7_desc: "Canvas paintings are shipped in custom wooden crates or high-density rigid tubes, wrapped in special antistatic bubble wrap and protective waterproof layers against humidity and impacts.",
-      q8_title: "Can I request a customized artwork or search for a specific artist?",
-      q8_desc: "Yes. We offer a private consulting service. If you wish to commission a custom piece from our represented artists or locate a special artwork, contact us directly through the form.",
+      q8_title: "Do you accept custom artworks or commissions?",
+      q8_desc: "No. All artworks available at Arte Mestizo are original finished creations freely produced by our represented artists. We do not accept custom orders or commissions.",
       q9_title: "What payment methods are accepted?",
       q9_desc: "We accept international credit cards (Visa, Mastercard, American Express), direct bank wire transfers, and secure international simulated payment methods in USD.",
       q10_title: "How can I view the artwork in my space before buying?",
@@ -2864,21 +2875,21 @@ function updateAddToCartButtonState(id) {
   if (soldArtworks.includes(numericId)) {
     btn.textContent = translations[currentLang].modal.sold;
     btn.disabled = true;
-    btn.style.backgroundColor = '#626262';
-    btn.style.borderColor = '#626262';
-    btn.style.color = '#ffffff';
+    btn.style.backgroundColor = '#6E564A';
+    btn.style.borderColor = '#6E564A';
+    btn.style.color = '#F3E8DB';
   } else if (cart.includes(numericId)) {
     btn.textContent = translations[currentLang].modal.already_in_cart;
     btn.disabled = true;
-    btn.style.backgroundColor = '#eae7e0';
-    btn.style.borderColor = '#eae7e0';
-    btn.style.color = '#626262';
+    btn.style.backgroundColor = '#D9C1A4';
+    btn.style.borderColor = '#D9C1A4';
+    btn.style.color = '#2C1F1A';
   } else {
     btn.textContent = translations[currentLang].modal.add_to_cart;
     btn.disabled = false;
-    btn.style.backgroundColor = 'var(--accent-gold)';
-    btn.style.borderColor = 'var(--accent-gold)';
-    btn.style.color = '#161616';
+    btn.style.backgroundColor = 'var(--accent-gold-dark)';
+    btn.style.borderColor = 'var(--accent-gold-dark)';
+    btn.style.color = '#F3E8DB';
   }
 }
 
@@ -3296,6 +3307,11 @@ function initArtistDetailPage() {
             mYear.textContent = data.year;
             mPrice.textContent = data.price;
             mInquiryId.value = id;
+
+            const mCertBadge = document.querySelector('.certificate-badge');
+            if (mCertBadge) {
+              mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
+            }
 
             const mAddToCartBtn = document.getElementById('modal-add-to-cart');
             if (mAddToCartBtn) {

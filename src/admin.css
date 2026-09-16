@@ -3,15 +3,16 @@
  * ------------------------------------------------------------- */
 
 :root {
-  --admin-bg-dark: #0f1115;
-  --admin-bg-sidebar: #161920;
-  --admin-bg-card: #1c2029;
-  --admin-bg-input: #252b37;
-  --admin-border: rgba(255, 255, 255, 0.08);
-  --admin-gold: #c5a880;
-  --admin-gold-hover: #dcc39f;
-  --admin-text-main: #f0f2f5;
-  --admin-text-muted: #94a3b8;
+  --admin-bg-dark: #2C1F1A; /* Deep arcilla brown */
+  --admin-bg-sidebar: #211612;
+  --admin-bg-card: #382822;
+  --admin-bg-input: #46332B;
+  --admin-border: rgba(217, 193, 164, 0.2);
+  --admin-gold: #C9B26A; /* Terracota suave */
+  --admin-gold-hover: #D9C1A4; /* Beige */
+  --admin-accent-clay: #A95F4A; /* Arcilla */
+  --admin-text-main: #F3E8DB; /* Crema */
+  --admin-text-muted: #D9C1A4; /* Beige */
   --admin-danger: #ef4444;
   --admin-success: #10b981;
   --admin-warning: #f59e0b;

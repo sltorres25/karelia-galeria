@@ -182,12 +182,20 @@ function renderArtworksTable(artworks) {
 
   tbody.innerHTML = artworks.map(art => {
     const statusClass = (art.status || 'Disponible').toLowerCase();
+    const isCert = art.certified !== false;
+    const certBadge = isCert
+      ? `<span style="color:#10b981; font-weight:600; font-size:0.75rem; background:rgba(16,185,129,0.1); padding:2px 6px; border-radius:4px;">✓ Certificada</span>`
+      : `<span style="color:#ef4444; font-size:0.75rem; background:rgba(239,68,68,0.1); padding:2px 6px; border-radius:4px;">✕ Sin cert.</span>`;
+
     return `
       <tr>
         <td>
           <div class="table-artwork-item" style="display:flex; align-items:center;">
             <span style="width:28px; height:28px; background:rgba(197,168,128,0.15); color:var(--admin-gold); border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:14px; margin-right:10px;">🎨</span>
-            <strong>${art.title}</strong>
+            <div>
+              <strong>${art.title}</strong>
+              <div style="margin-top:2px;">${certBadge}</div>
+            </div>
           </div>
         </td>
         <td>${art.artist || '-'}</td>
@@ -231,6 +239,9 @@ window.openEditArtworkModal = function(id) {
   document.getElementById('edit-status').value = artwork.status || 'Disponible';
   document.getElementById('edit-year').value = artwork.year || '';
   document.getElementById('edit-technique').value = artwork.technique || '';
+  if (document.getElementById('edit-certified')) {
+    document.getElementById('edit-certified').value = artwork.certified !== false ? 'true' : 'false';
+  }
   document.getElementById('edit-description').value = artwork.description || '';
 
   document.getElementById('artwork-edit-modal').classList.add('active');
@@ -252,6 +263,9 @@ document.getElementById('btn-add-artwork')?.addEventListener('click', () => {
   document.getElementById('edit-status').value = 'Disponible';
   document.getElementById('edit-year').value = new Date().getFullYear().toString();
   document.getElementById('edit-technique').value = 'Acrílico sobre lienzo';
+  if (document.getElementById('edit-certified')) {
+    document.getElementById('edit-certified').value = 'true';
+  }
   document.getElementById('edit-description').value = '';
 
   document.getElementById('artwork-edit-modal').classList.add('active');
@@ -272,6 +286,7 @@ window.saveArtworkForm = async function(e) {
     status: document.getElementById('edit-status')?.value || 'Disponible',
     year: document.getElementById('edit-year')?.value || '2024',
     technique: document.getElementById('edit-technique')?.value || '',
+    certified: document.getElementById('edit-certified')?.value !== 'false',
     description: document.getElementById('edit-description')?.value || ''
   };
 
@@ -349,12 +364,12 @@ function populateThemeForm(theme) {
 }
 
 function updateLivePreview() {
-  const primary = document.getElementById('color-primary')?.value || '#c5a880';
-  const secondary = document.getElementById('color-secondary')?.value || '#a88a62';
-  const bg = document.getElementById('color-bg')?.value || '#faf9f6';
-  const text = document.getElementById('color-text')?.value || '#161616';
-  const btn = document.getElementById('color-btn')?.value || '#161616';
-  const accent = document.getElementById('color-accent')?.value || '#dcc39f';
+  const primary = document.getElementById('color-primary')?.value || '#C9B26A';
+  const secondary = document.getElementById('color-secondary')?.value || '#A95F4A';
+  const bg = document.getElementById('color-bg')?.value || '#F3E8DB';
+  const text = document.getElementById('color-text')?.value || '#2C1F1A';
+  const btn = document.getElementById('color-btn')?.value || '#A95F4A';
+  const accent = document.getElementById('color-accent')?.value || '#D9C1A4';
 
   const previewBox = document.getElementById('live-preview-box');
   const prevBadge = document.getElementById('prev-badge');
@@ -373,11 +388,11 @@ function updateLivePreview() {
     if (prevText) prevText.style.color = text;
     if (prevBtnPrimary) {
       prevBtnPrimary.style.backgroundColor = btn;
-      prevBtnPrimary.style.color = '#ffffff';
+      prevBtnPrimary.style.color = '#F3E8DB';
     }
     if (prevBtnOutline) {
-      prevBtnOutline.style.color = primary;
-      prevBtnOutline.style.borderColor = primary;
+      prevBtnOutline.style.color = secondary;
+      prevBtnOutline.style.borderColor = secondary;
     }
   }
 }
@@ -415,12 +430,12 @@ document.getElementById('theme-form')?.addEventListener('submit', async (e) => {
 // Reset Theme
 document.getElementById('btn-reset-theme')?.addEventListener('click', async () => {
   const defaultTheme = {
-    primary: "#c5a880",
-    secondary: "#a88a62",
-    bg: "#faf9f6",
-    text: "#161616",
-    btn: "#161616",
-    accent: "#dcc39f"
+    primary: "#C9B26A",
+    secondary: "#A95F4A",
+    bg: "#F3E8DB",
+    text: "#2C1F1A",
+    btn: "#A95F4A",
+    accent: "#D9C1A4"
   };
   populateThemeForm(defaultTheme);
   showToast('Restablecidos valores por defecto en el formulario.', 'info');

@@ -187,34 +187,34 @@
             <form id="theme-form" class="color-form">
               <div class="color-field">
                 <label for="color-primary">
-                  <strong>Color Principal</strong>
+                  <strong>Color Principal (Terracota suave)</strong>
                   <small>Utilizado en botones primarios, enlaces y acentos destacados</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-primary" name="primary" value="#c5a880" />
-                  <input type="text" id="hex-primary" class="hex-input" value="#c5a880" />
+                  <input type="color" id="color-primary" name="primary" value="#C9B26A" />
+                  <input type="text" id="hex-primary" class="hex-input" value="#C9B26A" />
                 </div>
               </div>
 
               <div class="color-field">
                 <label for="color-secondary">
-                  <strong>Color Secundario / Acento Oscuro</strong>
+                  <strong>Color Secundario (Arcilla)</strong>
                   <small>Aplicado en hover de botones y detalles secundarios</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-secondary" name="secondary" value="#a88a62" />
-                  <input type="text" id="hex-secondary" class="hex-input" value="#a88a62" />
+                  <input type="color" id="color-secondary" name="secondary" value="#A95F4A" />
+                  <input type="text" id="hex-secondary" class="hex-input" value="#A95F4A" />
                 </div>
               </div>
 
               <div class="color-field">
                 <label for="color-bg">
-                  <strong>Color de Fondo General</strong>
+                  <strong>Color de Fondo General (Crema)</strong>
                   <small>Fondo principal del sitio web</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-bg" name="bg" value="#faf9f6" />
-                  <input type="text" id="hex-bg" class="hex-input" value="#faf9f6" />
+                  <input type="color" id="color-bg" name="bg" value="#F3E8DB" />
+                  <input type="text" id="hex-bg" class="hex-input" value="#F3E8DB" />
                 </div>
               </div>
 
@@ -224,30 +224,30 @@
                   <small>Títulos y párrafos descriptivos de la web</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-text" name="text" value="#161616" />
-                  <input type="text" id="hex-text" class="hex-input" value="#161616" />
+                  <input type="color" id="color-text" name="text" value="#2C1F1A" />
+                  <input type="text" id="hex-text" class="hex-input" value="#2C1F1A" />
                 </div>
               </div>
 
               <div class="color-field">
                 <label for="color-btn">
-                  <strong>Color de Botones</strong>
+                  <strong>Color de Botones (Arcilla)</strong>
                   <small>Color de fondo para los botones de acción</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-btn" name="btn" value="#161616" />
-                  <input type="text" id="hex-btn" class="hex-input" value="#161616" />
+                  <input type="color" id="color-btn" name="btn" value="#A95F4A" />
+                  <input type="text" id="hex-btn" class="hex-input" value="#A95F4A" />
                 </div>
               </div>
 
               <div class="color-field">
                 <label for="color-accent">
-                  <strong>Color Acento Claro</strong>
-                  <small>Detalles dorados/claros y badges</small>
+                  <strong>Color Acento (Beige)</strong>
+                  <small>Detalles claros, tarjetas y badges</small>
                 </label>
                 <div class="picker-group">
-                  <input type="color" id="color-accent" name="accent" value="#dcc39f" />
-                  <input type="text" id="hex-accent" class="hex-input" value="#dcc39f" />
+                  <input type="color" id="color-accent" name="accent" value="#D9C1A4" />
+                  <input type="text" id="hex-accent" class="hex-input" value="#D9C1A4" />
                 </div>
               </div>
 
@@ -453,9 +453,18 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="edit-technique">Técnica</label>
-          <input type="text" id="edit-technique" placeholder="Acrílico sobre lienzo" class="admin-input" />
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="edit-technique">Técnica</label>
+            <input type="text" id="edit-technique" placeholder="Acrílico sobre lienzo" class="admin-input" />
+          </div>
+          <div class="form-group col-6">
+            <label for="edit-certified">¿Obra Certificada? *</label>
+            <select id="edit-certified" class="admin-input">
+              <option value="true">Sí (Con Certificado de Autenticidad)</option>
+              <option value="false">No (Sin Certificado)</option>
+            </select>
+          </div>
         </div>
 
         <div class="form-group">

@@ -6,23 +6,23 @@
 
 /* Variables System */
 :root {
-  /* Color Palette - Elegant Light Museum Theme */
-  --bg-dark: #faf9f6; /* Off-white canvas */
+  /* Color Palette - Terracota Suave, Crema, Arcilla & Beige Theme */
+  --bg-dark: #F3E8DB; /* Crema canvas */
   --bg-dark-card: #ffffff;
   --bg-dark-input: #ffffff;
-  --bg-light: #f3f1ec; /* Warm sand cream contrast */
-  --bg-light-card: #ffffff;
-  --bg-light-accent: #eae7e0;
+  --bg-light: #D9C1A4; /* Beige warm contrast */
+  --bg-light-card: #F3E8DB; /* Crema card background on Beige sections */
+  --bg-light-accent: #E5D5C3;
   
-  --accent-gold: #c5a880;
-  --accent-gold-dark: #a88a62;
-  --accent-gold-light: #dcc39f;
-  --accent-gold-trans: rgba(197, 168, 128, 0.15);
+  --accent-gold: #C9B26A; /* Terracota suave */
+  --accent-gold-dark: #A95F4A; /* Arcilla */
+  --accent-gold-light: #D9C1A4; /* Beige */
+  --accent-gold-trans: rgba(201, 178, 106, 0.2);
   
-  --text-light: #161616; /* Sophisticated charcoal */
-  --text-light-muted: #626262; /* Soft gray-charcoal descriptions */
-  --text-dark: #161616;
-  --text-dark-muted: #626262;
+  --text-light: #2C1F1A; /* Sophisticated warm dark brown */
+  --text-light-muted: #6E564A; /* Soft warm descriptions */
+  --text-dark: #2C1F1A;
+  --text-dark-muted: #6E564A;
   
   /* Fonts */
   --font-serif: "Playfair Display", Georgia, serif;
@@ -35,9 +35,9 @@
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
-  --box-shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-  --box-shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.15);
-  --box-shadow-gold: 0 8px 24px rgba(197, 168, 128, 0.2);
+  --box-shadow-soft: 0 10px 30px rgba(169, 95, 74, 0.08);
+  --box-shadow-medium: 0 15px 40px rgba(44, 31, 26, 0.15);
+  --box-shadow-gold: 0 8px 24px rgba(201, 178, 106, 0.3);
 }
 
 /* Reset and Base Styles */
@@ -211,69 +211,70 @@ a {
 }
 
 .btn-primary {
-  background-color: var(--accent-gold);
-  color: #161616;
+  background-color: var(--accent-gold-dark); /* Arcilla #A95F4A */
+  color: #F3E8DB; /* Crema */
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-gold-light);
+  background-color: var(--accent-gold); /* Terracota suave #C9B26A */
+  color: #2C1F1A;
   transform: translateY(-2px);
   box-shadow: var(--box-shadow-gold);
 }
 
 .btn-secondary {
-  background-color: #161616;
-  color: #ffffff;
+  background-color: var(--accent-gold); /* Terracota suave */
+  color: #2C1F1A;
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-gold);
-  color: #161616;
+  background-color: var(--accent-gold-dark); /* Arcilla */
+  color: #F3E8DB;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(169, 95, 74, 0.2);
 }
 
 .section-light .btn-secondary {
-  background-color: #161616;
-  color: #ffffff;
+  background-color: var(--accent-gold-dark);
+  color: #F3E8DB;
 }
 
 .section-light .btn-secondary:hover {
-  background-color: var(--accent-gold-dark);
-  color: #ffffff;
+  background-color: var(--accent-gold);
+  color: #2C1F1A;
 }
 
 .btn-outline {
   background-color: transparent;
-  border-color: rgba(22, 22, 22, 0.2);
-  color: #161616;
+  border-color: rgba(169, 95, 74, 0.4);
+  color: var(--text-dark);
 }
 
 .btn-outline:hover {
-  background-color: rgba(22, 22, 22, 0.05);
-  border-color: #161616;
+  background-color: rgba(169, 95, 74, 0.1);
+  border-color: var(--accent-gold-dark);
   transform: translateY(-2px);
 }
 
 .hero .btn-secondary {
-  background-color: #ffffff;
-  color: #161616;
+  background-color: #F3E8DB; /* Crema */
+  color: #2C1F1A;
 }
 
 .hero .btn-secondary:hover {
   background-color: var(--accent-gold);
-  color: #161616;
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+  color: #2C1F1A;
+  box-shadow: 0 8px 24px rgba(201, 178, 106, 0.3);
 }
 
 .hero .btn-outline {
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  border-color: rgba(243, 232, 219, 0.5);
+  color: #F3E8DB;
 }
 
 .hero .btn-outline:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: #ffffff;
+  background-color: rgba(243, 232, 219, 0.15);
+  border-color: #F3E8DB;
 }
 
 .btn-block {
@@ -302,40 +303,40 @@ a {
   z-index: 1000;
   padding: 24px 0;
   transition: var(--transition-smooth);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff; /* light text at the top */
+  border-bottom: 1px solid rgba(243, 232, 219, 0.15);
+  color: #F3E8DB; /* light text at the top */
 }
 
 .navbar .logo {
-  color: #ffffff;
+  color: #F3E8DB;
 }
 
 .navbar .nav-link {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(243, 232, 219, 0.85);
 }
 
 .navbar .nav-link:hover {
-  color: var(--accent-gold-light);
+  color: var(--accent-gold);
 }
 
 .navbar .nav-toggle .bar {
-  background-color: #ffffff;
+  background-color: #F3E8DB;
 }
 
 .navbar.scrolled {
   padding: 16px 0;
-  background-color: rgba(250, 249, 246, 0.96);
+  background-color: rgba(243, 232, 219, 0.96); /* Crema scrolled background */
   backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  color: #161616; /* dark text when scrolled */
+  border-bottom: 1px solid rgba(169, 95, 74, 0.12);
+  color: #2C1F1A; /* dark text when scrolled */
 }
 
 .navbar.scrolled .logo {
-  color: #161616;
+  color: #2C1F1A;
 }
 
 .navbar.scrolled .nav-link {
-  color: rgba(22, 22, 22, 0.85);
+  color: rgba(44, 31, 26, 0.85);
 }
 
 .navbar.scrolled .nav-link:hover {
@@ -343,7 +344,7 @@ a {
 }
 
 .navbar.scrolled .nav-toggle .bar {
-  background-color: #161616;
+  background-color: #2C1F1A;
 }
 
 .navbar-container {
@@ -860,18 +861,18 @@ a {
 /* Philosophy Section Split */
 .section-split {
   padding: 120px 0;
-  background-color: #0c0c0c;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  background-color: #2C1F1A; /* Deep arcilla brown */
+  border-top: 1px solid rgba(169, 95, 74, 0.2);
+  border-bottom: 1px solid rgba(169, 95, 74, 0.2);
+  color: #F3E8DB; /* Crema */
 }
 
 .section-split .section-title {
-  color: #ffffff !important;
+  color: #F3E8DB !important;
 }
 
 .section-split .section-desc {
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #D9C1A4 !important; /* Beige */
 }
 
 .split-text {
@@ -883,14 +884,14 @@ a {
 }
 
 .section-split .btn-secondary {
-  background-color: #ffffff;
-  color: #161616;
-  border-color: #ffffff;
+  background-color: #F3E8DB;
+  color: #2C1F1A;
+  border-color: #F3E8DB;
 }
 
 .section-split .btn-secondary:hover {
   background-color: var(--accent-gold);
-  color: #161616;
+  color: #2C1F1A;
   border-color: var(--accent-gold);
 }
 
@@ -1214,9 +1215,9 @@ a {
 
 /* Footer */
 .footer {
-  background-color: #080808;
+  background-color: #211612; /* Deep Arcilla brown */
   padding: 80px 0 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(169, 95, 74, 0.2);
 }
 
 .footer-content {
@@ -1233,7 +1234,7 @@ a {
 .footer-desc {
   margin-top: 20px;
   font-size: 0.95rem;
-  color: var(--text-light-muted);
+  color: #D9C1A4; /* Beige */
 }
 
 .footer-links-grid {
@@ -1252,27 +1253,27 @@ a {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent-gold);
+  color: var(--accent-gold); /* Terracota suave */
   margin-bottom: 8px;
   font-weight: 700;
 }
 
 .footer-column a {
   font-size: 0.95rem;
-  color: var(--text-light-muted);
+  color: #D9C1A4; /* Beige */
 }
 
 .footer-column a:hover {
-  color: var(--accent-gold-light);
+  color: var(--accent-gold); /* Terracota suave */
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(169, 95, 74, 0.15);
   padding-top: 40px;
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: #555555;
+  color: #D9C1A4;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -1433,22 +1434,22 @@ a {
 .price-tag {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #8e724a; /* Darker premium gold/brown for readability */
+  color: #A95F4A; /* Arcilla clay price tag */
 }
 
 .certificate-badge {
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: rgba(142, 114, 74, 0.08); /* More defined background tint */
+  background-color: rgba(169, 95, 74, 0.08); /* Arcilla soft tint */
   padding: 12px 16px;
   border-radius: var(--border-radius-sm);
-  border: 1px dashed rgba(142, 114, 74, 0.35); /* Darker dashed border */
+  border: 1px dashed rgba(169, 95, 74, 0.35);
   margin-top: 16px;
 }
 
 .certificate-badge svg {
-  color: #8e724a; /* Matches darker badge theme */
+  color: #A95F4A;
   flex-shrink: 0;
 }
 
@@ -2033,13 +2034,13 @@ a {
   width: 400px;
   max-width: 100%;
   height: 100vh;
-  background-color: #faf9f6;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  background-color: #F3E8DB; /* Crema background */
+  box-shadow: -10px 0 30px rgba(44, 31, 26, 0.15);
   z-index: 2000;
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-left: 1px solid rgba(22, 22, 22, 0.06);
+  border-left: 1px solid rgba(169, 95, 74, 0.15);
 }
 
 .cart-drawer.active {
@@ -2048,7 +2049,7 @@ a {
 
 .cart-header {
   padding: 24px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+  border-bottom: 1px solid rgba(169, 95, 74, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2058,7 +2059,7 @@ a {
   font-family: var(--font-sans);
   font-size: 1.2rem;
   font-weight: 700;
-  color: #161616;
+  color: #2C1F1A;
 }
 
 .cart-close-btn {
@@ -2066,12 +2067,12 @@ a {
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
-  color: #626262;
+  color: #6E564A;
   transition: var(--transition-fast);
 }
 
 .cart-close-btn:hover {
-  color: #161616;
+  color: #2C1F1A;
 }
 
 .cart-items-container {
@@ -2086,7 +2087,7 @@ a {
 .cart-empty-msg {
   text-align: center;
   margin: auto;
-  color: #626262;
+  color: #6E564A;
   font-size: 0.95rem;
 }
 
@@ -2094,7 +2095,7 @@ a {
   display: flex;
   align-items: center;
   gap: 16px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.06);
+  border-bottom: 1px solid rgba(169, 95, 74, 0.12);
   padding-bottom: 16px;
 }
 
@@ -2112,13 +2113,13 @@ a {
 .cart-item-title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #161616;
+  color: #2C1F1A;
   margin-bottom: 2px;
 }
 
 .cart-item-artist {
   font-size: 0.8rem;
-  color: #626262;
+  color: #6E564A;
   font-style: italic;
   margin-bottom: 6px;
 }
@@ -2126,7 +2127,7 @@ a {
 .cart-item-price {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #8e724a;
+  color: #A95F4A; /* Arcilla */
 }
 
 .cart-item-remove {
@@ -2144,8 +2145,8 @@ a {
 
 .cart-footer {
   padding: 24px;
-  border-top: 1px solid rgba(22, 22, 22, 0.08);
-  background-color: #f5f4ef;
+  border-top: 1px solid rgba(169, 95, 74, 0.15);
+  background-color: #D9C1A4; /* Beige background */
 }
 
 .cart-total-row {
@@ -2153,12 +2154,12 @@ a {
   justify-content: space-between;
   font-size: 1rem;
   font-weight: 700;
-  color: #161616;
+  color: #2C1F1A;
   margin-bottom: 20px;
 }
 
 .cart-total-price {
-  color: #8e724a;
+  color: #A95F4A; /* Arcilla */
   font-size: 1.15rem;
 }
 
@@ -2201,7 +2202,7 @@ a {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(44, 31, 26, 0.6);
   backdrop-filter: blur(8px);
   z-index: 3000;
   display: none;
@@ -2217,14 +2218,14 @@ a {
 }
 
 .checkout-container {
-  background-color: #faf9f6;
+  background-color: #F3E8DB; /* Crema */
   width: 550px;
   max-width: 95%;
   max-height: 90vh;
   overflow-y: auto;
   border-radius: var(--border-radius-md);
   box-shadow: var(--box-shadow-medium);
-  border: 1px solid rgba(22, 22, 22, 0.06);
+  border: 1px solid rgba(169, 95, 74, 0.2);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2232,7 +2233,7 @@ a {
 
 .checkout-header {
   padding: 24px;
-  border-bottom: 1px solid rgba(22, 22, 22, 0.08);
+  border-bottom: 1px solid rgba(169, 95, 74, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2242,7 +2243,7 @@ a {
   font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 700;
-  color: #161616;
+  color: #2C1F1A;
 }
 
 .checkout-close-btn {
@@ -2250,7 +2251,7 @@ a {
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
-  color: #626262;
+  color: #6E564A;
 }
 
 .checkout-body {
@@ -2258,11 +2259,11 @@ a {
 }
 
 .checkout-summary-box {
-  background-color: #f3f1ec;
+  background-color: #D9C1A4; /* Beige */
   padding: 16px;
   border-radius: 4px;
   margin-bottom: 24px;
-  border: 1px solid rgba(22, 22, 22, 0.04);
+  border: 1px solid rgba(169, 95, 74, 0.15);
 }
 
 .checkout-summary-row {
