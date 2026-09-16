@@ -1,4 +1,5 @@
 import './admin.css';
+import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout, getAuthHeaders } from './sessionManager.js';
 
 let currentAdminUser = null;
 let allArtworks = [];
