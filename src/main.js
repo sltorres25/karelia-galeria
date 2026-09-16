@@ -1704,6 +1704,21 @@ function initArtworkModal() {
           mPrice.textContent = data.price;
           mInquiryId.value = id;
 
+          const mStatus = document.getElementById('modal-status');
+          if (mStatus) {
+            const isSold = soldArtworks.includes(parseInt(id, 10)) || data.status === 'Vendida';
+            mStatus.textContent = isSold ? (currentLang === 'en' ? 'Sold' : 'Vendida') : (currentLang === 'en' ? 'Available' : 'Disponible');
+            mStatus.style.color = isSold ? '#c94a4a' : '#2b8a3e';
+          }
+
+          const mDescription = document.getElementById('modal-description');
+          if (mDescription) {
+            const defaultDesc = currentLang === 'en'
+              ? `Original ${technique.toLowerCase()} artwork by ${data.artist}.`
+              : `${technique} original de ${data.artist}.`;
+            mDescription.textContent = data.description || defaultDesc;
+          }
+
           const mCertBadge = document.querySelector('.certificate-badge');
           if (mCertBadge) {
             mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
@@ -2111,6 +2126,21 @@ function bindModalEventsToCatalog() {
           mYear.textContent = data.year;
           mPrice.textContent = data.price;
           mInquiryId.value = id;
+
+          const mStatus = document.getElementById('modal-status');
+          if (mStatus) {
+            const isSold = soldArtworks.includes(parseInt(id, 10)) || data.status === 'Vendida';
+            mStatus.textContent = isSold ? (currentLang === 'en' ? 'Sold' : 'Vendida') : (currentLang === 'en' ? 'Available' : 'Disponible');
+            mStatus.style.color = isSold ? '#c94a4a' : '#2b8a3e';
+          }
+
+          const mDescription = document.getElementById('modal-description');
+          if (mDescription) {
+            const defaultDesc = currentLang === 'en'
+              ? `Original ${technique.toLowerCase()} artwork by ${data.artist}.`
+              : `${technique} original de ${data.artist}.`;
+            mDescription.textContent = data.description || defaultDesc;
+          }
 
           const mCertBadge = document.querySelector('.certificate-badge');
           if (mCertBadge) {
@@ -3376,6 +3406,21 @@ function initArtistDetailPage() {
             mYear.textContent = data.year;
             mPrice.textContent = data.price;
             mInquiryId.value = id;
+
+            const mStatus = document.getElementById('modal-status');
+            if (mStatus) {
+              const isSold = soldArtworks.includes(parseInt(id, 10)) || data.status === 'Vendida';
+              mStatus.textContent = isSold ? (currentLang === 'en' ? 'Sold' : 'Vendida') : (currentLang === 'en' ? 'Available' : 'Disponible');
+              mStatus.style.color = isSold ? '#c94a4a' : '#2b8a3e';
+            }
+
+            const mDescription = document.getElementById('modal-description');
+            if (mDescription) {
+              const defaultDesc = currentLang === 'en'
+                ? `Original ${technique.toLowerCase()} artwork by ${data.artist}.`
+                : `${technique} original de ${data.artist}.`;
+              mDescription.textContent = data.description || defaultDesc;
+            }
 
             const mCertBadge = document.querySelector('.certificate-badge');
             if (mCertBadge) {
