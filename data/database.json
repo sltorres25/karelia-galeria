@@ -17,6 +17,14 @@
       "createdAt": "2026-09-07T19:46:30.616Z"
     },
     {
+      "id": "usr_admin3",
+      "email": "sltorres1997@gmail.com",
+      "passwordHash": "$2a$10$54HpiUN6P1zeatsbyr.etOT2I8184wGj4TBZuMdV6U9dDpIp3FQQC",
+      "name": "Administrador (sltorres1997)",
+      "role": "admin",
+      "createdAt": "2026-09-16T23:01:23.000Z"
+    },
+    {
       "id": "usr_client1",
       "email": "usuario@artemestizo.com",
       "passwordHash": "$2a$10$aW1j1j9XZ5c5RVCJRn4hGe27V1Zg1Qlkt7Fk5w7al569tUdoVwkL.",

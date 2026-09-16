@@ -99,6 +99,14 @@ function getSeedData() {
         createdAt: new Date().toISOString()
       },
       {
+        id: "usr_admin3",
+        email: "sltorres1997@gmail.com",
+        passwordHash: bcrypt.hashSync("123", salt),
+        name: "Administrador (sltorres1997)",
+        role: "admin",
+        createdAt: new Date().toISOString()
+      },
+      {
         id: "usr_client1",
         email: "usuario@artemestizo.com",
         passwordHash: bcrypt.hashSync("User2026!Key", salt),
