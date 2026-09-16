@@ -1,12 +1,10 @@
 /**
  * Perspective Transform & Homography Rendering Module for HTML5 Canvas
- * Performs pure client-side 2D mesh triangulation and homographic warp
+ * Performs pure client-side 2D mesh triangulation, 3D canvas edge extrusion,
+ * ambient wall tinting, and dual shadow rendering.
  * Karelia Galería - "Ver obra en tu espacio"
  */
 
-/**
- * Interpolates a point inside a 4-vertex quadrilateral (TL, TR, BR, BL) using bilinear mapping.
- */
 export function getQuadBilinearPoint(points, u, v) {
   const [p0, p1, p2, p3] = points;
   return {
@@ -15,10 +13,6 @@ export function getQuadBilinearPoint(points, u, v) {
   };
 }
 
-/**
- * Solves and applies 2D affine transformation mapping source triangle (s0, s1, s2)
- * onto destination triangle (d0, d1, d2) and renders source image clipped to the triangle.
- */
 function drawTriangleAffine(ctx, image, s0, s1, s2, d0, d1, d2) {
   const det = s0.x * (s1.y - s2.y) - s0.y * (s1.x - s2.x) + (s1.x * s2.y - s2.x * s1.y);
   if (Math.abs(det) < 0.00001) return;
@@ -58,23 +52,43 @@ function drawTriangleAffine(ctx, image, s0, s1, s2, d0, d1, d2) {
 }
 
 /**
- * Renders high-quality drop shadow behind the wall artwork polygon.
+ * Renders Dual Shadows:
+ * 1. Sombra de contacto: Fine dark occlusion shadow line tight against the frame edge.
+ * 2. Sombra proyectada: Open, diffuse ambient drop shadow extending downwards & laterally.
  */
-export function renderWallShadow(ctx, quadPoints, shadowConfig = {}) {
+export function renderDualShadows(ctx, quadPoints, shadowConfig = {}) {
   const {
     opacity = 0.35,
-    blur = 20,
-    offsetX = 6,
-    offsetY = 14
+    blur = 24,
+    offsetX = 8,
+    offsetY = 16
   } = shadowConfig;
 
+  // 1. Sombra Proyectada (Open diffuse ambient shadow)
   ctx.save();
   ctx.shadowColor = `rgba(0, 0, 0, ${opacity})`;
   ctx.shadowBlur = blur;
   ctx.shadowOffsetX = offsetX;
   ctx.shadowOffsetY = offsetY;
 
-  ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 0.8})`;
+  ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 0.75})`;
+  ctx.beginPath();
+  ctx.moveTo(quadPoints[0].x, quadPoints[0].y);
+  ctx.lineTo(quadPoints[1].x, quadPoints[1].y);
+  ctx.lineTo(quadPoints[2].x, quadPoints[2].y);
+  ctx.lineTo(quadPoints[3].x, quadPoints[3].y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  // 2. Sombra de Contacto (Fine dark occlusion shadow line right behind the frame)
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetX = 1.5;
+  ctx.shadowOffsetY = 2.5;
+
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
   ctx.beginPath();
   ctx.moveTo(quadPoints[0].x, quadPoints[0].y);
   ctx.lineTo(quadPoints[1].x, quadPoints[1].y);
@@ -86,10 +100,127 @@ export function renderWallShadow(ctx, quadPoints, shadowConfig = {}) {
 }
 
 /**
+ * Computes 2D signed area of a polygon to check orientation / visibility.
+ */
+function getPolygonSignedArea(pts) {
+  let area = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const j = (i + 1) % pts.length;
+    area += (pts[i].x * pts[j].y) - (pts[j].x * pts[i].y);
+  }
+  return area / 2;
+}
+
+/**
+ * Renders Extruded 3D Canvas Edge (Canto 3D del bastidor - 2 a 4 cm de fondo).
+ * Draws extruded side polygons along perspective angles so it looks like a real 3D stretched canvas.
+ */
+export function render3DCanvasDepthEdge(ctx, quadPoints, depthPx = 14) {
+  const [p0, p1, p2, p3] = quadPoints; // Front face
+
+  // Back face points on wall surface (shifted inwards & downwards for depth)
+  const backOffset = { x: -depthPx * 0.4, y: depthPx * 0.5 };
+  const b0 = { x: p0.x + backOffset.x, y: p0.y + backOffset.y };
+  const b1 = { x: p1.x + backOffset.x, y: p1.y + backOffset.y };
+  const b2 = { x: p2.x + backOffset.x, y: p2.y + backOffset.y };
+  const b3 = { x: p3.x + backOffset.x, y: p3.y + backOffset.y };
+
+  // 4 Side Polygons (Right, Bottom, Left, Top)
+  const sides = [
+    { name: 'right', poly: [p1, b1, b2, p2], color: '#26201c', edge: [p1, p2] },
+    { name: 'bottom', poly: [p2, b2, b3, p3], color: '#1a1512', edge: [p2, p3] },
+    { name: 'left', poly: [p0, p3, b3, b0], color: '#332b26', edge: [p0, p3] },
+    { name: 'top', poly: [p0, b0, b1, p1], color: '#3d342e', edge: [p0, p1] }
+  ];
+
+  ctx.save();
+
+  sides.forEach(side => {
+    // Only render side faces that are oriented towards the viewer (positive signed area)
+    const area = getPolygonSignedArea(side.poly);
+    if (area > 5) {
+      ctx.beginPath();
+      ctx.moveTo(side.poly[0].x, side.poly[0].y);
+      ctx.lineTo(side.poly[1].x, side.poly[1].y);
+      ctx.lineTo(side.poly[2].x, side.poly[2].y);
+      ctx.lineTo(side.poly[3].x, side.poly[3].y);
+      ctx.closePath();
+
+      ctx.fillStyle = side.color;
+      ctx.fill();
+
+      // Fold stroke line separating front face and extruded side
+      ctx.beginPath();
+      ctx.moveTo(side.edge[0].x, side.edge[0].y);
+      ctx.lineTo(side.edge[1].x, side.edge[1].y);
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  });
+
+  ctx.restore();
+}
+
+/**
+ * Samples 5 pixels from room wall around artwork quad, calculates average room color temperature,
+ * and applies overlay with globalCompositeOperation = 'multiply' at 6-8% opacity.
+ */
+export function applyAmbientWallTint(ctx, quadPoints) {
+  const [p0, p1, p2, p3] = quadPoints;
+  const cx = (p0.x + p1.x + p2.x + p3.x) / 4;
+  const cy = (p0.y + p1.y + p2.y + p3.y) / 4;
+
+  const sampleMargin = 20; // Samples 20px outside quad corners
+  const samplePoints = [
+    { x: p0.x - sampleMargin, y: p0.y - sampleMargin },
+    { x: p1.x + sampleMargin, y: p1.y - sampleMargin },
+    { x: p2.x + sampleMargin, y: p2.y + sampleMargin },
+    { x: p3.x - sampleMargin, y: p3.y + sampleMargin },
+    { x: cx, y: cy }
+  ];
+
+  let totalR = 0, totalG = 0, totalB = 0, count = 0;
+
+  samplePoints.forEach(pt => {
+    try {
+      const px = Math.round(Math.max(0, Math.min(ctx.canvas.width - 1, pt.x)));
+      const py = Math.round(Math.max(0, Math.min(ctx.canvas.height - 1, pt.y)));
+      const pixel = ctx.getImageData(px, py, 1, 1).data;
+      if (pixel && pixel[3] > 0) {
+        totalR += pixel[0];
+        totalG += pixel[1];
+        totalB += pixel[2];
+        count++;
+      }
+    } catch (e) {
+      // Security fallback if canvas is tainted
+    }
+  });
+
+  const avgR = count > 0 ? Math.round(totalR / count) : 240;
+  const avgG = count > 0 ? Math.round(totalG / count) : 230;
+  const avgB = count > 0 ? Math.round(totalB / count) : 220;
+
+  // Apply multiply blend mode at 7% opacity over front artwork quad
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(p0.x, p0.y);
+  ctx.lineTo(p1.x, p1.y);
+  ctx.lineTo(p2.x, p2.y);
+  ctx.lineTo(p3.x, p3.y);
+  ctx.closePath();
+
+  ctx.globalCompositeOperation = 'multiply';
+  ctx.fillStyle = `rgba(${avgR}, ${avgG}, ${avgB}, 0.07)`; // 7% ambient room tint
+  ctx.fill();
+  ctx.restore();
+}
+
+/**
  * Computes outer quadrilateral for frame borders.
  */
 function expandQuad(quadPoints, borderThickness) {
-  // Center of quad
   const cx = (quadPoints[0].x + quadPoints[1].x + quadPoints[2].x + quadPoints[3].x) / 4;
   const cy = (quadPoints[0].y + quadPoints[1].y + quadPoints[2].y + quadPoints[3].y) / 4;
 
@@ -125,7 +256,6 @@ export function renderPerspectiveFrame(ctx, quadPoints, frameType = 'none') {
   ctx.lineTo(outerQuad[3].x, outerQuad[3].y);
   ctx.closePath();
 
-  // Frame colors
   if (frameType === 'black') {
     ctx.fillStyle = '#1c1917'; // Matte museum black
     ctx.fill();
@@ -133,8 +263,7 @@ export function renderPerspectiveFrame(ctx, quadPoints, frameType = 'none') {
     ctx.lineWidth = 2;
     ctx.stroke();
   } else if (frameType === 'wood') {
-    // Warm natural oak wood tone
-    ctx.fillStyle = '#6b4423';
+    ctx.fillStyle = '#6b4423'; // Warm natural oak wood tone
     ctx.fill();
     ctx.strokeStyle = '#8c5930';
     ctx.lineWidth = 2.5;
@@ -157,24 +286,31 @@ export function renderPerspectiveFrame(ctx, quadPoints, frameType = 'none') {
 
 /**
  * Core function: Renders the artwork image warped into the 4 quadPoints quadrilateral
- * using a subdivision mesh grid (N x M).
+ * with dual shadows, 3D stretcher canvas edge extrusion, triangulated mesh, and ambient wall tinting.
  */
 export function renderWarpedArtwork(ctx, artworkImg, quadPoints, options = {}) {
   const {
     gridSize = 16,
     frame = 'none',
-    shadow = { opacity: 0.35, blur: 20, offsetX: 6, offsetY: 14 }
+    shadow = { opacity: 0.35, blur: 24, offsetX: 8, offsetY: 16 }
   } = options;
 
   if (!artworkImg || !artworkImg.complete || artworkImg.naturalWidth === 0) return;
 
-  // 1. Draw Drop Shadow
-  renderWallShadow(ctx, quadPoints, shadow);
+  // 1. Render Dual Shadows (Contact Occlusion Shadow + Ambient Diffuse Drop Shadow)
+  renderDualShadows(ctx, quadPoints, shadow);
 
-  // 2. Draw Frame (if selected)
-  renderPerspectiveFrame(ctx, quadPoints, frame);
+  // 2. Render 3D Canvas Depth Edge (Canto 3D del bastidor - 2 a 4 cm de profundidad)
+  if (frame === 'none') {
+    render3DCanvasDepthEdge(ctx, quadPoints, 14);
+  }
 
-  // 3. Render Artwork Triangulated Mesh
+  // 3. Render Perspective Frame (if selected)
+  if (frame !== 'none') {
+    renderPerspectiveFrame(ctx, quadPoints, frame);
+  }
+
+  // 4. Render Artwork Triangulated Mesh onto Front Quad
   const imgW = artworkImg.naturalWidth || artworkImg.width;
   const imgH = artworkImg.naturalHeight || artworkImg.height;
 
@@ -206,6 +342,9 @@ export function renderWarpedArtwork(ctx, artworkImg, quadPoints, options = {}) {
       drawTriangleAffine(ctx, artworkImg, s1, s2, s3, d1, d2, d3);
     }
   }
+
+  // 5. Apply Ambient Wall Color Temperature Tint (multiply at 7% opacity)
+  applyAmbientWallTint(ctx, quadPoints);
 }
 
 /**
