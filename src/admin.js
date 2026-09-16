@@ -56,8 +56,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Security Check
 async function checkAdminAuth() {
   try {
-    const res = await fetch('/api/auth/me');
+    const validTab = await validateTabSession();
+    if (!validTab) {
+      window.location.href = '/?showLogin=true';
+      return;
+    }
+
+    const res = await fetch('/api/auth/me', { cache: 'no-store' });
     if (!res.ok) {
+      await clearAllCachesAndLogout();
       window.location.href = '/?showLogin=true';
       return;
     }
@@ -66,9 +73,12 @@ async function checkAdminAuth() {
     // Strict Role Enforcement
     if (!data.user || data.user.role !== 'admin') {
       alert('Acceso denegado. Se requieren permisos de administrador.');
+      await clearAllCachesAndLogout();
       window.location.href = '/user-area.html';
       return;
     }
+
+    markTabSessionActive();
 
     currentAdminUser = data.user;
     adminUserNameEl.textContent = currentAdminUser.name || currentAdminUser.email;
@@ -81,6 +91,7 @@ async function checkAdminAuth() {
     await loadAdminData();
   } catch (err) {
     console.error('Error verifying auth:', err);
+    await clearAllCachesAndLogout();
     window.location.href = '/?showLogin=true';
   }
 }
@@ -671,7 +682,7 @@ function renderUsersTable(users) {
 function setupEventListeners() {
   document.getElementById('btn-admin-logout')?.addEventListener('click', async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      await clearAllCachesAndLogout();
       window.location.href = '/';
     } catch (err) {
       window.location.href = '/';

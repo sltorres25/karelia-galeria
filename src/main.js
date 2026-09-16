@@ -1,5 +1,6 @@
 import './style.css';
 import { virtualArtRoom } from './virtualArt.js';
+import { validateTabSession, markTabSessionActive, clearAllCachesAndLogout } from './sessionManager.js';
 
 let currentActiveArtwork = null;
 
@@ -1332,18 +1333,26 @@ async function initNavbarAuth() {
     }
 
     try {
-      const res = await fetch('/api/auth/me');
-      if (res.ok) {
-        const data = await res.json();
-        const user = data.user;
-        if (user.role === 'admin') {
-          userBtn.innerHTML = `<a href="/admin" class="nav-user-btn admin-badge">👑 Panel Admin</a>`;
-        } else {
-          userBtn.innerHTML = `<a href="/user-area.html" class="nav-user-btn">👤 Mi Cuenta</a>`;
-        }
-      } else {
+      const validTab = await validateTabSession();
+      if (!validTab) {
         userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
         document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
+      } else {
+        const res = await fetch('/api/auth/me', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          const user = data.user;
+          markTabSessionActive();
+          if (user.role === 'admin') {
+            userBtn.innerHTML = `<a href="/admin" class="nav-user-btn admin-badge">👑 Panel Admin</a>`;
+          } else {
+            userBtn.innerHTML = `<a href="/user-area.html" class="nav-user-btn">👤 Mi Cuenta</a>`;
+          }
+        } else {
+          await clearAllCachesAndLogout();
+          userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
+          document.getElementById('btn-trigger-login')?.addEventListener('click', openModal);
+        }
       }
     } catch (err) {
       userBtn.innerHTML = `<button class="nav-user-btn" id="btn-trigger-login">Iniciar Sesión</button>`;
@@ -1367,6 +1376,8 @@ async function initNavbarAuth() {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error al iniciar sesión');
+
+      markTabSessionActive();
 
       if (data.user.role === 'admin') {
         window.location.href = '/admin';
@@ -1395,6 +1406,8 @@ async function initNavbarAuth() {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error al registrar la cuenta');
+
+      markTabSessionActive();
 
       window.location.href = '/user-area.html';
     } catch (err) {

@@ -28,12 +28,12 @@ router.post('/auth/login', (req, res) => {
   const token = jwt.sign(
     { userId: user.id, role: user.role, email: user.email },
     JWT_SECRET,
-    { expiresIn: '7d' }
+    { expiresIn: '24h' }
   );
 
+  // Session cookie: no maxAge so browser clears it on tab/browser close
   res.cookie('auth_token', token, {
     httpOnly: true,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
     sameSite: 'lax'
   });
 
@@ -51,11 +51,13 @@ router.post('/auth/login', (req, res) => {
 });
 
 router.get('/auth/me', requireAuth, (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   res.json({ user: req.user });
 });
 
 router.post('/auth/logout', (req, res) => {
-  res.clearCookie('auth_token');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.clearCookie('auth_token', { path: '/' });
   res.json({ message: 'Sesión cerrada correctamente.' });
 });
 
@@ -71,12 +73,12 @@ router.post('/auth/register', (req, res) => {
     const token = jwt.sign(
       { userId: newUser.id, role: newUser.role, email: newUser.email },
       JWT_SECRET,
-      { expiresIn: '7d' }
+      { expiresIn: '24h' }
     );
 
+    // Session cookie
     res.cookie('auth_token', token, {
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
       sameSite: 'lax'
     });
 
