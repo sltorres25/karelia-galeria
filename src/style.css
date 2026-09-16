@@ -38,9 +38,9 @@
   --container-max-width: 1200px;
   --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-fast: all 0.2s ease-out;
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 16px;
+  --border-radius-sm: 0px;
+  --border-radius-md: 0px;
+  --border-radius-lg: 0px;
   --box-shadow-soft: 0 8px 24px rgba(44, 31, 26, 0.05);
   --box-shadow-medium: 0 14px 35px rgba(44, 31, 26, 0.1);
   --box-shadow-gold: 0 8px 24px rgba(169, 95, 74, 0.25);
@@ -647,8 +647,8 @@ a {
 }
 
 .artist-card {
-  background-color: var(--color-secondary); /* #D9C1A4 Beige (segundo color más claro) */
-  border-radius: var(--border-radius-md);
+  background-color: var(--color-secondary); /* #F3E8DB Crema */
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--box-shadow-soft);
   transition: var(--transition-smooth);
@@ -666,6 +666,7 @@ a {
 .artist-image-container {
   height: 280px;
   overflow: hidden;
+  border-radius: 0;
   background-color: #F8F7FA;
 }
 
@@ -795,22 +796,23 @@ a {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-secondary); /* #D9C1A4 Beige (segundo color más claro) */
-  border-radius: var(--border-radius-md);
-  padding: 12px;
+  background-color: var(--color-secondary); /* #F3E8DB Crema */
+  border-radius: 0;
+  overflow: hidden;
+  padding: 0;
   border: 1px solid rgba(169, 95, 74, 0.2);
   box-shadow: var(--box-shadow-soft);
   transition: var(--transition-smooth);
 }
 
 .artwork-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   box-shadow: var(--box-shadow-medium);
 }
 
 .artwork-image-wrapper {
   position: relative;
-  border-radius: var(--border-radius-sm);
+  border-radius: 0;
   overflow: hidden;
   aspect-ratio: 4 / 5;
   background-color: #F8F7FA;
@@ -888,9 +890,10 @@ a {
 }
 
 .artwork-info {
-  padding-top: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .artwork-title {
@@ -992,8 +995,8 @@ a {
 .process-card {
   background-color: var(--bg-dark-card);
   padding: 48px 36px;
-  border-radius: var(--border-radius-md);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 0;
+  border: 1px solid rgba(169, 95, 74, 0.2);
   box-shadow: var(--box-shadow-soft);
   transition: var(--transition-smooth);
   position: relative;
@@ -2559,7 +2562,7 @@ a {
 .faq-item {
   background-color: var(--bg-light-card);
   border: 1px solid rgba(197, 168, 128, 0.25);
-  border-radius: var(--border-radius-md);
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--box-shadow-soft);
   transition: var(--transition-smooth);
