@@ -1076,6 +1076,7 @@ function renderGallery() {
         </div>
       `;
     }).join('');
+    updateArtworkVisibility();
   }
 }
 
@@ -1567,8 +1568,11 @@ let artworksExpanded = false;
 let currentFilter = 'all';
 
 function updateArtworkVisibility() {
-  const artworkItems = document.querySelectorAll('.artwork-item');
+  const artworkItems = document.querySelectorAll('#artworks-grid .artwork-item');
+  if (artworkItems.length === 0) return;
+  
   let visibleCount = 0;
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
 
   artworkItems.forEach(item => {
     const category = item.getAttribute('data-category');
@@ -1576,7 +1580,7 @@ function updateArtworkVisibility() {
 
     if (matchesFilter) {
       visibleCount++;
-      const shouldShow = artworksExpanded || visibleCount <= 3;
+      const shouldShow = visibleCount <= 6; // Exactly 2 rows in 3-column desktop layout
       if (shouldShow) {
         item.classList.add('show');
         item.classList.remove('hidden-item');
@@ -1600,11 +1604,11 @@ function updateArtworkVisibility() {
       }
     });
 
-    if (totalMatching <= 3) {
+    if (totalMatching <= 6) {
       btnObras.style.display = 'none';
     } else {
       btnObras.style.display = 'inline-flex';
-      btnObras.textContent = artworksExpanded ? 'Ver menos obras' : 'Ver más obras';
+      btnObras.textContent = currentLang === 'en' ? 'See more artworks' : 'Ver más obras';
     }
   }
 }
