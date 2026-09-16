@@ -1102,6 +1102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Premium Interactive & Motion Effects
   initPremiumInteractiveEffects();
   initHeroParallax();
+  initHeroParticles();
   initFaqAccordion();
   initArtistDetailPage();
 
@@ -3149,6 +3150,32 @@ function initHeroParallax() {
     heroContent.style.transform = 'translate(0px, 0px)';
     hero.style.backgroundPosition = '50% 50%';
   });
+}
+
+function initHeroParticles() {
+  const container = document.querySelector('.hero-dust-particles');
+  if (!container) return;
+
+  container.innerHTML = '';
+  const particleCount = 28;
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'dust-particle';
+    const size = (Math.random() * 3.5 + 2).toFixed(1); // 2px to 5.5px
+    const left = (Math.random() * 98 + 1).toFixed(1); // 1% to 99%
+    const duration = (Math.random() * 14 + 10).toFixed(1); // 10s to 24s
+    const delay = (Math.random() * 12).toFixed(1); // 0s to 12s
+    const opacity = (Math.random() * 0.45 + 0.35).toFixed(2);
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${left}%`;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+    particle.style.opacity = opacity;
+
+    container.appendChild(particle);
+  }
 }
 
 function initFaqAccordion() {
