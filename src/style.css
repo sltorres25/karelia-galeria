@@ -13,12 +13,12 @@
   
   --color-accent-dark: #A95F4A;  /* Arcilla (DARK ACCENT for CTAs, active states & focus) */
 
-  --bg-dark: #F3E8DB;          /* Crema Primary Light Canvas */
-  --bg-dark-card: #FFFFFF;     /* Pure White Card Surface for pristine artwork display */
-  --bg-dark-input: #FFFFFF;    /* Clean White Inputs */
-  --bg-light: #F3E8DB;         /* Clean Light Section Background */
-  --bg-light-card: #FFFFFF;    /* Pure White Card Surface */
-  --bg-light-accent: #EFE4D6;  /* Soft Crema Highlight */
+  --bg-dark: #F3E8DB;          /* Crema Primary Light Canvas (Fondo siempre Crema) */
+  --bg-dark-card: #D9C1A4;     /* Beige (Segundo color más claro para tarjetas) */
+  --bg-dark-input: #F3E8DB;    /* Crema Light Inputs */
+  --bg-light: #F3E8DB;         /* Crema Primary Light Canvas */
+  --bg-light-card: #D9C1A4;    /* Beige Card Surface (Segundo color más claro) */
+  --bg-light-accent: #D9C1A4;  /* Beige Highlight */
   
   --accent-gold: #A95F4A;        /* Dark Accent (Arcilla) for buttons & active highlights */
   --accent-gold-dark: #A95F4A;   /* Arcilla */
@@ -603,7 +603,7 @@ a {
 }
 
 .artist-card {
-  background-color: #FFFFFF;
+  background-color: var(--color-secondary); /* #D9C1A4 Beige (segundo color más claro) */
   border-radius: var(--border-radius-md);
   overflow: hidden;
   box-shadow: var(--box-shadow-soft);
@@ -611,7 +611,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgba(169, 95, 74, 0.15);
+  border: 1px solid rgba(169, 95, 74, 0.2);
 }
 
 .artist-card:hover {
@@ -751,10 +751,10 @@ a {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;
+  background-color: var(--color-secondary); /* #D9C1A4 Beige (segundo color más claro) */
   border-radius: var(--border-radius-md);
   padding: 12px;
-  border: 1px solid rgba(169, 95, 74, 0.15);
+  border: 1px solid rgba(169, 95, 74, 0.2);
   box-shadow: var(--box-shadow-soft);
   transition: var(--transition-smooth);
 }
@@ -769,7 +769,7 @@ a {
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background-color: #FAF7F2;
+  background-color: #F3E8DB;
 }
 
 .artwork-image {
@@ -1378,7 +1378,7 @@ a {
 }
 
 .modal-image-panel {
-  background-color: #0c0c0c;
+  background-color: #F3E8DB;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1774,10 +1774,10 @@ a {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  background-color: var(--bg-light);
+  background-color: var(--color-secondary); /* #D9C1A4 Beige */
   padding: 30px;
   border-radius: var(--border-radius-md);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(169, 95, 74, 0.2);
   box-shadow: var(--box-shadow-soft);
   margin-bottom: 50px;
 }
@@ -2241,7 +2241,7 @@ a {
 }
 
 .checkout-container {
-  background-color: #F3E8DB; /* Crema */
+  background-color: var(--color-secondary); /* Beige #D9C1A4 */
   width: 550px;
   max-width: 95%;
   max-height: 90vh;
