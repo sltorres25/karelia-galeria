@@ -1654,13 +1654,19 @@ function initArtworkFilter() {
 /* -------------------------------------------------------------
  * Lightbox Modal Logic
  * ------------------------------------------------------------- */
-function initArtworkModal() {
+function openArtworkModal(id) {
   const modal = document.getElementById('artwork-modal');
-  const modalBackdrop = document.getElementById('modal-backdrop');
-  const modalClose = document.getElementById('modal-close');
-  const artworkCards = document.querySelectorAll('.artwork-item');
+  if (!modal || !id) return;
 
-  // Modal Fields
+  const data = artworksData[id];
+  if (!data) return;
+
+  const currentLang = localStorage.getItem('preferred-language') || 'es';
+  const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
+  const category = translateCategory(data.category, currentLang);
+  const technique = translateTechnique(data.technique, currentLang);
+  const theme = typeof data.theme === 'object' ? (data.theme[currentLang] || data.theme['es']) : data.theme;
+
   const mImage = document.getElementById('modal-image');
   const mCategory = document.getElementById('modal-category');
   const mTitle = document.getElementById('modal-title');
@@ -1675,110 +1681,112 @@ function initArtworkModal() {
   const mInquiryStatus = document.getElementById('inquiry-status');
   const mInquiryForm = document.getElementById('inquiry-form');
 
-  artworkCards.forEach(card => {
-    // Click on image wrapper triggers the modal
-    const wrapper = card.querySelector('.artwork-image-wrapper');
+  if (mImage) {
+    mImage.src = getImageUrl(data.image);
+    mImage.alt = `${title} - ${data.artist}`;
+  }
+  if (mCategory) mCategory.textContent = category;
+  if (mTitle) mTitle.textContent = title;
+  if (mArtist) mArtist.textContent = data.artist;
+  if (mStyle) mStyle.textContent = category;
+  if (mTheme) mTheme.textContent = theme;
+  if (mTechnique) mTechnique.textContent = technique;
+  if (mDimensions) mDimensions.textContent = data.dimensions;
+  if (mYear) mYear.textContent = data.year;
+  if (mPrice) mPrice.textContent = data.price;
+  if (mInquiryId) mInquiryId.value = id;
+
+  const mStatus = document.getElementById('modal-status');
+  if (mStatus) {
+    const isSold = soldArtworks.includes(parseInt(id, 10)) || data.status === 'Vendida';
+    mStatus.textContent = isSold ? (currentLang === 'en' ? 'Sold' : 'Vendida') : (currentLang === 'en' ? 'Available' : 'Disponible');
+    mStatus.style.color = isSold ? '#c94a4a' : '#2b8a3e';
+  }
+
+  const mDescription = document.getElementById('modal-description');
+  if (mDescription) {
+    const defaultDesc = currentLang === 'en'
+      ? `Original ${technique.toLowerCase()} artwork by ${data.artist}.`
+      : `${technique} original de ${data.artist}.`;
+    mDescription.textContent = data.description || defaultDesc;
+  }
+
+  const mCertBadge = document.querySelector('.certificate-badge');
+  if (mCertBadge) {
+    mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
+  }
+
+  currentActiveArtwork = {
+    id,
+    ...data,
+    title,
+    image: getImageUrl(data.image)
+  };
+
+  const mAddToCartBtn = document.getElementById('modal-add-to-cart');
+  if (mAddToCartBtn) {
+    mAddToCartBtn.setAttribute('data-id', id);
+    updateAddToCartButtonState(id);
+  }
+
+  const mViewInRoomBtn = document.getElementById('modal-view-in-room');
+  if (mViewInRoomBtn) {
+    mViewInRoomBtn.onclick = () => {
+      if (currentActiveArtwork) {
+        virtualArtRoom.open(currentActiveArtwork);
+      }
+    };
+  }
+
+  // Clear status from previous views
+  if (mInquiryStatus) {
+    mInquiryStatus.textContent = '';
+    mInquiryStatus.className = 'inquiry-status';
+  }
+  if (mInquiryForm) {
+    mInquiryForm.reset();
+    const textarea = document.getElementById('inquiry-message');
+    if (textarea) {
+      textarea.value = currentLang === 'en'
+        ? `I am interested in receiving quotation and international shipping details for the artwork "${title}" by ${data.artist}.`
+        : `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${title}" de ${data.artist}.`;
+    }
+  }
+
+  // Open Modal
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
+}
+
+function initArtworkModal() {
+  const modal = document.getElementById('artwork-modal');
+  if (!modal) return;
+
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const modalClose = document.getElementById('modal-close');
+
+  // Event delegation: Listen for clicks on artwork cards dynamically across all pages
+  document.addEventListener('click', (e) => {
+    const wrapper = e.target.closest('.artwork-image-wrapper');
     if (wrapper) {
-      wrapper.addEventListener('click', () => {
+      const card = wrapper.closest('.artwork-item');
+      if (card) {
         const id = card.getAttribute('data-id');
-        const data = artworksData[id];
-
-        if (data) {
-          const currentLang = localStorage.getItem('preferred-language') || 'es';
-          const title = currentLang === 'en' ? (artworkTitlesEn[id] || data.title) : data.title;
-          const category = translateCategory(data.category, currentLang);
-          const technique = translateTechnique(data.technique, currentLang);
-          const theme = typeof data.theme === 'object' ? (data.theme[currentLang] || data.theme['es']) : data.theme;
-
-          // Fill modal fields
-          mImage.src = getImageUrl(data.image);
-          mImage.alt = `${title} - ${data.artist}`;
-          mCategory.textContent = category;
-          mTitle.textContent = title;
-          mArtist.textContent = data.artist;
-          if (mStyle) mStyle.textContent = category;
-          if (mTheme) mTheme.textContent = theme;
-          mTechnique.textContent = technique;
-          mDimensions.textContent = data.dimensions;
-          mYear.textContent = data.year;
-          mPrice.textContent = data.price;
-          mInquiryId.value = id;
-
-          const mStatus = document.getElementById('modal-status');
-          if (mStatus) {
-            const isSold = soldArtworks.includes(parseInt(id, 10)) || data.status === 'Vendida';
-            mStatus.textContent = isSold ? (currentLang === 'en' ? 'Sold' : 'Vendida') : (currentLang === 'en' ? 'Available' : 'Disponible');
-            mStatus.style.color = isSold ? '#c94a4a' : '#2b8a3e';
-          }
-
-          const mDescription = document.getElementById('modal-description');
-          if (mDescription) {
-            const defaultDesc = currentLang === 'en'
-              ? `Original ${technique.toLowerCase()} artwork by ${data.artist}.`
-              : `${technique} original de ${data.artist}.`;
-            mDescription.textContent = data.description || defaultDesc;
-          }
-
-          const mCertBadge = document.querySelector('.certificate-badge');
-          if (mCertBadge) {
-            mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
-          }
-
-          currentActiveArtwork = {
-            id,
-            ...data,
-            title,
-            image: getImageUrl(data.image)
-          };
-
-          const mAddToCartBtn = document.getElementById('modal-add-to-cart');
-          if (mAddToCartBtn) {
-            mAddToCartBtn.setAttribute('data-id', id);
-            updateAddToCartButtonState(id);
-          }
-
-          const mViewInRoomBtn = document.getElementById('modal-view-in-room');
-          if (mViewInRoomBtn) {
-            mViewInRoomBtn.onclick = () => {
-              if (currentActiveArtwork) {
-                virtualArtRoom.open(currentActiveArtwork);
-              }
-            };
-          }
-
-          // Clear status from previous views
-          if (mInquiryStatus) {
-            mInquiryStatus.textContent = '';
-            mInquiryStatus.className = 'inquiry-status';
-          }
-          if (mInquiryForm) {
-            mInquiryForm.reset();
-            const textarea = document.getElementById('inquiry-message');
-            if (textarea) {
-              textarea.value = currentLang === 'en'
-                ? `I am interested in receiving quotation and international shipping details for the artwork "${title}" by ${data.artist}.`
-                : `Estoy interesado/a en recibir detalles de cotización y envío internacional para la obra "${title}" de ${data.artist}.`;
-            }
-          }
-
-          // Open Modal
-          modal.style.display = 'flex';
-          document.body.style.overflow = 'hidden'; // Lock background scrolling
-
-          // Trigger CSS transition delay
-          setTimeout(() => {
-            modal.classList.add('active');
-          }, 10);
+        if (id) {
+          openArtworkModal(id);
         }
-      });
+      }
     }
   });
 
   const closeModal = () => {
     modal.classList.remove('active');
-    document.body.style.overflow = ''; // Unlock scroll
+    document.body.style.overflow = '';
 
-    // Wait for animation, then hide
     setTimeout(() => {
       modal.style.display = 'none';
     }, 400);
@@ -1787,7 +1795,6 @@ function initArtworkModal() {
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
 
-  // Close on Escape key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal();
