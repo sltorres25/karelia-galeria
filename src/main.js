@@ -1,4 +1,7 @@
 import './style.css';
+import { virtualArtRoom } from './virtualArt.js';
+
+let currentActiveArtwork = null;
 
 // Vite glob import for all images in src/Artistas
 const artistImages = import.meta.glob('/src/Artistas/**/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -1706,10 +1709,26 @@ function initArtworkModal() {
             mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
           }
 
+          currentActiveArtwork = {
+            id,
+            ...data,
+            title,
+            image: getImageUrl(data.image)
+          };
+
           const mAddToCartBtn = document.getElementById('modal-add-to-cart');
           if (mAddToCartBtn) {
             mAddToCartBtn.setAttribute('data-id', id);
             updateAddToCartButtonState(id);
+          }
+
+          const mViewInRoomBtn = document.getElementById('modal-view-in-room');
+          if (mViewInRoomBtn) {
+            mViewInRoomBtn.onclick = () => {
+              if (currentActiveArtwork) {
+                virtualArtRoom.open(currentActiveArtwork);
+              }
+            };
           }
 
           // Clear status from previous views
@@ -2098,10 +2117,26 @@ function bindModalEventsToCatalog() {
             mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
           }
 
+          currentActiveArtwork = {
+            id,
+            ...data,
+            title,
+            image: getImageUrl(data.image)
+          };
+
           const mAddToCartBtn = document.getElementById('modal-add-to-cart');
           if (mAddToCartBtn) {
             mAddToCartBtn.setAttribute('data-id', id);
             updateAddToCartButtonState(id);
+          }
+
+          const mViewInRoomBtn = document.getElementById('modal-view-in-room');
+          if (mViewInRoomBtn) {
+            mViewInRoomBtn.onclick = () => {
+              if (currentActiveArtwork) {
+                virtualArtRoom.open(currentActiveArtwork);
+              }
+            };
           }
 
           if (mInquiryStatus) {
@@ -3347,10 +3382,26 @@ function initArtistDetailPage() {
               mCertBadge.style.display = (data.certified !== false) ? 'flex' : 'none';
             }
 
+            currentActiveArtwork = {
+              id,
+              ...data,
+              title,
+              image: getImageUrl(data.image)
+            };
+
             const mAddToCartBtn = document.getElementById('modal-add-to-cart');
             if (mAddToCartBtn) {
               mAddToCartBtn.setAttribute('data-id', id);
               updateAddToCartButtonState(id);
+            }
+
+            const mViewInRoomBtn = document.getElementById('modal-view-in-room');
+            if (mViewInRoomBtn) {
+              mViewInRoomBtn.onclick = () => {
+                if (currentActiveArtwork) {
+                  virtualArtRoom.open(currentActiveArtwork);
+                }
+              };
             }
 
             if (mInquiryStatus) {
