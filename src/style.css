@@ -8,17 +8,17 @@
 :root {
   /* Clean Light Museum Gallery Design System */
   --color-primary: #F8F7FA;     /* Light Canvas (#F8F7FA - Ultra light desaturated) */
-  --color-secondary: #EAE8F0;   /* Light Surface (#EAE8F0 - Second lightest color) */
+  --color-secondary: #F3E8DB;   /* Crema Card Surface (#F3E8DB) */
   --color-terracotta-soft: #C9B26A; /* Terracota suave (Light Warm Accent) */
   
   --color-accent-dark: #A95F4A;  /* Arcilla (DARK ACCENT for CTAs, active states & focus) */
 
   --bg-dark: #F8F7FA;          /* Light Primary Canvas */
-  --bg-dark-card: #EAE8F0;     /* Surface Card (Segundo color más claro) */
+  --bg-dark-card: #F3E8DB;     /* Crema Card Surface (#F3E8DB) */
   --bg-dark-input: #F8F7FA;    /* Light Inputs */
   --bg-light: #F8F7FA;         /* Light Primary Canvas */
-  --bg-light-card: #EAE8F0;    /* Surface Card (Segundo color más claro) */
-  --bg-light-accent: #EAE8F0;  /* Surface Highlight */
+  --bg-light-card: #F3E8DB;    /* Crema Card Surface (#F3E8DB) */
+  --bg-light-accent: #F3E8DB;  /* Crema Surface Highlight */
   
   --accent-gold: #A95F4A;        /* Dark Accent (Arcilla) for buttons & active highlights */
   --accent-gold-dark: #A95F4A;   /* Arcilla */
@@ -229,7 +229,7 @@ a {
 }
 
 .btn-secondary {
-  background-color: var(--color-secondary); /* Light Surface #EAE8F0 */
+  background-color: var(--color-secondary); /* Crema Surface #F3E8DB */
   color: #2C1F1A;
 }
 
@@ -895,7 +895,7 @@ a {
 }
 
 .section-split .section-desc {
-  color: #EAE8F0 !important;
+  color: #F3E8DB !important;
 }
 
 .split-text {

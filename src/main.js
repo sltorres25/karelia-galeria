@@ -2884,8 +2884,8 @@ function updateAddToCartButtonState(id) {
   } else if (cart.includes(numericId)) {
     btn.textContent = translations[currentLang].modal.already_in_cart;
     btn.disabled = true;
-    btn.style.backgroundColor = '#EAE8F0';
-    btn.style.borderColor = '#EAE8F0';
+    btn.style.backgroundColor = '#F3E8DB';
+    btn.style.borderColor = '#F3E8DB';
     btn.style.color = '#2C1F1A';
   } else {
     btn.textContent = translations[currentLang].modal.add_to_cart;

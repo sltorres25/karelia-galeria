@@ -365,7 +365,7 @@ function populateThemeForm(theme) {
 
 function updateLivePreview() {
   const primary = document.getElementById('color-primary')?.value || '#F8F7FA';
-  const secondary = document.getElementById('color-secondary')?.value || '#EAE8F0';
+  const secondary = document.getElementById('color-secondary')?.value || '#F3E8DB';
   const bg = document.getElementById('color-bg')?.value || '#F8F7FA';
   const text = document.getElementById('color-text')?.value || '#2C1F1A';
   const btn = document.getElementById('color-btn')?.value || '#A95F4A';
@@ -431,7 +431,7 @@ document.getElementById('theme-form')?.addEventListener('submit', async (e) => {
 document.getElementById('btn-reset-theme')?.addEventListener('click', async () => {
   const defaultTheme = {
     primary: "#F8F7FA",
-    secondary: "#EAE8F0",
+    secondary: "#F3E8DB",
     bg: "#F8F7FA",
     text: "#2C1F1A",
     btn: "#A95F4A",
