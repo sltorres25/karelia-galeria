@@ -891,11 +891,11 @@
     "works_section_subtitle": "Explora una cuidada selección de pinturas únicas. Filtra según el estilo que mejor combine con tu espacio o colección."
   },
   "theme": {
-    "primary": "#C9B26A",
-    "secondary": "#A95F4A",
-    "bg": "#EEEDF3",
+    "primary": "#F8F7FA",
+    "secondary": "#EAE8F0",
+    "bg": "#F8F7FA",
     "text": "#2C1F1A",
     "btn": "#A95F4A",
-    "accent": "#D9C1A4"
+    "accent": "#C9B26A"
   }
 }

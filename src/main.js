@@ -1123,15 +1123,16 @@ async function initDynamicCMS() {
     if (data.theme) {
       const rootStyle = document.documentElement.style;
       if (data.theme.primary) {
-        rootStyle.setProperty('--accent-gold', data.theme.primary);
         rootStyle.setProperty('--color-primary', data.theme.primary);
       }
       if (data.theme.secondary) {
-        rootStyle.setProperty('--accent-gold-dark', data.theme.secondary);
         rootStyle.setProperty('--color-secondary', data.theme.secondary);
+        rootStyle.setProperty('--bg-dark-card', data.theme.secondary);
+        rootStyle.setProperty('--bg-light-card', data.theme.secondary);
       }
       if (data.theme.bg) {
         rootStyle.setProperty('--bg-dark', data.theme.bg);
+        rootStyle.setProperty('--bg-light', data.theme.bg);
         rootStyle.setProperty('--color-bg', data.theme.bg);
       }
       if (data.theme.text) {
@@ -1143,6 +1144,8 @@ async function initDynamicCMS() {
         rootStyle.setProperty('--color-accent', data.theme.accent);
       }
       if (data.theme.btn) {
+        rootStyle.setProperty('--accent-gold', data.theme.btn);
+        rootStyle.setProperty('--accent-gold-dark', data.theme.btn);
         rootStyle.setProperty('--color-btn-primary', data.theme.btn);
       }
     }
@@ -2877,19 +2880,19 @@ function updateAddToCartButtonState(id) {
     btn.disabled = true;
     btn.style.backgroundColor = '#6E564A';
     btn.style.borderColor = '#6E564A';
-    btn.style.color = '#EEEDF3';
+    btn.style.color = '#F8F7FA';
   } else if (cart.includes(numericId)) {
     btn.textContent = translations[currentLang].modal.already_in_cart;
     btn.disabled = true;
-    btn.style.backgroundColor = '#D9C1A4';
-    btn.style.borderColor = '#D9C1A4';
+    btn.style.backgroundColor = '#EAE8F0';
+    btn.style.borderColor = '#EAE8F0';
     btn.style.color = '#2C1F1A';
   } else {
     btn.textContent = translations[currentLang].modal.add_to_cart;
     btn.disabled = false;
     btn.style.backgroundColor = 'var(--accent-gold-dark)';
     btn.style.borderColor = 'var(--accent-gold-dark)';
-    btn.style.color = '#EEEDF3';
+    btn.style.color = '#F8F7FA';
   }
 }
 

@@ -364,12 +364,12 @@ function populateThemeForm(theme) {
 }
 
 function updateLivePreview() {
-  const primary = document.getElementById('color-primary')?.value || '#C9B26A';
-  const secondary = document.getElementById('color-secondary')?.value || '#A95F4A';
-  const bg = document.getElementById('color-bg')?.value || '#EEEDF3';
+  const primary = document.getElementById('color-primary')?.value || '#F8F7FA';
+  const secondary = document.getElementById('color-secondary')?.value || '#EAE8F0';
+  const bg = document.getElementById('color-bg')?.value || '#F8F7FA';
   const text = document.getElementById('color-text')?.value || '#2C1F1A';
   const btn = document.getElementById('color-btn')?.value || '#A95F4A';
-  const accent = document.getElementById('color-accent')?.value || '#D9C1A4';
+  const accent = document.getElementById('color-accent')?.value || '#C9B26A';
 
   const previewBox = document.getElementById('live-preview-box');
   const prevBadge = document.getElementById('prev-badge');
@@ -388,7 +388,7 @@ function updateLivePreview() {
     if (prevText) prevText.style.color = text;
     if (prevBtnPrimary) {
       prevBtnPrimary.style.backgroundColor = btn;
-      prevBtnPrimary.style.color = '#EEEDF3';
+      prevBtnPrimary.style.color = '#F8F7FA';
     }
     if (prevBtnOutline) {
       prevBtnOutline.style.color = secondary;
@@ -430,12 +430,12 @@ document.getElementById('theme-form')?.addEventListener('submit', async (e) => {
 // Reset Theme
 document.getElementById('btn-reset-theme')?.addEventListener('click', async () => {
   const defaultTheme = {
-    primary: "#C9B26A",
-    secondary: "#A95F4A",
-    bg: "#EEEDF3",
+    primary: "#F8F7FA",
+    secondary: "#EAE8F0",
+    bg: "#F8F7FA",
     text: "#2C1F1A",
     btn: "#A95F4A",
-    accent: "#D9C1A4"
+    accent: "#C9B26A"
   };
   populateThemeForm(defaultTheme);
   showToast('Restablecidos valores por defecto en el formulario.', 'info');

@@ -68,12 +68,12 @@ const initialContent = {
 
 // Initial visual theme seed (Design Tokens)
 const initialTheme = {
-  primary: "#EEEDF3",
-  secondary: "#C9B26A",
-  bg: "#EEEDF3",
+  primary: "#F8F7FA",
+  secondary: "#EAE8F0",
+  bg: "#F8F7FA",
   text: "#2C1F1A",
   btn: "#A95F4A",
-  accent: "#A95F4A"
+  accent: "#C9B26A"
 };
 
 // Get default database object with hashed passwords for initial seed

@@ -11,7 +11,7 @@
   --admin-gold: #C9B26A; /* Terracota suave */
   --admin-gold-hover: #D9C1A4; /* Beige */
   --admin-accent-clay: #A95F4A; /* Arcilla */
-  --admin-text-main: #EEEDF3;
+  --admin-text-main: #F8F7FA;
   --admin-text-muted: #D9C1A4; /* Beige */
   --admin-danger: #ef4444;
   --admin-success: #10b981;
@@ -346,7 +346,7 @@ body.admin-body {
 
 .btn-admin-primary {
   background-color: var(--admin-accent-clay); /* Arcilla #A95F4A - Dark Accent */
-  color: #EEEDF3;
+  color: #F8F7FA;
 }
 .btn-admin-primary:hover {
   background-color: #8C4B39;

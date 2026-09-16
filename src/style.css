@@ -7,18 +7,18 @@
 /* Variables System */
 :root {
   /* Clean Light Museum Gallery Design System */
-  --color-primary: #EEEDF3;     /* Light Canvas (#EEEDF3 - Less red saturation) */
-  --color-secondary: #D9C1A4;   /* Beige (Secondary Light Surface) */
+  --color-primary: #F8F7FA;     /* Light Canvas (#F8F7FA - Ultra light desaturated) */
+  --color-secondary: #EAE8F0;   /* Light Surface (#EAE8F0 - Second lightest color) */
   --color-terracotta-soft: #C9B26A; /* Terracota suave (Light Warm Accent) */
   
   --color-accent-dark: #A95F4A;  /* Arcilla (DARK ACCENT for CTAs, active states & focus) */
 
-  --bg-dark: #EEEDF3;          /* Light Primary Canvas */
-  --bg-dark-card: #D9C1A4;     /* Beige (Segundo color más claro para tarjetas) */
-  --bg-dark-input: #EEEDF3;    /* Light Inputs */
-  --bg-light: #EEEDF3;         /* Light Primary Canvas */
-  --bg-light-card: #D9C1A4;    /* Beige Card Surface (Segundo color más claro) */
-  --bg-light-accent: #D9C1A4;  /* Beige Highlight */
+  --bg-dark: #F8F7FA;          /* Light Primary Canvas */
+  --bg-dark-card: #EAE8F0;     /* Surface Card (Segundo color más claro) */
+  --bg-dark-input: #F8F7FA;    /* Light Inputs */
+  --bg-light: #F8F7FA;         /* Light Primary Canvas */
+  --bg-light-card: #EAE8F0;    /* Surface Card (Segundo color más claro) */
+  --bg-light-accent: #EAE8F0;  /* Surface Highlight */
   
   --accent-gold: #A95F4A;        /* Dark Accent (Arcilla) for buttons & active highlights */
   --accent-gold-dark: #A95F4A;   /* Arcilla */
@@ -218,24 +218,24 @@ a {
 
 .btn-primary {
   background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
-  color: #EEEDF3; /* Light text */
+  color: #F8F7FA; /* Light text */
 }
 
 .btn-primary:hover {
   background-color: #8C4B39;
-  color: #EEEDF3;
+  color: #F8F7FA;
   transform: translateY(-2px);
   box-shadow: var(--box-shadow-gold);
 }
 
 .btn-secondary {
-  background-color: var(--color-secondary); /* Beige #D9C1A4 - Light Secondary */
+  background-color: var(--color-secondary); /* Light Surface #EAE8F0 */
   color: #2C1F1A;
 }
 
 .btn-secondary:hover {
   background-color: var(--color-accent-dark); /* Arcilla #A95F4A - Dark Accent */
-  color: #EEEDF3;
+  color: #F8F7FA;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(169, 95, 74, 0.2);
 }
@@ -247,7 +247,7 @@ a {
 
 .section-light .btn-secondary:hover {
   background-color: var(--color-accent-dark);
-  color: #EEEDF3;
+  color: #F8F7FA;
 }
 
 .btn-outline {
@@ -258,12 +258,12 @@ a {
 
 .btn-outline:hover {
   background-color: var(--color-accent-dark);
-  color: #EEEDF3;
+  color: #F8F7FA;
   transform: translateY(-2px);
 }
 
 .hero .btn-secondary {
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
   color: #2C1F1A;
 }
 
@@ -274,13 +274,13 @@ a {
 }
 
 .hero .btn-outline {
-  border-color: rgba(238, 237, 243, 0.5);
-  color: #EEEDF3;
+  border-color: rgba(248, 247, 250, 0.5);
+  color: #F8F7FA;
 }
 
 .hero .btn-outline:hover {
-  background-color: rgba(238, 237, 243, 0.15);
-  border-color: #EEEDF3;
+  background-color: rgba(248, 247, 250, 0.15);
+  border-color: #F8F7FA;
 }
 
 .btn-block {
@@ -309,16 +309,16 @@ a {
   z-index: 1000;
   padding: 24px 0;
   transition: var(--transition-smooth);
-  border-bottom: 1px solid rgba(238, 237, 243, 0.15);
-  color: #EEEDF3; /* light text at the top */
+  border-bottom: 1px solid rgba(248, 247, 250, 0.15);
+  color: #F8F7FA; /* light text at the top */
 }
 
 .navbar .logo {
-  color: #EEEDF3;
+  color: #F8F7FA;
 }
 
 .navbar .nav-link {
-  color: rgba(238, 237, 243, 0.85);
+  color: rgba(248, 247, 250, 0.85);
 }
 
 .navbar .nav-link:hover {
@@ -326,12 +326,12 @@ a {
 }
 
 .navbar .nav-toggle .bar {
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
 }
 
 .navbar.scrolled {
   padding: 16px 0;
-  background-color: rgba(238, 237, 243, 0.96); /* Light scrolled background */
+  background-color: rgba(248, 247, 250, 0.96); /* Light scrolled background */
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(169, 95, 74, 0.12);
   color: #2C1F1A; /* dark text when scrolled */
@@ -622,7 +622,7 @@ a {
 .artist-image-container {
   height: 280px;
   overflow: hidden;
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
 }
 
 .artist-image {
@@ -769,7 +769,7 @@ a {
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
 }
 
 .artwork-image {
@@ -887,15 +887,15 @@ a {
   background-color: #2C1F1A; /* Deep arcilla brown */
   border-top: 1px solid rgba(169, 95, 74, 0.2);
   border-bottom: 1px solid rgba(169, 95, 74, 0.2);
-  color: #EEEDF3;
+  color: #F8F7FA;
 }
 
 .section-split .section-title {
-  color: #EEEDF3 !important;
+  color: #F8F7FA !important;
 }
 
 .section-split .section-desc {
-  color: #D9C1A4 !important; /* Beige */
+  color: #EAE8F0 !important;
 }
 
 .split-text {
@@ -907,9 +907,9 @@ a {
 }
 
 .section-split .btn-secondary {
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
   color: #2C1F1A;
-  border-color: #EEEDF3;
+  border-color: #F8F7FA;
 }
 
 .section-split .btn-secondary:hover {
@@ -1378,7 +1378,7 @@ a {
 }
 
 .modal-image-panel {
-  background-color: #EEEDF3;
+  background-color: #F8F7FA;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2057,7 +2057,7 @@ a {
   width: 400px;
   max-width: 100%;
   height: 100vh;
-  background-color: #EEEDF3; /* Crema background */
+  background-color: #F8F7FA;
   box-shadow: -10px 0 30px rgba(44, 31, 26, 0.15);
   z-index: 2000;
   display: flex;
